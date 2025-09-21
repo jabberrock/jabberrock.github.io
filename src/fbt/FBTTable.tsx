@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as FBT from "./FBT"
+import type { QuestionnaireResult } from "./Questionnaire";
 
 type FBTTableChoice = {
     system: FBT.System
@@ -7,7 +8,8 @@ type FBTTableChoice = {
 }
 
 type FBTTableProps = {
-    initialChoices: FBTTableChoice[]
+    initialChoices: FBTTableChoice[],
+    questionnaireResult: QuestionnaireResult,
 };
 
 const exampleVideos: Record<string, string> = {
@@ -25,11 +27,18 @@ function sum(prices: number[]) {
 }
 
 function toDollars(priceCents: number) {
-    return `$${Math.round(priceCents / 100).toFixed()}`;
+    if (priceCents === 0) {
+        return "--";
+    } else {
+        return `$${Math.round(priceCents / 100).toFixed()}`;
+    }
 }
 
-function FBTTable(props: FBTTableProps): React.ReactNode {
-    const [ choices ] = useState(props.initialChoices);
+function FBTTable({
+    initialChoices,
+    questionnaireResult,
+}: FBTTableProps): React.ReactNode {
+    const [ choices ] = useState(initialChoices);
 
     return (
         <table className="fbt-table">
@@ -41,7 +50,7 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                 </tr>
                 <tr>
                     {choices.map(({ system, config }) => {
-                        const itemList = system.itemList(config);
+                        const itemList = system.itemList(config, questionnaireResult);
                         const priceCents = sum(itemList.required.map(i => i.count * i.each_price_cents));
                         return (
                             <td key={system.key} className="price">{toDollars(priceCents)}</td>
@@ -93,7 +102,7 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                 </tr>
                 <tr>
                     {choices.map(({ system, config }) => {
-                        const itemList = system.itemList(config);
+                        const itemList = system.itemList(config, questionnaireResult);
                         return (
                             <td key={system.key}>
                                 <table className="component-table">

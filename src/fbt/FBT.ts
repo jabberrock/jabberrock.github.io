@@ -1,4 +1,5 @@
 import type React from "react"
+import type { QuestionnaireResult } from "./Questionnaire"
 
 export type Item = {
     name: string
@@ -18,7 +19,7 @@ export type System = {
     imageURL: (config: string) => string
     howItWorks: (config: string) => React.ReactNode
     configs: Record<string, string>
-    itemList: (config: string) => ItemList
+    itemList: (config: string, questionnaireResult: QuestionnaireResult) => ItemList
     availability: (config: string) => React.ReactNode
     tracking: (config: string) => React.ReactNode
     specs: (config: string) => React.ReactNode

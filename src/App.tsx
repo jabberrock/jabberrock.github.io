@@ -5,10 +5,14 @@ import { HTCVive30 } from './fbt/HTCVive30'
 import { HTCViveUltimate } from './fbt/HTCViveUltimate';
 import { Settings } from './fbt/Settings';
 import { OpacityContext } from './fbt/VideoPlayer';
+import { Questionnaire, type QuestionnaireResult } from './fbt/Questionnaire';
+import React from 'react';
 
 const opacityRef = { current: 0.8 };
 
 function App() {
+    const [questionnaireResult, setQuestionnaireResult] = React.useState<QuestionnaireResult | null>(null)
+
     const choices = [
         {
             system: SlimeVR,
@@ -26,10 +30,14 @@ function App() {
 
     return (
         <div>
-            <OpacityContext value={opacityRef}>
-                <FBTTable initialChoices={choices} />
-                <Settings onOpacityChange={newOpacity => { opacityRef.current = newOpacity }} />
-            </OpacityContext>
+            {questionnaireResult ? (
+                <OpacityContext value={opacityRef}>
+                    <FBTTable initialChoices={choices} questionnaireResult={questionnaireResult} />
+                    <Settings onOpacityChange={newOpacity => { opacityRef.current = newOpacity }} />
+                </OpacityContext>
+            ) : (
+                <Questionnaire onComplete={setQuestionnaireResult} />
+            )}
         </div>
     )
 }

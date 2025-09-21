@@ -15,7 +15,7 @@ export const HTCVive30: FBT.System = {
     "configs": {
         "3_trackers": "3 trackers (Chest, 2x Feet)"
     },
-    "itemList": config => {
+    "itemList": (config, questionnaireResult) => {
         const c: FBT.ItemList = {
             required: [],
             optional: [],
@@ -37,7 +37,7 @@ export const HTCVive30: FBT.System = {
                 c.required.push({
                     name: "HTC VIVE SteamVR Base Station 1.0",
                     count: 2,
-                    each_price_cents: 10099,
+                    each_price_cents: questionnaireResult.ownsLighthouse ? 0 : 10099,
                     link: new URL("https://www.amazon.com/HTC-Vive-Base-Station-pc/dp/B01M01B92P")
                 });
                 break;
