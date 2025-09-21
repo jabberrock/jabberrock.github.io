@@ -174,7 +174,7 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                 </tr>
                 {Object.keys(exampleVideos).map(v => (
                     <React.Fragment key={v}>
-                        <tr>
+                        <tr className="sub-header">
                             <td colSpan={choices.length}>{exampleVideos[v]}</td>
                         </tr>
                         <tr>
