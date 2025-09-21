@@ -22,6 +22,6 @@ export type System = {
     battery_life: (config: string) => React.ReactNode
     weight: (config: string) => React.ReactNode
     volume: (config: string) => React.ReactNode
-    examples: (config: string) => React.ReactNode
+    examples: (config: string) => Record<string, React.ReactNode>
 };
 

@@ -10,6 +10,16 @@ type FBTTableProps = {
     initialChoices: FBTTableChoice[]
 };
 
+const exampleVideos: Record<string, string> = {
+    "1_standing": "Standing",
+    "2_light_dancing": "Light Dancing",
+    "3_dynamic_movement": "Dyanmic Movement",
+    "4_sitting": "Sitting",
+    "5_lying_down": "Lying Down",
+    "6_sitting_on_floor": "Sitting on Floor",
+    "7_light_exercise": "Light Exercise",
+};
+
 function sum(prices: number[]) {
     return prices.reduce((a, v) => a + v, 0);
 }
@@ -22,18 +32,16 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
     const [ choices ] = useState(props.initialChoices);
 
     return (
-        <table>
+        <table className="fbt-table">
             <thead>
                 <tr>
-                    <th></th>
                     {choices.map(({ system }) => (
-                        <th key={system.key} className="system">{system.name}</th>
+                        <th key={system.key}>{system.name}</th>
                     ))}
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>Configuration</td>
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
                             <select defaultValue={config}>
@@ -44,8 +52,10 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                         </td>
                     ))}
                 </tr>
+                <tr className="header">
+                    <td colSpan={choices.length}>Price</td>
+                </tr>
                 <tr>
-                    <td>Price</td>
                     {choices.map(({ system, config }) => {
                         const itemList = system.itemList(config);
                         const priceCents = sum(itemList.required.map(i => i.count * i.each_price_cents));
@@ -55,12 +65,11 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                     })}
                 </tr>
                 <tr>
-                    <td>Components</td>
                     {choices.map(({ system, config }) => {
                         const itemList = system.itemList(config);
                         return (
                             <td key={system.key}>
-                                <table>
+                                <table className="component-table">
                                     <tbody>
                                         <tr>
                                             <td colSpan={3}>Required</td>
@@ -103,24 +112,30 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                         );
                     })}
                 </tr>
+                <tr className="header">
+                    <td colSpan={choices.length}>Availability</td>
+                </tr>
                 <tr>
-                    <td>Availability</td>
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
                             {system.availability(config)}
                         </td>
                     ))}
                 </tr>
+                <tr className="header">
+                    <td colSpan={choices.length}>Tracking</td>
+                </tr>
                 <tr>
-                    <td>Tracking</td>
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
                             {system.tracking(config)}
                         </td>
                     ))}
                 </tr>
+                <tr className="header">
+                    <td colSpan={choices.length}>Specifications</td>
+                </tr>
                 <tr>
-                    <td>Battery Life</td>
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
                             {system.battery_life(config)}
@@ -128,7 +143,6 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                     ))}
                 </tr>
                 <tr>
-                    <td>Weight</td>
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
                             {system.weight(config)}
@@ -136,21 +150,29 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                     ))}
                 </tr>
                 <tr>
-                    <td>Size</td>
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
                             {system.volume(config)}
                         </td>
                     ))}
                 </tr>
-                <tr>
-                    <td>Examples</td>
-                    {choices.map(({ system, config }) => (
-                        <td key={system.key}>
-                            {system.examples(config)}
-                        </td>
-                    ))}
+                <tr className="header">
+                    <td colSpan={choices.length}>Examples</td>
                 </tr>
+                {Object.keys(exampleVideos).map(v => (
+                    <React.Fragment key={v}>
+                        <tr>
+                            <td colSpan={choices.length}>{exampleVideos[v]}</td>
+                        </tr>
+                        <tr>
+                            {choices.map(({ system, config }) => (
+                                <td key={system.key}>
+                                    {system.examples(config)[v]}
+                                </td>
+                            ))}
+                        </tr>
+                    </React.Fragment>
+                ))}
             </tbody>
         </table>
     )

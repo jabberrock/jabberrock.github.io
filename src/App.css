@@ -2,24 +2,39 @@
   padding: 2rem;
 }
 
-table {
-  width: 100%;
+.fbt-table {
   text-align: left;
   border-collapse: collapse;
+  width: 1500px;
 }
 
-td, th {
-  border: 1px solid white;
-  padding: 8px;
+.fbt-table > thead > tr > th {
+  padding: 0 20px 10px 0;
+  vertical-align: top;
+  width: 480px;
+  font-size: 200%;
+}
+
+.fbt-table > tbody > tr > td {
+  padding: 0 20px 10px 0;
   vertical-align: top;
 }
 
-.system {
-  width: 32%;
+.fbt-table > tbody > tr.header {
+  border-bottom: 1px solid white;
+}
+
+.fbt-table > tbody > tr.header td {
+  padding-top: 40px;
+  font-size: 150%;
 }
 
 .price {
   font-size: 300%;
+}
+
+.component-table {
+  width: 100%
 }
 
 .warning {

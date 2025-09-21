@@ -49,5 +49,5 @@ export const HTCViveUltimate: FBT.System = {
     "battery_life": () => "Up to 7.5 hours",
     "weight": () => "96 g / 3.4 oz per tracker",
     "volume": () => "123 cm³ (77 x 58.6 x 27.3 mm)",
-    "examples": () => <></>,
+    "examples": () => ({}),
 };

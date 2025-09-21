@@ -64,51 +64,29 @@ export const HTCVive30: FBT.System = {
     "volume": () => "247 cm³ (70.9 × 79.0 × 44.1 mm)",
     "examples": () => {
         const videos = [
-            {
-                name: "Standing",
-                suffix: "1_standing",
-            },
-            {
-                name: "Light dancing",
-                suffix: "2_light_dancing",
-            },
-            {
-                name: "Dynamic movement",
-                suffix: "3_dynamic_movement",
-            },
-            {
-                name: "Sitting",
-                suffix: "4_sitting",
-            },
-            {
-                name: "Lying down",
-                suffix: "5_lying_down",
-            },
-            {
-                name: "Sitting on floor",
-                suffix: "6_sitting_on_floor",
-            },
-            {
-                name: "Light exercise",
-                suffix: "7_light_exercise",
-            }
+            "1_standing",
+            "2_light_dancing",
+            "3_dynamic_movement",
+            "4_sitting",
+            "5_lying_down",
+            "6_sitting_on_floor",
+            "7_light_exercise",
         ];
 
-        return (
-            <>
-                {videos.map(v => (
-                    <div key={v.suffix}>
-                        <div>{v.name}</div>
-                        <VideoPlayer
-                            base_url={`videos/htc_vive_3_0/irl/irl_${v.suffix}.mp4`}
-                            overlay_url={`videos/htc_vive_3_0/vrc/vrc_${v.suffix}.mp4`}
-                            thumbnail_url="videos/loading.png"
-                            width={480}
-                            height={640}
-                        />
-                    </div>
-                ))}
-            </>
-        );
+        const nodes: Record<string, React.ReactNode> = {};
+        for (const v of videos) {
+            nodes[v] = (
+                <VideoPlayer
+                    key={v}
+                    base_url={`videos/htc_vive_3_0/irl/irl_${v}.mp4`}
+                    overlay_url={`videos/htc_vive_3_0/vrc/vrc_${v}.mp4`}
+                    thumbnail_url="videos/loading.png"
+                    width={480}
+                    height={640}
+                />
+            );
+        }
+
+        return nodes;
     },
 };
