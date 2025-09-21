@@ -96,21 +96,25 @@ function FBTTable({
                             <td key={system.key}>
                                 <table className="component-table">
                                     <tbody>
-                                        <tr>
-                                            <td colSpan={3}>Required</td>
-                                        </tr>
-                                        {itemList.required.map((item, i) => (
-                                            <tr key={i}>
-                                                <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
-                                                <td>{item.count}x</td>
-                                                <td className="component-price">{toDollars(item.each_price_cents)}</td>
-                                            </tr>
-                                        ))}
-                                        <tr>
-                                            <td className="total" colSpan={3}>
-                                                {toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)))}
-                                            </td>
-                                        </tr>
+                                        {itemList.required.length > 0 && (
+                                            <>
+                                                <tr>
+                                                    <td colSpan={3}>Required</td>
+                                                </tr>
+                                                {itemList.required.map((item, i) => (
+                                                    <tr key={i}>
+                                                        <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
+                                                        <td>{item.count}x</td>
+                                                        <td className="component-price">{toDollars(item.each_price_cents)}</td>
+                                                    </tr>
+                                                ))}
+                                                <tr>
+                                                    <td className="total" colSpan={3}>
+                                                        {toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)))}
+                                                    </td>
+                                                </tr>
+                                            </>
+                                        )}
                                         {itemList.optional.length > 0 && (
                                             <>
                                                 <tr>

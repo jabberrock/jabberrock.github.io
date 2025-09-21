@@ -8,6 +8,22 @@ export const HTCVive30: FBT.System = {
         "3_trackers": "3 trackers (Chest, 2x Feet)"
     },
     "specialized": (config, questionnaireResult) => {
+        if (questionnaireResult.standalone === "standalone") {
+            return {
+                "key": HTCVive30.key,
+                "name": HTCVive30.name,
+                "config": config,
+                "configs": HTCVive30.configs,
+                "imageURL": "images/htc_vive_3_0.jpg",
+                "howItWorks": <p className="warning">HTC VIVE 3.0 trackers require a PC</p>,
+                "itemList": {required: [], optional: []},
+                "availability": <p>N/A</p>,
+                "tracking": <p>N/A</p>,
+                "specs": <p>N/A</p>,
+                "examples": {},
+            };
+        }
+
         return {
             "key": HTCVive30.key,
             "name": HTCVive30.name,

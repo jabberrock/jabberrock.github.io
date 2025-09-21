@@ -6,7 +6,23 @@ export const HTCViveUltimate: FBT.System = {
     "configs": {
         "3_trackers": "3 trackers (Chest, 2x Ankle)"
     },
-    "specialized": (config) => {
+    "specialized": (config, questionnaireResult) => {
+        if (questionnaireResult.standalone === "standalone") {
+            return {
+                "key": HTCViveUltimate.key,
+                "name": HTCViveUltimate.name,
+                "config": config,
+                "configs": HTCViveUltimate.configs,
+                "imageURL": "images/htc_vive_ultimate.jpg",
+                "howItWorks": <p className="warning">HTC VIVE Ultimate trackers require a PC</p>,
+                "itemList": {required: [], optional: []},
+                "availability": <p>N/A</p>,
+                "tracking": <p>N/A</p>,
+                "specs": <p>N/A</p>,
+                "examples": {},
+            };
+        }
+
         return {
             "key": HTCViveUltimate.key,
             "name": HTCViveUltimate.name,

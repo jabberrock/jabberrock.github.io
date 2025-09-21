@@ -138,6 +138,7 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
                             </a>
                         </div>
                     ))}
+                    <div>(3 questions remaining)</div>
                 </>
             );
 
@@ -148,7 +149,7 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
                     <div>
                         <a href="#" onClick={e => {
                             e.preventDefault();
-                            const newResults: QuestionnaireResult = {...results, standalone: "standalone"};
+                            const newResults: QuestionnaireResult = {...results, standalone: "standalone", ownsLighthouse: false};
                             setResults(newResults);
                             nextStep(newResults);
                         }}>
@@ -165,6 +166,7 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
                             PCVR
                         </a>
                     </div>
+                    <div>(2 questions remaining)</div>
                 </>
             );
 
@@ -192,6 +194,7 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
                             No
                         </a>
                     </div>
+                    <div>(Last question)</div>
                 </>
             );
 
