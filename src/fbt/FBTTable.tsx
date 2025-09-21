@@ -39,6 +39,15 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                         <th key={system.key}>{system.name}</th>
                     ))}
                 </tr>
+                <tr>
+                    {choices.map(({ system, config }) => {
+                        const itemList = system.itemList(config);
+                        const priceCents = sum(itemList.required.map(i => i.count * i.each_price_cents));
+                        return (
+                            <td key={system.key} className="price">{toDollars(priceCents)}</td>
+                        );
+                    })}
+                </tr>
             </thead>
             <tbody>
                 <tr>
@@ -51,15 +60,6 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                             </select>
                         </td>
                     ))}
-                </tr>
-                <tr>
-                    {choices.map(({ system, config }) => {
-                        const itemList = system.itemList(config);
-                        const priceCents = sum(itemList.required.map(i => i.count * i.each_price_cents));
-                        return (
-                            <td key={system.key} className="price">{toDollars(priceCents)}</td>
-                        );
-                    })}
                 </tr>
                 <tr>
                     {choices.map(({ system, config }) => (
