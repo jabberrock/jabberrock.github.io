@@ -1,5 +1,5 @@
 import type * as FBT from "./FBT";
-import { OverlayVideoPlayer } from "./OverlayVideoPlayer";
+import { VideoPlayer } from "./VideoPlayer";
 
 export const HTCVive30: FBT.System = {
     "key": "htc_vive_30",
@@ -62,53 +62,53 @@ export const HTCVive30: FBT.System = {
     "battery_life": () => "Up to 7.5 hours",
     "weight": () => "75 g / 2.6 oz per tracker",
     "volume": () => "247 cm³ (70.9 × 79.0 × 44.1 mm)",
-        "examples": () => {
-            const videos = [
-                {
-                    name: "Standing",
-                    suffix: "1_standing",
-                },
-                {
-                    name: "Light dancing",
-                    suffix: "2_light_dancing",
-                },
-                {
-                    name: "Dyanmic movement",
-                    suffix: "3_dynamic_movement",
-                },
-                {
-                    name: "Sitting",
-                    suffix: "4_sitting",
-                },
-                {
-                    name: "Lying down",
-                    suffix: "5_lying_down",
-                },
-                {
-                    name: "Sitting on floor",
-                    suffix: "6_sitting_on_floor",
-                },
-                {
-                    name: "Light exercise",
-                    suffix: "7_light_exercise",
-                }
-            ];
-    
-            return (
-                <>
-                    {videos.map(v => (
-                        <div>
-                            <div>{v.name}</div>
-                            <OverlayVideoPlayer
-                                key={v.suffix}
-                                base_url={`videos/htc_vive_3_0/irl/irl_${v.suffix}.mp4`}
-                                overlay_url={`videos/htc_vive_3_0/vrc/vrc_${v.suffix}.mp4`}
-                                initial_opacity={0.8}
-                                mask="#00FF00"
-                            />
-                        </div>
-                    ))}
-                </>
-            );
-        },
+    "examples": () => {
+        const videos = [
+            {
+                name: "Standing",
+                suffix: "1_standing",
+            },
+            {
+                name: "Light dancing",
+                suffix: "2_light_dancing",
+            },
+            {
+                name: "Dynamic movement",
+                suffix: "3_dynamic_movement",
+            },
+            {
+                name: "Sitting",
+                suffix: "4_sitting",
+            },
+            {
+                name: "Lying down",
+                suffix: "5_lying_down",
+            },
+            {
+                name: "Sitting on floor",
+                suffix: "6_sitting_on_floor",
+            },
+            {
+                name: "Light exercise",
+                suffix: "7_light_exercise",
+            }
+        ];
+
+        return (
+            <>
+                {videos.map(v => (
+                    <div key={v.suffix}>
+                        <div>{v.name}</div>
+                        <VideoPlayer
+                            base_url={`videos/htc_vive_3_0/irl/irl_${v.suffix}.mp4`}
+                            overlay_url={`videos/htc_vive_3_0/vrc/vrc_${v.suffix}.mp4`}
+                            thumbnail_url="videos/loading.png"
+                            width={480}
+                            height={640}
+                        />
+                    </div>
+                ))}
+            </>
+        );
+    },
 };

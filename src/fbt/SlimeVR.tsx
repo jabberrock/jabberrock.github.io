@@ -1,5 +1,5 @@
 import type * as FBT from "./FBT";
-import { OverlayVideoPlayer } from "./OverlayVideoPlayer";
+import { VideoPlayer } from "./VideoPlayer";
 
 export const SlimeVR: FBT.System = {
     "key": "slimevr",
@@ -91,7 +91,7 @@ export const SlimeVR: FBT.System = {
                 suffix: "2_light_dancing",
             },
             {
-                name: "Dyanmic movement",
+                name: "Dynamic movement",
                 suffix: "3_dynamic_movement",
             },
             {
@@ -115,14 +115,14 @@ export const SlimeVR: FBT.System = {
         return (
             <>
                 {videos.map(v => (
-                    <div>
+                    <div key={v.suffix}>
                         <div>{v.name}</div>
-                        <OverlayVideoPlayer
-                            key={v.suffix}
+                        <VideoPlayer
                             base_url={`videos/slimevr_1_2/irl/irl_${v.suffix}.mp4`}
                             overlay_url={`videos/slimevr_1_2/vrc/vrc_${v.suffix}.mp4`}
-                            initial_opacity={0.8}
-                            mask="#00FF00"
+                            thumbnail_url="videos/loading.png"
+                            width={480}
+                            height={640}
                         />
                     </div>
                 ))}
