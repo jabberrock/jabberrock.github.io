@@ -3,6 +3,10 @@ import FBTTable from './fbt/FBTTable'
 import { SlimeVR } from './fbt/SlimeVR'
 import { HTCVive30 } from './fbt/HTCVive30'
 import { HTCViveUltimate } from './fbt/HTCViveUltimate';
+import { Settings } from './fbt/Settings';
+import { OpacityContext } from './fbt/VideoPlayer';
+
+const opacityRef = { current: 0.8 };
 
 function App() {
     const choices = [
@@ -21,9 +25,12 @@ function App() {
     ];
 
     return (
-        <>
-            <FBTTable initialChoices={choices} />
-        </>
+        <div>
+            <OpacityContext value={opacityRef}>
+                <FBTTable initialChoices={choices} />
+                <Settings onOpacityChange={newOpacity => { opacityRef.current = newOpacity }} />
+            </OpacityContext>
+        </div>
     )
 }
 

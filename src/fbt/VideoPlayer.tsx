@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+
+export const OpacityContext = React.createContext({ current: 0.0 });
 
 type VideoPlayerProps = {
     base_url: string;
@@ -20,6 +22,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
     const offscreenCanvasRef = useRef<HTMLCanvasElement>(null);
     const baseVideoRef = useRef<HTMLVideoElement>(null);
     const overlayVideoRef = useRef<HTMLVideoElement>(null);
+    const opacityRef = useContext(OpacityContext);
 
     const [inView, setInView] = useState(false);
     const [fetching, setFetching] = useState(false);
@@ -117,7 +120,9 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 offscreenCtx.putImageData(frame, 0, 0);
 
                 // Composite the processed overlay on top
+                ctx.globalAlpha = opacityRef.current;
                 ctx.drawImage(offscreenCanvas, 0, 0);
+                ctx.globalAlpha = 1.0;
             }
 
             frameId = requestAnimationFrame(render);
