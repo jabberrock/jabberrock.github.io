@@ -23,7 +23,7 @@ type QuestionnaireStep = "vr_headset" | "standalone" | "lighthouse" | "complete"
 
 type VRHeadsetDetail = {
     name: string
-    imageURL: string | null
+    imageURL?: string
     fixedStandalone?: VRStandalone
     fixedOwnsLighthouse?: boolean
 }
@@ -31,61 +31,49 @@ type VRHeadsetDetail = {
 const vrHeadsetDetails: Record<VRHeadset, VRHeadsetDetail> = {
     "oculus_rift": {
         name: "Oculus Rift",
-        imageURL: null,
         fixedStandalone: "pcvr",
     },
     "oculus_rift_s": {
         name: "Oculus Rift S",
-        imageURL: null,
         fixedStandalone: "pcvr",
     },
     "meta_quest_2": {
         name: "Meta Quest 2",
-        imageURL: null,
     },
     "meta_quest_3": {
         name: "Meta Quest 3",
-        imageURL: null,
     },
     "meta_quest_3s": {
         name: "Meta Quest 3S",
-        imageURL: null,
     },
     "meta_quest_pro": {
         name: "Meta Quest Pro",
-        imageURL: null,
     },
     "htc_vive": {
         name: "HTC VIVE",
-        imageURL: null,
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "htc_vive_pro": {
         name: "HTC VIVE Pro",
-        imageURL: null,
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "htc_vive_pro_2": {
         name: "HTC VIVE Pro 2",
-        imageURL: null,
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "valve_index": {
         name: "Valve Index",
-        imageURL: null,
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "generic_inside_out": {
         name: "Generic Inside-Out VR Headset",
-        imageURL: null,
     },
     "generic_lighthouse_based": {
         name: "Generic Lighthouse-based VR Headset",
-        imageURL: null,
         fixedOwnsLighthouse: true,
     }
 };
