@@ -23,7 +23,7 @@ type QuestionnaireStep = "vr_headset" | "standalone" | "lighthouse" | "complete"
 
 type VRHeadsetDetail = {
     name: string
-    imageURL: string
+    imageURL: string | null
     fixedStandalone?: VRStandalone
     fixedOwnsLighthouse?: boolean
 }
@@ -31,61 +31,61 @@ type VRHeadsetDetail = {
 const vrHeadsetDetails: Record<VRHeadset, VRHeadsetDetail> = {
     "oculus_rift": {
         name: "Oculus Rift",
-        imageURL: "",
+        imageURL: null,
         fixedStandalone: "pcvr",
     },
     "oculus_rift_s": {
         name: "Oculus Rift S",
-        imageURL: "",
+        imageURL: null,
         fixedStandalone: "pcvr",
     },
     "meta_quest_2": {
         name: "Meta Quest 2",
-        imageURL: "",
+        imageURL: null,
     },
     "meta_quest_3": {
         name: "Meta Quest 3",
-        imageURL: "",
+        imageURL: null,
     },
     "meta_quest_3s": {
         name: "Meta Quest 3S",
-        imageURL: "",
+        imageURL: null,
     },
     "meta_quest_pro": {
         name: "Meta Quest Pro",
-        imageURL: "",
+        imageURL: null,
     },
     "htc_vive": {
         name: "HTC VIVE",
-        imageURL: "",
+        imageURL: null,
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "htc_vive_pro": {
         name: "HTC VIVE Pro",
-        imageURL: "",
+        imageURL: null,
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "htc_vive_pro_2": {
         name: "HTC VIVE Pro 2",
-        imageURL: "",
+        imageURL: null,
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "valve_index": {
         name: "Valve Index",
-        imageURL: "",
+        imageURL: null,
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "generic_inside_out": {
         name: "Generic Inside-Out VR Headset",
-        imageURL: "",
+        imageURL: null,
     },
     "generic_lighthouse_based": {
         name: "Generic Lighthouse-based VR Headset",
-        imageURL: "",
+        imageURL: null,
         fixedOwnsLighthouse: true,
     }
 };
