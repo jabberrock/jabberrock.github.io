@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import * as FBT from "./FBT"
-import type { QuestionnaireResult } from "./Questionnaire";
-
-type FBTTableChoice = {
-    system: FBT.System
-    config: string
-}
 
 type FBTTableProps = {
-    initialChoices: FBTTableChoice[],
-    questionnaireResult: QuestionnaireResult,
+    systems: FBT.SpecializedSystem[]
 };
 
 const exampleVideos: Record<string, string> = {
@@ -35,23 +28,19 @@ function toDollars(priceCents: number) {
 }
 
 function FBTTable({
-    initialChoices,
-    questionnaireResult,
+    systems,
 }: FBTTableProps): React.ReactNode {
-    const [ choices ] = useState(initialChoices);
-
     return (
         <table className="fbt-table">
             <thead>
                 <tr>
-                    {choices.map(({ system }) => (
+                    {systems.map(system => (
                         <th key={system.key}>{system.name}</th>
                     ))}
                 </tr>
                 <tr>
-                    {choices.map(({ system, config }) => {
-                        const itemList = system.itemList(config, questionnaireResult);
-                        const priceCents = sum(itemList.required.map(i => i.count * i.each_price_cents));
+                    {systems.map(system => {
+                        const priceCents = sum(system.itemList.required.map(i => i.count * i.each_price_cents));
                         return (
                             <td key={system.key} className="price">{toDollars(priceCents)}</td>
                         );
@@ -60,9 +49,9 @@ function FBTTable({
             </thead>
             <tbody>
                 <tr>
-                    {choices.map(({ system, config }) => (
+                    {systems.map(system => (
                         <td key={system.key}>
-                            <select defaultValue={config}>
+                            <select defaultValue={system.config}>
                                 {Object.keys(system.configs).map(c => (
                                     <option key={c} value={c}>{system.configs[c]}</option>
                                 ))}
@@ -71,38 +60,38 @@ function FBTTable({
                     ))}
                 </tr>
                 <tr>
-                    {choices.map(({ system, config }) => (
+                    {systems.map(system => (
                         <td key={system.key}>
-                            <img src={system.imageURL(config)} />
+                            <img src={system.imageURL} />
                         </td>
                     ))}
                 </tr>
                 <tr className="header">
-                    <td colSpan={choices.length}>How it Works</td>
+                    <td colSpan={systems.length}>How it Works</td>
                 </tr>
                 <tr>
-                    {choices.map(({ system, config }) => (
+                    {systems.map(system => (
                         <td key={system.key}>
-                            {system.howItWorks(config)}
+                            {system.howItWorks}
                         </td>
                     ))}
                 </tr>
                 <tr className="header">
-                    <td colSpan={choices.length}>Example</td>
+                    <td colSpan={systems.length}>Example</td>
                 </tr>
                 <tr>
-                    {choices.map(({ system, config }) => (
+                    {systems.map(system => (
                         <td key={system.key}>
-                            {system.examples(config)["2_light_dancing"]}
+                            {system.examples["2_light_dancing"]}
                         </td>
                     ))}
                 </tr>
                 <tr className="header">
-                    <td colSpan={choices.length}>Recommended Parts</td>
+                    <td colSpan={systems.length}>Recommended Parts</td>
                 </tr>
                 <tr>
-                    {choices.map(({ system, config }) => {
-                        const itemList = system.itemList(config, questionnaireResult);
+                    {systems.map(system => {
+                        const itemList = system.itemList;
                         return (
                             <td key={system.key}>
                                 <table className="component-table">
@@ -149,47 +138,47 @@ function FBTTable({
                     })}
                 </tr>
                 <tr className="header">
-                    <td colSpan={choices.length}>Availability</td>
+                    <td colSpan={systems.length}>Availability</td>
                 </tr>
                 <tr>
-                    {choices.map(({ system, config }) => (
+                    {systems.map(system => (
                         <td key={system.key}>
-                            {system.availability(config)}
+                            {system.availability}
                         </td>
                     ))}
                 </tr>
                 <tr className="header">
-                    <td colSpan={choices.length}>Tracking</td>
+                    <td colSpan={systems.length}>Tracking</td>
                 </tr>
                 <tr>
-                    {choices.map(({ system, config }) => (
+                    {systems.map(system => (
                         <td key={system.key}>
-                            {system.tracking(config)}
+                            {system.tracking}
                         </td>
                     ))}
                 </tr>
                 <tr className="header">
-                    <td colSpan={choices.length}>Specifications</td>
+                    <td colSpan={systems.length}>Specifications</td>
                 </tr>
                 <tr>
-                    {choices.map(({ system, config }) => (
+                    {systems.map(system => (
                         <td key={system.key}>
-                            {system.specs(config)}
+                            {system.specs}
                         </td>
                     ))}
                 </tr>
                 <tr className="header">
-                    <td colSpan={choices.length}>Examples</td>
+                    <td colSpan={systems.length}>Examples</td>
                 </tr>
                 {Object.keys(exampleVideos).map(v => (
                     <React.Fragment key={v}>
                         <tr className="sub-header">
-                            <td colSpan={choices.length}>{exampleVideos[v]}</td>
+                            <td colSpan={systems.length}>{exampleVideos[v]}</td>
                         </tr>
                         <tr>
-                            {choices.map(({ system, config }) => (
+                            {systems.map(system => (
                                 <td key={system.key}>
-                                    {system.examples(config)[v]}
+                                    {system.examples[v]}
                                 </td>
                             ))}
                         </tr>

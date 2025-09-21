@@ -13,26 +13,15 @@ const opacityRef = { current: 0.8 };
 function App() {
     const [questionnaireResult, setQuestionnaireResult] = React.useState<QuestionnaireResult | null>(null)
 
-    const choices = [
-        {
-            system: SlimeVR,
-            config: "6_trackers"
-        },
-        {
-            system: HTCVive30,
-            config: "3_trackers"
-        },
-        {
-            system: HTCViveUltimate,
-            config: "3_trackers"
-        },
-    ];
-
     return (
         <div>
             {questionnaireResult ? (
                 <OpacityContext value={opacityRef}>
-                    <FBTTable initialChoices={choices} questionnaireResult={questionnaireResult} />
+                    <FBTTable systems={[
+                        SlimeVR.specialized("6_trackers", questionnaireResult),
+                        HTCVive30.specialized("3_trackers", questionnaireResult),
+                        HTCViveUltimate.specialized("3_trackers", questionnaireResult),
+                    ]} />
                     <Settings onOpacityChange={newOpacity => { opacityRef.current = newOpacity }} />
                 </OpacityContext>
             ) : (

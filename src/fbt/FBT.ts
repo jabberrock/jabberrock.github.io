@@ -16,13 +16,20 @@ export type ItemList = {
 export type System = {
     key: string
     name: string
-    imageURL: (config: string) => string
-    howItWorks: (config: string) => React.ReactNode
     configs: Record<string, string>
-    itemList: (config: string, questionnaireResult: QuestionnaireResult) => ItemList
-    availability: (config: string) => React.ReactNode
-    tracking: (config: string) => React.ReactNode
-    specs: (config: string) => React.ReactNode
-    examples: (config: string) => Record<string, React.ReactNode>
+    specialized: (config: string, questionnaireResult: QuestionnaireResult) => SpecializedSystem
 };
 
+export type SpecializedSystem = {
+    key: string
+    name: string
+    config: string
+    configs: Record<string, string>
+    imageURL: string
+    howItWorks: React.ReactNode
+    itemList: ItemList
+    availability: React.ReactNode
+    tracking: React.ReactNode
+    specs: React.ReactNode
+    examples: Record<string, React.ReactNode>
+};
