@@ -52,9 +52,6 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                         </td>
                     ))}
                 </tr>
-                <tr className="header">
-                    <td colSpan={choices.length}>Price</td>
-                </tr>
                 <tr>
                     {choices.map(({ system, config }) => {
                         const itemList = system.itemList(config);
@@ -63,6 +60,36 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                             <td key={system.key} className="price">{toDollars(priceCents)}</td>
                         );
                     })}
+                </tr>
+                <tr>
+                    {choices.map(({ system, config }) => (
+                        <td key={system.key}>
+                            <img src={system.imageURL(config)} />
+                        </td>
+                    ))}
+                </tr>
+                <tr className="header">
+                    <td colSpan={choices.length}>How it Works</td>
+                </tr>
+                <tr>
+                    {choices.map(({ system, config }) => (
+                        <td key={system.key}>
+                            {system.howItWorks(config)}
+                        </td>
+                    ))}
+                </tr>
+                <tr className="header">
+                    <td colSpan={choices.length}>Example</td>
+                </tr>
+                <tr>
+                    {choices.map(({ system, config }) => (
+                        <td key={system.key}>
+                            {system.examples(config)["2_light_dancing"]}
+                        </td>
+                    ))}
+                </tr>
+                <tr className="header">
+                    <td colSpan={choices.length}>Recommended Parts</td>
                 </tr>
                 <tr>
                     {choices.map(({ system, config }) => {
@@ -78,13 +105,13 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                                             <tr key={i}>
                                                 <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
                                                 <td>{item.count}x</td>
-                                                <td>{toDollars(item.each_price_cents)}</td>
+                                                <td className="component-price">{toDollars(item.each_price_cents)}</td>
                                             </tr>
                                         ))}
                                         <tr>
-                                            <td></td>
-                                            <td>Total:</td>
-                                            <td>{toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)))}</td>
+                                            <td className="total" colSpan={3}>
+                                                {toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)))}
+                                            </td>
                                         </tr>
                                         {itemList.optional.length > 0 && (
                                             <>
@@ -95,14 +122,14 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                                                     <tr key={i}>
                                                         <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
                                                         <td>{item.count}x</td>
-                                                        <td>{toDollars(item.each_price_cents)}</td>
+                                                        <td className="component-price">{toDollars(item.each_price_cents)}</td>
                                                     </tr>
                                                 ))}
                                                 <tr>
-                                                    <td></td>
-                                                    <td>Total:</td>
-                                                    <td>{toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)) +
-                                                        sum(itemList.optional.map(i => i.count * i.each_price_cents)))}</td>
+                                                    <td className="total" colSpan={3}>
+                                                        {toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)) +
+                                                            sum(itemList.optional.map(i => i.count * i.each_price_cents)))}
+                                                    </td>
                                                 </tr>
                                             </>
                                         )}
@@ -138,21 +165,7 @@ function FBTTable(props: FBTTableProps): React.ReactNode {
                 <tr>
                     {choices.map(({ system, config }) => (
                         <td key={system.key}>
-                            {system.battery_life(config)}
-                        </td>
-                    ))}
-                </tr>
-                <tr>
-                    {choices.map(({ system, config }) => (
-                        <td key={system.key}>
-                            {system.weight(config)}
-                        </td>
-                    ))}
-                </tr>
-                <tr>
-                    {choices.map(({ system, config }) => (
-                        <td key={system.key}>
-                            {system.volume(config)}
+                            {system.specs(config)}
                         </td>
                     ))}
                 </tr>

@@ -66,7 +66,6 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             const overlayVideo = overlayVideoRef.current;
             if (baseVideo && overlayVideo) {
                 if (inView) {
-                    overlayVideo.currentTime = baseVideo.currentTime;
                     baseVideo.play();
                     overlayVideo.play();
                 } else {
@@ -90,6 +89,12 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             }
 
             if (!baseVideo.paused) {
+                // Try to sync the two video streams
+                if (Math.abs(overlayVideo.currentTime - baseVideo.currentTime) > 0.1) {
+                    console.log("Syncing!")
+                    overlayVideo.currentTime = baseVideo.currentTime;
+                }
+
                 const ctx = canvas.getContext("2d", { willReadFrequently: true });
                 if (!ctx) {
                     return;

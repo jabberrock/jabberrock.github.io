@@ -3,6 +3,14 @@ import type * as FBT from "./FBT";
 export const HTCViveUltimate: FBT.System = {
     "key": "htc_vive_ultimate",
     "name": "HTC VIVE Ultimate",
+    "imageURL": () => "images/htc_vive_ultimate.jpg",
+    "howItWorks": () => (
+        <>
+            <img src="images/htc_vive_ultimate_cameras.jpg" />
+            <p>HTC VIVE Ultimate is an inside-out system. Each tracker has 2 cameras which use a SLAM algorithm (Simultaneous Localization and Motion) to keep track where it is in your playspace.</p>
+            <p>With 3 trackers, only the position and rotation of the hip and ankles are known. The position of other part of the body (e.g. chest, knees and feet) are estimated using IK (inverse kinematics).</p>
+        </>
+    ),
     "configs": {
         "3_trackers": "3 trackers (Chest, 2x Ankle)"
     },
@@ -31,8 +39,8 @@ export const HTCViveUltimate: FBT.System = {
     },
     "availability": () => (
         <>
-            <div><a href="https://vive.com/" target="_blank">vive.com</a></div>
-            <div>Available immediately</div>
+            <p>HTC VIVE<br /><a href="https://vive.com/" target="_blank">vive.com</a></p>
+            <p>Available immediately</p>
         </>
     ),
     "tracking": config => {
@@ -46,8 +54,12 @@ export const HTCViveUltimate: FBT.System = {
                 );
         }
     },
-    "battery_life": () => "Up to 7.5 hours",
-    "weight": () => "96 g / 3.4 oz per tracker",
-    "volume": () => "123 cm³ (77 x 58.6 x 27.3 mm)",
+    "specs": () => (
+        <>
+            <div>Up to 7.5 hours</div>
+            <div>96 g / 3.4 oz per tracker</div>
+            <div>123 cm³ (77 x 58.6 x 27.3 mm)</div>
+        </>
+    ),
     "examples": () => ({}),
 };

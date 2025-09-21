@@ -5,6 +5,14 @@ import { VideoPlayer } from "./VideoPlayer";
 export const SlimeVR: FBT.System = {
     "key": "slimevr",
     "name": "SlimeVR Trackers",
+    "imageURL": () => "images/slimevr.jpg",
+    "howItWorks": () => (
+        <>
+            <img src="images/slimevr_skeleton.jpg" />
+            <p>SlimeVR is an IMU-based (internal measurement unit) system. It uses a gyroscope to measure the rotation of each bone, and then reconstruct the skeleton.</p>
+            <p>The Core Set contains 6 trackers for your chest, hip, thighs and ankles. Feet are estimated based on your ankles and how close they are to the ground.</p>
+        </>
+    ),
     "configs": {
         "5_trackers": "5 trackers (Chest, 2x Thigh, 2x Ankle)",
         "6_trackers": "6 trackers (Chest, Hip, 2x Thigh, 2x Ankle)",
@@ -56,17 +64,14 @@ export const SlimeVR: FBT.System = {
         return c;
     },
     "availability": () => (
-        <ul>
-            <li>
-                <div>Official SlimeVR Trackers - <a href="https://slimevr.dev/" target="_blank">slimevr.dev</a></div>
-                <div>May take up to 3 months</div>
-            </li>
-            <li>
-                <div>3rd-Party Slime Trackers - <a href="https://discord.com/channels/817184208525983775/1058335815614341240" target="_blank">#marketplace-forum</a></div>
-                <div>SlimeVR-managed marketplace for verified sellers. Delivery may be much faster. Prices vary.</div>
-                <div className="warning">3rd-party Slime Trackers from Amazon, Ebay, Etsy, AliExpress or VRChat ARE NOT RECOMMENDED. You will likely receive over-priced and low quality trackers, with poor customer support.</div>
-            </li>
-        </ul>
+        <>
+            <p>Official SlimeVR Trackers<br /><a href="https://slimevr.dev/" target="_blank">slimevr.dev</a></p>
+            <p>Pre-order now for the next shipment (estimated shipping to customers in Nov 2025)</p>
+            <hr />
+            <p>3rd-Party Slime Trackers<br /><a href="https://discord.com/channels/817184208525983775/1058335815614341240" target="_blank">#marketplace-forum</a></p>
+            <p>SlimeVR-managed marketplace for verified sellers. Delivery may be much faster. Prices vary.</p>
+            <p className="warning">3rd-party Slime Trackers from Amazon, Ebay, Etsy, AliExpress or VRChat ARE NOT RECOMMENDED. You will likely receive over-priced and low quality trackers, with poor customer support.</p>
+        </>
     ),
     "tracking": config => {
         switch (config) {
@@ -78,9 +83,14 @@ export const SlimeVR: FBT.System = {
                 return "8 point tracking (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet)";
         }
     },
-    "battery_life": () => "Up to 12 hours",
-    "weight": () => "12 g / 0.4 oz per tracker",
-    "volume": () => "14 cm³ (62 x 32 x 7 mm)",
+    "specs": () => (
+        <>
+            <div>Up to 12 hours</div>
+            <div>12 g / 0.4 oz per tracker</div>
+            <div>14 cm³ (62 x 32 x 7 mm)</div>
+            <img src="images/slimevr_size.jpg" />
+        </>
+    ),
     "examples": () => {
         const videos = [
             "1_standing",

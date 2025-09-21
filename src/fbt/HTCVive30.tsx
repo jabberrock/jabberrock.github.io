@@ -4,6 +4,14 @@ import { VideoPlayer } from "./VideoPlayer";
 export const HTCVive30: FBT.System = {
     "key": "htc_vive_30",
     "name": "HTC VIVE 3.0",
+    "imageURL": () => "images/htc_vive_3_0.jpg",
+    "howItWorks": () => (
+        <>
+            <img src="images/lighthouse_based_systems.jpg" />
+            <p>HTC VIVE 3.0 is a Lighthouse based system. The base stations send out pulses of infrared light, and each tracker detects when the light arrives. By comparing the timings, the tracker can figure out its position and the rotation.</p>
+            <p>With 3 trackers, only the position and rotation of the hip and feet are known. The position of other part of the body (e.g. chest, knees and ankles) are estimated using IK (inverse kinematics).</p>
+        </>
+    ),
     "configs": {
         "3_trackers": "3 trackers (Chest, 2x Feet)"
     },
@@ -44,8 +52,8 @@ export const HTCVive30: FBT.System = {
     },
     "availability": () => (
         <>
-            <div><a href="https://vive.com/" target="_blank">vive.com</a></div>
-            <div>Available immediately</div>
+            <p>HTC VIVE<br /><a href="https://vive.com/" target="_blank">vive.com</a></p>
+            <p>Available immediately</p>
         </>
     ),
     "tracking": config => {
@@ -59,9 +67,14 @@ export const HTCVive30: FBT.System = {
                 );
         }
     },
-    "battery_life": () => "Up to 7.5 hours",
-    "weight": () => "75 g / 2.6 oz per tracker",
-    "volume": () => "247 cm³ (70.9 × 79.0 × 44.1 mm)",
+    "specs": () => (
+        <>
+            <div>Up to 7.5 hours</div>
+            <div>75 g / 2.6 oz per tracker</div>
+            <div>247 cm³ (70.9 × 79.0 × 44.1 mm)</div>
+            <img src="images/htc_vive_3_0_size.jpg" />
+        </>
+    ),
     "examples": () => {
         const videos = [
             "1_standing",
