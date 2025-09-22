@@ -90,6 +90,7 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
                 if (Object.hasOwn(newResults, "ownsLighthouse")) {
                     setStep("complete");
                     onComplete(newResults);
+                    localStorage.setItem("questionnaire", JSON.stringify(newResults));
                 } else {
                     setStep("lighthouse");
                 }
@@ -105,7 +106,7 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
         case "vr_headset":
             return (
                 <>
-                    <p>Which VR headset do you own?</p>
+                    <p>Which VR headset do you own? (2 questions remaining)</p>
                     {(Object.keys(vrHeadsetDetails) as Array<VRHeadset>).map(vrHeadset => (
                         <div key={vrHeadset}>
                             <a href="#" onClick={e => {
@@ -126,14 +127,13 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
                             </a>
                         </div>
                     ))}
-                    <div>(3 questions remaining)</div>
                 </>
             );
 
         case "standalone":
             return (
                 <>
-                    <p>Will you use your VR headset standalone, or with a PC?</p>
+                    <p>Will you use your VR headset standalone, or with a PC? (1 question remaining)</p>
                     <div>
                         <a href="#" onClick={e => {
                             e.preventDefault();
@@ -154,7 +154,6 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
                             PCVR
                         </a>
                     </div>
-                    <div>(2 questions remaining)</div>
                 </>
             );
 
@@ -182,7 +181,6 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
                             No
                         </a>
                     </div>
-                    <div>(Last question)</div>
                 </>
             );
 
