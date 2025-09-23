@@ -29,7 +29,7 @@ tr {
 
 .fbt-table {
   text-align: left;
-  border-collapse: separate;
+  border-collapse: collapse;
   width: 1500px;
 }
 
