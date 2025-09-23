@@ -21,7 +21,7 @@ function App() {
         } else {
             setQuestionnaireResult({
                 vrHeadset: "meta_quest_3",
-                standalone: "standalone",
+                standalone: "pcvr",
                 ownsLighthouse: false
             });
         }
