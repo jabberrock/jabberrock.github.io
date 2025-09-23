@@ -13,7 +13,7 @@ const sections: Record<string, string> = {
 
 export const FBTNav: React.FC = () => {
     return (
-        <ScrollSpy activeClass="selected" behavior="smooth">
+        <ScrollSpy activeClass="selected" behavior="smooth" offsetTop={80}>
             <nav>
                 <ul>
                     {Object.keys(sections).map(section => (
