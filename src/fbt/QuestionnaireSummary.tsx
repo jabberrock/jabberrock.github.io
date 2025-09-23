@@ -1,5 +1,6 @@
 import type React from "react";
 import type { QuestionnaireResult } from "./Questionnaire"
+import { VRHeadsetIcon } from "./VRHeadsetIcon";
 
 type QuestionnaireSummaryProps = {
     result?: QuestionnaireResult
@@ -10,11 +11,13 @@ export const QuestionnaireSummary: React.FC<QuestionnaireSummaryProps> = ({
     result,
     onReset
 }) => {
-    if (result) {
+    if (result && result.vrHeadset) {
         return (
             <>
                 <div>Which VR headset do you own?</div>
-                <div>{result.vrHeadset}</div>
+                <div>
+                    <VRHeadsetIcon headsetKey={result.vrHeadset} />
+                </div>
                 <br />
                 <div>Will you use it standalone or PCVR?</div>
                 <div>{result.standalone}</div>

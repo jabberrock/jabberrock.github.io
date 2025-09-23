@@ -100,3 +100,21 @@ tr {
   padding: 16px;
   border-radius: 5px;
 }
+
+.vr-headset-icon {
+  width: 160px;
+}
+
+.questionnaire .vr-headset-section .manufacturer {
+  margin: 20px 0 10px 0;
+  font-size: 120%;
+}
+
+.questionnaire .vr-headset-section .vr-headset-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.questionnaire .vr-headset-section .vr-headset-list .vr-headset-icon {
+  margin-right: 20px;
+}
