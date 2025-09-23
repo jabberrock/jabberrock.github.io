@@ -8,6 +8,7 @@ import { OpacityContext } from './fbt/VideoPlayer';
 import { Questionnaire, type QuestionnaireResult } from './fbt/Questionnaire';
 import React from 'react';
 import { QuestionnaireSummary } from './fbt/QuestionnaireSummary';
+import { FBTNav } from './fbt/FBTNav';
 
 const opacityRef = { current: 0.8 };
 
@@ -35,14 +36,20 @@ function App() {
                         result={questionnaireResult}
                         onReset={() => setQuestionnaireResult(null)}
                     />
+                    <br />
+                    <br />
+                    <hr />
+                    <FBTNav />
                 </div>
                 <div className="content">
                     <OpacityContext value={opacityRef}>
-                        <FBTTable systems={[
-                            SlimeVR.specialized("6_trackers", questionnaireResult),
-                            HTCVive30.specialized("3_trackers", questionnaireResult),
-                            HTCViveUltimate.specialized("3_trackers", questionnaireResult),
-                        ]} />
+                        <FBTTable
+                            systems={[
+                                SlimeVR.specialized("6_trackers", questionnaireResult),
+                                HTCVive30.specialized("3_trackers", questionnaireResult),
+                                HTCViveUltimate.specialized("3_trackers", questionnaireResult),
+                            ]}
+                        />
                         <Settings onOpacityChange={newOpacity => { opacityRef.current = newOpacity }} />
                     </OpacityContext>
                 </div>

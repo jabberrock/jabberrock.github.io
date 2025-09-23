@@ -22,7 +22,7 @@ export const QuestionnaireSummary: React.FC<QuestionnaireSummaryProps> = ({
                 <div>Do you own Lighthouse base stations?</div>
                 <div>{result.ownsLighthouse ? "Yes" : "No"}</div>
                 <br />
-                <input type="button" value="Start Over" onClick={e => {
+                <input type="button" value="Change Headset" onClick={e => {
                     e.preventDefault();
                     onReset();
                 }}/>

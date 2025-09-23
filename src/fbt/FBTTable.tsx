@@ -66,7 +66,7 @@ function FBTTable({
                         </td>
                     ))}
                 </tr>
-                <tr className="header">
+                <tr id="section-how_it_works" className="header">
                     <td colSpan={systems.length}>How it Works</td>
                 </tr>
                 <tr>
@@ -76,7 +76,7 @@ function FBTTable({
                         </td>
                     ))}
                 </tr>
-                <tr className="header">
+                <tr id="section-intro_example" className="header">
                     <td colSpan={systems.length}>Example</td>
                 </tr>
                 <tr>
@@ -86,8 +86,8 @@ function FBTTable({
                         </td>
                     ))}
                 </tr>
-                <tr className="header">
-                    <td colSpan={systems.length}>Recommended Parts</td>
+                <tr id="section-components" className="header">
+                    <td colSpan={systems.length}>Components</td>
                 </tr>
                 <tr>
                     {systems.map(system => {
@@ -141,7 +141,7 @@ function FBTTable({
                         );
                     })}
                 </tr>
-                <tr className="header">
+                <tr id="section-availability" className="header">
                     <td colSpan={systems.length}>Availability</td>
                 </tr>
                 <tr>
@@ -151,7 +151,7 @@ function FBTTable({
                         </td>
                     ))}
                 </tr>
-                <tr className="header">
+                <tr id="section-tracking" className="header">
                     <td colSpan={systems.length}>Tracking</td>
                 </tr>
                 <tr>
@@ -161,7 +161,7 @@ function FBTTable({
                         </td>
                     ))}
                 </tr>
-                <tr className="header">
+                <tr id="section-specifications" className="header">
                     <td colSpan={systems.length}>Specifications</td>
                 </tr>
                 <tr>
@@ -171,7 +171,7 @@ function FBTTable({
                         </td>
                     ))}
                 </tr>
-                <tr className="header">
+                <tr id="section-examples" className="header">
                     <td colSpan={systems.length}>Examples</td>
                 </tr>
                 {Object.keys(exampleVideos).map(v => (
