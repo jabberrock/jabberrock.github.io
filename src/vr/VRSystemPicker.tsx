@@ -2,13 +2,13 @@ import React from "react"
 import { VRHeadsetIcon } from "./VRHeadsetIcon";
 import { vrHeadsetMakerKeys, vrHeadsetMakers, vrHeadsetsByKey, vrHeadsetsByMaker, type VRHeadsetKey, type VRSystem } from "./VR";
 
-type QuestionnaireProps = {
+type VRSystemPickerProps = {
     onComplete: (results: VRSystem) => any
 }
 
 type Step = "vr_headset" | "standalone" | "lighthouse" | "complete";
 
-export const VRSystemPicker: React.FC<QuestionnaireProps> = ({
+export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({
     onComplete
 }) => {
     const [step, setStep] = React.useState<Step>("vr_headset");
@@ -51,7 +51,7 @@ export const VRSystemPicker: React.FC<QuestionnaireProps> = ({
     switch (step) {
         case "vr_headset":
             return (
-                <div className="questionnaire">
+                <div className="vr-system-picker">
                     <p>Which VR headset do you own? (2 questions remaining)</p>
                     {vrHeadsetMakerKeys.map(makerKey => (
                         <div className="vr-headset-section" key={makerKey}>
@@ -72,7 +72,7 @@ export const VRSystemPicker: React.FC<QuestionnaireProps> = ({
 
         case "standalone":
             return (
-                <div className="vrSystem">
+                <div className="vr-system-picker">
                     <p>Will you use your VR headset standalone, or with a PC? (1 question remaining)</p>
                     <div>
                         <a href="#" onClick={e => {
@@ -95,7 +95,7 @@ export const VRSystemPicker: React.FC<QuestionnaireProps> = ({
 
         case "lighthouse":
             return (
-                <div className="vrSystem">
+                <div className="vr-system-picker">
                     <p>Do you already own Lighthouse base stations?</p>
                     <div>
                         <a href="#" onClick={e => {

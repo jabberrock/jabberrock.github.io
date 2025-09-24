@@ -113,16 +113,16 @@ tr {
   width: 160px;
 }
 
-.questionnaire .vr-headset-section .manufacturer {
+.vr-system-picker .vr-headset-section .manufacturer {
   margin: 20px 0 10px 0;
   font-size: 120%;
 }
 
-.questionnaire .vr-headset-section .vr-headset-list {
+.vr-system-picker .vr-headset-section .vr-headset-list {
   display: flex;
   flex-direction: row;
 }
 
-.questionnaire .vr-headset-section .vr-headset-list .vr-headset-icon {
+.vr-system-picker .vr-headset-section .vr-headset-list .vr-headset-icon {
   margin-right: 20px;
 }

@@ -11,15 +11,15 @@ import type { VRSystem } from './vr/VR';
 const opacityRef = { current: 0.9 };
 
 function App() {
-    const [questionnaireResult, setQuestionnaireResult] = React.useState<VRSystem | null>(null);
+    const [vrSystem, setVRSystem] = React.useState<VRSystem | null>(null);
     
-    // Load or make default questionnaire
+    // Load persisted VR system
     React.useEffect(() => {
         const savedResult = localStorage.getItem("vrSystem");
         if (savedResult) {
-            setQuestionnaireResult(JSON.parse(savedResult))
+            setVRSystem(JSON.parse(savedResult))
         } else {
-            setQuestionnaireResult({
+            setVRSystem({
                 headset: "meta_quest_3",
                 prefersPCVR: true,
                 ownsLighthouse: false,
@@ -27,13 +27,13 @@ function App() {
         }
     }, []);
 
-    if (questionnaireResult) {
+    if (vrSystem) {
         return (
             <div className="main">
                 <div className="sidebar">
                     <VRSystemSummary
-                        vrSystem={questionnaireResult}
-                        onReset={() => setQuestionnaireResult(null)}
+                        vrSystem={vrSystem}
+                        onReset={() => setVRSystem(null)}
                     />
                     <br />
                     <br />
@@ -42,7 +42,7 @@ function App() {
                 </div>
                 <div className="content">
                     <OpacityContext value={opacityRef}>
-                        <FBTTable vrSystem={questionnaireResult} />
+                        <FBTTable vrSystem={vrSystem} />
                         <Settings onOpacityChange={newOpacity => { opacityRef.current = newOpacity }} />
                     </OpacityContext>
                 </div>
@@ -53,7 +53,7 @@ function App() {
             <VRSystemPicker
                 onComplete={vrSystem => {
                     localStorage.setItem("vrSystem", JSON.stringify(vrSystem));
-                    setQuestionnaireResult(vrSystem);
+                    setVRSystem(vrSystem);
                 }}
             />
         );

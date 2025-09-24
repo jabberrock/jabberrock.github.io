@@ -2,12 +2,12 @@ import type React from "react";
 import { VRHeadsetIcon } from "./VRHeadsetIcon";
 import type { VRSystem } from "./VR";
 
-type QuestionnaireSummaryProps = {
+type VRSystemSummaryProps = {
     vrSystem: VRSystem
     onReset: () => any
 };
 
-export const VRSystemSummary: React.FC<QuestionnaireSummaryProps> = ({
+export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({
     vrSystem,
     onReset
 }) => {
