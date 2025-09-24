@@ -3,14 +3,11 @@ import { VRHeadsetIcon } from "./VRHeadsetIcon";
 import type { VRSystem } from "./VR";
 
 type VRSystemSummaryProps = {
-    vrSystem: VRSystem
-    onReset: () => any
+    vrSystem: VRSystem;
+    onReset: () => any;
 };
 
-export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({
-    vrSystem,
-    onReset
-}) => {
+export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({ vrSystem, onReset }) => {
     return (
         <>
             <div>Which VR headset do you own?</div>
@@ -24,10 +21,14 @@ export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({
             <div>Do you own Lighthouse base stations?</div>
             <div>{vrSystem.ownsLighthouse ? "Yes" : "No"}</div>
             <br />
-            <input type="button" value="Change Headset" onClick={e => {
-                e.preventDefault();
-                onReset();
-            }}/>
+            <input
+                type="button"
+                value="Change Headset"
+                onClick={(e) => {
+                    e.preventDefault();
+                    onReset();
+                }}
+            />
         </>
     );
 };

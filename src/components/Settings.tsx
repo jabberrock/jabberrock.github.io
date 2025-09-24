@@ -3,12 +3,10 @@ import { useContext, useState } from "react";
 import { OpacityContext } from "./VideoPlayer";
 
 type SettingsProp = {
-    onOpacityChange: (opacity: number) => any,
+    onOpacityChange: (opacity: number) => any;
 };
 
-export const Settings: React.FC<SettingsProp> = ({
-    onOpacityChange
-}) => {
+export const Settings: React.FC<SettingsProp> = ({ onOpacityChange }) => {
     const opacityRef = useContext(OpacityContext);
     const [opacity, setOpacity] = useState(opacityRef.current);
     return (
@@ -20,12 +18,12 @@ export const Settings: React.FC<SettingsProp> = ({
                 min="0"
                 max="100"
                 value={Math.floor(opacity * 100)}
-                onChange={e => {
+                onChange={(e) => {
                     const newOpacity = e.target.valueAsNumber / 100;
                     setOpacity(newOpacity);
                     onOpacityChange(newOpacity);
                 }}
             />
         </div>
-    )
-}
+    );
+};

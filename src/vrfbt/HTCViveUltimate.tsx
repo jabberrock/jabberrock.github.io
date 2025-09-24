@@ -8,30 +8,36 @@ const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate";
 export function makeHTCViveUltimate(vrSystem: VRSystem, config: string) {
     if (!vrSystem.prefersPCVR) {
         return {
-            "key": HTCViveUltimateSystemKey,
-            "name": fbtSystemsByKey[HTCViveUltimateSystemKey].name,
-            "imageURL": "images/htc_vive_ultimate.jpg",
-            "howItWorks": <p className="warning">HTC VIVE Ultimate trackers require a PC</p>,
-            "itemList": {required: [], optional: []},
-            "availability": <p>N/A</p>,
-            "tracking": <p>N/A</p>,
-            "specs": <p>N/A</p>,
-            "examples": {},
+            key: HTCViveUltimateSystemKey,
+            name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
+            imageURL: "images/htc_vive_ultimate.jpg",
+            howItWorks: <p className="warning">HTC VIVE Ultimate trackers require a PC</p>,
+            itemList: { required: [], optional: [] },
+            availability: <p>N/A</p>,
+            tracking: <p>N/A</p>,
+            specs: <p>N/A</p>,
+            examples: {},
         };
     }
 
     return {
-        "key": `${HTCViveUltimateSystemKey}-${config}`,
-        "name": fbtSystemsByKey[HTCViveUltimateSystemKey].name,
-        "imageURL": "images/htc_vive_ultimate.jpg",
-        "howItWorks": (
+        key: `${HTCViveUltimateSystemKey}-${config}`,
+        name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
+        imageURL: "images/htc_vive_ultimate.jpg",
+        howItWorks: (
             <>
                 <img src="images/htc_vive_ultimate_cameras.jpg" />
-                <p>HTC VIVE Ultimate is an inside-out system. Each tracker has 2 cameras which use a SLAM algorithm (Simultaneous Localization and Motion) to keep track where it is in your playspace.</p>
-                <p>With 3 trackers, only the position and rotation of the hip and ankles are known. The position of other part of the body (e.g. chest, knees and feet) are estimated using IK (inverse kinematics).</p>
+                <p>
+                    HTC VIVE Ultimate is an inside-out system. Each tracker has 2 cameras which use a SLAM algorithm
+                    (Simultaneous Localization and Motion) to keep track where it is in your playspace.
+                </p>
+                <p>
+                    With 3 trackers, only the position and rotation of the hip and ankles are known. The position of
+                    other part of the body (e.g. chest, knees and feet) are estimated using IK (inverse kinematics).
+                </p>
             </>
         ),
-        "itemList": (function() {
+        itemList: (function () {
             const c: ItemList = {
                 required: [],
                 optional: [],
@@ -42,7 +48,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string) {
                         name: "VIVE Ultimate Tracker 3+1 Kit",
                         count: 1,
                         each_price_cents: 55999,
-                        link: new URL("https://www.vive.com/us/accessory/vive-ultimate-tracker/")
+                        link: new URL("https://www.vive.com/us/accessory/vive-ultimate-tracker/"),
                     });
                     break;
             }
@@ -51,17 +57,25 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string) {
                 comment: "to attach trackers to body",
                 count: 1,
                 each_price_cents: 4999,
-                link: new URL("https://www.vive.com/us/accessory/trackstraps-for-vive-ultimate-tracker-plus-dance-dash/")
+                link: new URL(
+                    "https://www.vive.com/us/accessory/trackstraps-for-vive-ultimate-tracker-plus-dance-dash/",
+                ),
             });
             return c;
         })(),
-        "availability": (
+        availability: (
             <>
-                <p>HTC VIVE<br /><a href="https://vive.com/" target="_blank">vive.com</a></p>
+                <p>
+                    HTC VIVE
+                    <br />
+                    <a href="https://vive.com/" target="_blank">
+                        vive.com
+                    </a>
+                </p>
                 <p>Available immediately</p>
             </>
         ),
-        "tracking": (function() {
+        tracking: (function () {
             switch (config) {
                 case "3_trackers":
                     return (
@@ -72,14 +86,14 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string) {
                     );
             }
         })(),
-        "specs": (
+        specs: (
             <>
                 <div>Up to 7.5 hours</div>
                 <div>96 g / 3.4 oz per tracker</div>
                 <div>123 cm³ (77 x 58.6 x 27.3 mm)</div>
             </>
         ),
-        "examples": (function() {
+        examples: (function () {
             const vrHeadset = "meta_quest_3";
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
@@ -98,5 +112,5 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string) {
 
             return nodes;
         })(),
-    }
+    };
 }

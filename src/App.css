@@ -1,128 +1,128 @@
 #root {
-  padding: 2rem;
+    padding: 2rem;
 }
 
 .main {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  width: 100%;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    width: 100%;
 }
 
 .sidebar {
-  grid-row: 1;
-  grid-column: 1;
-  position: fixed;
+    grid-row: 1;
+    grid-column: 1;
+    position: fixed;
 }
 
 nav .selected {
-  background-color: blue;
+    background-color: blue;
 }
 
 .content {
-  grid-row: 1;
-  grid-column: 2;
+    grid-row: 1;
+    grid-column: 2;
 }
 
 tr {
-  overflow: hidden;
+    overflow: hidden;
 }
 
 .fbt-table {
-  text-align: left;
-  border-collapse: collapse;
-  width: 1500px;
+    text-align: left;
+    border-collapse: collapse;
+    width: 1500px;
 }
 
 .fbt-table > thead {
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  background-color: #242424;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #242424;
 }
 
 .fbt-table > thead > tr > th {
-  padding: 0 10px;
-  vertical-align: top;
-  width: 480px;
-  font-size: 200%;
+    padding: 0 10px;
+    vertical-align: top;
+    width: 480px;
+    font-size: 200%;
 }
 
 .fbt-table > thead > tr > td {
-  padding: 10px;
+    padding: 10px;
 }
 
 .fbt-table > thead > tr > td.price {
-  padding: 0 10px;
-  font-size: 300%;
+    padding: 0 10px;
+    font-size: 300%;
 }
 
 .fbt-table > tbody > tr > td {
-  padding: 10px;
-  vertical-align: top;
+    padding: 10px;
+    vertical-align: top;
 }
 
 .fbt-table > tbody > tr.header td {
-  padding-top: 40px;
-  font-size: 150%;
-  border-bottom: 1px solid white;
+    padding-top: 40px;
+    font-size: 150%;
+    border-bottom: 1px solid white;
 }
 
 .fbt-table > tbody > tr.sub-header td {
-  padding-bottom: 0;
-  font-size: 125%;
+    padding-bottom: 0;
+    font-size: 125%;
 }
 
 .component-table {
-  width: 100%
+    width: 100%;
 }
 
 .component-table td {
-  vertical-align: top;
+    vertical-align: top;
 }
 
 .component-table .comment {
-  color: #999999;
+    color: #999999;
 }
 
 .component-table .component-price {
-  text-align: right;
-  width: 50px;
+    text-align: right;
+    width: 50px;
 }
 
 .component-table .total {
-  border-top: 1px solid white;
-  text-align: right;
+    border-top: 1px solid white;
+    text-align: right;
 }
 
 .warning {
-  color: red;
+    color: red;
 }
 
 .settings {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  width: 500px;
-  background-color: black;
-  padding: 16px;
-  border-radius: 5px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 500px;
+    background-color: black;
+    padding: 16px;
+    border-radius: 5px;
 }
 
 .vr-headset-icon {
-  width: 160px;
+    width: 160px;
 }
 
 .vr-system-picker .vr-headset-section .manufacturer {
-  margin: 20px 0 10px 0;
-  font-size: 120%;
+    margin: 20px 0 10px 0;
+    font-size: 120%;
 }
 
 .vr-system-picker .vr-headset-section .vr-headset-list {
-  display: flex;
-  flex-direction: row;
+    display: flex;
+    flex-direction: row;
 }
 
 .vr-system-picker .vr-headset-section .vr-headset-list .vr-headset-icon {
-  margin-right: 20px;
+    margin-right: 20px;
 }

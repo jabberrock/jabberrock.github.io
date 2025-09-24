@@ -1,21 +1,29 @@
-import React from "react"
+import React from "react";
 import { VRHeadsetIcon } from "./VRHeadsetIcon";
-import { vrHeadsetMakerKeys, vrHeadsetMakers, vrHeadsetsByKey, vrHeadsetsByMaker, type VRHeadsetKey, type VRSystem } from "./VR";
+import {
+    vrHeadsetMakerKeys,
+    vrHeadsetMakers,
+    vrHeadsetsByKey,
+    vrHeadsetsByMaker,
+    type VRHeadsetKey,
+    type VRSystem,
+} from "./VR";
 
 type VRSystemPickerProps = {
-    onComplete: (results: VRSystem) => any
-}
+    onComplete: (results: VRSystem) => any;
+};
 
 type Step = "vr_headset" | "standalone" | "lighthouse" | "complete";
 
-export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({
-    onComplete
-}) => {
+export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) => {
     const [step, setStep] = React.useState<Step>("vr_headset");
-    const [results, setResults] = React.useState<Partial<VRSystem>>({})
+    const [results, setResults] = React.useState<Partial<VRSystem>>({});
 
     function selectVRHeadset(vrHeadsetKey: VRHeadsetKey) {
-        const newVRSystem: Partial<VRSystem> = {...results, headset: vrHeadsetKey };
+        const newVRSystem: Partial<VRSystem> = {
+            ...results,
+            headset: vrHeadsetKey,
+        };
         const vrHeadset = vrHeadsetsByKey[vrHeadsetKey];
         if (vrHeadset.requiresPC) {
             newVRSystem.prefersPCVR = true;
@@ -28,7 +36,7 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({
 
     function nextStep(newVRSystem: Partial<VRSystem>) {
         setResults(newVRSystem);
-        
+
         if (!newVRSystem.headset) {
             setStep("vr_headset");
             return;
@@ -53,13 +61,19 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({
             return (
                 <div className="vr-system-picker">
                     <p>Which VR headset do you own? (2 questions remaining)</p>
-                    {vrHeadsetMakerKeys.map(makerKey => (
+                    {vrHeadsetMakerKeys.map((makerKey) => (
                         <div className="vr-headset-section" key={makerKey}>
                             <div className="manufacturer">{vrHeadsetMakers[makerKey].name}</div>
                             <div className="vr-headset-list">
-                                {vrHeadsetsByMaker[makerKey].map(vrHeadset => (
+                                {vrHeadsetsByMaker[makerKey].map((vrHeadset) => (
                                     <div key={vrHeadset}>
-                                        <a href="#" onClick={e => { e.preventDefault(); selectVRHeadset(vrHeadset); }}>
+                                        <a
+                                            href="#"
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                selectVRHeadset(vrHeadset);
+                                            }}
+                                        >
                                             <VRHeadsetIcon headsetKey={vrHeadset} />
                                         </a>
                                     </div>
@@ -75,18 +89,28 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({
                 <div className="vr-system-picker">
                     <p>Will you use your VR headset standalone, or with a PC? (1 question remaining)</p>
                     <div>
-                        <a href="#" onClick={e => {
-                            e.preventDefault();
-                            nextStep({...results, prefersPCVR: false, ownsLighthouse: false});
-                        }}>
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                nextStep({
+                                    ...results,
+                                    prefersPCVR: false,
+                                    ownsLighthouse: false,
+                                });
+                            }}
+                        >
                             Standalone
                         </a>
                     </div>
                     <div>
-                        <a href="#" onClick={e => {
-                            e.preventDefault();
-                            nextStep({...results, prefersPCVR: true});
-                        }}>
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                nextStep({ ...results, prefersPCVR: true });
+                            }}
+                        >
                             PCVR
                         </a>
                     </div>
@@ -98,18 +122,24 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({
                 <div className="vr-system-picker">
                     <p>Do you already own Lighthouse base stations?</p>
                     <div>
-                        <a href="#" onClick={e => {
-                            e.preventDefault();
-                            nextStep({...results, ownsLighthouse: true});
-                        }}>
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                nextStep({ ...results, ownsLighthouse: true });
+                            }}
+                        >
                             Yes
                         </a>
                     </div>
                     <div>
-                        <a href="#" onClick={e => {
-                            e.preventDefault();
-                            nextStep({...results, ownsLighthouse: false});
-                        }}>
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                nextStep({ ...results, ownsLighthouse: false });
+                            }}
+                        >
                             No
                         </a>
                     </div>
@@ -117,8 +147,6 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({
             );
 
         case "complete":
-            return (
-                <>Questionnaire complete!</>
-            );
+            return <>Questionnaire complete!</>;
     }
-}
+};

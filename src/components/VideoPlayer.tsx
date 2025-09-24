@@ -35,9 +35,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
     // Observe when the player comes into view
     useEffect(() => {
-        const observer =
-            new IntersectionObserver(
-                entries => entries.forEach(e => setInView(e.isIntersecting)));
+        const observer = new IntersectionObserver((entries) => entries.forEach((e) => setInView(e.isIntersecting)));
         if (containerRef.current) {
             observer.observe(containerRef.current);
         }
@@ -51,17 +49,21 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             const overlayVideo = overlayVideoRef.current;
             if (baseVideo && overlayVideo) {
                 setFetching(true);
-                fetch(base_url).then(res => res.blob()).then(blob => {
-                    baseVideo.addEventListener("canplaythrough", () => setBaseLoaded(true));
-                    baseVideo.src = URL.createObjectURL(blob);
-                });
-                fetch(overlay_url).then(res => res.blob()).then(blob => {
-                    overlayVideo.addEventListener("canplaythrough", () => setOverlayLoaded(true));
-                    overlayVideo.src = URL.createObjectURL(blob);
-                });
+                fetch(base_url)
+                    .then((res) => res.blob())
+                    .then((blob) => {
+                        baseVideo.addEventListener("canplaythrough", () => setBaseLoaded(true));
+                        baseVideo.src = URL.createObjectURL(blob);
+                    });
+                fetch(overlay_url)
+                    .then((res) => res.blob())
+                    .then((blob) => {
+                        overlayVideo.addEventListener("canplaythrough", () => setOverlayLoaded(true));
+                        overlayVideo.src = URL.createObjectURL(blob);
+                    });
             }
         }
-    }, [inView, fetching])
+    }, [inView, fetching]);
 
     // Play videos when both are loaded and the player is in view
     useEffect(() => {
@@ -98,12 +100,16 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                     return;
                 }
 
-                const ctx = canvas.getContext("2d", { willReadFrequently: true });
+                const ctx = canvas.getContext("2d", {
+                    willReadFrequently: true,
+                });
                 if (!ctx) {
                     return;
                 }
 
-                const offscreenCtx = offscreenCanvas.getContext("2d", { willReadFrequently: true });
+                const offscreenCtx = offscreenCanvas.getContext("2d", {
+                    willReadFrequently: true,
+                });
                 if (!offscreenCtx) {
                     return;
                 }
@@ -140,37 +146,16 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             frameId = requestAnimationFrame(render);
         };
         render();
-        
+
         return () => cancelAnimationFrame(frameId);
     }, [inView, baseLoaded, overlayLoaded, width, height]);
 
     return (
-        <div
-            ref={containerRef}
-            style={{ width, height, position: "relative", overflow: "hidden" }}
-        >
-            <canvas
-                ref={canvasRef}
-                width={width}
-                height={height}
-                style={{ width, height }}
-            />
-            <canvas
-                ref={offscreenCanvasRef}
-                width={width}
-                height={height}
-                style={{ width, height, display: "none" }}
-            />
-            <img
-                ref={baseThumbnailRef}
-                src={base_thumbnail_url}
-                style={{ display: "none" }}
-            />
-            <img
-                ref={overlayThumbnailRef}
-                src={overlay_thumbnail_url}
-                style={{ display: "none" }}
-            />
+        <div ref={containerRef} style={{ width, height, position: "relative", overflow: "hidden" }}>
+            <canvas ref={canvasRef} width={width} height={height} style={{ width, height }} />
+            <canvas ref={offscreenCanvasRef} width={width} height={height} style={{ width, height, display: "none" }} />
+            <img ref={baseThumbnailRef} src={base_thumbnail_url} style={{ display: "none" }} />
+            <img ref={overlayThumbnailRef} src={overlay_thumbnail_url} style={{ display: "none" }} />
             <video
                 ref={baseVideoRef}
                 playsInline

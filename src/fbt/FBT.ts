@@ -1,20 +1,16 @@
-export const fbtSystemKeys = [
-    "slimevr_1_2",
-    "htc_vive_3_0",
-    "htc_vive_ultimate",
-] as const;
+export const fbtSystemKeys = ["slimevr_1_2", "htc_vive_3_0", "htc_vive_ultimate"] as const;
 
-export type FBTSystemKey = typeof fbtSystemKeys[number];
+export type FBTSystemKey = (typeof fbtSystemKeys)[number];
 
 export type FBTSystem = {
-    key: FBTSystemKey
-    name: string
-    configurations: FBTSystemConfiguration[]
+    key: FBTSystemKey;
+    name: string;
+    configurations: FBTSystemConfiguration[];
 };
 
 export type FBTSystemConfiguration = {
-    key: string
-    name: string
+    key: string;
+    name: string;
 };
 
 export const fbtSystems: FBTSystem[] = [
@@ -46,7 +42,7 @@ export const fbtSystems: FBTSystem[] = [
         configurations: [
             {
                 key: "3_trackers",
-                name: "3x HTC VIVE 3.0 trackers"
+                name: "3x HTC VIVE 3.0 trackers",
             },
             {
                 key: "3_trackers_1_continuous",
@@ -60,10 +56,10 @@ export const fbtSystems: FBTSystem[] = [
         configurations: [
             {
                 key: "3_trackers",
-                name: "3x HTC VIVE Ultimate trackers"
+                name: "3x HTC VIVE Ultimate trackers",
             },
         ],
     },
-] as const
+] as const;
 
-export const fbtSystemsByKey = Object.fromEntries(fbtSystems.map(s => [s.key, s])) as Record<FBTSystemKey, FBTSystem>;
+export const fbtSystemsByKey = Object.fromEntries(fbtSystems.map((s) => [s.key, s])) as Record<FBTSystemKey, FBTSystem>;

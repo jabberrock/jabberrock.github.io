@@ -6,17 +6,17 @@ import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import type { VRSystem } from "../vr/VR";
 
 type FBTTableProps = {
-    vrSystem: VRSystem
+    vrSystem: VRSystem;
 };
 
 const exampleVideos: Record<string, string> = {
-    "standing": "Standing",
-    "sitting": "Sitting",
-    "sitting_on_floor": "Sitting on Floor",
-    "lying_down": "Lying Down",
-    "dancing": "Dancing",
-    "exercise": "Exercise",
-    "extreme": "Extreme Movement",
+    standing: "Standing",
+    sitting: "Sitting",
+    sitting_on_floor: "Sitting on Floor",
+    lying_down: "Lying Down",
+    dancing: "Dancing",
+    exercise: "Exercise",
+    extreme: "Extreme Movement",
 };
 
 function sum(prices: number[]) {
@@ -31,16 +31,14 @@ function toDollars(priceCents: number) {
     }
 }
 
-function FBTTable({
-    vrSystem
-}: FBTTableProps): React.ReactNode {
-    const [selectedOptions, setSelectedSystems] = useState<(FBTSystemConfigOption)[]>([
+function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
+    const [selectedOptions, setSelectedSystems] = useState<FBTSystemConfigOption[]>([
         fbtSystemConfigOptions[0].options[2],
         fbtSystemConfigOptions[1].options[0],
         fbtSystemConfigOptions[2].options[0],
     ]);
 
-    const systems = selectedOptions.map(s => {
+    const systems = selectedOptions.map((s) => {
         switch (s.value.systemKey) {
             case "slimevr_1_2":
                 return makeSlimeVR(s.value.configKey);
@@ -55,15 +53,17 @@ function FBTTable({
         <table className="fbt-table">
             <thead>
                 <tr>
-                    {systems.map(system => (
+                    {systems.map((system) => (
                         <th key={system.key}>{system.name}</th>
                     ))}
                 </tr>
                 <tr>
-                    {systems.map(system => {
-                        const priceCents = sum(system.itemList.required.map(i => i.count * i.each_price_cents));
+                    {systems.map((system) => {
+                        const priceCents = sum(system.itemList.required.map((i) => i.count * i.each_price_cents));
                         return (
-                            <td key={system.key} className="price">{toDollars(priceCents)}</td>
+                            <td key={system.key} className="price">
+                                {toDollars(priceCents)}
+                            </td>
                         );
                     })}
                 </tr>
@@ -72,7 +72,7 @@ function FBTTable({
                         <td key={system.key}>
                             <FBTSystemSelect
                                 selected={selectedOptions[i]}
-                                onChange={newValue => {
+                                onChange={(newValue) => {
                                     if (newValue && !selectedOptions.includes(newValue)) {
                                         const selected = [...selectedOptions];
                                         selected.splice(i, 1, newValue);
@@ -86,7 +86,7 @@ function FBTTable({
             </thead>
             <tbody>
                 <tr>
-                    {systems.map(system => (
+                    {systems.map((system) => (
                         <td key={system.key}>
                             <img src={system.imageURL} />
                         </td>
@@ -96,27 +96,23 @@ function FBTTable({
                     <td colSpan={systems.length}>How it Works</td>
                 </tr>
                 <tr>
-                    {systems.map(system => (
-                        <td key={system.key}>
-                            {system.howItWorks}
-                        </td>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.howItWorks}</td>
                     ))}
                 </tr>
                 <tr id="section-intro_example" className="header">
                     <td colSpan={systems.length}>Example</td>
                 </tr>
                 <tr>
-                    {systems.map(system => (
-                        <td key={system.key}>
-                            {system.examples["dancing"]}
-                        </td>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.examples["dancing"]}</td>
                     ))}
                 </tr>
                 <tr id="section-components" className="header">
                     <td colSpan={systems.length}>Components</td>
                 </tr>
                 <tr>
-                    {systems.map(system => {
+                    {systems.map((system) => {
                         const itemList = system.itemList;
                         return (
                             <td key={system.key}>
@@ -129,14 +125,27 @@ function FBTTable({
                                                 </tr>
                                                 {itemList.required.map((item, i) => (
                                                     <tr key={i}>
-                                                        <td><a href={item.link.toString()} target="_blank">{item.name}</a> <span className="comment">{item.comment}</span></td>
+                                                        <td>
+                                                            <a href={item.link.toString()} target="_blank">
+                                                                {item.name}
+                                                            </a>{" "}
+                                                            <span className="comment">{item.comment}</span>
+                                                        </td>
                                                         <td>{item.count}x</td>
-                                                        <td className="component-price">{toDollars(item.each_price_cents)}</td>
+                                                        <td className="component-price">
+                                                            {toDollars(item.each_price_cents)}
+                                                        </td>
                                                     </tr>
                                                 ))}
                                                 <tr>
                                                     <td className="total" colSpan={3}>
-                                                        {toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)))}
+                                                        {toDollars(
+                                                            sum(
+                                                                itemList.required.map(
+                                                                    (i) => i.count * i.each_price_cents,
+                                                                ),
+                                                            ),
+                                                        )}
                                                     </td>
                                                 </tr>
                                             </>
@@ -148,7 +157,7 @@ function FBTTable({
                     })}
                 </tr>
                 <tr>
-                    {systems.map(system => {
+                    {systems.map((system) => {
                         const itemList = system.itemList;
                         return (
                             <td key={system.key}>
@@ -161,15 +170,32 @@ function FBTTable({
                                                 </tr>
                                                 {itemList.optional.map((item, i) => (
                                                     <tr key={i}>
-                                                        <td><a href={item.link.toString()} target="_blank">{item.name}</a> <span className="comment">{item.comment}</span></td>
+                                                        <td>
+                                                            <a href={item.link.toString()} target="_blank">
+                                                                {item.name}
+                                                            </a>{" "}
+                                                            <span className="comment">{item.comment}</span>
+                                                        </td>
                                                         <td>{item.count}x</td>
-                                                        <td className="component-price">{toDollars(item.each_price_cents)}</td>
+                                                        <td className="component-price">
+                                                            {toDollars(item.each_price_cents)}
+                                                        </td>
                                                     </tr>
                                                 ))}
                                                 <tr>
                                                     <td className="total" colSpan={3}>
-                                                        {toDollars(sum(itemList.required.map(i => i.count * i.each_price_cents)) +
-                                                            sum(itemList.optional.map(i => i.count * i.each_price_cents)))}
+                                                        {toDollars(
+                                                            sum(
+                                                                itemList.required.map(
+                                                                    (i) => i.count * i.each_price_cents,
+                                                                ),
+                                                            ) +
+                                                                sum(
+                                                                    itemList.optional.map(
+                                                                        (i) => i.count * i.each_price_cents,
+                                                                    ),
+                                                                ),
+                                                        )}
                                                     </td>
                                                 </tr>
                                             </>
@@ -184,52 +210,44 @@ function FBTTable({
                     <td colSpan={systems.length}>Availability</td>
                 </tr>
                 <tr>
-                    {systems.map(system => (
-                        <td key={system.key}>
-                            {system.availability}
-                        </td>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.availability}</td>
                     ))}
                 </tr>
                 <tr id="section-tracking" className="header">
                     <td colSpan={systems.length}>Tracking</td>
                 </tr>
                 <tr>
-                    {systems.map(system => (
-                        <td key={system.key}>
-                            {system.tracking}
-                        </td>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.tracking}</td>
                     ))}
                 </tr>
                 <tr id="section-specifications" className="header">
                     <td colSpan={systems.length}>Specifications</td>
                 </tr>
                 <tr>
-                    {systems.map(system => (
-                        <td key={system.key}>
-                            {system.specs}
-                        </td>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.specs}</td>
                     ))}
                 </tr>
                 <tr id="section-examples" className="header">
                     <td colSpan={systems.length}>Examples</td>
                 </tr>
-                {Object.keys(exampleVideos).map(v => (
+                {Object.keys(exampleVideos).map((v) => (
                     <React.Fragment key={v}>
                         <tr id={`section-examples-${v}`} className="sub-header">
                             <td colSpan={systems.length}>{exampleVideos[v]}</td>
                         </tr>
                         <tr>
-                            {systems.map(system => (
-                                <td key={system.key}>
-                                    {system.examples[v]}
-                                </td>
+                            {systems.map((system) => (
+                                <td key={system.key}>{system.examples[v]}</td>
                             ))}
                         </tr>
                     </React.Fragment>
                 ))}
             </tbody>
         </table>
-    )
+    );
 }
 
 export default FBTTable;

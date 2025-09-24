@@ -7,17 +7,23 @@ const SlimeVRSystemKey: FBTSystemKey = "slimevr_1_2";
 
 export function makeSlimeVR(fbtConfig: string) {
     return {
-        "key": `${SlimeVRSystemKey}-${fbtConfig}`,
-        "name": fbtSystemsByKey[SlimeVRSystemKey].name,
-        "imageURL": "images/slimevr.jpg",
-        "howItWorks": (
+        key: `${SlimeVRSystemKey}-${fbtConfig}`,
+        name: fbtSystemsByKey[SlimeVRSystemKey].name,
+        imageURL: "images/slimevr.jpg",
+        howItWorks: (
             <>
                 <img src="images/slimevr_skeleton.jpg" />
-                <p>SlimeVR is an IMU-based (internal measurement unit) system. It uses a gyroscope to measure the rotation of each bone, and then reconstruct the skeleton.</p>
-                <p>The Core Set contains 6 trackers for your chest, hip, thighs and ankles. Feet are estimated based on your ankles and how close they are to the ground.</p>
+                <p>
+                    SlimeVR is an IMU-based (internal measurement unit) system. It uses a gyroscope to measure the
+                    rotation of each bone, and then reconstruct the skeleton.
+                </p>
+                <p>
+                    The Core Set contains 6 trackers for your chest, hip, thighs and ankles. Feet are estimated based on
+                    your ankles and how close they are to the ground.
+                </p>
             </>
         ),
-        "itemList": (function() {
+        itemList: (function () {
             const c: ItemList = {
                 required: [],
                 optional: [],
@@ -28,32 +34,32 @@ export function makeSlimeVR(fbtConfig: string) {
                         name: "Lower-Body Set v1.2 (5+0)",
                         count: 1,
                         each_price_cents: 21900,
-                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker")
-                    })
+                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
+                    });
                     break;
                 case "core_set_6_0":
                     c.required.push({
                         name: "Core Set v1.2 (6+0)",
                         count: 1,
                         each_price_cents: 25900,
-                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker")
-                    })
+                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
+                    });
                     break;
                 case "enhanced_core_set_6_2":
                     c.required.push({
                         name: "Enhanced Core Set v1.2 (6+2)",
                         count: 1,
                         each_price_cents: 32500,
-                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker")
-                    })
+                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
+                    });
                     break;
                 case "full_body_set_8_2":
                     c.required.push({
                         name: "Full Body Set v1.2 (8+2)",
                         count: 1,
                         each_price_cents: 41500,
-                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker")
-                    })
+                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
+                    });
                     break;
             }
             c.optional.push({
@@ -61,28 +67,45 @@ export function makeSlimeVR(fbtConfig: string) {
                 comment: "for more stable chest tracker",
                 count: 1,
                 each_price_cents: 1899,
-                link: new URL("https://www.amazon.com/AmazonBasics-Chest-Mount-Harness-cameras/dp/B01D3I8A7A")
+                link: new URL("https://www.amazon.com/AmazonBasics-Chest-Mount-Harness-cameras/dp/B01D3I8A7A"),
             });
             c.optional.push({
                 name: "10-Port USB Charger",
                 comment: "for easier charging",
                 count: 1,
                 each_price_cents: 1362,
-                link: new URL("https://www.amazon.com/Charging-Technology-Guaranteed-Family-Sized-Multiple/dp/B07XXDS86V")
+                link: new URL(
+                    "https://www.amazon.com/Charging-Technology-Guaranteed-Family-Sized-Multiple/dp/B07XXDS86V",
+                ),
             });
             return c;
         })(),
-        "availability": (
+        availability: (
             <>
-                <p>Official SlimeVR Trackers<br /><a href="https://slimevr.dev/" target="_blank">slimevr.dev</a></p>
+                <p>
+                    Official SlimeVR Trackers
+                    <br />
+                    <a href="https://slimevr.dev/" target="_blank">
+                        slimevr.dev
+                    </a>
+                </p>
                 <p>Pre-order now for the next shipment (estimated shipping to customers in Nov 2025)</p>
                 <hr />
-                <p>3rd-Party Slime Trackers<br /><a href="https://discord.com/channels/817184208525983775/1058335815614341240" target="_blank">#marketplace-forum</a></p>
+                <p>
+                    3rd-Party Slime Trackers
+                    <br />
+                    <a href="https://discord.com/channels/817184208525983775/1058335815614341240" target="_blank">
+                        #marketplace-forum
+                    </a>
+                </p>
                 <p>SlimeVR-managed marketplace for verified sellers. Delivery may be much faster. Prices vary.</p>
-                <p className="warning">3rd-party Slime Trackers from Amazon, Ebay, Etsy, AliExpress or VRChat ARE NOT RECOMMENDED. You will likely receive over-priced and low quality trackers, with poor customer support.</p>
+                <p className="warning">
+                    3rd-party Slime Trackers from Amazon, Ebay, Etsy, AliExpress or VRChat ARE NOT RECOMMENDED. You will
+                    likely receive over-priced and low quality trackers, with poor customer support.
+                </p>
             </>
         ),
-        "tracking": (function() {
+        tracking: (function () {
             switch (fbtConfig) {
                 case "lower_body_set_5_0":
                     return (
@@ -115,7 +138,7 @@ export function makeSlimeVR(fbtConfig: string) {
                     );
             }
         })(),
-        "specs": (
+        specs: (
             <>
                 <div>Up to 12 hours</div>
                 <div>12 g / 0.4 oz per tracker</div>
@@ -123,7 +146,7 @@ export function makeSlimeVR(fbtConfig: string) {
                 <img src="images/slimevr_size.jpg" />
             </>
         ),
-        "examples": (function() {
+        examples: (function () {
             const vrHeadset = "meta_quest_3";
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
@@ -142,5 +165,5 @@ export function makeSlimeVR(fbtConfig: string) {
 
             return nodes;
         })(),
-    }
+    };
 }

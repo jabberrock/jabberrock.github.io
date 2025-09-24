@@ -2,9 +2,9 @@
  * The VR system that the user owns
  */
 export type VRSystem = {
-    headset: VRHeadsetKey
-    prefersPCVR: boolean
-    ownsLighthouse: boolean
+    headset: VRHeadsetKey;
+    prefersPCVR: boolean;
+    ownsLighthouse: boolean;
 };
 
 /**
@@ -25,7 +25,7 @@ export const vrHeadsetKeys = [
     "generic_lighthouse_based",
 ] as const;
 
-export type VRHeadsetKey = typeof vrHeadsetKeys[number];
+export type VRHeadsetKey = (typeof vrHeadsetKeys)[number];
 
 /**
  * How the VR headset tracks its position
@@ -36,13 +36,13 @@ export type VRHeadsetTracking = "inside_out" | "lighthouse";
  * VR headset
  */
 export type VRHeadset = {
-    key: VRHeadsetKey
-    name: string
-    imageURL?: string // TODO: Should be required
-    tracking: VRHeadsetTracking
-    requiresPC: boolean
-    requiresLighthouse: boolean
-}
+    key: VRHeadsetKey;
+    name: string;
+    imageURL?: string; // TODO: Should be required
+    tracking: VRHeadsetTracking;
+    requiresPC: boolean;
+    requiresLighthouse: boolean;
+};
 
 /**
  * Details of each VR headset
@@ -132,62 +132,41 @@ export const vrHeadsets: VRHeadset[] = [
         tracking: "lighthouse",
         requiresPC: false,
         requiresLighthouse: true,
-    }
- ] as const;
+    },
+] as const;
 
- export const vrHeadsetsByKey = Object.fromEntries(vrHeadsets.map(h => [h.key, h])) as Record<VRHeadsetKey, VRHeadset>;
+export const vrHeadsetsByKey = Object.fromEntries(vrHeadsets.map((h) => [h.key, h])) as Record<VRHeadsetKey, VRHeadset>;
 
 /**
  * VR headset manufacturers
  */
-export const vrHeadsetMakerKeys = [
-    "meta",
-    "htc",
-    "valve",
-    "other",
-] as const;
+export const vrHeadsetMakerKeys = ["meta", "htc", "valve", "other"] as const;
 
-export type VRHeadsetMakerKey = typeof vrHeadsetMakerKeys[number];
+export type VRHeadsetMakerKey = (typeof vrHeadsetMakerKeys)[number];
 
 type VRHeadsetMaker = {
-    name: string
-    imageUrl?: string
+    name: string;
+    imageUrl?: string;
 };
 
 export const vrHeadsetMakers: Record<VRHeadsetMakerKey, VRHeadsetMaker> = {
-    "meta": {
+    meta: {
         name: "Meta",
     },
-    "htc": {
+    htc: {
         name: "HTC",
     },
-    "valve": {
+    valve: {
         name: "Valve",
     },
-    "other": {
+    other: {
         name: "Other",
     },
 } as const;
 
 export const vrHeadsetsByMaker: Record<VRHeadsetMakerKey, VRHeadsetKey[]> = {
-    "meta": [
-        "oculus_rift",
-        "oculus_rift_s",
-        "meta_quest_2",
-        "meta_quest_3",
-        "meta_quest_3s",
-        "meta_quest_pro",
-    ],
-    "htc": [
-        "htc_vive",
-        "htc_vive_pro",
-        "htc_vive_pro_2",
-    ],
-    "valve": [
-        "valve_index",
-    ],
-    "other": [
-        "generic_inside_out",
-        "generic_lighthouse_based",
-    ],
+    meta: ["oculus_rift", "oculus_rift_s", "meta_quest_2", "meta_quest_3", "meta_quest_3s", "meta_quest_pro"],
+    htc: ["htc_vive", "htc_vive_pro", "htc_vive_pro_2"],
+    valve: ["valve_index"],
+    other: ["generic_inside_out", "generic_lighthouse_based"],
 } as const;
