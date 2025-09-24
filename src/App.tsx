@@ -10,7 +10,7 @@ import React from 'react';
 import { QuestionnaireSummary } from './fbt/QuestionnaireSummary';
 import { FBTNav } from './fbt/FBTNav';
 
-const opacityRef = { current: 0.8 };
+const opacityRef = { current: 0.9 };
 
 function App() {
     const [questionnaireResult, setQuestionnaireResult] = React.useState<QuestionnaireResult | null>(null);
@@ -45,7 +45,7 @@ function App() {
                     <OpacityContext value={opacityRef}>
                         <FBTTable
                             systems={[
-                                SlimeVR.specialized("6_trackers", questionnaireResult),
+                                SlimeVR.specialized("enhanced_core_set_6_2", questionnaireResult),
                                 HTCVive30.specialized("3_trackers", questionnaireResult),
                                 HTCViveUltimate.specialized("3_trackers", questionnaireResult),
                             ]}

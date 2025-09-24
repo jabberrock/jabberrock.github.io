@@ -1,14 +1,15 @@
 import type React from "react";
+import { ExampleVideoKeys } from "./FBT";
 import type * as FBT from "./FBT";
 import { VideoPlayer } from "./VideoPlayer";
 
 export const SlimeVR: FBT.System = {
-    "key": "slimevr",
+    "key": "slimevr_1_2",
     "name": "SlimeVR Trackers",
     "configs": {
-        "5_trackers": "5 trackers (Chest, 2x Thigh, 2x Ankle)",
-        "6_trackers": "6 trackers (Chest, Hip, 2x Thigh, 2x Ankle)",
-        "8_trackers": "8 trackers (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet)"
+        "lower_body_set": "Lower-Body Set (5 trackers)",
+        "core_set_6_0": "Core Set (6 trackers)",
+        "enhanced_core_set_6_2": "Enhanced Core Set (6+2 trackers)"
     },
     "specialized": (config) => {
         return {
@@ -30,7 +31,7 @@ export const SlimeVR: FBT.System = {
                     optional: [],
                 };
                 switch (config) {
-                    case "5_trackers":
+                    case "lower_body_set":
                         c.required.push({
                             name: "Lower-Body Set v1.2 (5+0)",
                             count: 1,
@@ -38,7 +39,7 @@ export const SlimeVR: FBT.System = {
                             link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker")
                         })
                         break;
-                    case "6_trackers":
+                    case "core_set_6_0":
                         c.required.push({
                             name: "Core Set v1.2 (6+0)",
                             count: 1,
@@ -46,7 +47,7 @@ export const SlimeVR: FBT.System = {
                             link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker")
                         })
                         break;
-                    case "8_trackers":
+                    case "enhanced_core_set_6_2":
                         c.required.push({
                             name: "Enhanced Core Set v1.2 (6+2)",
                             count: 1,
@@ -98,24 +99,16 @@ export const SlimeVR: FBT.System = {
                 </>
             ),
             "examples": (function() {
-                const videos = [
-                    "1_standing",
-                    "2_light_dancing",
-                    "3_dynamic_movement",
-                    "4_sitting",
-                    "5_lying_down",
-                    "6_sitting_on_floor",
-                    "7_light_exercise",
-                ];
-
+                const vrHeadset = "meta_quest_3";
                 const nodes: Record<string, React.ReactNode> = {};
-                for (const v of videos) {
+                for (const v of ExampleVideoKeys) {
                     nodes[v] = (
                         <VideoPlayer
                             key={v}
-                            base_url={`videos/slimevr_1_2/irl/irl_${v}.mp4`}
-                            overlay_url={`videos/slimevr_1_2/vrc/vrc_${v}.mp4`}
-                            thumbnail_url="videos/loading.png"
+                            base_url={`examples/${vrHeadset}/${SlimeVR.key}/${config}/${vrHeadset}-${SlimeVR.key}-${config}-${v}-irl.mp4`}
+                            overlay_url={`examples/${vrHeadset}/${SlimeVR.key}/${config}/${vrHeadset}-${SlimeVR.key}-${config}-${v}-vrc.mp4`}
+                            base_thumbnail_url={`examples/${vrHeadset}/${SlimeVR.key}/${config}/${vrHeadset}-${SlimeVR.key}-${config}-${v}-irl.jpg`}
+                            overlay_thumbnail_url={`examples/${vrHeadset}/${SlimeVR.key}/${config}/${vrHeadset}-${SlimeVR.key}-${config}-${v}-vrc.jpg`}
                             width={480}
                             height={640}
                         />

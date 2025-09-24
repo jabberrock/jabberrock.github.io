@@ -1,4 +1,6 @@
 import type * as FBT from "./FBT";
+import { ExampleVideoKeys } from "./FBT";
+import { VideoPlayer } from "./VideoPlayer";
 
 export const HTCViveUltimate: FBT.System = {
     "key": "htc_vive_ultimate",
@@ -83,7 +85,25 @@ export const HTCViveUltimate: FBT.System = {
                     <div>123 cm³ (77 x 58.6 x 27.3 mm)</div>
                 </>
             ),
-            "examples": {},
+            "examples": (function() {
+                const vrHeadset = "meta_quest_3";
+                const nodes: Record<string, React.ReactNode> = {};
+                for (const v of ExampleVideoKeys) {
+                    nodes[v] = (
+                        <VideoPlayer
+                            key={v}
+                            base_url={`examples/${vrHeadset}/${HTCViveUltimate.key}/${config}/${vrHeadset}-${HTCViveUltimate.key}-${config}-${v}-irl.mp4`}
+                            overlay_url={`examples/${vrHeadset}/${HTCViveUltimate.key}/${config}/${vrHeadset}-${HTCViveUltimate.key}-${config}-${v}-vrc.mp4`}
+                            base_thumbnail_url={`examples/${vrHeadset}/${HTCViveUltimate.key}/${config}/${vrHeadset}-${HTCViveUltimate.key}-${config}-${v}-irl.jpg`}
+                            overlay_thumbnail_url={`examples/${vrHeadset}/${HTCViveUltimate.key}/${config}/${vrHeadset}-${HTCViveUltimate.key}-${config}-${v}-vrc.jpg`}
+                            width={480}
+                            height={640}
+                        />
+                    );
+                }
+
+                return nodes;
+            })(),
         }
     }
 };

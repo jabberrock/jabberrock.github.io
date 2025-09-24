@@ -1,8 +1,9 @@
+import { ExampleVideoKeys } from "./FBT";
 import type * as FBT from "./FBT";
 import { VideoPlayer } from "./VideoPlayer";
 
 export const HTCVive30: FBT.System = {
-    "key": "htc_vive_30",
+    "key": "htc_vive_3_0",
     "name": "HTC VIVE 3.0",
     "configs": {
         "3_trackers": "3 trackers (Chest, 2x Feet)"
@@ -98,24 +99,16 @@ export const HTCVive30: FBT.System = {
                 </>
             ),
             "examples": (function() {
-                const videos = [
-                    "1_standing",
-                    "2_light_dancing",
-                    "3_dynamic_movement",
-                    "4_sitting",
-                    "5_lying_down",
-                    "6_sitting_on_floor",
-                    "7_light_exercise",
-                ];
-
+                const vrHeadset = "meta_quest_3";
                 const nodes: Record<string, React.ReactNode> = {};
-                for (const v of videos) {
+                for (const v of ExampleVideoKeys) {
                     nodes[v] = (
                         <VideoPlayer
                             key={v}
-                            base_url={`videos/htc_vive_3_0/irl/irl_${v}.mp4`}
-                            overlay_url={`videos/htc_vive_3_0/vrc/vrc_${v}.mp4`}
-                            thumbnail_url="videos/loading.png"
+                            base_url={`examples/${vrHeadset}/${HTCVive30.key}/${config}/${vrHeadset}-${HTCVive30.key}-${config}-${v}-irl.mp4`}
+                            overlay_url={`examples/${vrHeadset}/${HTCVive30.key}/${config}/${vrHeadset}-${HTCVive30.key}-${config}-${v}-vrc.mp4`}
+                            base_thumbnail_url={`examples/${vrHeadset}/${HTCVive30.key}/${config}/${vrHeadset}-${HTCVive30.key}-${config}-${v}-irl.jpg`}
+                            overlay_thumbnail_url={`examples/${vrHeadset}/${HTCVive30.key}/${config}/${vrHeadset}-${HTCVive30.key}-${config}-${v}-vrc.jpg`}
                             width={480}
                             height={640}
                         />

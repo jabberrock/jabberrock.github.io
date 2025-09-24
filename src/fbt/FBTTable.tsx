@@ -6,13 +6,13 @@ type FBTTableProps = {
 };
 
 const exampleVideos: Record<string, string> = {
-    "1_standing": "Standing",
-    "2_light_dancing": "Light Dancing",
-    "3_dynamic_movement": "Dyanmic Movement",
-    "4_sitting": "Sitting",
-    "5_lying_down": "Lying Down",
-    "6_sitting_on_floor": "Sitting on Floor",
-    "7_light_exercise": "Light Exercise",
+    "standing": "Standing",
+    "sitting": "Sitting",
+    "sitting_on_floor": "Sitting on Floor",
+    "lying_down": "Lying Down",
+    "dancing": "Dancing",
+    "exercise": "Exercise",
+    "extreme": "Extreme Movement",
 };
 
 function sum(prices: number[]) {

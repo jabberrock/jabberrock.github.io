@@ -141,11 +141,10 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
             return (
                 <div className="questionnaire">
                     <p>Which VR headset do you own? (2 questions remaining)</p>
-                    {vrHeadsetSections.map((section, i) => (
-                        <div className="vr-headset-section">
+                    {vrHeadsetSections.map(section => (
+                        <div className="vr-headset-section" key={section.manufacturer}>
                             <div className="manufacturer">{section.manufacturer}</div>
-                            <div key={i} className="vr-headset-list">
-                                
+                            <div className="vr-headset-list">
                                 {section.vrHeadsets.map(vrHeadset => (
                                     <div key={vrHeadset}>
                                         <a href="#" onClick={e => { e.preventDefault(); selectVRHeadset(vrHeadset); }}>

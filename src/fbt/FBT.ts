@@ -13,6 +13,16 @@ export type ItemList = {
     optional: Item[]
 };
 
+export const ExampleVideoKeys = [
+    "standing",
+    "sitting",
+    "sitting_on_floor",
+    "lying_down",
+    "dancing",
+    "exercise",
+    "extreme",
+] as const;
+
 export type System = {
     key: string
     name: string
