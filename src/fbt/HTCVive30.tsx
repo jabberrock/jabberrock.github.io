@@ -71,6 +71,7 @@ export const HTCVive30: FBT.System = {
                     case "4_trackers":
                         c.required.push({
                             name: "VIVE 3.0 Tracker",
+                            comment: "for tracking",
                             count: 3,
                             each_price_cents: 14900,
                             link: new URL("https://www.vive.com/us/accessory/tracker3/")
@@ -86,7 +87,7 @@ export const HTCVive30: FBT.System = {
                 }
                 c.required.push({
                     name: "TrackStraps",
-                    comment: "to fix trackers on body",
+                    comment: "to attach trackers to body",
                     count: 1,
                     each_price_cents: 4999,
                     link: new URL("https://www.vive.com/us/accessory/trackstraps-for-vive-ultimate-tracker-plus-dance-dash/")
