@@ -17,7 +17,7 @@ export type FBTSystemConfigOption = {
     value: FBTSystemConfig;
 };
 
-export const fbtSystemConfigOptions: FBTSystemGroup[] = fbtSystems.map((system) => ({
+const groupedOptions: FBTSystemGroup[] = fbtSystems.map((system) => ({
     label: system.name,
     options: system.configurations.map((config) => ({
         label: config.name,
@@ -27,6 +27,17 @@ export const fbtSystemConfigOptions: FBTSystemGroup[] = fbtSystems.map((system) 
         },
     })),
 }));
+
+const options: FBTSystemConfigOption[] = groupedOptions.flatMap((system) => system.options);
+
+export function findFBTSystemOption(systemKey: FBTSystemKey, configKey: string) {
+    const option = options.find((o) => o.value.systemKey === systemKey && o.value.configKey === configKey);
+    if (!option) {
+        throw "Unknown option";
+    }
+
+    return option;
+}
 
 type FBTSystemSelectProps = {
     selected: FBTSystemConfigOption | null;
@@ -41,7 +52,7 @@ export const FBTSystemSelect: React.FC<FBTSystemSelectProps> = ({ selected, onCh
     return (
         <Select<FBTSystemConfigOption, false, FBTSystemGroup>
             value={selected}
-            options={fbtSystemConfigOptions}
+            options={groupedOptions}
             onChange={(v) => onChange(v)}
             theme={(theme) => ({
                 ...theme,
