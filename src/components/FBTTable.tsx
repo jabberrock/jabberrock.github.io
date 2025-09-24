@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import * as FBT from "../fbt/FBT"
 import { fbtSystemConfigOptions, FBTSystemSelect, type FBTSystemConfigOption } from "./FBTSystemSelect";
-import { SlimeVR } from "../vrfbt/SlimeVR";
-import { HTCVive30 } from "../vrfbt/HTCVive30";
-import { HTCViveUltimate } from "../vrfbt/HTCViveUltimate";
+import { makeSlimeVR } from "../vrfbt/SlimeVR";
+import { makeHTCVive30 } from "../vrfbt/HTCVive30";
+import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import type { VRSystem } from "../vr/VR";
-import type { System } from "../vrfbt/VRFBTSystem";
 
 type FBTTableProps = {
     vrSystem: VRSystem
@@ -33,12 +31,6 @@ function toDollars(priceCents: number) {
     }
 }
 
-const fbtSystem: Record<FBT.FBTSystemKey, System> = {
-    "slimevr_1_2": SlimeVR,
-    "htc_vive_3_0": HTCVive30,
-    "htc_vive_ultimate": HTCViveUltimate,
-};
-
 function FBTTable({
     vrSystem
 }: FBTTableProps): React.ReactNode {
@@ -48,8 +40,16 @@ function FBTTable({
         fbtSystemConfigOptions[2].options[0],
     ]);
 
-    const systems = selectedOptions.map(
-        s => fbtSystem[s.value.systemKey].specialized(s.value.configKey, vrSystem));
+    const systems = selectedOptions.map(s => {
+        switch (s.value.systemKey) {
+            case "slimevr_1_2":
+                return makeSlimeVR(s.value.configKey);
+            case "htc_vive_3_0":
+                return makeHTCVive30(vrSystem, s.value.configKey);
+            case "htc_vive_ultimate":
+                return makeHTCViveUltimate(vrSystem, s.value.configKey);
+        }
+    });
 
     return (
         <table className="fbt-table">

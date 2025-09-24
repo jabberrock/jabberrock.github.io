@@ -1,12 +1,3 @@
-import type { VRSystem } from "../vr/VR"
-
-export type System = {
-    key: string
-    name: string
-    configs: Record<string, string>
-    specialized: (config: string, vrSystem: VRSystem) => VRFBTSystem
-};
-
 export type VRFBTSystem = {
     key: string
     name: string
