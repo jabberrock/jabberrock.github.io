@@ -26,7 +26,7 @@ export const HTCViveUltimate: FBT.System = {
         }
 
         return {
-            "key": HTCViveUltimate.key,
+            "key": `${HTCViveUltimate.key}-${config}`,
             "name": HTCViveUltimate.name,
             "config": config,
             "configs": HTCViveUltimate.configs,

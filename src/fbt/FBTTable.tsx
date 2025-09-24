@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import * as FBT from "./FBT"
+import { fbtSystemConfigOptions, FBTSystemSelect, type FBTSystemConfigOption } from "./FBTSystemSelect";
+import { SlimeVR } from "./SlimeVR";
+import { HTCVive30 } from "./HTCVive30";
+import { HTCViveUltimate } from "./HTCViveUltimate";
+import type { QuestionnaireResult } from "./Questionnaire";
 
 type FBTTableProps = {
-    systems: FBT.SpecializedSystem[]
+    questionnaireResult: QuestionnaireResult
 };
 
 const exampleVideos: Record<string, string> = {
@@ -27,9 +32,24 @@ function toDollars(priceCents: number) {
     }
 }
 
+const fbtSystem: Record<FBT.FBTSystemKey, FBT.System> = {
+    "slimevr_1_2": SlimeVR,
+    "htc_vive_3_0": HTCVive30,
+    "htc_vive_ultimate": HTCViveUltimate,
+};
+
 function FBTTable({
-    systems,
+    questionnaireResult
 }: FBTTableProps): React.ReactNode {
+    const [selectedOptions, setSelectedSystems] = useState<(FBTSystemConfigOption)[]>([
+        fbtSystemConfigOptions[0].options[2],
+        fbtSystemConfigOptions[1].options[0],
+        fbtSystemConfigOptions[2].options[0],
+    ]);
+
+    const systems = selectedOptions.map(
+        s => fbtSystem[s.value.systemKey].specialized(s.value.configKey, questionnaireResult));
+
     return (
         <table className="fbt-table">
             <thead>
@@ -46,19 +66,24 @@ function FBTTable({
                         );
                     })}
                 </tr>
-            </thead>
-            <tbody>
                 <tr>
-                    {systems.map(system => (
+                    {systems.map((system, i) => (
                         <td key={system.key}>
-                            <select defaultValue={system.config}>
-                                {Object.keys(system.configs).map(c => (
-                                    <option key={c} value={c}>{system.configs[c]}</option>
-                                ))}
-                            </select>
+                            <FBTSystemSelect
+                                selected={selectedOptions[i]}
+                                onChange={newValue => {
+                                    if (newValue && !selectedOptions.includes(newValue)) {
+                                        const selected = [...selectedOptions];
+                                        selected.splice(i, 1, newValue);
+                                        setSelectedSystems(selected);
+                                    }
+                                }}
+                            />
                         </td>
                     ))}
                 </tr>
+            </thead>
+            <tbody>
                 <tr>
                     {systems.map(system => (
                         <td key={system.key}>

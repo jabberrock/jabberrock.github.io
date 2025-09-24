@@ -13,7 +13,7 @@ export const SlimeVR: FBT.System = {
     },
     "specialized": (config) => {
         return {
-            "key": SlimeVR.key,
+            "key": `${SlimeVR.key}-${config}`,
             "name": SlimeVR.name,
             "config": config,
             "configs": SlimeVR.configs,
@@ -31,7 +31,7 @@ export const SlimeVR: FBT.System = {
                     optional: [],
                 };
                 switch (config) {
-                    case "lower_body_set":
+                    case "lower_body_set_5_0":
                         c.required.push({
                             name: "Lower-Body Set v1.2 (5+0)",
                             count: 1,
@@ -52,6 +52,14 @@ export const SlimeVR: FBT.System = {
                             name: "Enhanced Core Set v1.2 (6+2)",
                             count: 1,
                             each_price_cents: 32500,
+                            link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker")
+                        })
+                        break;
+                    case "full_body_set_8_2":
+                        c.required.push({
+                            name: "Full Body Set v1.2 (8+2)",
+                            count: 1,
+                            each_price_cents: 41500,
                             link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker")
                         })
                         break;

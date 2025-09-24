@@ -23,6 +23,14 @@ export const ExampleVideoKeys = [
     "extreme",
 ] as const;
 
+export const FBTSystemKeys = [
+    "slimevr_1_2",
+    "htc_vive_3_0",
+    "htc_vive_ultimate",
+] as const;
+
+export type FBTSystemKey = typeof FBTSystemKeys[number];
+
 export type System = {
     key: string
     name: string
@@ -35,11 +43,11 @@ export type SpecializedSystem = {
     name: string
     config: string
     configs: Record<string, string>
-    imageURL: string
-    howItWorks: React.ReactNode
+    imageURL?: string
+    howItWorks?: React.ReactNode
     itemList: ItemList
-    availability: React.ReactNode
-    tracking: React.ReactNode
-    specs: React.ReactNode
+    availability?: React.ReactNode
+    tracking?: React.ReactNode
+    specs?: React.ReactNode
     examples: Record<string, React.ReactNode>
 };

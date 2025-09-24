@@ -38,7 +38,7 @@ tr {
   top: 0;
   left: 0;
   z-index: 1;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: #242424;
 }
 
 .fbt-table > thead > tr > th {
@@ -46,6 +46,10 @@ tr {
   vertical-align: top;
   width: 480px;
   font-size: 200%;
+}
+
+.fbt-table > thead > tr > td {
+  padding: 10px;
 }
 
 .fbt-table > thead > tr > td.price {
