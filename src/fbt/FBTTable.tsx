@@ -82,7 +82,7 @@ function FBTTable({
                 <tr>
                     {systems.map(system => (
                         <td key={system.key}>
-                            {system.examples["2_light_dancing"]}
+                            {system.examples["dancing"]}
                         </td>
                     ))}
                 </tr>
