@@ -8,8 +8,8 @@ export const HTCViveUltimate: FBT.System = {
     "configs": {
         "3_trackers": "3 trackers (Chest, 2x Ankle)"
     },
-    "specialized": (config, questionnaireResult) => {
-        if (questionnaireResult.standalone === "standalone") {
+    "specialized": (config, vrSystem) => {
+        if (!vrSystem.prefersPCVR) {
             return {
                 "key": HTCViveUltimate.key,
                 "name": HTCViveUltimate.name,

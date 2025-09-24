@@ -1,16 +1,10 @@
 import type React from "react";
+import type { VRHeadsetKey } from "./VR";
 
 type VRHeadset = {
     name: string
     imageURL: string
 };
-
-export type VRHeadsetKey = 
-    "oculus_rift" | "oculus_rift_s" |
-    "meta_quest_2" | "meta_quest_3" | "meta_quest_3s" | "meta_quest_pro" |
-    "htc_vive" | "htc_vive_pro" | "htc_vive_pro_2" |
-    "valve_index" |
-    "generic_inside_out" | "generic_lighthouse_based";
 
 const vrHeadsets: Record<VRHeadsetKey, VRHeadset> = {
     oculus_rift: {

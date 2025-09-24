@@ -2,25 +2,27 @@ import './App.css'
 import FBTTable from './fbt/FBTTable'
 import { Settings } from './fbt/Settings';
 import { OpacityContext } from './shared/VideoPlayer';
-import { Questionnaire, type QuestionnaireResult } from './vr/Questionnaire';
+import { VRSystemPicker } from './vr/VRSystemPicker';
 import React from 'react';
-import { QuestionnaireSummary } from './vr/QuestionnaireSummary';
+import { VRSystemSummary } from './vr/VRSystemSummary';
 import { FBTNav } from './fbt/FBTNav';
+import type { VRSystem } from './vr/VR';
 
 const opacityRef = { current: 0.9 };
 
 function App() {
-    const [questionnaireResult, setQuestionnaireResult] = React.useState<QuestionnaireResult | null>(null);
+    const [questionnaireResult, setQuestionnaireResult] = React.useState<VRSystem | null>(null);
     
+    // Load or make default questionnaire
     React.useEffect(() => {
-        const savedResult = localStorage.getItem("questionnaire");
+        const savedResult = localStorage.getItem("vrSystem");
         if (savedResult) {
             setQuestionnaireResult(JSON.parse(savedResult))
         } else {
             setQuestionnaireResult({
-                vrHeadset: "meta_quest_3",
-                standalone: "pcvr",
-                ownsLighthouse: false
+                headset: "meta_quest_3",
+                prefersPCVR: true,
+                ownsLighthouse: false,
             });
         }
     }, []);
@@ -29,8 +31,8 @@ function App() {
         return (
             <div className="main">
                 <div className="sidebar">
-                    <QuestionnaireSummary
-                        result={questionnaireResult}
+                    <VRSystemSummary
+                        vrSystem={questionnaireResult}
                         onReset={() => setQuestionnaireResult(null)}
                     />
                     <br />
@@ -40,7 +42,7 @@ function App() {
                 </div>
                 <div className="content">
                     <OpacityContext value={opacityRef}>
-                        <FBTTable questionnaireResult={questionnaireResult} />
+                        <FBTTable vrSystem={questionnaireResult} />
                         <Settings onOpacityChange={newOpacity => { opacityRef.current = newOpacity }} />
                     </OpacityContext>
                 </div>
@@ -48,7 +50,12 @@ function App() {
         );
     } else {
         return (
-            <Questionnaire onComplete={setQuestionnaireResult} />
+            <VRSystemPicker
+                onComplete={vrSystem => {
+                    localStorage.setItem("vrSystem", JSON.stringify(vrSystem));
+                    setQuestionnaireResult(vrSystem);
+                }}
+            />
         );
     }
 }

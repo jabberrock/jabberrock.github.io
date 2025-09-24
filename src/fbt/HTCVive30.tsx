@@ -1,6 +1,7 @@
 import { ExampleVideoKeys } from "./FBT";
 import type * as FBT from "./FBT";
 import { VideoPlayer } from "../shared/VideoPlayer";
+import { vrHeadsetsByKey } from "../vr/VR";
 
 export const HTCVive30: FBT.System = {
     "key": "htc_vive_3_0",
@@ -8,8 +9,8 @@ export const HTCVive30: FBT.System = {
     "configs": {
         "3_trackers": "3 trackers (Chest, 2x Feet)"
     },
-    "specialized": (config, questionnaireResult) => {
-        if (questionnaireResult.standalone === "standalone") {
+    "specialized": (config, vrSystem) => {
+        if (!vrSystem.prefersPCVR) {
             return {
                 "key": `${HTCVive30.key}-${config}`,
                 "name": HTCVive30.name,
@@ -25,7 +26,7 @@ export const HTCVive30: FBT.System = {
             };
         }
 
-        if (questionnaireResult.tracking === "lighthouse" && config === "4_trackers") {
+        if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" && config === "4_trackers") {
             return {
                 "key": `${HTCVive30.key}-${config}`,
                 "name": HTCVive30.name,
@@ -95,7 +96,7 @@ export const HTCVive30: FBT.System = {
                 c.required.push({
                     name: "HTC VIVE SteamVR Base Station 1.0",
                     count: 2,
-                    each_price_cents: questionnaireResult.ownsLighthouse ? 0 : 10099,
+                    each_price_cents: vrSystem.ownsLighthouse ? 0 : 10099,
                     link: new URL("https://www.amazon.com/HTC-Vive-Base-Station-pc/dp/B01M01B92P")
                 });
                 c.optional.push({

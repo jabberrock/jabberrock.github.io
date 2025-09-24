@@ -1,5 +1,5 @@
 import type React from "react"
-import type { QuestionnaireResult } from "../vr/Questionnaire"
+import type { VRSystem } from "../vr/VR"
 
 export type Item = {
     name: string
@@ -36,7 +36,7 @@ export type System = {
     key: string
     name: string
     configs: Record<string, string>
-    specialized: (config: string, questionnaireResult: QuestionnaireResult) => SpecializedSystem
+    specialized: (config: string, vrSystem: VRSystem) => SpecializedSystem
 };
 
 export type SpecializedSystem = {

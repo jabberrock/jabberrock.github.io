@@ -4,10 +4,10 @@ import { fbtSystemConfigOptions, FBTSystemSelect, type FBTSystemConfigOption } f
 import { SlimeVR } from "./SlimeVR";
 import { HTCVive30 } from "./HTCVive30";
 import { HTCViveUltimate } from "./HTCViveUltimate";
-import type { QuestionnaireResult } from "../vr/Questionnaire";
+import type { VRSystem } from "../vr/VR";
 
 type FBTTableProps = {
-    questionnaireResult: QuestionnaireResult
+    vrSystem: VRSystem
 };
 
 const exampleVideos: Record<string, string> = {
@@ -39,7 +39,7 @@ const fbtSystem: Record<FBT.FBTSystemKey, FBT.System> = {
 };
 
 function FBTTable({
-    questionnaireResult
+    vrSystem
 }: FBTTableProps): React.ReactNode {
     const [selectedOptions, setSelectedSystems] = useState<(FBTSystemConfigOption)[]>([
         fbtSystemConfigOptions[0].options[2],
@@ -48,7 +48,7 @@ function FBTTable({
     ]);
 
     const systems = selectedOptions.map(
-        s => fbtSystem[s.value.systemKey].specialized(s.value.configKey, questionnaireResult));
+        s => fbtSystem[s.value.systemKey].specialized(s.value.configKey, vrSystem));
 
     return (
         <table className="fbt-table">
