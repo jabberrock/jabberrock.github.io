@@ -32,11 +32,11 @@ export const fbtSystems: FBTSystem[] = [
             },
             {
                 key: "enhanced_core_set_6_2",
-                name: "SlimeVR Enhanced Core Set (6 main trackers + 2 extension trackers)",
+                name: "SlimeVR Enhanced Core Set (6 main + 2 extension trackers)",
             },
             {
                 key: "full_body_set_8_2",
-                name: "SlimeVR Full Body Set (8 main trackers + 2 extension trackers)",
+                name: "SlimeVR Full Body Set (8 main + 2 extension trackers)",
             },
         ],
     },

@@ -1,32 +1,10 @@
 import type React from "react";
 import Select from "react-select";
-import { fbtSystemKeys, type FBTSystemKey } from "../fbt/FBT";
+import { fbtSystems, type FBTSystemKey } from "../fbt/FBT";
 
 type FBTSystemConfig = {
     systemKey: FBTSystemKey
     configKey: string
-};
-
-const FBTSystemName: Record<FBTSystemKey, string> = {
-    "slimevr_1_2": "SlimeVR v1.2",
-    "htc_vive_3_0": "HTC VIVE 3.0",
-    "htc_vive_ultimate": "HTC VIVE Ultimate" 
-};
-
-const FBTSystemConfigName: Record<FBTSystemKey, Record<string, string>> = {
-    slimevr_1_2: {
-        "lower_body_set_5_0": "SlimeVR Lower-Body Set (5 main trackers)",
-        "core_set_6_0": "SlimeVR Core Set (6 main trackers)",
-        "enhanced_core_set_6_2": "SlimeVR Enhanced Core Set (6 main trackers + 2 extension trackers)",
-        "full_body_set_8_2": "SlimeVR Full Body Set (8 main trackers + 2 extension trackers)",
-    },
-    htc_vive_3_0: {
-        "3_trackers": "3x HTC VIVE 3.0 trackers",
-        "3_trackers_1_continuous": "3x HTC VIVE 3.0 trackers + 1x for continuous calibration",
-    },
-    htc_vive_ultimate: {
-        "3_trackers": "3x HTC VIVE Ultimate trackers",
-    }
 };
 
 type FBTSystemGroup = {
@@ -39,14 +17,14 @@ export type FBTSystemConfigOption = {
     value: FBTSystemConfig
 };
 
-export const fbtSystemConfigOptions: FBTSystemGroup[] = fbtSystemKeys.map(systemKey => ({
-    label: FBTSystemName[systemKey],
-    options: Object.keys(FBTSystemConfigName[systemKey]).map(configKey => (
+export const fbtSystemConfigOptions: FBTSystemGroup[] = fbtSystems.map(system => ({
+    label: system.name,
+    options: system.configurations.map(config => (
         {
-            label: FBTSystemConfigName[systemKey][configKey],
+            label: config.name,
             value: {
-                systemKey,
-                configKey
+                systemKey: system.key,
+                configKey: config.key
             }
         }
     ))
