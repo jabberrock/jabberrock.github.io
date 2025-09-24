@@ -176,7 +176,7 @@ function FBTTable({
                 </tr>
                 {Object.keys(exampleVideos).map(v => (
                     <React.Fragment key={v}>
-                        <tr className="sub-header">
+                        <tr id={`section-examples-${v}`} className="sub-header">
                             <td colSpan={systems.length}>{exampleVideos[v]}</td>
                         </tr>
                         <tr>
