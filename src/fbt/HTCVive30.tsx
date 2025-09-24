@@ -11,12 +11,28 @@ export const HTCVive30: FBT.System = {
     "specialized": (config, questionnaireResult) => {
         if (questionnaireResult.standalone === "standalone") {
             return {
-                "key": HTCVive30.key,
+                "key": `${HTCVive30.key}-${config}`,
                 "name": HTCVive30.name,
                 "config": config,
                 "configs": HTCVive30.configs,
                 "imageURL": "images/htc_vive_3_0.jpg",
                 "howItWorks": <p className="warning">HTC VIVE 3.0 trackers require a PC</p>,
+                "itemList": {required: [], optional: []},
+                "availability": <p>N/A</p>,
+                "tracking": <p>N/A</p>,
+                "specs": <p>N/A</p>,
+                "examples": {},
+            };
+        }
+
+        if (questionnaireResult.tracking === "lighthouse" && config === "4_trackers") {
+            return {
+                "key": `${HTCVive30.key}-${config}`,
+                "name": HTCVive30.name,
+                "config": config,
+                "configs": HTCVive30.configs,
+                "imageURL": "images/htc_vive_3_0.jpg",
+                "howItWorks": <p className="warning">Your VR Headset uses Lighthouses, and does not need an extra tracker for continuous calibration.</p>,
                 "itemList": {required: [], optional: []},
                 "availability": <p>N/A</p>,
                 "tracking": <p>N/A</p>,

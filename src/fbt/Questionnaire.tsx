@@ -2,9 +2,11 @@ import React from "react"
 import { VRHeadsetIcon, type VRHeadsetKey } from "./VRHeadsetIcon";
 
 export type VRStandalone = "standalone" | "pcvr";
+export type VRTracking = "inside_out" | "lighthouse";
 
 export type QuestionnaireResult = {
     vrHeadset?: VRHeadsetKey
+    tracking?: VRTracking
     standalone?: VRStandalone
     ownsLighthouse?: boolean
 }
@@ -17,44 +19,57 @@ type QuestionnaireStep = "vr_headset" | "standalone" | "lighthouse" | "complete"
 
 type VRHeadsetDetail = {
     imageURL?: string
+    tracking: VRTracking
     fixedStandalone?: VRStandalone
     fixedOwnsLighthouse?: boolean
 }
 
 const vrHeadsetDetails: Record<VRHeadsetKey, VRHeadsetDetail> = {
     "oculus_rift": {
+        tracking: "inside_out",
         fixedStandalone: "pcvr",
     },
     "oculus_rift_s": {
+        tracking: "inside_out",
         fixedStandalone: "pcvr",
     },
     "meta_quest_2": {
+        tracking: "inside_out",
     },
     "meta_quest_3": {
+        tracking: "inside_out",
     },
     "meta_quest_3s": {
+        tracking: "inside_out",
     },
     "meta_quest_pro": {
+        tracking: "inside_out",
     },
     "htc_vive": {
+        tracking: "lighthouse",
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "htc_vive_pro": {
+        tracking: "lighthouse",
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "htc_vive_pro_2": {
+        tracking: "lighthouse",
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "valve_index": {
+        tracking: "lighthouse",
         fixedStandalone: "pcvr",
         fixedOwnsLighthouse: true,
     },
     "generic_inside_out": {
+        tracking: "inside_out",
     },
     "generic_lighthouse_based": {
+        tracking: "lighthouse",
         fixedOwnsLighthouse: true,
     }
 };
@@ -107,7 +122,7 @@ export const Questionnaire: React.FC<QuestionnaireProps> = ({
 
     function selectVRHeadset(vrHeadset: VRHeadsetKey) {
         const detail = vrHeadsetDetails[vrHeadset];
-        const newResults = {...results, vrHeadset};
+        const newResults: QuestionnaireResult = {...results, vrHeadset, tracking: detail.tracking};
         if (detail.fixedStandalone) {
             newResults.standalone = detail.fixedStandalone;
         }
