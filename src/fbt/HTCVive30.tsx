@@ -102,7 +102,15 @@ export const HTCVive30: FBT.System = {
                         return (
                             <>
                                 <div>3 point tracking (Chest, 2x Feet)</div>
-                                <div>Remaining body parts estimated with inverse kinematics (IK).</div>
+                                <div>Knees and ankles estimated with inverse kinematics (IK).</div>
+                            </>
+                        );
+                    case "4_trackers":
+                        return (
+                            <>
+                                <div>3 point tracking (Chest, 2x Feet)</div>
+                                <div>Knees and ankles are estimated with inverse kinematics (IK).</div>
+                                <div>Extra tracker is used for continuous calibration and does not provide extra tracking.</div>
                             </>
                         );
                 }

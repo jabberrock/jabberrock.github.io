@@ -92,12 +92,35 @@ export const SlimeVR: FBT.System = {
             ),
             "tracking": (function() {
                 switch (config) {
-                    case "5_trackers":
-                        return "5 point tracking (Chest, 2x Thigh, 2x Ankle)";
-                    case "6_trackers":
-                        return "6 point tracking (Chest, Hip, 2x Thigh, 2x Ankle)";
-                    case "8_trackers":
-                        return "8 point tracking (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet)";
+                    case "lower_body_set_5_0":
+                        return (
+                            <>
+                                <div>5 point tracking (Chest, 2x Thigh, 2x Ankle)</div>
+                                <div>Feet are estimated based on ankles, and how close they are to the ground.</div>
+                            </>
+                        );
+                    case "core_set_6_0":
+                        return (
+                            <>
+                                <div>6 point tracking (Chest, Hip, 2x Thigh, 2x Ankle)</div>
+                                <div>Two trackers on the upper body provide more expressiveness.</div>
+                                <div>Feet are estimated based on ankles, and how close they are to the ground.</div>
+                            </>
+                        );
+                    case "enhanced_core_set_6_2":
+                        return (
+                            <>
+                                <div>8 point tracking (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet)</div>
+                                <div>Two trackers on the upper body provide more expressiveness.</div>
+                            </>
+                        );
+                    case "full_body_set_8_2":
+                        return (
+                            <>
+                                <div>10 point tracking (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet, 2x Elbows)</div>
+                                <div>Two trackers on the upper body provide more expressiveness.</div>
+                            </>
+                        );
                 }
             })(),
             "specs": (

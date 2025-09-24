@@ -74,7 +74,7 @@ export const HTCViveUltimate: FBT.System = {
                         return (
                             <>
                                 <div>3 point tracking (Chest, 2x Ankle)</div>
-                                <div>Remaining body parts estimated with inverse kinematics (IK).</div>
+                                <div>Knees and feet are estimated with inverse kinematics (IK).</div>
                             </>
                         );
                 }
