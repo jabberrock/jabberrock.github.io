@@ -51,20 +51,28 @@ export const HTCVive30: FBT.System = {
                             each_price_cents: 14900,
                             link: new URL("https://www.vive.com/us/accessory/tracker3/")
                         });
+                        break;
+                    case "4_trackers":
                         c.required.push({
-                            name: "TrackStraps for VIVE Ultimate Tracker",
-                            count: 1,
-                            each_price_cents: 4999,
-                            link: new URL("https://www.vive.com/us/accessory/trackstraps-for-vive-ultimate-tracker-plus-dance-dash/")
-                        });
-                        c.required.push({
-                            name: "HTC VIVE SteamVR Base Station 1.0",
-                            count: 2,
-                            each_price_cents: questionnaireResult.ownsLighthouse ? 0 : 10099,
-                            link: new URL("https://www.amazon.com/HTC-Vive-Base-Station-pc/dp/B01M01B92P")
+                            name: "VIVE 3.0 Tracker",
+                            count: 4,
+                            each_price_cents: 14900,
+                            link: new URL("https://www.vive.com/us/accessory/tracker3/")
                         });
                         break;
                 }
+                c.required.push({
+                    name: "TrackStraps for VIVE Ultimate Tracker",
+                    count: 1,
+                    each_price_cents: 4999,
+                    link: new URL("https://www.vive.com/us/accessory/trackstraps-for-vive-ultimate-tracker-plus-dance-dash/")
+                });
+                c.required.push({
+                    name: "HTC VIVE SteamVR Base Station 1.0",
+                    count: 2,
+                    each_price_cents: questionnaireResult.ownsLighthouse ? 0 : 10099,
+                    link: new URL("https://www.amazon.com/HTC-Vive-Base-Station-pc/dp/B01M01B92P")
+                });
                 c.optional.push({
                     name: "Skywin VR Tripod Stand",
                     count: 1,
