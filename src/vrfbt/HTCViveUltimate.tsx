@@ -1,8 +1,7 @@
-import type * as FBT from "./FBT";
-import { ExampleVideoKeys } from "./FBT";
-import { VideoPlayer } from "../shared/VideoPlayer";
+import { VideoPlayer } from "../components/VideoPlayer";
+import { type ItemList, type System, ExampleVideoKeys } from "./VRFBTSystem";
 
-export const HTCViveUltimate: FBT.System = {
+export const HTCViveUltimate: System = {
     "key": "htc_vive_ultimate",
     "name": "HTC VIVE Ultimate",
     "configs": {
@@ -13,8 +12,6 @@ export const HTCViveUltimate: FBT.System = {
             return {
                 "key": HTCViveUltimate.key,
                 "name": HTCViveUltimate.name,
-                "config": config,
-                "configs": HTCViveUltimate.configs,
                 "imageURL": "images/htc_vive_ultimate.jpg",
                 "howItWorks": <p className="warning">HTC VIVE Ultimate trackers require a PC</p>,
                 "itemList": {required: [], optional: []},
@@ -39,7 +36,7 @@ export const HTCViveUltimate: FBT.System = {
                 </>
             ),
             "itemList": (function() {
-                const c: FBT.ItemList = {
+                const c: ItemList = {
                     required: [],
                     optional: [],
                 };

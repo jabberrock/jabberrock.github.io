@@ -1,9 +1,8 @@
-import { ExampleVideoKeys } from "./FBT";
-import type * as FBT from "./FBT";
-import { VideoPlayer } from "../shared/VideoPlayer";
+import { VideoPlayer } from "../components/VideoPlayer";
 import { vrHeadsetsByKey } from "../vr/VR";
+import { ExampleVideoKeys, type ItemList, type System } from "./VRFBTSystem";
 
-export const HTCVive30: FBT.System = {
+export const HTCVive30: System = {
     "key": "htc_vive_3_0",
     "name": "HTC VIVE 3.0",
     "configs": {
@@ -14,8 +13,6 @@ export const HTCVive30: FBT.System = {
             return {
                 "key": `${HTCVive30.key}-${config}`,
                 "name": HTCVive30.name,
-                "config": config,
-                "configs": HTCVive30.configs,
                 "imageURL": "images/htc_vive_3_0.jpg",
                 "howItWorks": <p className="warning">HTC VIVE 3.0 trackers require a PC</p>,
                 "itemList": {required: [], optional: []},
@@ -26,12 +23,10 @@ export const HTCVive30: FBT.System = {
             };
         }
 
-        if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" && config === "4_trackers") {
+        if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" && config === "3_trackers_1_continuous") {
             return {
                 "key": `${HTCVive30.key}-${config}`,
                 "name": HTCVive30.name,
-                "config": config,
-                "configs": HTCVive30.configs,
                 "imageURL": "images/htc_vive_3_0.jpg",
                 "howItWorks": <p className="warning">Your VR Headset uses Lighthouses, and does not need an extra tracker for continuous calibration.</p>,
                 "itemList": {required: [], optional: []},
@@ -45,8 +40,6 @@ export const HTCVive30: FBT.System = {
         return {
             "key": `${HTCVive30.key}-${config}`,
             "name": HTCVive30.name,
-            "config": config,
-            "configs": HTCVive30.configs,
             "imageURL": "images/htc_vive_3_0.jpg",
             "howItWorks": (
                 <>
@@ -56,7 +49,7 @@ export const HTCVive30: FBT.System = {
                 </>
             ),
             "itemList": (function() {
-                const c: FBT.ItemList = {
+                const c: ItemList = {
                     required: [],
                     optional: [],
                 };
@@ -69,7 +62,7 @@ export const HTCVive30: FBT.System = {
                             link: new URL("https://www.vive.com/us/accessory/tracker3/")
                         });
                         break;
-                    case "4_trackers":
+                    case "3_trackers_1_continuous":
                         c.required.push({
                             name: "VIVE 3.0 Tracker",
                             comment: "for tracking",
@@ -123,7 +116,7 @@ export const HTCVive30: FBT.System = {
                                 <div>Knees and ankles estimated with inverse kinematics (IK).</div>
                             </>
                         );
-                    case "4_trackers":
+                    case "3_trackers_1_continuous":
                         return (
                             <>
                                 <div>3 point tracking (Chest, 2x Feet)</div>

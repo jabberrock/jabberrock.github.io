@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import * as FBT from "./FBT"
+import * as FBT from "../fbt/FBT"
 import { fbtSystemConfigOptions, FBTSystemSelect, type FBTSystemConfigOption } from "./FBTSystemSelect";
-import { SlimeVR } from "./SlimeVR";
-import { HTCVive30 } from "./HTCVive30";
-import { HTCViveUltimate } from "./HTCViveUltimate";
+import { SlimeVR } from "../vrfbt/SlimeVR";
+import { HTCVive30 } from "../vrfbt/HTCVive30";
+import { HTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import type { VRSystem } from "../vr/VR";
+import type { System } from "../vrfbt/VRFBTSystem";
 
 type FBTTableProps = {
     vrSystem: VRSystem
@@ -32,7 +33,7 @@ function toDollars(priceCents: number) {
     }
 }
 
-const fbtSystem: Record<FBT.FBTSystemKey, FBT.System> = {
+const fbtSystem: Record<FBT.FBTSystemKey, System> = {
     "slimevr_1_2": SlimeVR,
     "htc_vive_3_0": HTCVive30,
     "htc_vive_ultimate": HTCViveUltimate,

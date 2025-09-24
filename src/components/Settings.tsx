@@ -1,6 +1,6 @@
 import type React from "react";
 import { useContext, useState } from "react";
-import { OpacityContext } from "../shared/VideoPlayer";
+import { OpacityContext } from "./VideoPlayer";
 
 type SettingsProp = {
     onOpacityChange: (opacity: number) => any,

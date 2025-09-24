@@ -1,11 +1,11 @@
 import './App.css'
-import FBTTable from './fbt/FBTTable'
-import { Settings } from './fbt/Settings';
-import { OpacityContext } from './shared/VideoPlayer';
+import FBTTable from './components/FBTTable'
+import { Settings } from './components/Settings';
+import { OpacityContext } from './components/VideoPlayer';
 import { VRSystemPicker } from './vr/VRSystemPicker';
 import React from 'react';
 import { VRSystemSummary } from './vr/VRSystemSummary';
-import { FBTNav } from './fbt/FBTNav';
+import { FBTNav } from './components/FBTNav';
 import type { VRSystem } from './vr/VR';
 
 const opacityRef = { current: 0.9 };

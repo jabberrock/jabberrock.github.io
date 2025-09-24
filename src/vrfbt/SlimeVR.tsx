@@ -1,9 +1,8 @@
 import type React from "react";
-import { ExampleVideoKeys } from "./FBT";
-import type * as FBT from "./FBT";
-import { VideoPlayer } from "../shared/VideoPlayer";
+import { VideoPlayer } from "../components/VideoPlayer";
+import { ExampleVideoKeys, type ItemList, type System } from "./VRFBTSystem";
 
-export const SlimeVR: FBT.System = {
+export const SlimeVR: System = {
     "key": "slimevr_1_2",
     "name": "SlimeVR Trackers",
     "configs": {
@@ -15,8 +14,6 @@ export const SlimeVR: FBT.System = {
         return {
             "key": `${SlimeVR.key}-${config}`,
             "name": SlimeVR.name,
-            "config": config,
-            "configs": SlimeVR.configs,
             "imageURL": "images/slimevr.jpg",
             "howItWorks": (
                 <>
@@ -26,7 +23,7 @@ export const SlimeVR: FBT.System = {
                 </>
             ),
             "itemList": (function() {
-                const c: FBT.ItemList = {
+                const c: ItemList = {
                     required: [],
                     optional: [],
                 };

@@ -1,6 +1,6 @@
 import type React from "react";
 import Select from "react-select";
-import { FBTSystemKeys, type FBTSystemKey } from "./FBT";
+import { fbtSystemKeys, type FBTSystemKey } from "../fbt/FBT";
 
 type FBTSystemConfig = {
     systemKey: FBTSystemKey
@@ -22,7 +22,7 @@ const FBTSystemConfigName: Record<FBTSystemKey, Record<string, string>> = {
     },
     htc_vive_3_0: {
         "3_trackers": "3x HTC VIVE 3.0 trackers",
-        "4_trackers": "3x HTC VIVE 3.0 trackers + 1x for continuous calibration",
+        "3_trackers_1_continuous": "3x HTC VIVE 3.0 trackers + 1x for continuous calibration",
     },
     htc_vive_ultimate: {
         "3_trackers": "3x HTC VIVE Ultimate trackers",
@@ -39,7 +39,7 @@ export type FBTSystemConfigOption = {
     value: FBTSystemConfig
 };
 
-export const fbtSystemConfigOptions: FBTSystemGroup[] = FBTSystemKeys.map(systemKey => ({
+export const fbtSystemConfigOptions: FBTSystemGroup[] = fbtSystemKeys.map(systemKey => ({
     label: FBTSystemName[systemKey],
     options: Object.keys(FBTSystemConfigName[systemKey]).map(configKey => (
         {
