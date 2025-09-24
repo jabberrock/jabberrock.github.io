@@ -87,60 +87,62 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
     useEffect(() => {
         let frameId: number;
         const render = () => {
-            const canvas = canvasRef.current;
-            const offscreenCanvas = offscreenCanvasRef.current;
-            const baseThumbnail = baseThumbnailRef.current;
-            const overlayThumbnail = overlayThumbnailRef.current;
-            const baseVideo = baseVideoRef.current;
-            const overlayVideo = overlayVideoRef.current;
-            if (!canvas || !offscreenCanvas || !baseThumbnail || !overlayThumbnail || !baseVideo || !overlayVideo) {
-                return;
-            }
-
-            const ctx = canvas.getContext("2d", { willReadFrequently: true });
-            if (!ctx) {
-                return;
-            }
-
-            const offscreenCtx = offscreenCanvas.getContext("2d", { willReadFrequently: true });
-            if (!offscreenCtx) {
-                return;
-            }
-
-            if (baseLoaded && overlayLoaded) {
-                ctx.drawImage(baseVideo, 0, 0, width, height);
-                offscreenCtx.drawImage(overlayVideo, 0, 0, width, height);
-            } else if (baseThumbnail.naturalWidth > 0 && overlayThumbnail.naturalWidth > 0) {
-                ctx.drawImage(baseThumbnail, 0, 0, width, height);
-                offscreenCtx.drawImage(overlayThumbnail, 0, 0, width, height);
-            }
-
-            // Draw overlay into offscreen canvas
-            const frame = offscreenCtx.getImageData(0, 0, width, height);
-            const data = frame.data;
-
-            for (let i = 0; i < data.length; i += 4) {
-                const r = data[i];
-                const g = data[i + 1];
-                const b = data[i + 2];
-                if (g > 100 && g > r * 1.4 && g > b * 1.4) {
-                    data[i + 3] = 0; // make green transparent
+            if (inView) {
+                const canvas = canvasRef.current;
+                const offscreenCanvas = offscreenCanvasRef.current;
+                const baseThumbnail = baseThumbnailRef.current;
+                const overlayThumbnail = overlayThumbnailRef.current;
+                const baseVideo = baseVideoRef.current;
+                const overlayVideo = overlayVideoRef.current;
+                if (!canvas || !offscreenCanvas || !baseThumbnail || !overlayThumbnail || !baseVideo || !overlayVideo) {
+                    return;
                 }
+
+                const ctx = canvas.getContext("2d", { willReadFrequently: true });
+                if (!ctx) {
+                    return;
+                }
+
+                const offscreenCtx = offscreenCanvas.getContext("2d", { willReadFrequently: true });
+                if (!offscreenCtx) {
+                    return;
+                }
+
+                if (baseLoaded && overlayLoaded) {
+                    ctx.drawImage(baseVideo, 0, 0, width, height);
+                    offscreenCtx.drawImage(overlayVideo, 0, 0, width, height);
+                } else if (baseThumbnail.naturalWidth > 0 && overlayThumbnail.naturalWidth > 0) {
+                    ctx.drawImage(baseThumbnail, 0, 0, width, height);
+                    offscreenCtx.drawImage(overlayThumbnail, 0, 0, width, height);
+                }
+
+                // Draw overlay into offscreen canvas
+                const frame = offscreenCtx.getImageData(0, 0, width, height);
+                const data = frame.data;
+
+                for (let i = 0; i < data.length; i += 4) {
+                    const r = data[i];
+                    const g = data[i + 1];
+                    const b = data[i + 2];
+                    if (g > 100 && g > r * 1.4 && g > b * 1.4) {
+                        data[i + 3] = 0; // make green transparent
+                    }
+                }
+
+                offscreenCtx.putImageData(frame, 0, 0);
+
+                // Composite the processed overlay on top
+                ctx.globalAlpha = opacityRef.current;
+                ctx.drawImage(offscreenCanvas, 0, 0);
+                ctx.globalAlpha = 1.0;
             }
-
-            offscreenCtx.putImageData(frame, 0, 0);
-
-            // Composite the processed overlay on top
-            ctx.globalAlpha = opacityRef.current;
-            ctx.drawImage(offscreenCanvas, 0, 0);
-            ctx.globalAlpha = 1.0;
 
             frameId = requestAnimationFrame(render);
         };
         render();
         
         return () => cancelAnimationFrame(frameId);
-    }, [baseLoaded, overlayLoaded, width, height]);
+    }, [inView, baseLoaded, overlayLoaded, width, height]);
 
     return (
         <div
