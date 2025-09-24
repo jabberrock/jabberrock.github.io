@@ -1,6 +1,6 @@
 import { ExampleVideoKeys } from "./FBT";
 import type * as FBT from "./FBT";
-import { VideoPlayer } from "./VideoPlayer";
+import { VideoPlayer } from "../shared/VideoPlayer";
 
 export const HTCVive30: FBT.System = {
     "key": "htc_vive_3_0",

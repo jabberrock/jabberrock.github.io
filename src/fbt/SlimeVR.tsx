@@ -1,7 +1,7 @@
 import type React from "react";
 import { ExampleVideoKeys } from "./FBT";
 import type * as FBT from "./FBT";
-import { VideoPlayer } from "./VideoPlayer";
+import { VideoPlayer } from "../shared/VideoPlayer";
 
 export const SlimeVR: FBT.System = {
     "key": "slimevr_1_2",

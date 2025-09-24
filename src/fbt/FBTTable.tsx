@@ -4,7 +4,7 @@ import { fbtSystemConfigOptions, FBTSystemSelect, type FBTSystemConfigOption } f
 import { SlimeVR } from "./SlimeVR";
 import { HTCVive30 } from "./HTCVive30";
 import { HTCViveUltimate } from "./HTCViveUltimate";
-import type { QuestionnaireResult } from "./Questionnaire";
+import type { QuestionnaireResult } from "../vr/Questionnaire";
 
 type FBTTableProps = {
     questionnaireResult: QuestionnaireResult

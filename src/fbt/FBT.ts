@@ -1,5 +1,5 @@
 import type React from "react"
-import type { QuestionnaireResult } from "./Questionnaire"
+import type { QuestionnaireResult } from "../vr/Questionnaire"
 
 export type Item = {
     name: string

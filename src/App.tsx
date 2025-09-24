@@ -1,10 +1,10 @@
 import './App.css'
 import FBTTable from './fbt/FBTTable'
 import { Settings } from './fbt/Settings';
-import { OpacityContext } from './fbt/VideoPlayer';
-import { Questionnaire, type QuestionnaireResult } from './fbt/Questionnaire';
+import { OpacityContext } from './shared/VideoPlayer';
+import { Questionnaire, type QuestionnaireResult } from './vr/Questionnaire';
 import React from 'react';
-import { QuestionnaireSummary } from './fbt/QuestionnaireSummary';
+import { QuestionnaireSummary } from './vr/QuestionnaireSummary';
 import { FBTNav } from './fbt/FBTNav';
 
 const opacityRef = { current: 0.9 };
