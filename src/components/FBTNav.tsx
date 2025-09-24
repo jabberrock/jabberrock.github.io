@@ -1,9 +1,9 @@
 import type React from "react";
-import ScrollSpy from "react-scrollspy-navigation";
+import ScrollSpy from "../lib/react-scrollspy-navigation/ScrollSpy";
 
 export const FBTNav: React.FC = () => {
     return (
-        <ScrollSpy activeClass="selected" behavior="smooth" offsetTop={150}>
+        <ScrollSpy root={document.documentElement} activeClass="selected" behavior="smooth" offsetTop={150}>
             <nav>
                 <ul>
                     <li>
