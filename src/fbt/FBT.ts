@@ -3,6 +3,7 @@ import type { QuestionnaireResult } from "./Questionnaire"
 
 export type Item = {
     name: string
+    comment?: string
     count: number
     each_price_cents: number
     link: URL

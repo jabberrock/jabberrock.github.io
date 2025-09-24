@@ -65,13 +65,15 @@ export const SlimeVR: FBT.System = {
                         break;
                 }
                 c.optional.push({
-                    name: "Amazon Basics Adjustable Chest Mount Harness for GoPro Camera",
+                    name: "GoPro Harness",
+                    comment: "for more stable chest tracker",
                     count: 1,
                     each_price_cents: 1899,
                     link: new URL("https://www.amazon.com/AmazonBasics-Chest-Mount-Harness-cameras/dp/B01D3I8A7A")
                 });
                 c.optional.push({
                     name: "10-Port USB Charger",
+                    comment: "for easier charging",
                     count: 1,
                     each_price_cents: 1362,
                     link: new URL("https://www.amazon.com/Charging-Technology-Guaranteed-Family-Sized-Multiple/dp/B07XXDS86V")

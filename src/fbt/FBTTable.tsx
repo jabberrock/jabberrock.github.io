@@ -128,7 +128,7 @@ function FBTTable({
                                                 </tr>
                                                 {itemList.required.map((item, i) => (
                                                     <tr key={i}>
-                                                        <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
+                                                        <td><a href={item.link.toString()} target="_blank">{item.name}</a> <span className="comment">{item.comment}</span></td>
                                                         <td>{item.count}x</td>
                                                         <td className="component-price">{toDollars(item.each_price_cents)}</td>
                                                     </tr>
@@ -140,6 +140,19 @@ function FBTTable({
                                                 </tr>
                                             </>
                                         )}
+                                    </tbody>
+                                </table>
+                            </td>
+                        );
+                    })}
+                </tr>
+                <tr>
+                    {systems.map(system => {
+                        const itemList = system.itemList;
+                        return (
+                            <td key={system.key}>
+                                <table className="component-table">
+                                    <tbody>
                                         {itemList.optional.length > 0 && (
                                             <>
                                                 <tr>
@@ -147,7 +160,7 @@ function FBTTable({
                                                 </tr>
                                                 {itemList.optional.map((item, i) => (
                                                     <tr key={i}>
-                                                        <td><a href={item.link.toString()} target="_blank">{item.name}</a></td>
+                                                        <td><a href={item.link.toString()} target="_blank">{item.name}</a> <span className="comment">{item.comment}</span></td>
                                                         <td>{item.count}x</td>
                                                         <td className="component-price">{toDollars(item.each_price_cents)}</td>
                                                     </tr>

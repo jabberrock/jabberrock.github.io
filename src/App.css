@@ -81,6 +81,10 @@ tr {
   vertical-align: top;
 }
 
+.component-table .comment {
+  color: #999999;
+}
+
 .component-table .component-price {
   text-align: right;
   width: 50px;

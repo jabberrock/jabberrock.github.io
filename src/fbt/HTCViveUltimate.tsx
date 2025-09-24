@@ -51,14 +51,15 @@ export const HTCViveUltimate: FBT.System = {
                             each_price_cents: 55999,
                             link: new URL("https://www.vive.com/us/accessory/vive-ultimate-tracker/")
                         });
-                        c.required.push({
-                            name: "TrackStraps for VIVE Ultimate Tracker",
-                            count: 1,
-                            each_price_cents: 4999,
-                            link: new URL("https://www.vive.com/us/accessory/trackstraps-for-vive-ultimate-tracker-plus-dance-dash/")
-                        });
                         break;
                 }
+                c.required.push({
+                    name: "TrackStraps",
+                    comment: "to fix trackers on body",
+                    count: 1,
+                    each_price_cents: 4999,
+                    link: new URL("https://www.vive.com/us/accessory/trackstraps-for-vive-ultimate-tracker-plus-dance-dash/")
+                });
                 return c;
             })(),
             "availability": (
