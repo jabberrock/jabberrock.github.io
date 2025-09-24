@@ -74,6 +74,8 @@ export const FBTSystemSelect: React.FC<FBTSystemSelectProps> = ({
                 ...theme,
                 colors: {
                     ...theme.colors,
+                    primary25: theme.colors.primary75,
+                    primary75: theme.colors.primary25,
                     neutral0: gray(0),
                     neutral5: gray(0.05),
                     neutral10: gray(0.10),
@@ -85,7 +87,7 @@ export const FBTSystemSelect: React.FC<FBTSystemSelectProps> = ({
                     neutral70: gray(0.70),
                     neutral80: gray(0.80),
                     neutral90: gray(0.90),
-                }
+                },
             })}
         />
     );
