@@ -206,20 +206,30 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         gl.uniform1i(gl.getUniformLocation(program, "u_overlayTex"), 1);
 
         // ---------- Render loop ----------
-        function updateVideoTexture(tex: WebGLTexture, unit: number, source: HTMLImageElement | HTMLVideoElement) {
-            gl.activeTexture(gl.TEXTURE0 + unit);
-            gl.bindTexture(gl.TEXTURE_2D, tex);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+        function updateTextureFromVideo(tex: WebGLTexture, unit: number, video: HTMLVideoElement) {
+            if (video.readyState >= 2) {
+                gl.activeTexture(gl.TEXTURE0 + unit);
+                gl.bindTexture(gl.TEXTURE_2D, tex);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
+            }
+        }
+
+        function updateTextureFromImage(tex: WebGLTexture, unit: number, image: HTMLImageElement) {
+            if (image.naturalHeight > 0) {
+                gl.activeTexture(gl.TEXTURE0 + unit);
+                gl.bindTexture(gl.TEXTURE_2D, tex);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+            }
         }
 
         let handle: number;
         function render() {
             if (baseLoaded && overlayLoaded) {
-                updateVideoTexture(baseTex, 0, baseVideo);
-                updateVideoTexture(overlayTex, 1, overlayVideo);
+                updateTextureFromVideo(baseTex, 0, baseVideo);
+                updateTextureFromVideo(overlayTex, 1, overlayVideo);
             } else {
-                updateVideoTexture(baseTex, 0, baseThumbnail);
-                updateVideoTexture(overlayTex, 1, overlayThumbnail);
+                updateTextureFromImage(baseTex, 0, baseThumbnail);
+                updateTextureFromImage(overlayTex, 1, overlayThumbnail);
             }
 
             gl.viewport(0, 0, canvas.width, canvas.height);
