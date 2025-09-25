@@ -129,7 +129,6 @@ function ensureWebGLContext(width: number, height: number): WebGLContext {
     return ctx;
 }
 
-
 type VideoPlayerProps = {
     base_url: string;
     overlay_url: string;
@@ -149,7 +148,6 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const offscreenCanvasRef = useRef<HTMLCanvasElement>(null);
     const baseThumbnailRef = useRef<HTMLImageElement>(null);
     const overlayThumbnailRef = useRef<HTMLImageElement>(null);
     const baseVideoRef = useRef<HTMLVideoElement>(null);
@@ -285,14 +283,13 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             handle = requestAnimationFrame(render);
         }
         render();
-        
+
         return () => cancelAnimationFrame(handle);
     }, [inView, baseLoaded, overlayLoaded, width, height]);
 
     return (
         <div ref={containerRef} style={{ width, height, position: "relative", overflow: "hidden" }}>
             <canvas ref={canvasRef} width={width} height={height} style={{ width, height }} />
-            <canvas ref={offscreenCanvasRef} width={width} height={height} style={{ width, height, display: "none" }} />
             <img ref={baseThumbnailRef} src={base_thumbnail_url} style={{ display: "none" }} />
             <img ref={overlayThumbnailRef} src={overlay_thumbnail_url} style={{ display: "none" }} />
             <video
