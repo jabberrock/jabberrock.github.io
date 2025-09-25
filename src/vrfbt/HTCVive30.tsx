@@ -143,7 +143,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             });
             c.optional.push({
                 name: "Skywin VR Tripod Stand",
-                comment: "to lift the base stations",
+                comment: "to position base stations",
                 count: 1,
                 each_price_cents: 4699,
                 link: new URL(

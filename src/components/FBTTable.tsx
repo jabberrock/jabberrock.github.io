@@ -144,6 +144,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                                                         </td>
                                                     </tr>
                                                 ))}
+                                                {Array(systems.reduce((p, v) => Math.max(p, v.itemList.required.length), 0) - itemList.required.length).fill(null).map((_, i) => <tr key={i}><td colSpan={3}>&nbsp;</td></tr>)}
                                                 <tr>
                                                     <td className="total" colSpan={3}>
                                                         {toDollars(
@@ -189,6 +190,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                                                         </td>
                                                     </tr>
                                                 ))}
+                                                {Array(systems.reduce((p, v) => Math.max(p, v.itemList.optional.length), 0) - itemList.optional.length).fill(null).map((_, i) => <tr key={i}><td colSpan={3}>&nbsp;</td></tr>)}
                                                 <tr>
                                                     <td className="total" colSpan={3}>
                                                         {toDollars(
