@@ -34,7 +34,8 @@ function toDollars(priceCents: number) {
 
 function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
     const [selectedOptions, setSelectedSystems] = useState<FBTSystemConfigOption[]>(
-        vrHeadsetFBTRecommendations[vrSystem.headset].map(f => findFBTSystemOption(f.system, f.config)));
+        vrHeadsetFBTRecommendations[vrSystem.headset].map((f) => findFBTSystemOption(f.system, f.config)),
+    );
 
     const systems: VRFBTSystem[] = selectedOptions.map((s) => {
         switch (s.value.systemKey) {

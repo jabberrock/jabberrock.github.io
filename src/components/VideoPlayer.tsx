@@ -3,17 +3,17 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 export const OpacityContext = React.createContext({ current: 0.0 });
 
 type WebGLContext = {
-    width: number,
-    height: number,
-    canvas: HTMLCanvasElement,
-    gl: WebGLRenderingContext,
-    program: WebGLProgram,
+    width: number;
+    height: number;
+    canvas: HTMLCanvasElement;
+    gl: WebGLRenderingContext;
+    program: WebGLProgram;
 };
 
-const sharedWebGLContexts: WebGLContext[]  = [];
+const sharedWebGLContexts: WebGLContext[] = [];
 
 function ensureWebGLContext(width: number, height: number): WebGLContext {
-    const sharedCtx = sharedWebGLContexts.find(c => c.width === width && c.height === height);
+    const sharedCtx = sharedWebGLContexts.find((c) => c.width === width && c.height === height);
     if (sharedCtx) {
         return sharedCtx;
     }
@@ -81,26 +81,12 @@ function ensureWebGLContext(width: number, height: number): WebGLContext {
     // ---------- Geometry ----------
     const positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-    const positions = new Float32Array([
-        -1, -1,
-        1, -1,
-        -1, 1,
-        -1, 1,
-        1, -1,
-        1, 1,
-    ]);
+    const positions = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
     gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
     const texCoordBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-    const texCoords = new Float32Array([
-        0, 1,
-        1, 1,
-        0, 0,
-        0, 0,
-        1, 1,
-        1, 0,
-    ]);
+    const texCoords = new Float32Array([0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0]);
     gl.bufferData(gl.ARRAY_BUFFER, texCoords, gl.STATIC_DRAW);
 
     const a_position = gl.getAttribLocation(program, "a_position");
@@ -247,7 +233,17 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             if (video.readyState >= 2) {
                 gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
             } else {
-                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 0, 255]));
+                gl.texImage2D(
+                    gl.TEXTURE_2D,
+                    0,
+                    gl.RGBA,
+                    1,
+                    1,
+                    0,
+                    gl.RGBA,
+                    gl.UNSIGNED_BYTE,
+                    new Uint8Array([0, 0, 0, 255]),
+                );
             }
         }
 
@@ -257,7 +253,17 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             if (image.naturalHeight > 0) {
                 gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
             } else {
-                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0, 0, 0, 255]));
+                gl.texImage2D(
+                    gl.TEXTURE_2D,
+                    0,
+                    gl.RGBA,
+                    1,
+                    1,
+                    0,
+                    gl.RGBA,
+                    gl.UNSIGNED_BYTE,
+                    new Uint8Array([0, 0, 0, 255]),
+                );
             }
         }
 
@@ -270,7 +276,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 updateTextureFromImage(baseTex, 0, baseThumbnail);
                 updateTextureFromImage(overlayTex, 1, overlayThumbnail);
             }
-            
+
             gl.uniform1f(gl.getUniformLocation(program, "u_opacity"), opacityRef.current);
 
             gl.viewport(0, 0, width, height);

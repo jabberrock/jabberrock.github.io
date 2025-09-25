@@ -40,8 +40,8 @@ export const ExampleVideoKeys = [
 ] as const;
 
 export type FBTRecommendation = {
-    system: FBTSystemKey,
-    config: string
+    system: FBTSystemKey;
+    config: string;
 };
 
 const lighthouseFBTRecommendations: FBTRecommendation[] = [
@@ -56,5 +56,9 @@ const nonLighthouseFBTRecommendations: FBTRecommendation[] = [
     { system: "htc_vive_ultimate", config: "3_trackers" },
 ];
 
-export const vrHeadsetFBTRecommendations =
-    Object.fromEntries(vrHeadsetKeys.map(v => [v, vrHeadsetsByKey[v].tracking === "lighthouse" ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations])) as Record<VRHeadsetKey, FBTRecommendation[]>
+export const vrHeadsetFBTRecommendations = Object.fromEntries(
+    vrHeadsetKeys.map((v) => [
+        v,
+        vrHeadsetsByKey[v].tracking === "lighthouse" ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations,
+    ]),
+) as Record<VRHeadsetKey, FBTRecommendation[]>;
