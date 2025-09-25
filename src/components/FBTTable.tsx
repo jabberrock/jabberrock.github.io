@@ -90,14 +90,6 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         </td>
                     ))}
                 </tr>
-                <tr id="section-how_it_works" className="header">
-                    <td colSpan={systems.length}>How it Works</td>
-                </tr>
-                <tr>
-                    {systems.map((system) => (
-                        <td key={system.key}>{system.howItWorks}</td>
-                    ))}
-                </tr>
                 <tr id="section-intro_example" className="header">
                     <td colSpan={systems.length}>Example</td>
                 </tr>
@@ -106,8 +98,16 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>{system.examples["dancing"]}</td>
                     ))}
                 </tr>
+                <tr id="section-how_it_works" className="header">
+                    <td colSpan={systems.length}>How it Works</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.howItWorks}</td>
+                    ))}
+                </tr>
                 <tr id="section-components" className="header">
-                    <td colSpan={systems.length}>Components</td>
+                    <td colSpan={systems.length}>What to Buy</td>
                 </tr>
                 <tr>
                     {systems.map((system) => {
@@ -205,7 +205,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     })}
                 </tr>
                 <tr id="section-availability" className="header">
-                    <td colSpan={systems.length}>Availability</td>
+                    <td colSpan={systems.length}>Where to Buy</td>
                 </tr>
                 <tr>
                     {systems.map((system) => (
@@ -236,7 +236,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     </React.Fragment>
                 ))}
                 <tr id="section-drawbacks" className="header">
-                    <td colSpan={systems.length}>Drawbacks and Limitations</td>
+                    <td colSpan={systems.length}>Drawbacks</td>
                 </tr>
                 <tr>
                     {systems.map((system) => (

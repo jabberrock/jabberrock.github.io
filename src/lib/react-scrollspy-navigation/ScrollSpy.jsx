@@ -1,6 +1,5 @@
 import React, { Children } from "react";
 import useScrollObserver from "./useScrollObserver.jsx";
-import { findScrollContainer } from "./utils.js";
 
 const ScrollSpy = ({
     activeClass = "",
@@ -43,7 +42,7 @@ const ScrollSpy = ({
                         }
 
                         const content = document.getElementById(id);
-                        const container = root || findScrollContainer(content);
+                        const container = document.documentElement;
 
                         const clickHandlerInternal = () => {
                             container.scrollTo({

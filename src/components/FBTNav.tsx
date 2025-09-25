@@ -3,20 +3,20 @@ import ScrollSpy from "../lib/react-scrollspy-navigation/ScrollSpy";
 
 export const FBTNav: React.FC = () => {
     return (
-        <ScrollSpy root={document.documentElement} activeClass="selected" behavior="smooth" offsetTop={150}>
+        <ScrollSpy activeClass="selected" behavior="smooth" offsetTop={150}>
             <nav>
                 <ul>
-                    <li>
-                        <a href="#section-how_it_works">How it works</a>
-                    </li>
                     <li>
                         <a href="#section-intro_example">Example</a>
                     </li>
                     <li>
-                        <a href="#section-components">Components</a>
+                        <a href="#section-how_it_works">How it works</a>
                     </li>
                     <li>
-                        <a href="#section-availability">Availability</a>
+                        <a href="#section-components">What to Buy</a>
+                    </li>
+                    <li>
+                        <a href="#section-availability">Where to Buy</a>
                     </li>
                     <li>
                         <a href="#section-tracking">Tracking</a>
@@ -48,7 +48,7 @@ export const FBTNav: React.FC = () => {
                         </ul>
                     </li>
                     <li>
-                        <a href="#section-drawbacks">Drawbacks and Limitations</a>
+                        <a href="#section-drawbacks">Drawbacks</a>
                     </li>
                     <li>
                         <a href="#section-specifications">Specifications</a>
