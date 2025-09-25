@@ -87,67 +87,151 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
     // Rendering loop with green screen removal
     useEffect(() => {
-        let frameId: number;
-        const render = () => {
-            if (inView) {
-                const canvas = canvasRef.current;
-                const offscreenCanvas = offscreenCanvasRef.current;
-                const baseThumbnail = baseThumbnailRef.current;
-                const overlayThumbnail = overlayThumbnailRef.current;
-                const baseVideo = baseVideoRef.current;
-                const overlayVideo = overlayVideoRef.current;
-                if (!canvas || !offscreenCanvas || !baseThumbnail || !overlayThumbnail || !baseVideo || !overlayVideo) {
-                    return;
-                }
+        if (!inView) {
+            return;
+        }
 
-                const ctx = canvas.getContext("2d", {
-                    willReadFrequently: true,
-                });
-                if (!ctx) {
-                    return;
-                }
+        const canvas = canvasRef.current!;
+        const baseThumbnail = baseThumbnailRef.current!;
+        const overlayThumbnail = overlayThumbnailRef.current!;
+        const baseVideo = baseVideoRef.current!;
+        const overlayVideo = overlayVideoRef.current!;
 
-                const offscreenCtx = offscreenCanvas.getContext("2d", {
-                    willReadFrequently: true,
-                });
-                if (!offscreenCtx) {
-                    return;
-                }
+        const gl = canvas.getContext("webgl")!;
 
-                if (baseLoaded && overlayLoaded) {
-                    ctx.drawImage(baseVideo, 0, 0, width, height);
-                    offscreenCtx.drawImage(overlayVideo, 0, 0, width, height);
-                } else if (baseThumbnail.naturalWidth > 0 && overlayThumbnail.naturalWidth > 0) {
-                    ctx.drawImage(baseThumbnail, 0, 0, width, height);
-                    offscreenCtx.drawImage(overlayThumbnail, 0, 0, width, height);
-                }
+        // ---------- Shader sources ----------
+        const vsSource = `
+            attribute vec2 a_position;
+            attribute vec2 a_texCoord;
+            varying vec2 v_texCoord;
+            void main() {
+                gl_Position = vec4(a_position, 0.0, 1.0);
+                v_texCoord = a_texCoord;
+            }
+        `;
 
-                // Draw overlay into offscreen canvas
-                const frame = offscreenCtx.getImageData(0, 0, width, height);
-                const data = frame.data;
+        const fsSource = `
+            precision mediump float;
+            uniform sampler2D u_baseTex;
+            uniform sampler2D u_overlayTex;
+            varying vec2 v_texCoord;
+            void main() {
+                vec4 baseColor = texture2D(u_baseTex, v_texCoord);
+                vec4 overlayColor = texture2D(u_overlayTex, v_texCoord);
 
-                for (let i = 0; i < data.length; i += 4) {
-                    const r = data[i];
-                    const g = data[i + 1];
-                    const b = data[i + 2];
-                    if (g > 100 && g > r * 1.4 && g > b * 1.4) {
-                        data[i + 3] = 0; // make green transparent
-                    }
-                }
+                // chroma key (green removal)
+                vec3 keyColor = vec3(0.0, 1.0, 0.0);
+                float threshold = 0.4;
+                float slope = 0.2;
+                float d = distance(overlayColor.rgb, keyColor);
+                float alpha = smoothstep(threshold, threshold + slope, d);
 
-                offscreenCtx.putImageData(frame, 0, 0);
+                gl_FragColor = mix(baseColor, overlayColor, alpha);
+            }
+        `;
 
-                // Composite the processed overlay on top
-                ctx.globalAlpha = opacityRef.current;
-                ctx.drawImage(offscreenCanvas, 0, 0);
-                ctx.globalAlpha = 1.0;
+        function compileShader(src: string, type: number) {
+            const shader = gl.createShader(type)!;
+            gl.shaderSource(shader, src);
+            gl.compileShader(shader);
+            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+                console.error(gl.getShaderInfoLog(shader));
+            }
+            return shader;
+        }
+
+        const vs = compileShader(vsSource, gl.VERTEX_SHADER);
+        const fs = compileShader(fsSource, gl.FRAGMENT_SHADER);
+
+        const program = gl.createProgram()!;
+        gl.attachShader(program, vs);
+        gl.attachShader(program, fs);
+        gl.linkProgram(program);
+        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+            console.error(gl.getProgramInfoLog(program));
+        }
+        gl.useProgram(program);
+
+        // ---------- Geometry ----------
+        const positionBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        const positions = new Float32Array([
+            -1, -1,
+            1, -1,
+            -1, 1,
+            -1, 1,
+            1, -1,
+            1, 1,
+        ]);
+        gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
+
+        const texCoordBuffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+        const texCoords = new Float32Array([
+            0, 1,
+            1, 1,
+            0, 0,
+            0, 0,
+            1, 1,
+            1, 0,
+        ]);
+        gl.bufferData(gl.ARRAY_BUFFER, texCoords, gl.STATIC_DRAW);
+
+        const a_position = gl.getAttribLocation(program, "a_position");
+        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+        gl.enableVertexAttribArray(a_position);
+        gl.vertexAttribPointer(a_position, 2, gl.FLOAT, false, 0, 0);
+
+        const a_texCoord = gl.getAttribLocation(program, "a_texCoord");
+        gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
+        gl.enableVertexAttribArray(a_texCoord);
+        gl.vertexAttribPointer(a_texCoord, 2, gl.FLOAT, false, 0, 0);
+
+        // ---------- Texture setup ----------
+        function createVideoTexture(unit: number) {
+            const tex = gl.createTexture()!;
+            gl.activeTexture(gl.TEXTURE0 + unit);
+            gl.bindTexture(gl.TEXTURE_2D, tex);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+            return tex;
+        }
+
+        const baseTex = createVideoTexture(0);
+        const overlayTex = createVideoTexture(1);
+
+        gl.uniform1i(gl.getUniformLocation(program, "u_baseTex"), 0);
+        gl.uniform1i(gl.getUniformLocation(program, "u_overlayTex"), 1);
+
+        // ---------- Render loop ----------
+        function updateVideoTexture(tex: WebGLTexture, unit: number, source: HTMLImageElement | HTMLVideoElement) {
+            gl.activeTexture(gl.TEXTURE0 + unit);
+            gl.bindTexture(gl.TEXTURE_2D, tex);
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, source);
+        }
+
+        let handle: number;
+        function render() {
+            if (baseLoaded && overlayLoaded) {
+                updateVideoTexture(baseTex, 0, baseVideo);
+                updateVideoTexture(overlayTex, 1, overlayVideo);
+            } else {
+                updateVideoTexture(baseTex, 0, baseThumbnail);
+                updateVideoTexture(overlayTex, 1, overlayThumbnail);
             }
 
-            frameId = requestAnimationFrame(render);
-        };
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+
+            handle = requestAnimationFrame(render);
+        }
+
         render();
 
-        return () => cancelAnimationFrame(frameId);
+        return () => cancelAnimationFrame(handle);
     }, [inView, baseLoaded, overlayLoaded, width, height]);
 
     return (
