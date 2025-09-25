@@ -1,3 +1,6 @@
+import type { FBTSystemKey } from "../fbt/FBT";
+import { vrHeadsetKeys, vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
+
 export type VRFBTSystem = {
     key: string;
     name: string;
@@ -32,3 +35,24 @@ export const ExampleVideoKeys = [
     "exercise",
     "extreme",
 ] as const;
+
+export type FBTRecommendation = {
+    system: FBTSystemKey,
+    config: string
+};
+
+const lighthouseFBTRecommendations: FBTRecommendation[] = [
+    { system: "slimevr_1_2", config: "enhanced_core_set_6_2" },
+    { system: "htc_vive_3_0", config: "3_trackers" },
+    { system: "htc_vive_ultimate", config: "3_trackers" },
+];
+
+const nonLighthouseFBTRecommendations: FBTRecommendation[] = [
+    { system: "slimevr_1_2", config: "enhanced_core_set_6_2" },
+    { system: "htc_vive_3_0", config: "3_trackers_1_continuous" },
+    { system: "htc_vive_ultimate", config: "3_trackers" },
+];
+
+export const vrHeadsetFBTRecommendations =
+    Object.fromEntries(vrHeadsetKeys.map(v => [v, vrHeadsetsByKey[v].requiresLighthouse ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations])) as Record<VRHeadsetKey, FBTRecommendation[]>
+    

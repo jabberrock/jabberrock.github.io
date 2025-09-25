@@ -30,7 +30,7 @@ export type VRHeadsetKey = (typeof vrHeadsetKeys)[number];
 /**
  * How the VR headset tracks its position
  */
-export type VRHeadsetTracking = "inside_out" | "lighthouse";
+export type VRHeadsetTracking = "inside_out" | "lighthouse" | "constellation";
 
 /**
  * VR headset
@@ -51,7 +51,7 @@ export const vrHeadsets: VRHeadset[] = [
     {
         key: "oculus_rift",
         name: "Oculus Rift",
-        tracking: "inside_out",
+        tracking: "constellation",
         requiresPC: true,
         requiresLighthouse: false,
     },

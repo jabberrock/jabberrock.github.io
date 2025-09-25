@@ -4,6 +4,7 @@ import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
 import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import type { VRSystem } from "../vr/VR";
+import { vrHeadsetFBTRecommendations } from "../vrfbt/VRFBTSystem";
 
 type FBTTableProps = {
     vrSystem: VRSystem;
@@ -32,11 +33,8 @@ function toDollars(priceCents: number) {
 }
 
 function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
-    const [selectedOptions, setSelectedSystems] = useState<FBTSystemConfigOption[]>([
-        findFBTSystemOption("slimevr_1_2", "enhanced_core_set_6_2"),
-        findFBTSystemOption("htc_vive_3_0", "3_trackers_1_continuous"),
-        findFBTSystemOption("htc_vive_ultimate", "3_trackers"),
-    ]);
+    const [selectedOptions, setSelectedSystems] = useState<FBTSystemConfigOption[]>(
+        vrHeadsetFBTRecommendations[vrSystem.headset].map(f => findFBTSystemOption(f.system, f.config)));
 
     const systems = selectedOptions.map((s) => {
         switch (s.value.systemKey) {
