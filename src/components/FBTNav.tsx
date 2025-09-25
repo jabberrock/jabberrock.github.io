@@ -22,9 +22,6 @@ export const FBTNav: React.FC = () => {
                         <a href="#section-tracking">Tracking</a>
                     </li>
                     <li>
-                        <a href="#section-specifications">Specifications</a>
-                    </li>
-                    <li>
                         <a href="#section-examples">Examples</a>
                         <ul>
                             <li>
@@ -49,6 +46,12 @@ export const FBTNav: React.FC = () => {
                                 <a href="#section-examples-extreme">Extreme Movement</a>
                             </li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="#section-drawbacks">Drawbacks and Limitations</a>
+                    </li>
+                    <li>
+                        <a href="#section-specifications">Specifications</a>
                     </li>
                 </ul>
             </nav>

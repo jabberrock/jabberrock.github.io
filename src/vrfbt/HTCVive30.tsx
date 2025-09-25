@@ -1,11 +1,11 @@
 import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
-import { ExampleVideoKeys, type ItemList } from "./VRFBTSystem";
+import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 
 const HTCVive30SystemKey: FBTSystemKey = "htc_vive_3_0";
 
-export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string) {
+export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem {
     if (!vrSystem.prefersPCVR) {
         return {
             key: `${HTCVive30SystemKey}-${fbtConfig}`,
@@ -173,5 +173,36 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string) {
 
             return nodes;
         })(),
+        drawbacks: (
+            <>
+                <div className="drawback">
+                    <div className="sub-heading">Occlusion</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>During play, your arms and clothing may hide the tracker from the base stations. This occlusion causes the tracker to stop moving, or even fly off into the distance.</p>
+                    <p>This can be minimized by careful position of the base stations, wearing tight clothing, and being careful of where you move your arms.</p>
+                </div>
+                <div className="drawback">
+                    <div className="sub-heading">Reflective Surfaces</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>The base stations use infrared light, which can bounce off reflective surfaces. This confuses the tracker and causes it to fly off into the distance.</p>
+                    <p>To solve this, close your window blinds, cover your mirrors with a cloth, and cover any other reflective surfaces.</p>
+                </div>
+                <div className="drawback">
+                    <div className="sub-heading">Estimated Leg Position</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>Knees are estimated using IK (inverse kinematics), so the estimated position can be very different from the actual position.</p>
+                </div>
+                <div className="drawback">
+                    <div className="sub-heading">Jitter</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>Because IK is not perfect, certain movements can result in a lot of jitter.</p>
+                </div>
+                <div className="drawback">
+                    <div className="sub-heading">Limited playspace</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>The playspace is limited by where the base stations are placed. Base Station 1.0 have a maximum playspace of 5m x 5m (15ft x 15ft), while Base Station 2.0 ($220 each) have a maximum playspace of 10m x 10m (30ft x 30ft).</p>
+                </div>
+            </>
+        ),
     };
 }

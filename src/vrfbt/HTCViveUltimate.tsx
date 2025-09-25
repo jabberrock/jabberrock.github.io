@@ -1,11 +1,11 @@
 import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import type { VRSystem } from "../vr/VR";
-import { type ItemList, ExampleVideoKeys } from "./VRFBTSystem";
+import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate";
 
-export function makeHTCViveUltimate(vrSystem: VRSystem, config: string) {
+export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSystem {
     if (!vrSystem.prefersPCVR) {
         return {
             key: HTCViveUltimateSystemKey,
@@ -112,5 +112,32 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string) {
 
             return nodes;
         })(),
+        drawbacks: (
+            <>
+                <div className="drawback">
+                    <div className="sub-heading">Occlusion</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>During play, your arms and clothing may block the cameras, or you may be oriented such that there is very little information for the cameras (e.g. a white wall). This causes the tracker to stop moving, or even fly off into the distance.</p>
+                    <p>There’s no way to work around this limitation.</p>
+                </div>
+                <div className="drawback">
+                    <div className="sub-heading">Changes to Playspace</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>The tracker needs to scan your playspace and compare the current camera snapshot to figure out where it is. If you move things around and your playspace changes enough, the tracker will get lost.</p>
+                    <p>This may also happen if your playspace lighting is significantly different in the daytime vs nighttime.</p>
+                    <p>To solve this, you have to rescan your playspace.</p>
+                </div>
+                <div className="drawback">
+                    <div className="sub-heading">Estimated Leg Position</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>Knees are estimated using IK (inverse kinematics), so the estimated position can be very different from the actual position.</p>
+                </div>
+                <div className="drawback">
+                    <div className="sub-heading">Jitter</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>Because IK is not perfect, certain movements can result in a lot of jitter.</p>
+                </div>
+            </>
+        ),
     };
 }

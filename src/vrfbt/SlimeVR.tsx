@@ -1,11 +1,11 @@
 import type React from "react";
 import { VideoPlayer } from "../components/VideoPlayer";
-import { ExampleVideoKeys, type ItemList } from "./VRFBTSystem";
+import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 
 const SlimeVRSystemKey: FBTSystemKey = "slimevr_1_2";
 
-export function makeSlimeVR(fbtConfig: string) {
+export function makeSlimeVR(fbtConfig: string): VRFBTSystem {
     return {
         key: `${SlimeVRSystemKey}-${fbtConfig}`,
         name: fbtSystemsByKey[SlimeVRSystemKey].name,
@@ -165,5 +165,22 @@ export function makeSlimeVR(fbtConfig: string) {
 
             return nodes;
         })(),
+        drawbacks: (
+            <>
+                <div className="drawback">
+                    <div className="sub-heading">Drift</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>Over time, SlimeVR trackers will drift, because the IMU is not perfect. Your in-game avatar will gradually get out of sync with your real body.</p>
+                    <p>Typical users notice drift after 30-45 minutes. When Stay Aligned is configured, some users who are just hanging out with friends have reported no drift for up to 5 hours.</p>
+                    <p>To fix the drift, just face forward, and double tap your chest tracker.</p>
+                </div>
+                <div className="drawback">
+                    <div className="sub-heading">Calibration</div>
+                    <img style={{width: "480px", height: "320px" }} />
+                    <p>At the start of each VR session, you will need to calibrate the trackers so that the skeleton will make your body in the real world. The calibration process can be a little tricky, and requires some adjustment for each person.</p>
+                    <p>SlimeVR runs VRChat calibration sessions where you can get help with calibration.</p>
+                </div>
+            </>
+        ),
     };
 }

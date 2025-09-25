@@ -4,7 +4,7 @@ import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
 import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import type { VRSystem } from "../vr/VR";
-import { vrHeadsetFBTRecommendations } from "../vrfbt/VRFBTSystem";
+import { vrHeadsetFBTRecommendations, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
 
 type FBTTableProps = {
     vrSystem: VRSystem;
@@ -36,7 +36,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
     const [selectedOptions, setSelectedSystems] = useState<FBTSystemConfigOption[]>(
         vrHeadsetFBTRecommendations[vrSystem.headset].map(f => findFBTSystemOption(f.system, f.config)));
 
-    const systems = selectedOptions.map((s) => {
+    const systems: VRFBTSystem[] = selectedOptions.map((s) => {
         switch (s.value.systemKey) {
             case "slimevr_1_2":
                 return makeSlimeVR(s.value.configKey);
@@ -220,20 +220,12 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>{system.tracking}</td>
                     ))}
                 </tr>
-                <tr id="section-specifications" className="header">
-                    <td colSpan={systems.length}>Specifications</td>
-                </tr>
-                <tr>
-                    {systems.map((system) => (
-                        <td key={system.key}>{system.specs}</td>
-                    ))}
-                </tr>
                 <tr id="section-examples" className="header">
                     <td colSpan={systems.length}>Examples</td>
                 </tr>
                 {Object.keys(exampleVideos).map((v) => (
                     <React.Fragment key={v}>
-                        <tr id={`section-examples-${v}`} className="sub-header">
+                        <tr id={`section-examples-${v}`} className="sub-heading">
                             <td colSpan={systems.length}>{exampleVideos[v]}</td>
                         </tr>
                         <tr>
@@ -243,6 +235,22 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         </tr>
                     </React.Fragment>
                 ))}
+                <tr id="section-drawbacks" className="header">
+                    <td colSpan={systems.length}>Drawbacks and Limitations</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.drawbacks}</td>
+                    ))}
+                </tr>
+                <tr id="section-specifications" className="header">
+                    <td colSpan={systems.length}>Specifications</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.specs}</td>
+                    ))}
+                </tr>
             </tbody>
         </table>
     );

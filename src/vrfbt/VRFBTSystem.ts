@@ -1,3 +1,4 @@
+import type React from "react";
 import type { FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetKeys, vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 
@@ -11,6 +12,7 @@ export type VRFBTSystem = {
     tracking?: React.ReactNode;
     specs?: React.ReactNode;
     examples: Record<string, React.ReactNode>;
+    drawbacks?: React.ReactNode;
 };
 
 export type Item = {
@@ -55,4 +57,3 @@ const nonLighthouseFBTRecommendations: FBTRecommendation[] = [
 
 export const vrHeadsetFBTRecommendations =
     Object.fromEntries(vrHeadsetKeys.map(v => [v, vrHeadsetsByKey[v].requiresLighthouse ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations])) as Record<VRHeadsetKey, FBTRecommendation[]>
-    

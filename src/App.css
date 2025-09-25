@@ -70,7 +70,10 @@ tr {
 
 .fbt-table > tbody > tr.sub-header td {
     padding-bottom: 0;
-    font-size: 125%;
+}
+
+.sub-heading {
+  font-size: 125%;
 }
 
 .component-table {
