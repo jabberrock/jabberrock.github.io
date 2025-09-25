@@ -41,7 +41,6 @@ export type VRHeadset = {
     imageURL?: string; // TODO: Should be required
     tracking: VRHeadsetTracking;
     requiresPC: boolean;
-    requiresLighthouse: boolean;
 };
 
 /**
@@ -53,21 +52,18 @@ export const vrHeadsets: VRHeadset[] = [
         name: "Oculus Rift",
         tracking: "constellation",
         requiresPC: true,
-        requiresLighthouse: false,
     },
     {
         key: "oculus_rift_s",
         name: "Oculus Rift S",
         tracking: "inside_out",
         requiresPC: true,
-        requiresLighthouse: false,
     },
     {
         key: "meta_quest_2",
         name: "Meta Quest 2",
         tracking: "inside_out",
         requiresPC: false,
-        requiresLighthouse: false,
     },
     {
         key: "meta_quest_3",
@@ -75,63 +71,54 @@ export const vrHeadsets: VRHeadset[] = [
         imageURL: "vr_headsets/meta_quest_3.jpg",
         tracking: "inside_out",
         requiresPC: false,
-        requiresLighthouse: false,
     },
     {
         key: "meta_quest_3s",
         name: "Meta Quest 3S",
         tracking: "inside_out",
         requiresPC: false,
-        requiresLighthouse: false,
     },
     {
         key: "meta_quest_pro",
         name: "Meta Quest Pro",
         tracking: "inside_out",
         requiresPC: false,
-        requiresLighthouse: false,
     },
     {
         key: "htc_vive",
         name: "HTC VIVE",
         tracking: "lighthouse",
         requiresPC: true,
-        requiresLighthouse: true,
     },
     {
         key: "htc_vive_pro",
         name: "HTC VIVE Pro",
         tracking: "lighthouse",
         requiresPC: true,
-        requiresLighthouse: true,
     },
     {
         key: "htc_vive_pro_2",
         name: "HTC VIVE Pro 2",
         tracking: "lighthouse",
         requiresPC: true,
-        requiresLighthouse: true,
     },
     {
         key: "valve_index",
         name: "Valve Index",
         tracking: "lighthouse",
         requiresPC: true,
-        requiresLighthouse: true,
     },
     {
         key: "generic_inside_out",
         name: "Generic Inside-Out Headset",
         tracking: "inside_out",
         requiresPC: false,
-        requiresLighthouse: false,
     },
     {
         key: "generic_lighthouse_based",
         name: "Generic Lighthouse-based Headset",
         tracking: "lighthouse",
         requiresPC: false,
-        requiresLighthouse: true,
     },
 ] as const;
 

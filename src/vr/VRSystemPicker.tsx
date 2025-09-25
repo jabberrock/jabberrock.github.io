@@ -28,7 +28,7 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
         if (vrHeadset.requiresPC) {
             newVRSystem.prefersPCVR = true;
         }
-        if (vrHeadset.requiresLighthouse) {
+        if (vrHeadset.tracking === "lighthouse") {
             newVRSystem.ownsLighthouse = true;
         }
         nextStep(newVRSystem);

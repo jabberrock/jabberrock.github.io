@@ -90,6 +90,14 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         </td>
                     ))}
                 </tr>
+                <tr id="section-recommendation" className="header">
+                    <td colSpan={systems.length}>Recommendation</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.recommendation}</td>
+                    ))}
+                </tr>
                 <tr id="section-intro_example" className="header">
                     <td colSpan={systems.length}>Example</td>
                 </tr>

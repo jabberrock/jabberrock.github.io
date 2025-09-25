@@ -6,6 +6,7 @@ export type VRFBTSystem = {
     key: string;
     name: string;
     imageURL?: string;
+    recommendation?: React.ReactNode;
     howItWorks?: React.ReactNode;
     itemList: ItemList;
     availability?: React.ReactNode;
@@ -56,4 +57,4 @@ const nonLighthouseFBTRecommendations: FBTRecommendation[] = [
 ];
 
 export const vrHeadsetFBTRecommendations =
-    Object.fromEntries(vrHeadsetKeys.map(v => [v, vrHeadsetsByKey[v].requiresLighthouse ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations])) as Record<VRHeadsetKey, FBTRecommendation[]>
+    Object.fromEntries(vrHeadsetKeys.map(v => [v, vrHeadsetsByKey[v].tracking === "lighthouse" ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations])) as Record<VRHeadsetKey, FBTRecommendation[]>

@@ -10,6 +10,16 @@ export function makeSlimeVR(fbtConfig: string): VRFBTSystem {
         key: `${SlimeVRSystemKey}-${fbtConfig}`,
         name: fbtSystemsByKey[SlimeVRSystemKey].name,
         imageURL: "images/slimevr.jpg",
+        recommendation: (function() {
+            return (
+                <>
+                    <p>SlimeVR works with your headset.</p>
+                    {fbtConfig === "lower_body_set_5_0" && (
+                        <p>We recommend the Core Set (which has an extra hip tracker) for more expressive upper body tracking.</p>
+                    )}
+                </>
+            );
+        })(),
         howItWorks: (
             <>
                 <img src="images/slimevr_skeleton.jpg" />

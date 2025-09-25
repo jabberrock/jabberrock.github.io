@@ -7,6 +7,9 @@ export const FBTNav: React.FC = () => {
             <nav>
                 <ul>
                     <li>
+                        <a href="#section-recommendation">Recommendation</a>
+                    </li>
+                    <li>
                         <a href="#section-intro_example">Example</a>
                     </li>
                     <li>

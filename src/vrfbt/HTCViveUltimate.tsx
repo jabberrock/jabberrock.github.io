@@ -1,6 +1,6 @@
 import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
-import type { VRSystem } from "../vr/VR";
+import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate";
@@ -11,7 +11,8 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             key: HTCViveUltimateSystemKey,
             name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
             imageURL: "images/htc_vive_ultimate.jpg",
-            howItWorks: <p className="warning">HTC VIVE Ultimate trackers require a PC</p>,
+            recommendation: <p className="warning">HTC VIVE Ultimate trackers require a PC</p>,
+            howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },
             availability: <p>N/A</p>,
             tracking: <p>N/A</p>,
@@ -24,6 +25,32 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
         key: `${HTCViveUltimateSystemKey}-${config}`,
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
         imageURL: "images/htc_vive_ultimate.jpg",
+        recommendation: (function() {
+            if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && config === "3_trackers") {
+                return (
+                    <div className="warning">
+                        <p>HTC VIVE Ultimate and your headset have separate playspaces.</p>
+                        <p>You will need to perform Space Calibration:</p>
+                        <ul>
+                            <li>At the start of each VR session</li>
+                            <li>Whenever your headset playspace shifts:
+                                <ul>
+                                    <li>You reset your orientation</li>
+                                    <li>Your headset playspace drifts over time</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p className="warning">We do not recommend HTC VIVE Ultimate trackers with your headset.</p>
+                    </div>
+                );
+            } else {
+                return (
+                    <>
+                        <p>HTC VIVE Ultimate trackers work with your headset.</p>
+                    </>
+                )
+            }
+        })(),
         howItWorks: (
             <>
                 <img src="images/htc_vive_ultimate_cameras.jpg" />

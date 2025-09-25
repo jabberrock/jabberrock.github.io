@@ -11,7 +11,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             key: `${HTCVive30SystemKey}-${fbtConfig}`,
             name: fbtSystemsByKey[HTCVive30SystemKey].name,
             imageURL: "images/htc_vive_3_0.jpg",
-            howItWorks: <p className="warning">HTC VIVE 3.0 trackers require a PC</p>,
+            recommendation: <p className="warning">HTC VIVE 3.0 trackers require a PC</p>,
+            howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },
             availability: <p>N/A</p>,
             tracking: <p>N/A</p>,
@@ -42,6 +43,40 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
         key: `${HTCVive30SystemKey}-${fbtConfig}`,
         name: fbtSystemsByKey[HTCVive30SystemKey].name,
         imageURL: "images/htc_vive_3_0.jpg",
+        recommendation: (function() {
+            if (fbtConfig === "3_trackers") {
+                if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
+                    return (
+                        <div className="warning">
+                            <p>HTC VIVE 3.0 trackers and your headset have separate playspaces.</p>
+                            <p>You will need to perform Space Calibration:</p>
+                            <ul>
+                                <li>At the start of each VR session</li>
+                                <li>Whenever your headset playspace shifts:
+                                    <ul>
+                                        <li>You reset your orientation</li>
+                                        <li>Your headset playspace drifts over time</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p>If you choose HTC VIVE 3.0 trackers, we recommend using continuous calibration with an extra tracker to avoid manual Space Calibration.</p>
+                        </div>
+                    );
+                } else {
+                    return (
+                        <>
+                            <p>HTC VIVE 3.0 trackers work with your headset.</p>
+                        </>
+                    )
+                }
+            } else if (fbtConfig === "3_trackers_1_continuous") {
+                return (
+                    <>
+                        <p>HTC VIVE 3.0 trackers with continuous calibration works with your headset.</p>
+                    </>
+                )
+            }
+        })(),
         howItWorks: (
             <>
                 <img src="images/lighthouse_based_systems.jpg" />
