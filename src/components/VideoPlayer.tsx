@@ -230,58 +230,35 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         function updateTextureFromVideo(tex: WebGLTexture, unit: number, video: HTMLVideoElement) {
             gl.activeTexture(gl.TEXTURE0 + unit);
             gl.bindTexture(gl.TEXTURE_2D, tex);
-            if (video.readyState >= 2) {
-                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
-            } else {
-                gl.texImage2D(
-                    gl.TEXTURE_2D,
-                    0,
-                    gl.RGBA,
-                    1,
-                    1,
-                    0,
-                    gl.RGBA,
-                    gl.UNSIGNED_BYTE,
-                    new Uint8Array([0, 0, 0, 255]),
-                );
-            }
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, video);
         }
 
         function updateTextureFromImage(tex: WebGLTexture, unit: number, image: HTMLImageElement) {
             gl.activeTexture(gl.TEXTURE0 + unit);
             gl.bindTexture(gl.TEXTURE_2D, tex);
-            if (image.naturalHeight > 0) {
-                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-            } else {
-                gl.texImage2D(
-                    gl.TEXTURE_2D,
-                    0,
-                    gl.RGBA,
-                    1,
-                    1,
-                    0,
-                    gl.RGBA,
-                    gl.UNSIGNED_BYTE,
-                    new Uint8Array([0, 0, 0, 255]),
-                );
-            }
+            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
         }
 
         let handle: number;
         function render() {
-            if (baseLoaded && overlayLoaded) {
+            let ready = false;
+            if (baseLoaded && overlayLoaded && baseVideo.readyState >= 2 && overlayVideo.readyState >= 2) {
                 updateTextureFromVideo(baseTex, 0, baseVideo);
                 updateTextureFromVideo(overlayTex, 1, overlayVideo);
-            } else {
+                ready = true;
+            } else if (baseThumbnail.naturalHeight > 0 && overlayThumbnail.naturalHeight > 0) {
                 updateTextureFromImage(baseTex, 0, baseThumbnail);
                 updateTextureFromImage(overlayTex, 1, overlayThumbnail);
+                ready = true;
             }
 
             gl.uniform1f(gl.getUniformLocation(program, "u_opacity"), opacityRef.current);
 
             gl.viewport(0, 0, width, height);
             gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            if (ready) {
+                gl.drawArrays(gl.TRIANGLES, 0, 6);
+            }
 
             const canvasGL = canvas.getContext("2d")!;
             canvasGL.drawImage(sharedCanvas, 0, 0);
