@@ -1,4 +1,3 @@
-import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
@@ -126,15 +125,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
-                    <VideoPlayer
-                        key={v}
-                        base_url={`examples/${vrHeadset}/${HTCViveUltimateSystemKey}/${config}/${vrHeadset}-${HTCViveUltimateSystemKey}-${config}-${v}-irl.mp4`}
-                        overlay_url={`examples/${vrHeadset}/${HTCViveUltimateSystemKey}/${config}/${vrHeadset}-${HTCViveUltimateSystemKey}-${config}-${v}-vrc.mp4`}
-                        base_thumbnail_url={`examples/${vrHeadset}/${HTCViveUltimateSystemKey}/${config}/${vrHeadset}-${HTCViveUltimateSystemKey}-${config}-${v}-irl.jpg`}
-                        overlay_thumbnail_url={`examples/${vrHeadset}/${HTCViveUltimateSystemKey}/${config}/${vrHeadset}-${HTCViveUltimateSystemKey}-${config}-${v}-vrc.jpg`}
-                        width={480}
-                        height={640}
-                    />
+                    <></>
                 );
             }
 

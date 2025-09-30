@@ -1,7 +1,7 @@
 import type React from "react";
-import { VideoPlayer } from "../components/VideoPlayer";
 import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
+import { VideoPlayer } from "../components/VideoPlayer";
 
 const SlimeVRSystemKey: FBTSystemKey = "slimevr_1_2";
 
@@ -166,10 +166,8 @@ export function makeSlimeVR(fbtConfig: string): VRFBTSystem {
                 nodes[v] = (
                     <VideoPlayer
                         key={v}
-                        base_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}-irl.mp4`}
-                        overlay_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}-vrc.mp4`}
-                        base_thumbnail_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}-irl.jpg`}
-                        overlay_thumbnail_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}-vrc.jpg`}
+                        video_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}.mp4`}
+                        thumbnail_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}.jpg`}
                         width={480}
                         height={640}
                     />

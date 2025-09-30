@@ -37,13 +37,19 @@ function ensureWebGLContext(width: number, height: number): WebGLContext {
 
     const fsSource = `
         precision mediump float;
-        uniform sampler2D u_baseTex;
-        uniform sampler2D u_overlayTex;
+
+        uniform sampler2D u_tex;   // single combined texture
         uniform float u_opacity;
         varying vec2 v_texCoord;
+
         void main() {
-            vec4 baseColor = texture2D(u_baseTex, v_texCoord);
-            vec4 overlayColor = texture2D(u_overlayTex, v_texCoord);
+            // map to left half for base
+            vec2 baseUV = vec2(v_texCoord.x * 0.5, v_texCoord.y);
+            vec4 baseColor = texture2D(u_tex, baseUV);
+
+            // map to right half for overlay
+            vec2 overlayUV = vec2(0.5 + v_texCoord.x * 0.5, v_texCoord.y);
+            vec4 overlayColor = texture2D(u_tex, overlayUV);
 
             // chroma key (green removal)
             vec3 keyColor = vec3(0.0, 1.0, 0.0);
@@ -52,6 +58,7 @@ function ensureWebGLContext(width: number, height: number): WebGLContext {
             float d = distance(overlayColor.rgb, keyColor);
             float alpha = smoothstep(threshold, threshold + slope, d) * u_opacity;
 
+            // final composite
             gl_FragColor = mix(baseColor, overlayColor, alpha);
         }
     `;
@@ -99,8 +106,7 @@ function ensureWebGLContext(width: number, height: number): WebGLContext {
     gl.enableVertexAttribArray(a_texCoord);
     gl.vertexAttribPointer(a_texCoord, 2, gl.FLOAT, false, 0, 0);
 
-    gl.uniform1i(gl.getUniformLocation(program, "u_baseTex"), 0);
-    gl.uniform1i(gl.getUniformLocation(program, "u_overlayTex"), 1);
+    gl.uniform1i(gl.getUniformLocation(program, "u_tex"), 0);
 
     const ctx: WebGLContext = {
         width,
@@ -116,34 +122,25 @@ function ensureWebGLContext(width: number, height: number): WebGLContext {
 }
 
 type VideoPlayerProps = {
-    base_url: string;
-    overlay_url: string;
-    base_thumbnail_url: string;
-    overlay_thumbnail_url: string;
+    video_url: string;
+    thumbnail_url: string;
     width: number;
     height: number;
 };
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({
-    base_url,
-    overlay_url,
-    base_thumbnail_url,
-    overlay_thumbnail_url,
+    video_url,
+    thumbnail_url: thumbnail_url,
     width,
     height,
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const baseThumbnailRef = useRef<HTMLImageElement>(null);
-    const overlayThumbnailRef = useRef<HTMLImageElement>(null);
-    const baseVideoRef = useRef<HTMLVideoElement>(null);
-    const overlayVideoRef = useRef<HTMLVideoElement>(null);
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const thumbnailRef = useRef<HTMLImageElement>(null);
     const opacityRef = useContext(OpacityContext);
 
     const [inView, setInView] = useState(false);
-    const [fetching, setFetching] = useState(false);
-    const [baseLoaded, setBaseLoaded] = useState(false);
-    const [overlayLoaded, setOverlayLoaded] = useState(false);
 
     // Observe when the player comes into view
     useEffect(() => {
@@ -156,46 +153,23 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
     // Load videos when the player comes into view
     useEffect(() => {
-        if (inView && !fetching) {
-            const baseVideo = baseVideoRef.current;
-            const overlayVideo = overlayVideoRef.current;
-            if (baseVideo && overlayVideo) {
-                setFetching(true);
-                fetch(base_url)
-                    .then((res) => res.blob())
-                    .then((blob) => {
-                        baseVideo.addEventListener("canplaythrough", () => setBaseLoaded(true));
-                        baseVideo.src = URL.createObjectURL(blob);
-                    });
-                fetch(overlay_url)
-                    .then((res) => res.blob())
-                    .then((blob) => {
-                        overlayVideo.addEventListener("canplaythrough", () => setOverlayLoaded(true));
-                        overlayVideo.src = URL.createObjectURL(blob);
-                    });
-            }
+        const video = videoRef.current;
+        if (inView && video && !video.src) {
+            video.src = video_url;
         }
-    }, [inView, fetching]);
+    }, [inView]);
 
     // Play videos when both are loaded and the player is in view
     useEffect(() => {
-        if (baseLoaded && overlayLoaded) {
-            const baseVideo = baseVideoRef.current;
-            const overlayVideo = overlayVideoRef.current;
-            if (baseVideo && overlayVideo) {
-                if (inView) {
-                    // Force the videos to sync up
-                    baseVideo.currentTime = 0;
-                    overlayVideo.currentTime = 0;
-                    baseVideo.play();
-                    overlayVideo.play();
-                } else {
-                    baseVideo.pause();
-                    overlayVideo.pause();
-                }
+        const video = videoRef.current;
+        if (video && video.src) {
+            if (inView) {
+                video.play();
+            } else {
+                video.pause();
             }
         }
-    }, [baseLoaded, overlayLoaded, inView]);
+    }, [inView]);
 
     // Rendering loop with green screen removal
     useEffect(() => {
@@ -203,13 +177,11 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             return;
         }
 
-        const { canvas: sharedCanvas, gl, program } = ensureWebGLContext(width, height);
+        const { canvas: sharedCanvas, gl, program } = ensureWebGLContext(width * 2, height);
 
         const canvas = canvasRef.current!;
-        const baseThumbnail = baseThumbnailRef.current!;
-        const overlayThumbnail = overlayThumbnailRef.current!;
-        const baseVideo = baseVideoRef.current!;
-        const overlayVideo = overlayVideoRef.current!;
+        const video = videoRef.current!;
+        const thumbnail = thumbnailRef.current!;
 
         // ---------- Texture setup ----------
         function createVideoTexture(unit: number) {
@@ -223,8 +195,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             return tex;
         }
 
-        const baseTex = createVideoTexture(0);
-        const overlayTex = createVideoTexture(1);
+        const tex = createVideoTexture(0);
 
         // ---------- Render loop ----------
         function updateTextureFromVideo(tex: WebGLTexture, unit: number, video: HTMLVideoElement) {
@@ -242,13 +213,11 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         let handle: number;
         function render() {
             let ready = false;
-            if (baseLoaded && overlayLoaded && baseVideo.readyState >= 2 && overlayVideo.readyState >= 2) {
-                updateTextureFromVideo(baseTex, 0, baseVideo);
-                updateTextureFromVideo(overlayTex, 1, overlayVideo);
+            if (video.readyState >= 2) {
+                updateTextureFromVideo(tex, 0, video);
                 ready = true;
-            } else if (baseThumbnail.naturalHeight > 0 && overlayThumbnail.naturalHeight > 0) {
-                updateTextureFromImage(baseTex, 0, baseThumbnail);
-                updateTextureFromImage(overlayTex, 1, overlayThumbnail);
+            } else if (thumbnail.naturalHeight > 0) {
+                updateTextureFromImage(tex, 0, thumbnail);
                 ready = true;
             }
 
@@ -268,24 +237,14 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         render();
 
         return () => cancelAnimationFrame(handle);
-    }, [inView, baseLoaded, overlayLoaded, width, height]);
+    }, [inView, width, height]);
 
     return (
         <div ref={containerRef} style={{ width, height, position: "relative", overflow: "hidden" }}>
             <canvas ref={canvasRef} width={width} height={height} style={{ width, height }} />
-            <img ref={baseThumbnailRef} src={base_thumbnail_url} style={{ display: "none" }} />
-            <img ref={overlayThumbnailRef} src={overlay_thumbnail_url} style={{ display: "none" }} />
+            <img ref={thumbnailRef} src={thumbnail_url} style={{ display: "none" }} />
             <video
-                ref={baseVideoRef}
-                playsInline
-                loop
-                muted
-                crossOrigin="anonymous"
-                preload="auto"
-                style={{ display: "none" }}
-            />
-            <video
-                ref={overlayVideoRef}
+                ref={videoRef}
                 playsInline
                 loop
                 muted

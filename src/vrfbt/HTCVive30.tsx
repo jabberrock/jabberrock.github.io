@@ -1,4 +1,3 @@
-import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
 import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
@@ -198,15 +197,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
-                    <VideoPlayer
-                        key={v}
-                        base_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}-irl.mp4`}
-                        overlay_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}-vrc.mp4`}
-                        base_thumbnail_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}-irl.jpg`}
-                        overlay_thumbnail_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}-vrc.jpg`}
-                        width={480}
-                        height={640}
-                    />
+                    <></>
                 );
             }
 
