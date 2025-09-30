@@ -121,7 +121,6 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             </>
         ),
         examples: (function () {
-            const vrHeadset = "meta_quest_3";
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (

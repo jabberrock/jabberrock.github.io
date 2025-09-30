@@ -193,7 +193,6 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             </>
         ),
         examples: (function () {
-            const vrHeadset = "meta_quest_3";
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
