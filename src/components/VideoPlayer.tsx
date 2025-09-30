@@ -38,28 +38,33 @@ function ensureWebGLContext(width: number, height: number): WebGLContext {
     const fsSource = `
         precision mediump float;
 
-        uniform sampler2D u_tex;   // single combined texture
+        uniform sampler2D u_tex;   // combined texture
         uniform float u_opacity;
+
         varying vec2 v_texCoord;
 
         void main() {
-            // map to left half for base
+            // base from left half
             vec2 baseUV = vec2(v_texCoord.x * 0.5, v_texCoord.y);
             vec4 baseColor = texture2D(u_tex, baseUV);
 
-            // map to right half for overlay
+            // overlay from right half
             vec2 overlayUV = vec2(0.5 + v_texCoord.x * 0.5, v_texCoord.y);
             vec4 overlayColor = texture2D(u_tex, overlayUV);
 
-            // chroma key (green removal)
-            vec3 keyColor = vec3(0.0, 1.0, 0.0);
-            float threshold = 0.4;
-            float slope = 0.2;
-            float d = distance(overlayColor.rgb, keyColor);
-            float alpha = smoothstep(threshold, threshold + slope, d) * u_opacity;
+            // --- chroma key using color-difference ---
+            float threshold = 0.1;   // lower = stricter green removal
+            float slope = 0.2;       // feathering
+            float mask = overlayColor.g - max(overlayColor.r, overlayColor.b);
+            float alpha = 1.0 - smoothstep(threshold, threshold + slope, mask);
+            alpha *= u_opacity * overlayColor.a;
 
-            // final composite
-            gl_FragColor = mix(baseColor, overlayColor, alpha);
+            // --- green spill suppression ---
+            float spill = smoothstep(0.0, 1.0, alpha);
+            overlayColor.g = mix((overlayColor.r + overlayColor.b) * 0.5, overlayColor.g, spill);
+
+            // composite overlay over base
+            gl_FragColor = baseColor * (1.0 - alpha) + overlayColor * alpha;
         }
     `;
 
