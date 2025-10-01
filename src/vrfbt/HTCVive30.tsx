@@ -1,3 +1,4 @@
+import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
@@ -218,6 +219,19 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
         })(),
         drawbacks: (
             <>
+                {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && (
+                    <div className="drawback">
+                        <div className="sub-heading">Space Calibration</div>
+                        <SimpleVideoPlayer
+                            src="examples/meta_quest_3/htc_vive_3_0/meta_quest_3-htc_vive_3_0-space_calibrator.mp4"
+                            width={480}
+                            height={640}
+                        />
+                        <p>HTC VIVE 3.0 trackers and your headset have separate playspaces.</p>
+                        <p>You will need to perform Space Calibration to match the two playspaces. This is done at the start of each VR session and whenever your headset playspace shifts (which happens a lot).</p>
+                        <p>If you choose HTC VIVE 3.0 trackers, we recommend using continuous calibration with an extra tracker to avoid manual Space Calibration.</p>
+                    </div>
+                )}
                 <div className="drawback">
                     <div className="sub-heading">Occlusion</div>
                     <img style={{ width: "480px", height: "320px" }} />
