@@ -133,12 +133,7 @@ type VideoPlayerProps = {
     height: number;
 };
 
-export const VideoPlayer: React.FC<VideoPlayerProps> = ({
-    video_url,
-    thumbnail_url: thumbnail_url,
-    width,
-    height,
-}) => {
+export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video_url, thumbnail_url: thumbnail_url, width, height }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);

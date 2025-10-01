@@ -174,7 +174,10 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                             height={640}
                         />
                         {vrHeadset !== vrSystem.headset && (
-                            <div>(Captured with {vrHeadsetsByKey[vrHeadset].name} instead of {vrHeadsetsByKey[vrSystem.headset].name})</div>
+                            <div>
+                                (Captured with {vrHeadsetsByKey[vrHeadset].name} instead of{" "}
+                                {vrHeadsetsByKey[vrSystem.headset].name})
+                            </div>
                         )}
                     </>
                 );
@@ -226,10 +229,16 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             play: (
                 <>
                     <p>Play normally.</p>
-                    <p>If you notice that your avatar is off center, face forward, and double tap your Chest tracker. This will do a "Yaw Reset" and re-align your avatar.</p>
-                    <p>If your trackers shift on your body, you will need to adjust them, then re-do "Full Reset" and "Mounting Reset".</p>
+                    <p>
+                        If you notice that your avatar is off center, face forward, and double tap your Chest tracker.
+                        This will do a "Yaw Reset" and re-align your avatar.
+                    </p>
+                    <p>
+                        If your trackers shift on your body, you will need to adjust them, then re-do "Full Reset" and
+                        "Mounting Reset".
+                    </p>
                 </>
             ),
-        }
+        },
     };
 }

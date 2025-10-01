@@ -50,7 +50,11 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
                     return (
                         <div className="warning">
-                            <p>HTC VIVE Trackers 3.0 and your headset have separate playspaces. You will need to perform space calibration whenever you reset your orientation, or your headset loses tracking. </p>
+                            <p>
+                                HTC VIVE Trackers 3.0 and your headset have separate playspaces. You will need to
+                                perform space calibration whenever you reset your orientation, or your headset loses
+                                tracking.{" "}
+                            </p>
                             <p>
                                 If you choose HTC VIVE Trackers 3.0, we recommend using continuous calibration with an
                                 extra tracker to avoid manual Space Calibration.
@@ -204,7 +208,10 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                             height={640}
                         />
                         {vrHeadset !== vrSystem.headset && (
-                            <div>(Captured with {vrHeadsetsByKey[vrHeadset].name} instead of {vrHeadsetsByKey[vrSystem.headset].name})</div>
+                            <div>
+                                (Captured with {vrHeadsetsByKey[vrHeadset].name} instead of{" "}
+                                {vrHeadsetsByKey[vrSystem.headset].name})
+                            </div>
                         )}
                     </>
                 );
@@ -223,8 +230,14 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                         />
                         <div className="sub-heading">Space Calibration</div>
                         <p>HTC VIVE Trackers 3.0 and your headset have separate playspaces.</p>
-                        <p>You will need to perform Space Calibration to match the two playspaces. This is done at the start of each VR session and whenever your headset playspace shifts (which happens a lot).</p>
-                        <p>If you choose HTC VIVE Trackers 3.0, we recommend using continuous calibration with an extra tracker to avoid manual Space Calibration.</p>
+                        <p>
+                            You will need to perform Space Calibration to match the two playspaces. This is done at the
+                            start of each VR session and whenever your headset playspace shifts (which happens a lot).
+                        </p>
+                        <p>
+                            If you choose HTC VIVE Trackers 3.0, we recommend using continuous calibration with an extra
+                            tracker to avoid manual Space Calibration.
+                        </p>
                     </div>
                 )}
                 <div className="drawback">
@@ -254,9 +267,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 <div className="drawback">
                     <SimpleImage src="htc_vive_3_0/estimated_legs.webp" width={480} height={640} />
                     <div className="sub-heading">Estimated Leg Position</div>
-                    <p>
-                        Knees are estimated using inverse kinematics (IK), so the legs may not exactly match.
-                    </p>
+                    <p>Knees are estimated using inverse kinematics (IK), so the legs may not exactly match.</p>
                     <p>
                         In this example, the knee is much lower than the actual knee. If you move your knees without
                         moving your feet, your avatar's legs won't move.
@@ -279,35 +290,49 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             </>
         ),
         vrSession: {
-            setup: (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" || fbtConfig === "3_trackers_1_continuous" ? (
-                <>
-                    <p>Turn on your trackers and put them on.</p>
-                </>
-            ) : (
-                <>
-                    <ol>
-                        <li>Turn on one tracker</li>
-                        <li>Start OVR Space Calibrator, tightly hold the tracker and your controller</li>
-                        <li>Start the space calibration process, and wave your tracker and controller in a figure of 8</li>
-                        <li>Your tracker should show up in the right position</li>
-                        <li>Turn on the rest of your trackers</li>
-                        <li>Start VRChat</li>
-                        <li>T-pose, and click the "FBT Calibration" button</li>
-                    </ol>
-                </>
-            )),
-            play: (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" || fbtConfig === "3_trackers_1_continuous" ? (
-                <>
-                    <p>It just works.</p>
-                </>
-            ) : (
-                <>
-                    <p>Play normally.</p>
-                    <p>Over time, your in-game trackers may drift away from their real positions. This is because your headset's playspace drifts away from the tracker's playspace.</p>
-                    <p>Your headset's playspace might also suddenly change, and cause the trackers to fly away. This happens if your manually reset your orientation, or if your headset loses tracking (e.g. when you take the headset off and put it back on).</p>
-                    <p>You will need to re-do the space calibration process.</p>
-                </>
-            )),
-        }
+            setup:
+                vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ||
+                fbtConfig === "3_trackers_1_continuous" ? (
+                    <>
+                        <p>Turn on your trackers and put them on.</p>
+                    </>
+                ) : (
+                    <>
+                        <ol>
+                            <li>Turn on one tracker</li>
+                            <li>Start OVR Space Calibrator, tightly hold the tracker and your controller</li>
+                            <li>
+                                Start the space calibration process, and wave your tracker and controller in a figure of
+                                8
+                            </li>
+                            <li>Your tracker should show up in the right position</li>
+                            <li>Turn on the rest of your trackers</li>
+                            <li>Start VRChat</li>
+                            <li>T-pose, and click the "FBT Calibration" button</li>
+                        </ol>
+                    </>
+                ),
+            play:
+                vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ||
+                fbtConfig === "3_trackers_1_continuous" ? (
+                    <>
+                        <p>It just works.</p>
+                    </>
+                ) : (
+                    <>
+                        <p>Play normally.</p>
+                        <p>
+                            Over time, your in-game trackers may drift away from their real positions. This is because
+                            your headset's playspace drifts away from the tracker's playspace.
+                        </p>
+                        <p>
+                            Your headset's playspace might also suddenly change, and cause the trackers to fly away.
+                            This happens if your manually reset your orientation, or if your headset loses tracking
+                            (e.g. when you take the headset off and put it back on).
+                        </p>
+                        <p>You will need to re-do the space calibration process.</p>
+                    </>
+                ),
+        },
     };
 }

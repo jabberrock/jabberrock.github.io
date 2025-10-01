@@ -14,9 +14,7 @@ export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({ vrSystem, onRe
                 <img src={vrHeadset.imageURL} />
                 <div>
                     <div>{vrHeadset.name}</div>
-                    {!vrHeadset.requiresPC && (
-                        <div>{vrSystem.prefersPCVR ? "PCVR" : "Standalone"}</div>
-                    )}
+                    {!vrHeadset.requiresPC && <div>{vrSystem.prefersPCVR ? "PCVR" : "Standalone"}</div>}
                     <input
                         type="button"
                         value="Change Headset"

@@ -1,16 +1,12 @@
 import { useEffect, useRef, useState, type FC } from "react";
 
 type SimpleVideoPlayerProps = {
-    src: string
-    width: number
-    height: number
+    src: string;
+    width: number;
+    height: number;
 };
 
-export const SimpleVideoPlayer: FC<SimpleVideoPlayerProps> = ({
-    src,
-    width,
-    height,
-}) => {
+export const SimpleVideoPlayer: FC<SimpleVideoPlayerProps> = ({ src, width, height }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [inView, setInView] = useState(false);
 
@@ -40,5 +36,5 @@ export const SimpleVideoPlayer: FC<SimpleVideoPlayerProps> = ({
             preload="auto"
             style={{ width, height }}
         />
-    )
+    );
 };

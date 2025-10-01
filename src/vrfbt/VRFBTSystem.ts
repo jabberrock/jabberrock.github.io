@@ -15,9 +15,9 @@ export type VRFBTSystem = {
     examples: Record<string, React.ReactNode>;
     drawbacks?: React.ReactNode;
     vrSession?: {
-        setup: React.ReactNode
-        play: React.ReactNode
-    }
+        setup: React.ReactNode;
+        play: React.ReactNode;
+    };
 };
 
 export type Item = {

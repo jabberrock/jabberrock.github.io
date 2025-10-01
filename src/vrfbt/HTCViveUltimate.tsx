@@ -28,7 +28,11 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && config === "3_trackers") {
                 return (
                     <div className="warning">
-                        <p>HTC VIVE Ultimate Trackers and your headset have separate playspaces. You will need to perform space calibration whenever you reset your orientation, or your headset loses tracking. </p>
+                        <p>
+                            HTC VIVE Ultimate Trackers and your headset have separate playspaces. You will need to
+                            perform space calibration whenever you reset your orientation, or your headset loses
+                            tracking.{" "}
+                        </p>
                         <p className="warning">We do not recommend HTC VIVE Ultimate Trackers with your headset.</p>
                     </div>
                 );
@@ -44,8 +48,8 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             <>
                 <img src="images/htc_vive_ultimate_cameras.jpg" />
                 <p>
-                    HTC VIVE Ultimate Trackers are an inside-out system. Each tracker has 2 cameras which use a SLAM algorithm
-                    (Simultaneous Localization and Motion) to keep track where it is in your playspace.
+                    HTC VIVE Ultimate Trackers are an inside-out system. Each tracker has 2 cameras which use a SLAM
+                    algorithm (Simultaneous Localization and Motion) to keep track where it is in your playspace.
                 </p>
                 <p>
                     With 3 trackers, only the position and rotation of the hip and ankles are known. The position of
@@ -112,9 +116,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
         examples: (function () {
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
-                nodes[v] = (
-                    <></>
-                );
+                nodes[v] = <></>;
             }
 
             return nodes;
