@@ -28,18 +28,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && config === "3_trackers") {
                 return (
                     <div className="warning">
-                        <p>HTC VIVE Ultimate and your headset have separate playspaces.</p>
-                        <p>You will need to perform Space Calibration:</p>
-                        <ul>
-                            <li>At the start of each VR session</li>
-                            <li>
-                                Whenever your headset playspace shifts:
-                                <ul>
-                                    <li>You reset your orientation</li>
-                                    <li>Your headset playspace drifts over time</li>
-                                </ul>
-                            </li>
-                        </ul>
+                        <p>HTC VIVE Ultimate and your headset have separate playspaces. You will need to perform space calibration whenever you reset your orientation, or your headset loses tracking. </p>
                         <p className="warning">We do not recommend HTC VIVE Ultimate trackers with your headset.</p>
                     </div>
                 );
