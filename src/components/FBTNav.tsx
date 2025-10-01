@@ -16,7 +16,10 @@ export const FBTNav: React.FC = () => {
                         <a href="#section-tracking">Tracking</a>
                     </li>
                     <li>
-                        <a href="#section-components">Buying</a>
+                        <a href="#section-components">Components</a>
+                    </li>
+                    <li>
+                        <a href="#section-availability">Availability</a>
                     </li>
                     <li>
                         <a href="#section-examples">Examples</a>
