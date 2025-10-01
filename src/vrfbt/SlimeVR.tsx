@@ -14,7 +14,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
         recommendation: (function () {
             return (
                 <>
-                    <p>SlimeVR is recommended for your headset.</p>
+                    <p className="recommended">SlimeVR Trackers are compatible with your headset.</p>
                     {fbtConfig === "lower_body_set_5_0" && (
                         <p>
                             We recommend the Core Set (which has an extra hip tracker) for more expressive upper body

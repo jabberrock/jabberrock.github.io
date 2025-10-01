@@ -99,8 +99,13 @@ tr {
     text-align: right;
 }
 
+
+.recommended {
+    color: #A1FB8E;
+}
+
 .warning {
-    color: red;
+    color: #EB3324;
 }
 
 .settings {

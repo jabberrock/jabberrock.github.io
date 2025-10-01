@@ -49,11 +49,11 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
                     return (
                         <div>
-                            <p className="warning">HTC VIVE Trackers 3.0 are not recommended for your headset.</p>
+                            <p className="warning">HTC VIVE Trackers 3.0 without continuous calibration is not recommended for your headset.</p>
                             <p>
                                 HTC VIVE Trackers 3.0 and your headset have separate playspaces. You will need to
                                 perform space calibration whenever you reset your orientation, or your headset loses
-                                tracking.{" "}
+                                tracking.
                             </p>
                             <p>
                                 If you choose HTC VIVE Trackers 3.0, we recommend using continuous calibration with an
@@ -63,17 +63,13 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     );
                 } else {
                     return (
-                        <>
-                            <p>HTC VIVE Trackers 3.0 are recommended for your headset.</p>
-                        </>
+                        <p className="recommended">HTC VIVE Trackers 3.0 are compatible with your headset.</p>
                     );
                 }
             } else if (fbtConfig === "3_trackers_1_continuous") {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
                     return (
-                        <>
-                            <p>HTC VIVE Trackers 3.0 with continuous calibration is recommended for your headset.</p>
-                        </>
+                            <p className="recommended">HTC VIVE Trackers 3.0 with continuous calibration is compatible with your headset.</p>
                     );
                 }
             }
@@ -82,8 +78,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             <>
                 <img src="images/lighthouse_based_systems.jpg" />
                 <p>
-                    HTC VIVE 3.0 is a Lighthouse based system. The base stations send out pulses of infrared light, and
-                    each tracker detects when the light arrives. By comparing the timings, the tracker can figure out
+                    HTC VIVE 3.0 is a Lighthouse-based system. The base stations send out pulses of infrared light, which allows a tracker to figure out
                     its position and the rotation.
                 </p>
                 <p>
