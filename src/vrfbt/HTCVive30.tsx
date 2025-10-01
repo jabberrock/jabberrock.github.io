@@ -221,13 +221,9 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
         })(),
         drawbacks: (
             <>
-                {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && (
+                {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && fbtConfig !== "3_trackers_1_continuous" && (
                     <div className="drawback">
-                        <SimpleVideoPlayer
-                            src="examples/meta_quest_3/htc_vive_3_0/meta_quest_3-htc_vive_3_0-space_calibrator.mp4"
-                            width={480}
-                            height={640}
-                        />
+                        <img style={{ width: "480px", height: "320px" }} />
                         <div className="sub-header">Space Calibration</div>
                         <p>HTC VIVE Trackers 3.0 and your headset have separate playspaces.</p>
                         <p>
@@ -298,6 +294,11 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </>
                 ) : (
                     <>
+                        <SimpleVideoPlayer
+                            src="examples/meta_quest_3/htc_vive_3_0/meta_quest_3-htc_vive_3_0-space_calibrator.mp4"
+                            width={480}
+                            height={640}
+                        />
                         <ol>
                             <li>Turn on one tracker</li>
                             <li>Start OVR Space Calibrator, tightly hold the tracker and your controller</li>
