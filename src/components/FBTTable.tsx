@@ -96,6 +96,9 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>{system.recommendation}</td>
                     ))}
                 </tr>
+                <tr className="header">
+                    <td colSpan={systems.length}>Example</td>
+                </tr>
                 <tr>
                     {systems.map((system) => (
                         <td key={system.key}>{system.examples["dancing"]}</td>
