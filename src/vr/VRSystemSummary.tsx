@@ -1,6 +1,5 @@
 import type React from "react";
-import { VRHeadsetIcon } from "./VRHeadsetIcon";
-import type { VRSystem } from "./VR";
+import { vrHeadsetsByKey, type VRSystem } from "./VR";
 
 type VRSystemSummaryProps = {
     vrSystem: VRSystem;
@@ -8,24 +7,26 @@ type VRSystemSummaryProps = {
 };
 
 export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({ vrSystem, onReset }) => {
+    const vrHeadset = vrHeadsetsByKey[vrSystem.headset];
     return (
-        <>
-            <div>Which VR headset do you own?</div>
-            <div>
-                <VRHeadsetIcon headsetKey={vrSystem.headset} />
+        <div className="vr-system-summary">
+            <div className="vr-system-summary-card">
+                <img src={vrHeadset.imageURL} />
+                <div>
+                    <div>{vrHeadset.name}</div>
+                    {!vrHeadset.requiresPC && (
+                        <div>{vrSystem.prefersPCVR ? "PCVR" : "Standalone"}</div>
+                    )}
+                    <input
+                        type="button"
+                        value="Change Headset"
+                        onClick={(e) => {
+                            e.preventDefault();
+                            onReset();
+                        }}
+                    />
+                </div>
             </div>
-            <br />
-            <div>Will you use it standalone or PCVR?</div>
-            <div>{vrSystem.prefersPCVR ? "PCVR" : "Standalone"}</div>
-            <br />
-            <input
-                type="button"
-                value="Change Headset"
-                onClick={(e) => {
-                    e.preventDefault();
-                    onReset();
-                }}
-            />
-        </>
+        </div>
     );
 };

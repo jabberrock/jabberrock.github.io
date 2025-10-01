@@ -31,9 +31,6 @@ function App() {
             <div className="main">
                 <div className="sidebar">
                     <VRSystemSummary vrSystem={vrSystem} onReset={() => setVRSystem(null)} />
-                    <br />
-                    <br />
-                    <hr />
                     <FBTNav />
                 </div>
                 <div className="content">
