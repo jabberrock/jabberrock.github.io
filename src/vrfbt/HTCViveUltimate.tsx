@@ -27,19 +27,19 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
         recommendation: (function () {
             if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && config === "3_trackers") {
                 return (
-                    <div className="warning">
+                    <div>
+                        <p className="warning">HTC VIVE Ultimate trackers are not recommended for your headset.</p>
                         <p>
                             HTC VIVE Ultimate Trackers and your headset have separate playspaces. You will need to
                             perform space calibration whenever you reset your orientation, or your headset loses
                             tracking.{" "}
                         </p>
-                        <p className="warning">We do not recommend HTC VIVE Ultimate Trackers with your headset.</p>
                     </div>
                 );
             } else {
                 return (
                     <>
-                        <p>HTC VIVE Ultimate Trackers work with your headset.</p>
+                        <p>HTC VIVE Ultimate Trackers are recommended for your headset.</p>
                     </>
                 );
             }

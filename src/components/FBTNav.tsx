@@ -10,9 +10,6 @@ export const FBTNav: React.FC = () => {
                         <a href="#section-recommendation">Recommendation</a>
                     </li>
                     <li>
-                        <a href="#section-intro_example">Example</a>
-                    </li>
-                    <li>
                         <a href="#section-how_it_works">How it works</a>
                     </li>
                     <li>
@@ -20,14 +17,6 @@ export const FBTNav: React.FC = () => {
                     </li>
                     <li>
                         <a href="#section-components">Buying</a>
-                        <ul>
-                            <li>
-                                <a href="#section-components">What to Buy</a>
-                            </li>
-                            <li>
-                                <a href="#section-components-where">Where to Buy</a>
-                            </li>
-                        </ul>
                     </li>
                     <li>
                         <a href="#section-examples">Examples</a>

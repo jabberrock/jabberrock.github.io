@@ -49,7 +49,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             if (fbtConfig === "3_trackers") {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
                     return (
-                        <div className="warning">
+                        <div>
+                            <p className="warning">HTC VIVE Trackers 3.0 are not recommended for your headset.</p>
                             <p>
                                 HTC VIVE Trackers 3.0 and your headset have separate playspaces. You will need to
                                 perform space calibration whenever you reset your orientation, or your headset loses
@@ -57,21 +58,21 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                             </p>
                             <p>
                                 If you choose HTC VIVE Trackers 3.0, we recommend using continuous calibration with an
-                                extra tracker to avoid manual Space Calibration.
+                                extra tracker instead.
                             </p>
                         </div>
                     );
                 } else {
                     return (
                         <>
-                            <p>HTC VIVE Trackers 3.0 work well with your headset.</p>
+                            <p>HTC VIVE Trackers 3.0 are recommended for your headset.</p>
                         </>
                     );
                 }
             } else if (fbtConfig === "3_trackers_1_continuous") {
                 return (
                     <>
-                        <p>HTC VIVE Trackers 3.0 with continuous calibration works well with your headset.</p>
+                        <p>HTC VIVE Trackers 3.0 with continuous calibration is recommended for your headset.</p>
                     </>
                 );
             }

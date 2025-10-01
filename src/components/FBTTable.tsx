@@ -91,16 +91,10 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         </td>
                     ))}
                 </tr>
-                <tr id="section-recommendation" className="header">
-                    <td colSpan={systems.length}>Recommendation</td>
-                </tr>
-                <tr>
+                <tr id="section-recommendation">
                     {systems.map((system) => (
                         <td key={system.key}>{system.recommendation}</td>
                     ))}
-                </tr>
-                <tr id="section-intro_example" className="header">
-                    <td colSpan={systems.length}>Example</td>
                 </tr>
                 <tr>
                     {systems.map((system) => (
@@ -245,7 +239,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         );
                     })}
                 </tr>
-                <tr id="section-components-where" className="sub-header">
+                <tr className="sub-header">
                     <td colSpan={systems.length}>Where to Buy</td>
                 </tr>
                 <tr>

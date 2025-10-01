@@ -66,6 +66,7 @@ tr {
 .fbt-table > tbody > tr.header td {
     font-size: 150%;
     border-bottom: 1px solid white;
+    padding-top: 40px;
 }
 
 .fbt-table > tbody > tr.sub-header td {
