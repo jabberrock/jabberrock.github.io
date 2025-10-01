@@ -18,9 +18,6 @@ export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({ vrSystem, onRe
             <div>Will you use it standalone or PCVR?</div>
             <div>{vrSystem.prefersPCVR ? "PCVR" : "Standalone"}</div>
             <br />
-            <div>Do you own Lighthouse base stations?</div>
-            <div>{vrSystem.ownsLighthouse ? "Yes" : "No"}</div>
-            <br />
             <input
                 type="button"
                 value="Change Headset"

@@ -22,7 +22,6 @@ function App() {
             setVRSystem({
                 headset: "meta_quest_3",
                 prefersPCVR: true,
-                ownsLighthouse: false,
             });
         }
     }, []);

@@ -4,7 +4,6 @@
 export type VRSystem = {
     headset: VRHeadsetKey;
     prefersPCVR: boolean;
-    ownsLighthouse: boolean;
 };
 
 /**

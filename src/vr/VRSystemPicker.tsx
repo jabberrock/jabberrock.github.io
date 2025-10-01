@@ -13,7 +13,7 @@ type VRSystemPickerProps = {
     onComplete: (results: VRSystem) => any;
 };
 
-type Step = "vr_headset" | "standalone" | "lighthouse" | "complete";
+type Step = "vr_headset" | "standalone" | "complete";
 
 export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) => {
     const [step, setStep] = React.useState<Step>("vr_headset");
@@ -28,9 +28,6 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
         if (vrHeadset.requiresPC) {
             newVRSystem.prefersPCVR = true;
         }
-        if (vrHeadset.tracking === "lighthouse") {
-            newVRSystem.ownsLighthouse = true;
-        }
         nextStep(newVRSystem);
     }
 
@@ -44,11 +41,6 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
 
         if (newVRSystem.prefersPCVR === undefined) {
             setStep("standalone");
-            return;
-        }
-
-        if (newVRSystem.ownsLighthouse == undefined) {
-            setStep("lighthouse");
             return;
         }
 
@@ -96,7 +88,6 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
                                 nextStep({
                                     ...results,
                                     prefersPCVR: false,
-                                    ownsLighthouse: false,
                                 });
                             }}
                         >
@@ -112,35 +103,6 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
                             }}
                         >
                             PCVR
-                        </a>
-                    </div>
-                </div>
-            );
-
-        case "lighthouse":
-            return (
-                <div className="vr-system-picker">
-                    <p>Do you already own Lighthouse base stations?</p>
-                    <div>
-                        <a
-                            href="#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                nextStep({ ...results, ownsLighthouse: true });
-                            }}
-                        >
-                            Yes
-                        </a>
-                    </div>
-                    <div>
-                        <a
-                            href="#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                nextStep({ ...results, ownsLighthouse: false });
-                            }}
-                        >
-                            No
                         </a>
                     </div>
                 </div>

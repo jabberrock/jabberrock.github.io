@@ -139,7 +139,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             c.required.push({
                 name: "HTC VIVE SteamVR Base Station 1.0",
                 count: 2,
-                each_price_cents: vrSystem.ownsLighthouse ? 0 : 10099,
+                each_price_cents: vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ? 0 : 10099,
                 link: new URL("https://www.amazon.com/HTC-Vive-Base-Station-pc/dp/B01M01B92P"),
             });
             c.optional.push({
