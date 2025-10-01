@@ -126,9 +126,6 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                 <tr id="section-components" className="header">
                     <td colSpan={systems.length}>Buying</td>
                 </tr>
-                <tr id="section-components-what" className="sub-header">
-                    <td colSpan={systems.length}>What to Buy</td>
-                </tr>
                 <tr>
                     {systems.map((system) => {
                         const itemList = system.itemList;
@@ -272,7 +269,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     </React.Fragment>
                 ))}
                 <tr id="section-drawbacks" className="header">
-                    <td colSpan={systems.length}>Drawbacks</td>
+                    <td colSpan={systems.length}>Limitations</td>
                 </tr>
                 <tr>
                     {systems.map((system) => (

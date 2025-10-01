@@ -22,7 +22,7 @@ export const FBTNav: React.FC = () => {
                         <a href="#section-components">Buying</a>
                         <ul>
                             <li>
-                                <a href="#section-components-what">What to Buy</a>
+                                <a href="#section-components">What to Buy</a>
                             </li>
                             <li>
                                 <a href="#section-components-where">Where to Buy</a>
@@ -56,7 +56,7 @@ export const FBTNav: React.FC = () => {
                         </ul>
                     </li>
                     <li>
-                        <a href="#section-drawbacks">Drawbacks</a>
+                        <a href="#section-drawbacks">Limitations</a>
                     </li>
                     <li>
                         <a href="#section-vrSession">Typical VR Session</a>
