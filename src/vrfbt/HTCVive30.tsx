@@ -289,5 +289,36 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 </div>
             </>
         ),
+        vrSession: {
+            setup: (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" || fbtConfig === "3_trackers_1_continuous" ? (
+                <>
+                    <p>Turn on your trackers and put them on.</p>
+                </>
+            ) : (
+                <>
+                    <ol>
+                        <li>Turn on one tracker</li>
+                        <li>Start OVR Space Calibrator, tightly hold the tracker and your controller</li>
+                        <li>Start the space calibration process, and wave your tracker and controller in a figure of 8</li>
+                        <li>Your tracker should show up in the right position</li>
+                        <li>Turn on the rest of your trackers</li>
+                        <li>Start VRChat</li>
+                        <li>T-pose, and click the "FBT Calibration" button</li>
+                    </ol>
+                </>
+            )),
+            play: (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" || fbtConfig === "3_trackers_1_continuous" ? (
+                <>
+                    <p>It just works.</p>
+                </>
+            ) : (
+                <>
+                    <p>Play normally.</p>
+                    <p>Over time, your in-game trackers may drift away from their real positions. This is because your headset's playspace drifts away from the tracker's playspace.</p>
+                    <p>Your headset's playspace might also suddenly change, and cause the trackers to fly away. This happens if your manually reset your orientation, or if your headset loses tracking (e.g. when you take the headset off and put it back on).</p>
+                    <p>You will need to re-do the space calibration process.</p>
+                </>
+            )),
+        }
     };
 }

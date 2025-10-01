@@ -254,6 +254,25 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>{system.drawbacks}</td>
                     ))}
                 </tr>
+                <tr id="section-vrSession" className="header">
+                    <td colSpan={systems.length}>Typical VR Session</td>
+                </tr>
+                <tr id={`section-vrSession-setup`} className="sub-heading">
+                    <td colSpan={systems.length}>Setup</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.vrSession?.setup}</td>
+                    ))}
+                </tr>
+                <tr id={`section-vrSession-play`} className="sub-heading">
+                    <td colSpan={systems.length}>Play</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.vrSession?.play}</td>
+                    ))}
+                </tr>
                 <tr id="section-specifications" className="header">
                     <td colSpan={systems.length}>Specifications</td>
                 </tr>

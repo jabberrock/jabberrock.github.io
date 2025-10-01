@@ -54,6 +54,17 @@ export const FBTNav: React.FC = () => {
                         <a href="#section-drawbacks">Drawbacks</a>
                     </li>
                     <li>
+                        <a href="#section-vrSession">Typical VR Session</a>
+                        <ul>
+                            <li>
+                                <a href="#section-vrSession-setup">Setup</a>
+                            </li>
+                            <li>
+                                <a href="#section-vrSession-play">Play</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
                         <a href="#section-specifications">Specifications</a>
                     </li>
                 </ul>

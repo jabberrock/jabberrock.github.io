@@ -209,5 +209,27 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 </div>
             </>
         ),
+        vrSession: {
+            setup: (
+                <>
+                    <ol>
+                        <li>Turn on your trackers, and leave them on a flat surface for 10 seconds</li>
+                        <li>Put your trackers</li>
+                        <li>Start the SlimeVR software</li>
+                        <li>Face forward, and click the "Full Reset" button</li>
+                        <li>Ski-pose, and click the "Mounting Reset" button</li>
+                        <li>Start VRChat</li>
+                        <li>T-pose, and click the "FBT Calibration" button</li>
+                    </ol>
+                </>
+            ),
+            play: (
+                <>
+                    <p>Play normally.</p>
+                    <p>If you notice that your avatar is off center, face forward, and double tap your Chest tracker. This will do a "Yaw Reset" and re-align your avatar.</p>
+                    <p>If your trackers shift on your body, you will need to adjust them, then re-do "Full Reset" and "Mounting Reset".</p>
+                </>
+            ),
+        }
     };
 }
