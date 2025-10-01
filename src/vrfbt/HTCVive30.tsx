@@ -71,7 +71,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             } else if (fbtConfig === "3_trackers_1_continuous") {
                 return (
                     <>
-                        <p>HTC VIVE Trackers 3.0 with continuous calibration works with your headset.</p>
+                        <p>HTC VIVE Trackers 3.0 with continuous calibration works well with your headset.</p>
                     </>
                 );
             }
