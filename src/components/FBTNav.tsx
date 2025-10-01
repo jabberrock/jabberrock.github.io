@@ -16,13 +16,18 @@ export const FBTNav: React.FC = () => {
                         <a href="#section-how_it_works">How it works</a>
                     </li>
                     <li>
-                        <a href="#section-components">What to Buy</a>
-                    </li>
-                    <li>
-                        <a href="#section-availability">Where to Buy</a>
-                    </li>
-                    <li>
                         <a href="#section-tracking">Tracking</a>
+                    </li>
+                    <li>
+                        <a href="#section-components">Buying</a>
+                        <ul>
+                            <li>
+                                <a href="#section-components-what">What to Buy</a>
+                            </li>
+                            <li>
+                                <a href="#section-components-where">Where to Buy</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#section-examples">Examples</a>

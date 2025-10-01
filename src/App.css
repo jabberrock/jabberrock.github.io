@@ -72,7 +72,7 @@ tr {
     padding-bottom: 0;
 }
 
-.sub-heading {
+.sub-header {
     font-size: 125%;
 }
 
@@ -134,7 +134,7 @@ tr {
     margin: 20px 0 40px 0;
 }
 
-.drawback .sub-heading {
+.drawback .sub-header {
     margin-top: 10px;
     font-weight: bold;
 }

@@ -228,7 +228,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                             width={480}
                             height={640}
                         />
-                        <div className="sub-heading">Space Calibration</div>
+                        <div className="sub-header">Space Calibration</div>
                         <p>HTC VIVE Trackers 3.0 and your headset have separate playspaces.</p>
                         <p>
                             You will need to perform Space Calibration to match the two playspaces. This is done at the
@@ -242,7 +242,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 )}
                 <div className="drawback">
                     <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-heading">Occlusion</div>
+                    <div className="sub-header">Occlusion</div>
                     <p>
                         During play, your arms and clothing may hide the tracker from the base stations. This occlusion
                         causes the tracker to stop moving, or even fly off into the distance.
@@ -254,7 +254,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 </div>
                 <div className="drawback">
                     <SimpleImage src="htc_vive_3_0/reflective_surfaces.webp" width={480} height={320} />
-                    <div className="sub-heading">Reflective Surfaces</div>
+                    <div className="sub-header">Reflective Surfaces</div>
                     <p>
                         The base stations use infrared light, which can bounce off reflective surfaces. This confuses
                         the tracker and causes it to fly off into the distance.
@@ -266,7 +266,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 </div>
                 <div className="drawback">
                     <SimpleImage src="htc_vive_3_0/estimated_legs.webp" width={480} height={640} />
-                    <div className="sub-heading">Estimated Leg Position</div>
+                    <div className="sub-header">Estimated Leg Position</div>
                     <p>Knees are estimated using inverse kinematics (IK), so the legs may not exactly match.</p>
                     <p>
                         In this example, the knee is much lower than the actual knee. If you move your knees without
@@ -275,12 +275,12 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 </div>
                 <div className="drawback">
                     <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-heading">Jitter</div>
+                    <div className="sub-header">Jitter</div>
                     <p>Because IK is not perfect, certain movements can result in a lot of jitter.</p>
                 </div>
                 <div className="drawback">
                     <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-heading">Limited playspace</div>
+                    <div className="sub-header">Limited playspace</div>
                     <p>
                         The playspace is limited by where the base stations are placed. Base Station 1.0 have a maximum
                         playspace of 5m x 5m (15ft x 15ft), while Base Station 2.0 ($220 each) have a maximum playspace

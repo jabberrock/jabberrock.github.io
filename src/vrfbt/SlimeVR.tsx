@@ -189,7 +189,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             <>
                 <div className="drawback">
                     <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-heading">Drift</div>
+                    <div className="sub-header">Drift</div>
                     <p>
                         Over time, SlimeVR trackers will drift, because the IMU is not perfect. Your in-game avatar will
                         gradually get out of sync with your real body.
@@ -202,7 +202,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 </div>
                 <div className="drawback">
                     <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-heading">Calibration</div>
+                    <div className="sub-header">Calibration</div>
                     <p>
                         At the start of each VR session, you will need to calibrate the trackers so that the skeleton
                         will make your body in the real world. The calibration process can be a little tricky, and

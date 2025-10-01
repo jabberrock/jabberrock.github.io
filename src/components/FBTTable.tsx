@@ -115,7 +115,18 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>{system.howItWorks}</td>
                     ))}
                 </tr>
+                <tr id="section-tracking" className="header">
+                    <td colSpan={systems.length}>Tracking</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.tracking}</td>
+                    ))}
+                </tr>
                 <tr id="section-components" className="header">
+                    <td colSpan={systems.length}>Buying</td>
+                </tr>
+                <tr id="section-components-what" className="sub-header">
                     <td colSpan={systems.length}>What to Buy</td>
                 </tr>
                 <tr>
@@ -237,7 +248,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         );
                     })}
                 </tr>
-                <tr id="section-availability" className="header">
+                <tr id="section-components-where" className="sub-header">
                     <td colSpan={systems.length}>Where to Buy</td>
                 </tr>
                 <tr>
@@ -245,20 +256,12 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>{system.availability}</td>
                     ))}
                 </tr>
-                <tr id="section-tracking" className="header">
-                    <td colSpan={systems.length}>Tracking</td>
-                </tr>
-                <tr>
-                    {systems.map((system) => (
-                        <td key={system.key}>{system.tracking}</td>
-                    ))}
-                </tr>
                 <tr id="section-examples" className="header">
                     <td colSpan={systems.length}>Examples</td>
                 </tr>
                 {Object.keys(exampleVideos).map((v) => (
                     <React.Fragment key={v}>
-                        <tr id={`section-examples-${v}`} className="sub-heading">
+                        <tr id={`section-examples-${v}`} className="sub-header">
                             <td colSpan={systems.length}>{exampleVideos[v]}</td>
                         </tr>
                         <tr>
@@ -279,7 +282,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                 <tr id="section-vrSession" className="header">
                     <td colSpan={systems.length}>Typical VR Session</td>
                 </tr>
-                <tr id={`section-vrSession-setup`} className="sub-heading">
+                <tr id={`section-vrSession-setup`} className="sub-header">
                     <td colSpan={systems.length}>Setup</td>
                 </tr>
                 <tr>
@@ -287,7 +290,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>{system.vrSession?.setup}</td>
                     ))}
                 </tr>
-                <tr id={`section-vrSession-play`} className="sub-heading">
+                <tr id={`section-vrSession-play`} className="sub-header">
                     <td colSpan={systems.length}>Play</td>
                 </tr>
                 <tr>
