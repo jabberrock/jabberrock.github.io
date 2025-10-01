@@ -16,7 +16,7 @@ export type FBTSystemConfiguration = {
 export const fbtSystems: FBTSystem[] = [
     {
         key: "slimevr_1_2",
-        name: "SlimeVR v1.2",
+        name: "SlimeVR Trackers",
         configurations: [
             {
                 key: "lower_body_set_5_0",
@@ -38,25 +38,25 @@ export const fbtSystems: FBTSystem[] = [
     },
     {
         key: "htc_vive_3_0",
-        name: "HTC VIVE 3.0",
+        name: "HTC VIVE Trackers 3.0",
         configurations: [
             {
                 key: "3_trackers",
-                name: "3x HTC VIVE 3.0 trackers",
+                name: "3x HTC VIVE Trackers 3.0",
             },
             {
                 key: "3_trackers_1_continuous",
-                name: "3x HTC VIVE 3.0 trackers + 1x for continuous calibration",
+                name: "3x HTC VIVE Trackers 3.0 + 1x for continuous calibration",
             },
         ],
     },
     {
         key: "htc_vive_ultimate",
-        name: "HTC VIVE Ultimate",
+        name: "HTC VIVE Ultimate Trackers",
         configurations: [
             {
                 key: "3_trackers",
-                name: "3x HTC VIVE Ultimate trackers",
+                name: "3x HTC VIVE Ultimate Trackers",
             },
         ],
     },

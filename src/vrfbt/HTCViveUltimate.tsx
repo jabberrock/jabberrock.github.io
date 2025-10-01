@@ -10,7 +10,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             key: HTCViveUltimateSystemKey,
             name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
             imageURL: "images/htc_vive_ultimate.jpg",
-            recommendation: <p className="warning">HTC VIVE Ultimate trackers require a PC</p>,
+            recommendation: <p className="warning">HTC VIVE Ultimate Trackers require a PC</p>,
             howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },
             availability: <p>N/A</p>,
@@ -28,14 +28,14 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && config === "3_trackers") {
                 return (
                     <div className="warning">
-                        <p>HTC VIVE Ultimate and your headset have separate playspaces. You will need to perform space calibration whenever you reset your orientation, or your headset loses tracking. </p>
-                        <p className="warning">We do not recommend HTC VIVE Ultimate trackers with your headset.</p>
+                        <p>HTC VIVE Ultimate Trackers and your headset have separate playspaces. You will need to perform space calibration whenever you reset your orientation, or your headset loses tracking. </p>
+                        <p className="warning">We do not recommend HTC VIVE Ultimate Trackers with your headset.</p>
                     </div>
                 );
             } else {
                 return (
                     <>
-                        <p>HTC VIVE Ultimate trackers work with your headset.</p>
+                        <p>HTC VIVE Ultimate Trackers work with your headset.</p>
                     </>
                 );
             }
@@ -44,7 +44,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             <>
                 <img src="images/htc_vive_ultimate_cameras.jpg" />
                 <p>
-                    HTC VIVE Ultimate is an inside-out system. Each tracker has 2 cameras which use a SLAM algorithm
+                    HTC VIVE Ultimate Trackers are an inside-out system. Each tracker has 2 cameras which use a SLAM algorithm
                     (Simultaneous Localization and Motion) to keep track where it is in your playspace.
                 </p>
                 <p>
