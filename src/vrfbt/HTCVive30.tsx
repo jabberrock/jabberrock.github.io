@@ -28,11 +28,10 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             key: `${HTCVive30SystemKey}-${fbtConfig}`,
             name: fbtSystemsByKey[HTCVive30SystemKey].name,
             imageURL: "images/htc_vive_3_0.jpg",
-            howItWorks: (
-                <p className="warning">
-                    Your VR Headset uses Lighthouses, and does not need an extra tracker for continuous calibration.
-                </p>
+            recommendation: (
+                <p className="warning">Your headset is Lighthouse-based and does not require continuous calibration with HTC VIVE Trackers 3.0.</p>
             ),
+            howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },
             availability: <p>N/A</p>,
             tracking: <p>N/A</p>,
@@ -70,11 +69,13 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     );
                 }
             } else if (fbtConfig === "3_trackers_1_continuous") {
-                return (
-                    <>
-                        <p>HTC VIVE Trackers 3.0 with continuous calibration is recommended for your headset.</p>
-                    </>
-                );
+                if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
+                    return (
+                        <>
+                            <p>HTC VIVE Trackers 3.0 with continuous calibration is recommended for your headset.</p>
+                        </>
+                    );
+                }
             }
         })(),
         howItWorks: (
