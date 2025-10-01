@@ -1,3 +1,4 @@
+import { SimpleImage } from "../components/SimpleImage";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
@@ -250,7 +251,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </p>
                 </div>
                 <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
+                    <SimpleImage src="htc_vive_3_0/reflective_surfaces.webp" width={480} height={320} />
                     <div className="sub-heading">Reflective Surfaces</div>
                     <p>
                         The base stations use infrared light, which can bounce off reflective surfaces. This confuses
@@ -262,11 +263,14 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </p>
                 </div>
                 <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
+                    <SimpleImage src="htc_vive_3_0/estimated_legs.webp" width={480} height={640} />
                     <div className="sub-heading">Estimated Leg Position</div>
                     <p>
-                        Knees are estimated using IK (inverse kinematics), so the estimated position can be very
-                        different from the actual position.
+                        Knees are estimated using inverse kinematics (IK), so the legs may not exactly match.
+                    </p>
+                    <p>
+                        In this example, the knee is much lower than the actual knee. If you move your knees without
+                        moving your feet, your avatar's legs won't move.
                     </p>
                 </div>
                 <div className="drawback">
