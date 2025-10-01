@@ -128,3 +128,12 @@ tr {
 .vr-system-picker .vr-headset-section .vr-headset-list .vr-headset-icon {
     margin-right: 20px;
 }
+
+.drawback {
+    margin: 20px 0 40px 0;
+}
+
+.drawback .sub-heading {
+    margin-top: 10px;
+    font-weight: bold;
+}

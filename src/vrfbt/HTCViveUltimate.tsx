@@ -133,8 +133,8 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
         drawbacks: (
             <>
                 <div className="drawback">
-                    <div className="sub-heading">Occlusion</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Occlusion</div>
                     <p>
                         During play, your arms and clothing may block the cameras, or you may be oriented such that
                         there is very little information for the cameras (e.g. a white wall). This causes the tracker to
@@ -143,8 +143,8 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
                     <p>There’s no way to work around this limitation.</p>
                 </div>
                 <div className="drawback">
-                    <div className="sub-heading">Changes to Playspace</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Changes to Playspace</div>
                     <p>
                         The tracker needs to scan your playspace and compare the current camera snapshot to figure out
                         where it is. If you move things around and your playspace changes enough, the tracker will get
@@ -157,16 +157,16 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
                     <p>To solve this, you have to rescan your playspace.</p>
                 </div>
                 <div className="drawback">
-                    <div className="sub-heading">Estimated Leg Position</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Estimated Leg Position</div>
                     <p>
                         Knees are estimated using IK (inverse kinematics), so the estimated position can be very
                         different from the actual position.
                     </p>
                 </div>
                 <div className="drawback">
-                    <div className="sub-heading">Jitter</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Jitter</div>
                     <p>Because IK is not perfect, certain movements can result in a lot of jitter.</p>
                 </div>
             </>

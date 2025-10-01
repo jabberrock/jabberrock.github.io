@@ -2,10 +2,11 @@ import type React from "react";
 import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { VideoPlayer } from "../components/VideoPlayer";
+import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 
 const SlimeVRSystemKey: FBTSystemKey = "slimevr_1_2";
 
-export function makeSlimeVR(fbtConfig: string): VRFBTSystem {
+export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem {
     return {
         key: `${SlimeVRSystemKey}-${fbtConfig}`,
         name: fbtSystemsByKey[SlimeVRSystemKey].name,
@@ -160,17 +161,22 @@ export function makeSlimeVR(fbtConfig: string): VRFBTSystem {
             </>
         ),
         examples: (function () {
-            const vrHeadset = "meta_quest_3";
+            let vrHeadset: VRHeadsetKey = "meta_quest_3";
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
-                    <VideoPlayer
-                        key={v}
-                        video_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}.mp4`}
-                        thumbnail_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}.jpg`}
-                        width={480}
-                        height={640}
-                    />
+                    <>
+                        <VideoPlayer
+                            key={v}
+                            video_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}.mp4`}
+                            thumbnail_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}.jpg`}
+                            width={480}
+                            height={640}
+                        />
+                        {vrHeadset !== vrSystem.headset && (
+                            <div>(Captured with {vrHeadsetsByKey[vrHeadset].name} instead of {vrHeadsetsByKey[vrSystem.headset].name})</div>
+                        )}
+                    </>
                 );
             }
 
@@ -179,8 +185,8 @@ export function makeSlimeVR(fbtConfig: string): VRFBTSystem {
         drawbacks: (
             <>
                 <div className="drawback">
-                    <div className="sub-heading">Drift</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Drift</div>
                     <p>
                         Over time, SlimeVR trackers will drift, because the IMU is not perfect. Your in-game avatar will
                         gradually get out of sync with your real body.
@@ -192,8 +198,8 @@ export function makeSlimeVR(fbtConfig: string): VRFBTSystem {
                     <p>To fix the drift, just face forward, and double tap your chest tracker.</p>
                 </div>
                 <div className="drawback">
-                    <div className="sub-heading">Calibration</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Calibration</div>
                     <p>
                         At the start of each VR session, you will need to calibrate the trackers so that the skeleton
                         will make your body in the real world. The calibration process can be a little tricky, and

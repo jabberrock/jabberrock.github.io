@@ -205,13 +205,18 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
-                    <VideoPlayer
-                        key={v}
-                        video_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}.mp4`}
-                        thumbnail_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}.jpg`}
-                        width={480}
-                        height={640}
-                    />
+                    <>
+                        <VideoPlayer
+                            key={v}
+                            video_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}.mp4`}
+                            thumbnail_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}.jpg`}
+                            width={480}
+                            height={640}
+                        />
+                        {vrHeadset !== vrSystem.headset && (
+                            <div>(Captured with {vrHeadsetsByKey[vrHeadset].name} instead of {vrHeadsetsByKey[vrSystem.headset].name})</div>
+                        )}
+                    </>
                 );
             }
 
@@ -221,20 +226,20 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             <>
                 {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && (
                     <div className="drawback">
-                        <div className="sub-heading">Space Calibration</div>
                         <SimpleVideoPlayer
                             src="examples/meta_quest_3/htc_vive_3_0/meta_quest_3-htc_vive_3_0-space_calibrator.mp4"
                             width={480}
                             height={640}
                         />
+                        <div className="sub-heading">Space Calibration</div>
                         <p>HTC VIVE 3.0 trackers and your headset have separate playspaces.</p>
                         <p>You will need to perform Space Calibration to match the two playspaces. This is done at the start of each VR session and whenever your headset playspace shifts (which happens a lot).</p>
                         <p>If you choose HTC VIVE 3.0 trackers, we recommend using continuous calibration with an extra tracker to avoid manual Space Calibration.</p>
                     </div>
                 )}
                 <div className="drawback">
-                    <div className="sub-heading">Occlusion</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Occlusion</div>
                     <p>
                         During play, your arms and clothing may hide the tracker from the base stations. This occlusion
                         causes the tracker to stop moving, or even fly off into the distance.
@@ -245,8 +250,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </p>
                 </div>
                 <div className="drawback">
-                    <div className="sub-heading">Reflective Surfaces</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Reflective Surfaces</div>
                     <p>
                         The base stations use infrared light, which can bounce off reflective surfaces. This confuses
                         the tracker and causes it to fly off into the distance.
@@ -257,21 +262,21 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </p>
                 </div>
                 <div className="drawback">
-                    <div className="sub-heading">Estimated Leg Position</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Estimated Leg Position</div>
                     <p>
                         Knees are estimated using IK (inverse kinematics), so the estimated position can be very
                         different from the actual position.
                     </p>
                 </div>
                 <div className="drawback">
-                    <div className="sub-heading">Jitter</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Jitter</div>
                     <p>Because IK is not perfect, certain movements can result in a lot of jitter.</p>
                 </div>
                 <div className="drawback">
-                    <div className="sub-heading">Limited playspace</div>
                     <img style={{ width: "480px", height: "320px" }} />
+                    <div className="sub-heading">Limited playspace</div>
                     <p>
                         The playspace is limited by where the base stations are placed. Base Station 1.0 have a maximum
                         playspace of 5m x 5m (15ft x 15ft), while Base Station 2.0 ($220 each) have a maximum playspace

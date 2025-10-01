@@ -40,7 +40,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
     const systems: VRFBTSystem[] = selectedOptions.map((s) => {
         switch (s.value.systemKey) {
             case "slimevr_1_2":
-                return makeSlimeVR(s.value.configKey);
+                return makeSlimeVR(vrSystem, s.value.configKey);
             case "htc_vive_3_0":
                 return makeHTCVive30(vrSystem, s.value.configKey);
             case "htc_vive_ultimate":
