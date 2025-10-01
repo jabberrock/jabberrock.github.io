@@ -1,5 +1,6 @@
+import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
-import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
+import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 
 const HTCVive30SystemKey: FBTSystemKey = "htc_vive_3_0";
@@ -193,10 +194,23 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             </>
         ),
         examples: (function () {
+            let vrHeadset: VRHeadsetKey;
+            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                vrHeadset = "htc_vive";
+            } else {
+                vrHeadset = "meta_quest_3";
+            }
+
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
-                    <></>
+                    <VideoPlayer
+                        key={v}
+                        video_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}.mp4`}
+                        thumbnail_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}.jpg`}
+                        width={480}
+                        height={640}
+                    />
                 );
             }
 
