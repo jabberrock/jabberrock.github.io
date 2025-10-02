@@ -12,6 +12,7 @@ export type VRFBTSystem = {
     availability?: React.ReactNode;
     tracking?: React.ReactNode;
     specs?: React.ReactNode;
+    introExample?: React.ReactNode;
     examples: Record<string, React.ReactNode>;
     drawbacks?: React.ReactNode;
     vrSession?: {

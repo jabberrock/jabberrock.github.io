@@ -3,6 +3,7 @@ import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem
 import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
+import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 
 const SlimeVRSystemKey: FBTSystemKey = "slimevr_1_2";
 
@@ -160,6 +161,17 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 <img src="images/slimevr_size.jpg" />
             </>
         ),
+        introExample: (function () {
+            let vrHeadset: VRHeadsetKey = "meta_quest_3";
+            return (
+                <SideBySideVideoPlayer
+                    video_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-dancing.mp4`}
+                    thumbnail_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-dancing.jpg`}
+                    width={480}
+                    height={320}
+                />
+            );
+        })(),
         examples: (function () {
             let vrHeadset: VRHeadsetKey = "meta_quest_3";
             const nodes: Record<string, React.ReactNode> = {};

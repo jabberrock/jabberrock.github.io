@@ -101,7 +101,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system) => (
-                        <td key={system.key}>{system.examples["dancing"]}</td>
+                        <td key={system.key}>{system.introExample}</td>
                     ))}
                 </tr>
                 <tr id="section-how_it_works" className="header">

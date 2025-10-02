@@ -1,3 +1,4 @@
+import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleImage } from "../components/SimpleImage";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoPlayer } from "../components/VideoPlayer";
@@ -185,6 +186,23 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 <img src="images/htc_vive_3_0_size.jpg" />
             </>
         ),
+        introExample: (function () {
+            let vrHeadset: VRHeadsetKey;
+            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                vrHeadset = "htc_vive";
+            } else {
+                vrHeadset = "meta_quest_3";
+            }
+            
+            return (
+                <SideBySideVideoPlayer
+                    video_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-dancing.mp4`}
+                    thumbnail_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-dancing.jpg`}
+                    width={480}
+                    height={320}
+                />
+            );
+        })(),
         examples: (function () {
             let vrHeadset: VRHeadsetKey;
             if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
