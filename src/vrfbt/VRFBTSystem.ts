@@ -57,7 +57,7 @@ const lighthouseFBTRecommendations: FBTRecommendation[] = [
 
 const nonLighthouseFBTRecommendations: FBTRecommendation[] = [
     { system: "slimevr_1_2", config: "enhanced_core_set_6_2" },
-    { system: "htc_vive_3_0", config: "3_trackers_1_continuous" },
+    { system: "htc_vive_3_0", config: "3_trackers" }, // Change back to 3_trackers_1_continuous
     { system: "htc_vive_ultimate", config: "3_trackers" },
 ];
 
