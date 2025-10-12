@@ -1,18 +1,43 @@
 #root {
-    padding: 2rem;
+    padding: 20px;
 }
 
 .main {
     display: grid;
     grid-template-columns: 300px 1fr;
-    width: 100%;
 }
 
 .sidebar {
     grid-row: 1;
     grid-column: 1;
     position: fixed;
-    width: 280px;
+    top: 0;
+    width: 300px;
+    padding: 10px;
+}
+
+.content {
+    grid-row: 1;
+    grid-column: 2;
+    min-width: 0%;
+    padding: 10px;
+}
+
+@media (max-width: 850px) {
+    .main {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        display: none;
+    }
+
+    .content {
+        grid-row: 1;
+        grid-column: 1;
+        min-width: 0%;
+        justify-self: center;
+    }
 }
 
 nav {
@@ -21,12 +46,6 @@ nav {
 
 nav .selected {
     font-weight: bold;
-}
-
-.content {
-    grid-row: 1;
-    grid-column: 2;
-    min-width: 0%;
 }
 
 tr {
