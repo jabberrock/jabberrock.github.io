@@ -7,6 +7,7 @@ import React from "react";
 import { VRSystemSummary } from "./vr/VRSystemSummary";
 import { FBTNav } from "./components/FBTNav";
 import type { VRSystem } from "./vr/VR";
+import { ColumnTable } from "./components/ColumnTable";
 
 const opacityRef = { current: 0.9 };
 
@@ -33,7 +34,7 @@ function App() {
                     <VRSystemSummary vrSystem={vrSystem} onReset={() => setVRSystem(null)} />
                     <FBTNav />
                 </div>
-                <div className="content">
+                <ColumnTable minColumns={1} maxColumns={4} columnWidth={500} className="content">
                     <OpacityContext value={opacityRef}>
                         <FBTTable vrSystem={vrSystem} />
                         <Settings
@@ -42,7 +43,7 @@ function App() {
                             }}
                         />
                     </OpacityContext>
-                </div>
+                </ColumnTable>
             </div>
         );
     } else {

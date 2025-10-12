@@ -164,6 +164,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video_url, thumbnail_u
         const video = videoRef.current;
         if (video && video.src) {
             if (inView) {
+                video.currentTime = 0.0;
                 video.play();
             } else {
                 video.pause();

@@ -51,6 +51,7 @@ function gray(amount: number) {
 export const FBTSystemSelect: React.FC<FBTSystemSelectProps> = ({ selected, onChange }) => {
     return (
         <Select<FBTSystemConfigOption, false, FBTSystemGroup>
+            placeholder="Select a full-body tracking system..."
             value={selected}
             options={groupedOptions}
             onChange={(v) => onChange(v)}

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FBTSystemSelect, findFBTSystemOption, type FBTSystemConfigOption } from "./FBTSystemSelect";
 import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
 import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import type { VRSystem } from "../vr/VR";
 import { vrHeadsetFBTRecommendations, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
+import { ColumnTableContext } from "./ColumnTable";
 
 type FBTTableProps = {
     vrSystem: VRSystem;
@@ -31,21 +32,61 @@ function toDollars(priceCents: number) {
     }
 }
 
+function makeEmptyVRFBTSystem(index: number): VRFBTSystem {
+    return {
+        key: `empty-${index}`,
+        name: "",
+        itemList: {
+            required: [],
+            optional: [],
+        },
+        examples: {}
+    };
+}
+
 function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
-    const [selectedOptions, setSelectedSystems] = useState<FBTSystemConfigOption[]>(
+    const columnTableContext = useContext(ColumnTableContext);
+    const [selectedOptions, setSelectedOptions] = useState<(FBTSystemConfigOption | null)[]>(
         vrHeadsetFBTRecommendations[vrSystem.headset].map((f) => findFBTSystemOption(f.system, f.config)),
     );
 
-    const systems: VRFBTSystem[] = selectedOptions.map((s) => {
-        switch (s.value.systemKey) {
-            case "slimevr_trackers":
-                return makeSlimeVR(vrSystem, s.value.configKey);
-            case "htc_vive_trackers_3_0":
-                return makeHTCVive30(vrSystem, s.value.configKey);
-            case "htc_vive_ultimate_trackers":
-                return makeHTCViveUltimate(vrSystem, s.value.configKey);
+    const systems: VRFBTSystem[] = [];
+    for (let i = 0; i < columnTableContext.numColumns; ++i) {
+        let system = makeEmptyVRFBTSystem(i);
+        if (i < selectedOptions.length) {
+            const option = selectedOptions[i];
+            if (option) {
+                const { systemKey, configKey } = option.value;
+                switch (systemKey) {
+                    case "slimevr_trackers":
+                        system = makeSlimeVR(vrSystem, configKey);
+                        break;
+                    case "htc_vive_trackers_3_0":
+                        system = makeHTCVive30(vrSystem, configKey);
+                        break;
+                    case "htc_vive_ultimate_trackers":
+                        system = makeHTCViveUltimate(vrSystem, configKey);
+                        break;
+                };
+            }
         }
-    });
+        systems.push(system);
+    }
+
+    function updateSelectedSystem(index: number, option: FBTSystemConfigOption | null) {
+        const newOptions = [...selectedOptions];
+        if (option) {
+            for (let i = 0; i < newOptions.length; ++i) {
+                if (newOptions[i] == option) {
+                    newOptions[i] = null;
+                }
+            }
+            newOptions[index] = option;
+        } else {
+            newOptions[index] = null;
+        }
+        setSelectedOptions(newOptions);
+    }
 
     return (
         <table className="fbt-table">
@@ -70,13 +111,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             <FBTSystemSelect
                                 selected={selectedOptions[i]}
-                                onChange={(newValue) => {
-                                    if (newValue && !selectedOptions.includes(newValue)) {
-                                        const selected = [...selectedOptions];
-                                        selected.splice(i, 1, newValue);
-                                        setSelectedSystems(selected);
-                                    }
-                                }}
+                                onChange={(newValue) => updateSelectedSystem(i, newValue)}
                             />
                         </td>
                     ))}
