@@ -252,7 +252,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                             src={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-vr_session_setup.mp4`}
                             thumbnail={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-vr_session_setup.jpg`}
                             width={480}
-                            height={320}
+                            height={420}
                         />
                         <ol>
                             <li>Turn on your trackers, and leave them on a flat surface for 10 seconds</li>
