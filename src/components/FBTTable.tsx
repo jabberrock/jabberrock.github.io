@@ -1,4 +1,4 @@
-import React, { Suspense, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { FBTSystemSelect, findFBTSystemOption, type FBTSystemConfigOption } from "./FBTSystemSelect";
 import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
