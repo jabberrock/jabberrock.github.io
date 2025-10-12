@@ -4,6 +4,7 @@ import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
+import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 
 const SlimeVRSystemKey: FBTSystemKey = "slimevr_trackers";
 
@@ -168,7 +169,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             } else {
                 vrHeadset = "meta_quest_3";
             }
-            
+
             return (
                 <SideBySideVideoPlayer
                     video_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-dancing.mp4`}
@@ -237,19 +238,33 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             </>
         ),
         vrSession: {
-            setup: (
-                <>
-                    <ol>
-                        <li>Turn on your trackers, and leave them on a flat surface for 10 seconds</li>
-                        <li>Put your trackers</li>
-                        <li>Start the SlimeVR software</li>
-                        <li>Face forward, and click the "Full Reset" button</li>
-                        <li>Ski-pose, and click the "Mounting Reset" button</li>
-                        <li>Start VRChat</li>
-                        <li>T-pose, and click the "FBT Calibration" button</li>
-                    </ol>
-                </>
-            ),
+            setup: (function() {
+                let vrHeadset: VRHeadsetKey;
+                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                    vrHeadset = "htc_vive";
+                } else {
+                    vrHeadset = "meta_quest_3";
+                }
+
+                return (
+                    <>
+                        <SimpleVideoPlayer
+                            src={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-vr_session_setup.mp4`}
+                            width={480}
+                            height={320}
+                        />
+                        <ol>
+                            <li>Turn on your trackers, and leave them on a flat surface for 10 seconds</li>
+                            <li>Put your trackers</li>
+                            <li>Start the SlimeVR software</li>
+                            <li>Face forward, and click the "Full Reset" button</li>
+                            <li>Ski-pose, and click the "Mounting Reset" button</li>
+                            <li>Start VRChat</li>
+                            <li>T-pose, and click the "FBT Calibration" button</li>
+                        </ol>
+                    </>
+                );
+            })(),
             play: (
                 <>
                     <p>Play normally.</p>

@@ -301,19 +301,26 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             </>
         ),
         vrSession: {
-            setup:
-                vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ||
-                fbtConfig === "3_trackers_1_continuous" ? (
-                    <>
+            setup: (function() {
+                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                    return (
                         <p>Turn on your trackers and put them on.</p>
-                    </>
-                ) : (
-                    <>
-                        <SimpleVideoPlayer
-                            src="examples/meta_quest_3/htc_vive_3_0/meta_quest_3-htc_vive_3_0-space_calibrator.mp4"
-                            width={480}
-                            height={640}
-                        />
+                    );
+                } else {
+                    let vrHeadset: VRHeadsetKey;
+                    if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                        vrHeadset = "htc_vive";
+                    } else {
+                        vrHeadset = "meta_quest_3";
+                    }
+
+                    return (
+                        <>
+                            <SimpleVideoPlayer
+                                src={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-vr_session_setup.mp4`}
+                                width={480}
+                                height={440}
+                            />
                         <ol>
                             <li>Turn on one tracker</li>
                             <li>Start OVR Space Calibrator, tightly hold the tracker and your controller</li>
@@ -326,8 +333,10 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                             <li>Start VRChat</li>
                             <li>T-pose, and click the "FBT Calibration" button</li>
                         </ol>
-                    </>
-                ),
+                        </>
+                    );
+                }
+            })(),
             play:
                 vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ||
                 fbtConfig === "3_trackers_1_continuous" ? (
