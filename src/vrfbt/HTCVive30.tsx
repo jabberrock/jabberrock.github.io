@@ -318,6 +318,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                         <>
                             <SimpleVideoPlayer
                                 src={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-vr_session_setup.mp4`}
+                                thumbnail={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-vr_session_setup.jpg`}
                                 width={480}
                                 height={440}
                             />
