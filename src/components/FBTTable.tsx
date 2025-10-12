@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { Suspense, useContext, useState } from "react";
 import { FBTSystemSelect, findFBTSystemOption, type FBTSystemConfigOption } from "./FBTSystemSelect";
 import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
@@ -291,13 +291,8 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     <td colSpan={systems.length}>
                         <p>
                             These recordings show how accurately and smoothly each system translates my movements
-                            into VR.
-                        </p>
-                        <p>
-                            I recorded these examples with a real camera and a VRChat camera, then overlaid the two.
-                            They represent the <strong>typical</strong> tracking I was able to achieve with good
-                            calibration. I tried my best to avoid the limitations of each system (discussed in another
-                            section below).
+                            into VR. They represent the <strong>typical</strong> tracking I was able to achieve with good
+                            calibration. I tried my best to avoid the limitations of each system (discussed below).
                         </p>
                     </td>
                 </tr>
