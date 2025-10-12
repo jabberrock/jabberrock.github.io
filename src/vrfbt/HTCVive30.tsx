@@ -1,3 +1,4 @@
+import { Carousel } from "react-bootstrap";
 import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleImage } from "../components/SimpleImage";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
@@ -264,7 +265,13 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </p>
                 </div>
                 <div className="drawback">
-                    <SimpleImage src="htc_vive_3_0/reflective_surfaces.webp" width={480} height={320} />
+                    <Carousel>
+                        {Array.from({ length: 5 }, (_, i) => (
+                            <Carousel.Item key={i}>
+                                <SimpleImage src={`limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`} width={480} height={320} />
+                            </Carousel.Item>
+                        ))}
+                    </Carousel>
                     <div className="sub-header">Reflective Surfaces</div>
                     <p>
                         The base stations use infrared light, which can bounce off reflective surfaces. This confuses
@@ -273,6 +280,13 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     <p>
                         To solve this, close your window blinds, cover your mirrors with a cloth, and cover any other
                         reflective surfaces.
+                    </p>
+                </div>
+                <div className="drawback">
+                    <SimpleImage src="limitations/htc_vive_trackers_3_0-wifi_interference.jpg" width={480} height={320} />
+                    <div className="sub-header">Wi-Fi Interference</div>
+                    <p>
+                        Your 2.4Ghz router can overpower the dongles if it is placed too close. To solve this, move your dongles away from the router.
                     </p>
                 </div>
                 <div className="drawback">

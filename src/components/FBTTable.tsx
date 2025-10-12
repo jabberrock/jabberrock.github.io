@@ -285,7 +285,21 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     ))}
                 </tr>
                 <tr id="section-examples" className="header">
-                    <td colSpan={systems.length}>Examples</td>
+                    <td colSpan={systems.length}>Tracking Examples</td>
+                </tr>
+                <tr>
+                    <td colSpan={systems.length}>
+                        <p>
+                            These recordings show how accurately and smoothly each system translates my movements
+                            into VR.
+                        </p>
+                        <p>
+                            I recorded these examples with a real camera and a VRChat camera, then overlaid the two.
+                            They represent the <strong>typical</strong> tracking I was able to achieve with good
+                            calibration. I tried my best to avoid the limitations of each system (discussed in another
+                            section below).
+                        </p>
+                    </td>
                 </tr>
                 {Object.keys(exampleVideos).map((v) => (
                     <React.Fragment key={v}>

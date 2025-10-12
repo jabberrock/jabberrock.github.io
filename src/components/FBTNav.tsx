@@ -22,7 +22,7 @@ export const FBTNav: React.FC = () => {
                         <a href="#section-availability">Availability</a>
                     </li>
                     <li>
-                        <a href="#section-examples">Examples</a>
+                        <a href="#section-examples">Tracking Examples</a>
                         <ul>
                             <li>
                                 <a href="#section-examples-standing">Standing</a>
