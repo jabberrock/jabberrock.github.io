@@ -82,7 +82,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 name: "GoPro Harness",
                 comment: "for more stable chest tracker",
                 count: 1,
-                each_price_cents: 1899,
+                each_price_cents: 1449,
                 link: new URL("https://www.amazon.com/AmazonBasics-Chest-Mount-Harness-cameras/dp/B01D3I8A7A"),
             });
             c.optional.push({

@@ -65,7 +65,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
                     c.required.push({
                         name: "VIVE Ultimate Tracker 3+1 Kit",
                         count: 1,
-                        each_price_cents: 55999,
+                        each_price_cents: 68900,
                         link: new URL("https://www.vive.com/us/accessory/vive-ultimate-tracker/"),
                     });
                     break;
