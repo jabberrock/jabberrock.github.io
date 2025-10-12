@@ -6,7 +6,7 @@ import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 
-const HTCVive30SystemKey: FBTSystemKey = "htc_vive_3_0";
+const HTCVive30SystemKey: FBTSystemKey = "htc_vive_trackers_3_0";
 
 export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem {
     if (!vrSystem.prefersPCVR) {

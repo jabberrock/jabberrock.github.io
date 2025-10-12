@@ -41,7 +41,6 @@ export const ExampleVideoKeys = [
     "lying_down",
     "dancing",
     "exercise",
-    "extreme",
 ] as const;
 
 export type FBTRecommendation = {
@@ -50,15 +49,15 @@ export type FBTRecommendation = {
 };
 
 const lighthouseFBTRecommendations: FBTRecommendation[] = [
-    { system: "slimevr_1_2", config: "enhanced_core_set_6_2" },
-    { system: "htc_vive_3_0", config: "3_trackers" },
-    { system: "htc_vive_ultimate", config: "3_trackers" },
+    { system: "slimevr_trackers", config: "enhanced_core_set_6_2" },
+    { system: "htc_vive_trackers_3_0", config: "3_trackers" },
+    { system: "htc_vive_ultimate_trackers", config: "3_trackers" },
 ];
 
 const nonLighthouseFBTRecommendations: FBTRecommendation[] = [
-    { system: "slimevr_1_2", config: "enhanced_core_set_6_2" },
-    { system: "htc_vive_3_0", config: "3_trackers" }, // Change back to 3_trackers_1_continuous
-    { system: "htc_vive_ultimate", config: "3_trackers" },
+    { system: "slimevr_trackers", config: "enhanced_core_set_6_2" },
+    { system: "htc_vive_trackers_3_0", config: "3_trackers" }, // Change back to 3_trackers_1_continuous
+    { system: "htc_vive_ultimate_trackers", config: "3_trackers" },
 ];
 
 export const vrHeadsetFBTRecommendations = Object.fromEntries(

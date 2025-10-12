@@ -5,7 +5,7 @@ import { VideoPlayer } from "../components/VideoPlayer";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 
-const SlimeVRSystemKey: FBTSystemKey = "slimevr_1_2";
+const SlimeVRSystemKey: FBTSystemKey = "slimevr_trackers";
 
 export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem {
     return {
@@ -162,7 +162,13 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             </>
         ),
         introExample: (function () {
-            let vrHeadset: VRHeadsetKey = "meta_quest_3";
+            let vrHeadset: VRHeadsetKey;
+            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                vrHeadset = "htc_vive";
+            } else {
+                vrHeadset = "meta_quest_3";
+            }
+            
             return (
                 <SideBySideVideoPlayer
                     video_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-dancing.mp4`}
@@ -173,7 +179,13 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             );
         })(),
         examples: (function () {
-            let vrHeadset: VRHeadsetKey = "meta_quest_3";
+            let vrHeadset: VRHeadsetKey;
+            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                vrHeadset = "htc_vive";
+            } else {
+                vrHeadset = "meta_quest_3";
+            }
+
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (

@@ -42,9 +42,6 @@ export const FBTNav: React.FC = () => {
                             <li>
                                 <a href="#section-examples-exercise">Exercise</a>
                             </li>
-                            <li>
-                                <a href="#section-examples-extreme">Extreme Movement</a>
-                            </li>
                         </ul>
                     </li>
                     <li>

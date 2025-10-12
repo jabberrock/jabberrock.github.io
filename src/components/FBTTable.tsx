@@ -17,7 +17,6 @@ const exampleVideos: Record<string, string> = {
     lying_down: "Lying Down",
     dancing: "Dancing",
     exercise: "Exercise",
-    extreme: "Extreme Movement",
 };
 
 function sum(prices: number[]) {
@@ -39,11 +38,11 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
 
     const systems: VRFBTSystem[] = selectedOptions.map((s) => {
         switch (s.value.systemKey) {
-            case "slimevr_1_2":
+            case "slimevr_trackers":
                 return makeSlimeVR(vrSystem, s.value.configKey);
-            case "htc_vive_3_0":
+            case "htc_vive_trackers_3_0":
                 return makeHTCVive30(vrSystem, s.value.configKey);
-            case "htc_vive_ultimate":
+            case "htc_vive_ultimate_trackers":
                 return makeHTCViveUltimate(vrSystem, s.value.configKey);
         }
     });

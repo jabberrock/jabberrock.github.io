@@ -2,7 +2,7 @@ import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
-const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate";
+const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
 
 export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSystem {
     if (!vrSystem.prefersPCVR) {
