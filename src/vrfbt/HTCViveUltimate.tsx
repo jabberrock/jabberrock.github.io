@@ -45,7 +45,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
                 <img src="htc_vive_ultimate_trackers/htc_vive_ultimate_cameras.jpg" />
                 <p>
                     HTC VIVE Ultimate Trackers are an inside-out system. Each tracker has 2 cameras which use a SLAM
-                    algorithm (Simultaneous Localization and Motion) to keep track where it is in your playspace.
+                    algorithm (Simultaneous Localization and Mapping) to keep track where it is in your playspace.
                 </p>
                 <p>
                     With 3 trackers, only the position and rotation of the hip and ankles are known. The position of
