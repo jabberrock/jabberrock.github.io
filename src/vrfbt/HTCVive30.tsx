@@ -472,7 +472,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 } else if (fbtConfig === "3_trackers_1_continuous") {
                     const vrHeadset = "meta_quest_3";
                     return {
-                        score: 4,
+                        score: 5,
                         content: (
                             <>
                                 <SimpleVideoPlayer
