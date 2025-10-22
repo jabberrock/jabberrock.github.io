@@ -143,7 +143,12 @@ type SideBySideVideoPlayerProps = {
     height: number;
 };
 
-export const SideBySideVideoPlayer: React.FC<SideBySideVideoPlayerProps> = ({ video_url, thumbnail_url: thumbnail_url, width, height }) => {
+export const SideBySideVideoPlayer: React.FC<SideBySideVideoPlayerProps> = ({
+    video_url,
+    thumbnail_url: thumbnail_url,
+    width,
+    height,
+}) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);

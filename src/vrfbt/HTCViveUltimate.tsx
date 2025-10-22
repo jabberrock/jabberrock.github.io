@@ -37,9 +37,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
                     </div>
                 );
             } else {
-                return (
-                    <p className="recommended">HTC VIVE Ultimate Trackers are compatible with your headset.</p>
-                );
+                return <p className="recommended">HTC VIVE Ultimate Trackers are compatible with your headset.</p>;
             }
         })(),
         howItWorks: (

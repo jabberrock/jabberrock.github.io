@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 // Muted colors (red -> green)
-const RATING_COLORS = ['#C85A54', '#D98C4C', '#D7B85B', '#A7BF5F', '#6BA96B'];
+const RATING_COLORS = ["#C85A54", "#D98C4C", "#D7B85B", "#A7BF5F", "#6BA96B"];
 
 export interface ReviewScoreProps {
     score: number;
-    size?: 'sm' | 'md' | 'lg';
+    size?: "sm" | "md" | "lg";
     className?: string;
 }
 
@@ -15,12 +15,12 @@ export interface ReviewScoreProps {
  * depending on the score (so 3.5 means three full cells and the 4th cell 50% filled).
  * The color for all cells is determined by the overall score.
  */
-export const ReviewScore: React.FC<ReviewScoreProps> = ({ score, size = 'md', className = '' }) => {
+export const ReviewScore: React.FC<ReviewScoreProps> = ({ score, size = "md", className = "" }) => {
     const clamped = Math.max(0, Math.min(5, Number(score) || 0));
     const sizes: Record<string, string> = {
-        sm: '10px',
-        md: '20px',
-        lg: '30px',
+        sm: "10px",
+        md: "20px",
+        lg: "30px",
     };
     const height = sizes[size] || sizes.md;
 
@@ -45,7 +45,7 @@ export const ReviewScore: React.FC<ReviewScoreProps> = ({ score, size = 'md', cl
                 <div
                     key={idx}
                     className="position-relative flex-fill border border-secondary overflow-hidden"
-                    style={{ height, minWidth: '36px', backgroundColor: '#f8f9fa' }}
+                    style={{ height, minWidth: "36px", backgroundColor: "#f8f9fa" }}
                     aria-hidden="false"
                     title={`${(filled * 100).toFixed(0)}% of cell ${idx + 1}`}
                 >
@@ -55,7 +55,7 @@ export const ReviewScore: React.FC<ReviewScoreProps> = ({ score, size = 'md', cl
                         style={{
                             width: `${filled * 100}%`,
                             backgroundColor: fillColor,
-                            transition: 'width 240ms ease',
+                            transition: "width 240ms ease",
                         }}
                     />
                 </div>

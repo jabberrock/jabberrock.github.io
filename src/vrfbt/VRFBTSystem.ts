@@ -5,7 +5,7 @@ import { vrHeadsetKeys, vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 type ReviewSection = {
     score: number;
     content: React.ReactNode;
-}
+};
 
 export type VRFBTSystem = {
     key: string;
@@ -25,11 +25,11 @@ export type VRFBTSystem = {
         play: React.ReactNode;
     };
     review?: {
-        cost: ReviewSection
-        tracking: ReviewSection
-        calibration: ReviewSection
-        overall: ReviewSection
-    }
+        cost: ReviewSection;
+        tracking: ReviewSection;
+        calibration: ReviewSection;
+        overall: ReviewSection;
+    };
 };
 
 export type Item = {

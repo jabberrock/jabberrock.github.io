@@ -41,7 +41,7 @@ function makeEmptyVRFBTSystem(index: number): VRFBTSystem {
             required: [],
             optional: [],
         },
-        examples: {}
+        examples: {},
     };
 }
 
@@ -68,7 +68,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     case "htc_vive_ultimate_trackers":
                         system = makeHTCViveUltimate(vrSystem, configKey);
                         break;
-                };
+                }
             }
         }
         systems.push(system);
@@ -140,19 +140,27 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                                     <tbody>
                                         <tr>
                                             <td>Cost</td>
-                                            <td><ReviewScore score={system.review.cost.score} /></td>
+                                            <td>
+                                                <ReviewScore score={system.review.cost.score} />
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Tracking Accuracy</td>
-                                            <td><ReviewScore score={system.review.tracking.score} /></td>
+                                            <td>
+                                                <ReviewScore score={system.review.tracking.score} />
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Ease of Calibration</td>
-                                            <td><ReviewScore score={system.review.calibration.score} /></td>
+                                            <td>
+                                                <ReviewScore score={system.review.calibration.score} />
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Overall</td>
-                                            <td><ReviewScore score={system.review.overall.score} /></td>
+                                            <td>
+                                                <ReviewScore score={system.review.overall.score} />
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -176,7 +184,9 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             {system.review && (
                                 <>
-                                    <p><ReviewScore score={system.review.cost.score} /></p>
+                                    <p>
+                                        <ReviewScore score={system.review.cost.score} />
+                                    </p>
                                     {system.review.cost.content}
                                 </>
                             )}
@@ -245,7 +255,9 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             {system.review && (
                                 <>
-                                    <p><ReviewScore score={system.review.tracking.score} /></p>
+                                    <p>
+                                        <ReviewScore score={system.review.tracking.score} />
+                                    </p>
                                     {system.review.tracking.content}
                                 </>
                             )}
@@ -260,7 +272,9 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             {system.review && (
                                 <>
-                                    <p><ReviewScore score={system.review.calibration.score} /></p>
+                                    <p>
+                                        <ReviewScore score={system.review.calibration.score} />
+                                    </p>
                                     {system.review.calibration.content}
                                 </>
                             )}
@@ -275,7 +289,9 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             {system.review && (
                                 <>
-                                    <p><ReviewScore score={system.review.overall.score} /></p>
+                                    <p>
+                                        <ReviewScore score={system.review.overall.score} />
+                                    </p>
                                     {system.review.overall.content}
                                 </>
                             )}
@@ -304,8 +320,8 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                 <tr>
                     <td colSpan={systems.length}>
                         <p>
-                            These recordings show how accurately and smoothly each system translates my movements
-                            into VR. They represent the <strong>typical</strong> tracking I was able to achieve with good
+                            These recordings show how accurately and smoothly each system translates my movements into
+                            VR. They represent the <strong>typical</strong> tracking I was able to achieve with good
                             calibration.
                         </p>
                     </td>

@@ -238,7 +238,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             </>
         ),
         vrSession: {
-            setup: (function() {
+            setup: (function () {
                 let vrHeadset: VRHeadsetKey;
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
                     vrHeadset = "htc_vive";
@@ -286,20 +286,36 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 content: (
                     <>
                         <p>SlimeVR trackers are one of the lowest cost systems today.</p>
-                        <p>However, official SlimeVR trackers are sold through a pre-order system, and shipments are sent out every 3-4 months. The next major shipment (S15) is estimated to be mid-Nov 2025.</p>
+                        <p>
+                            However, official SlimeVR trackers are sold through a pre-order system, and shipments are
+                            sent out every 3-4 months. The next major shipment (S15) is estimated to be mid-Nov 2025.
+                        </p>
                     </>
-                )
+                ),
             },
             tracking: {
                 score: 4,
                 content: (
                     <>
-                        <p>SlimeVR provides high quality tracking when using modern IMUs (e.g. ICM45686 used in official SlimeVR trackers).</p>
-                        <p>They track you in any position, whether you’re standing around, dancing, doing yoga, or lying under a blanket.</p>
-                        <p>However, SlimeVR trackers will drift over time. With the latest IMUs, you can easily play for 45 mins without noticing drift. It is very easy to fix drift: just face forward and double tap your chest tracker.</p>
-                        <p>With optional features like Stay Aligned, I can sometimes go 4-5 hours without noticing any drift.</p>
+                        <p>
+                            SlimeVR provides high quality tracking when using modern IMUs (e.g. ICM45686 used in
+                            official SlimeVR trackers).
+                        </p>
+                        <p>
+                            They track you in any position, whether you’re standing around, dancing, doing yoga, or
+                            lying under a blanket.
+                        </p>
+                        <p>
+                            However, SlimeVR trackers will drift over time. With the latest IMUs, you can easily play
+                            for 45 mins without noticing drift. It is very easy to fix drift: just face forward and
+                            double tap your chest tracker.
+                        </p>
+                        <p>
+                            With optional features like Stay Aligned, I can sometimes go 4-5 hours without noticing any
+                            drift.
+                        </p>
                     </>
-                )
+                ),
             },
             calibration: {
                 score: 2,
@@ -312,21 +328,38 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                             height={420}
                         />
                         <p>At the start of each VR session, you will need to calibrate your trackers to your body.</p>
-                        <p>For most people, the calibration process just works. However, for others, it may require some trial and error. I am bow-legged, so I have to be careful how I orient my knees during calibration. SlimeVR provides VRChat calibration sessions to help you figure out the calibration method. They’re also continuing to improve the process.</p>
-                        <p>I think the calibration process learning curve is the biggest drawback of SlimeVR. However, once you figure out calibration, it works every time.</p>
+                        <p>
+                            For most people, the calibration process just works. However, for others, it may require
+                            some trial and error. I am bow-legged, so I have to be careful how I orient my knees during
+                            calibration. SlimeVR provides VRChat calibration sessions to help you figure out the
+                            calibration method. They’re also continuing to improve the process.
+                        </p>
+                        <p>
+                            I think the calibration process learning curve is the biggest drawback of SlimeVR. However,
+                            once you figure out calibration, it works every time.
+                        </p>
                     </>
-                )
+                ),
             },
             overall: {
                 score: 4,
                 content: (
                     <>
-                        <p>I really enjoy using SlimeVR trackers because I can freely do anything in VR and be confident that my avatar matches me.</p>
-                        <p>Once or twice a play session, I will need to fix drift, but it’s a simple double tap. It is not a difficult or painful process at all.</p>
-                        <p>However, you will need to have patience at the start, as you figure out how calibration works best for your body.</p>
+                        <p>
+                            I really enjoy using SlimeVR trackers because I can freely do anything in VR and be
+                            confident that my avatar matches me.
+                        </p>
+                        <p>
+                            Once or twice a play session, I will need to fix drift, but it’s a simple double tap. It is
+                            not a difficult or painful process at all.
+                        </p>
+                        <p>
+                            However, you will need to have patience at the start, as you figure out how calibration
+                            works best for your body.
+                        </p>
                     </>
-                )
-            }
-        }
+                ),
+            },
+        },
     };
 }
