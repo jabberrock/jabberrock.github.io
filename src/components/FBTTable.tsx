@@ -184,9 +184,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             {system.review && (
                                 <>
-                                    <p>
-                                        <ReviewScore score={system.review.cost.score} />
-                                    </p>
+                                    <ReviewScore score={system.review.cost.score} />
                                     {system.review.cost.content}
                                 </>
                             )}
@@ -258,9 +256,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             {system.review && (
                                 <>
-                                    <p>
-                                        <ReviewScore score={system.review.tracking.score} />
-                                    </p>
+                                    <ReviewScore score={system.review.tracking.score} />
                                     {system.review.tracking.content}
                                 </>
                             )}
@@ -275,9 +271,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             {system.review && (
                                 <>
-                                    <p>
-                                        <ReviewScore score={system.review.calibration.score} />
-                                    </p>
+                                    <ReviewScore score={system.review.calibration.score} />
                                     {system.review.calibration.content}
                                 </>
                             )}
@@ -292,9 +286,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>
                             {system.review && (
                                 <>
-                                    <p>
-                                        <ReviewScore score={system.review.overall.score} />
-                                    </p>
+                                    <ReviewScore score={system.review.overall.score} />
                                     {system.review.overall.content}
                                 </>
                             )}
