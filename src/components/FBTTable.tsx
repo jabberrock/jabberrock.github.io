@@ -202,6 +202,9 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                                     <tbody>
                                         {itemList.required.length > 0 && (
                                             <>
+                                                <tr>
+                                                    <td>Required</td>
+                                                </tr>
                                                 {itemList.required.map((item, i) => (
                                                     <tr key={i}>
                                                         <td>
