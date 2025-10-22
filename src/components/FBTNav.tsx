@@ -7,22 +7,31 @@ export const FBTNav: React.FC = () => {
             <nav>
                 <ul>
                     <li>
-                        <a href="#section-recommendation">Recommendation</a>
+                        <a href="#section-review">Summary</a>
                     </li>
                     <li>
                         <a href="#section-how_it_works">How it works</a>
                     </li>
                     <li>
-                        <a href="#section-tracking">Tracking</a>
+                        <a href="#section-review-cost">Cost</a>
                     </li>
                     <li>
-                        <a href="#section-components">Components</a>
+                        <a href="#section-review-tracking">Tracking Accuracy</a>
+                    </li>
+                    <li>
+                        <a href="#section-review-calibration">Ease of Calibration</a>
+                    </li>
+                    <li>
+                        <a href="#section-review-overall">Overall</a>
+                    </li>
+                    <li>
+                        <a href="#section-tracking">Tracking</a>
                     </li>
                     <li>
                         <a href="#section-availability">Availability</a>
                     </li>
                     <li>
-                        <a href="#section-examples">Tracking Examples</a>
+                        <a href="#section-examples">Demonstrations</a>
                         <ul>
                             <li>
                                 <a href="#section-examples-standing">Standing</a>

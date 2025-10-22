@@ -2,6 +2,11 @@ import type React from "react";
 import type { FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetKeys, vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 
+type ReviewSection = {
+    score: number;
+    content: React.ReactNode;
+}
+
 export type VRFBTSystem = {
     key: string;
     name: string;
@@ -19,6 +24,12 @@ export type VRFBTSystem = {
         setup: React.ReactNode;
         play: React.ReactNode;
     };
+    review?: {
+        cost: ReviewSection
+        tracking: ReviewSection
+        calibration: ReviewSection
+        overall: ReviewSection
+    }
 };
 
 export type Item = {
@@ -56,7 +67,7 @@ const lighthouseFBTRecommendations: FBTRecommendation[] = [
 
 const nonLighthouseFBTRecommendations: FBTRecommendation[] = [
     { system: "slimevr_trackers", config: "enhanced_core_set_6_2" },
-    { system: "htc_vive_trackers_3_0", config: "3_trackers" }, // Change back to 3_trackers_1_continuous
+    { system: "htc_vive_trackers_3_0", config: "3_trackers_1_continuous" },
     { system: "htc_vive_ultimate_trackers", config: "3_trackers" },
 ];
 

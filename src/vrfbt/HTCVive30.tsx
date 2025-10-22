@@ -374,5 +374,130 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </>
                 ),
         },
+        review: {
+            cost: (function() {
+                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                    return {
+                        score: 4,
+                        content: (
+                            <p>VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the trackers to your body. Luckily, you don't need to buy extra Lighthouse base stations.</p>
+                        )
+                    };
+                } else if (fbtConfig === "3_trackers_1_continuous") {
+                    return {
+                        score: 1,
+                        content: (
+                            <p>VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the trackers to your body, and Lighthouse base stations.</p>
+                        )
+                    };
+                } else {
+                    return {
+                        score: 2,
+                        content: (
+                            <p>VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the trackers to your body, and Lighthouse base stations.</p>
+                        )
+                    };
+                }
+            })(),
+            tracking: {
+                score: 3,
+                content: (
+                    <>
+                        <p>VIVE Tracker 3.0 has perfect tracking, as long as they’re visible to the base stations.</p>
+                        <p>If the trackers lose sight of the base stations, parts of your body will freeze in place, or even fly off into the distance. This can easily happen if you move your arm in front of your chest tracker, or if you just bend down a bit. It takes a few seconds for the trackers to recover.</p>
+                        <p>If you have reflective surfaces (e.g. uncovered windows or mirrors), standing lamps, or a 2.4Ghz router that is placed too closed to the tracker dongles, your body will often randomly fly off into the distance.</p>
+                        <p>This annoys me a lot because it completely breaks the immersion for me, and anyone I’m chatting with.</p>
+                    </>
+                )
+            },
+            calibration: (function() {
+                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                    const vrHeadset = "htc_vive";
+                    return {
+                        score: 5,
+                        content: (
+                            <>
+                                <SimpleVideoPlayer
+                                    src={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
+                                    width={480}
+                                    height={420}
+                                />
+                                <p>Just put your headset and tracker on, and start playing!</p>
+                            </>
+                        )
+                    };
+                } else if (fbtConfig === "3_trackers_1_continuous") {
+                    const vrHeadset = "meta_quest_3";
+                    return {
+                        score: 4,
+                        content: (
+                            <>
+                                <SimpleVideoPlayer
+                                    src={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
+                                    width={480}
+                                    height={420}
+                                />
+                                <p>Just put your headset and tracker on, enable continuous calibration, and start playing!</p>
+                                <p>During play, your headset may randomly reset its playspace. Your avatar will fly off to a random position. But continuous calibration will re-align the two spaces after a few seconds.</p>
+                            </>
+                        )
+                    };
+                } else {
+                    const vrHeadset = "meta_quest_3";
+                    return {
+                        score: 3,
+                        content: (
+                            <>
+                                <SimpleVideoPlayer
+                                    src={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
+                                    width={480}
+                                    height={420}
+                                />
+                                <p>Since your headset is not Lighthouse-based, you will have to do space-calibration to align your headset’s playspace to the trackers’ playspace.</p>
+                                <p>During play, your headset may randomly reset its playspace. Your avatar will fly off to a random position. You will need to re-do space-calibration.</p>
+                            </>
+                        )
+                    };
+                }
+            })(),
+            overall: (function() {
+                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                    return {
+                        score: 4,
+                        content: (
+                            <>
+                                <p>I enjoy using VIVE Tracker 3.0s because they are so easy to set up and use. They’re great when you just want to jump into VR for low energy activities like chatting with friends.</p>
+                                <p>However, I just cannot get used to the occlusion problems. I hate the freezing and flying off so much that I have to actively prevent it from happening. I move my arms in specific ways to prevent covering the hip tracker, and also try to keep facing at least one base station. This breaks the immersion for me.</p>
+                            </>
+                        )
+                    };
+                } else if (fbtConfig === "3_trackers_1_continuous") {
+                    return {
+                        score: 3,
+                        content: (
+                            <>
+                                <p>I enjoy using VIVE Tracker 3.0s because they are so easy to set up and use. They’re great when you just want to jump into VR for low energy activities like chatting with friends.</p>
+                                <p>However, I just cannot get used to the occlusion problems. I hate the freezing and flying off so much that I have to actively prevent it from happening. I move my arms in specific ways to prevent covering the hip tracker, and also try to keep facing at least one base station. This breaks the immersion for me.</p>
+                                <p>When my headset randomly resets its playspace, my avatar flies off into the distance. That’s another huge immersion breaker for me.</p>
+                            </>
+                        )
+                    }
+                } else {
+                    return {
+                        score: 2,
+                        content: (
+                            <>
+                                <p>I enjoy using VIVE Tracker 3.0s because they are so easy to set up and use. They’re great when you just want to jump into VR for low energy activities like chatting with friends.</p>
+                                <p>However, I just cannot get used to the occlusion problems. I hate the freezing and flying off so much that I have to actively prevent it from happening. I move my arms in specific ways to prevent covering the hip tracker, and also try to keep facing at least one base station. This breaks the immersion for me.</p>
+                                <p>When my headset randomly resets its playspace, my avatar flies off into the distance. I have to pause everything and do space-calibration. That’s another huge immersion breaker for me.</p>
+                            </>
+                        )
+                    }
+                }
+            })()
+        }
     };
 }

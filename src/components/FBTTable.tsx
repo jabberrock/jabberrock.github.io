@@ -6,6 +6,7 @@ import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import type { VRSystem } from "../vr/VR";
 import { vrHeadsetFBTRecommendations, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
 import { ColumnTableContext } from "./ColumnTable";
+import { ReviewScore } from "./ReviewScore";
 
 type FBTTableProps = {
     vrSystem: VRSystem;
@@ -120,22 +121,43 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
             <tbody>
                 <tr>
                     {systems.map((system) => (
-                        <td key={system.key}>
-                            <img src={system.imageURL} />
-                        </td>
+                        <td key={system.key}>{system.introExample}</td>
                     ))}
                 </tr>
-                <tr id="section-recommendation">
+                <tr>
                     {systems.map((system) => (
                         <td key={system.key}>{system.recommendation}</td>
                     ))}
                 </tr>
-                <tr className="header">
-                    <td colSpan={systems.length}>Example</td>
+                <tr id="section-review" className="header">
+                    <td colSpan={systems.length}>Summary</td>
                 </tr>
                 <tr>
                     {systems.map((system) => (
-                        <td key={system.key}>{system.introExample}</td>
+                        <td key={system.key}>
+                            {system.review && (
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cost</td>
+                                            <td><ReviewScore score={system.review.cost.score} /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tracking Accuracy</td>
+                                            <td><ReviewScore score={system.review.tracking.score} /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ease of Calibration</td>
+                                            <td><ReviewScore score={system.review.calibration.score} /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Overall</td>
+                                            <td><ReviewScore score={system.review.overall.score} /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            )}
+                        </td>
                     ))}
                 </tr>
                 <tr id="section-how_it_works" className="header">
@@ -146,16 +168,20 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         <td key={system.key}>{system.howItWorks}</td>
                     ))}
                 </tr>
-                <tr id="section-tracking" className="header">
-                    <td colSpan={systems.length}>Tracking</td>
+                <tr id="section-review-cost" className="header">
+                    <td colSpan={systems.length}>Cost</td>
                 </tr>
                 <tr>
                     {systems.map((system) => (
-                        <td key={system.key}>{system.tracking}</td>
+                        <td key={system.key}>
+                            {system.review && (
+                                <>
+                                    <p><ReviewScore score={system.review.cost.score} /></p>
+                                    {system.review.cost.content}
+                                </>
+                            )}
+                        </td>
                     ))}
-                </tr>
-                <tr id="section-components" className="header">
-                    <td colSpan={systems.length}>Components</td>
                 </tr>
                 <tr>
                     {systems.map((system) => {
@@ -166,9 +192,6 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                                     <tbody>
                                         {itemList.required.length > 0 && (
                                             <>
-                                                <tr>
-                                                    <td colSpan={3}>Required</td>
-                                                </tr>
                                                 {itemList.required.map((item, i) => (
                                                     <tr key={i}>
                                                         <td>
@@ -214,67 +237,58 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                         );
                     })}
                 </tr>
+                <tr id="section-review-tracking" className="header">
+                    <td colSpan={systems.length}>Tracking Accuracy</td>
+                </tr>
                 <tr>
-                    {systems.map((system) => {
-                        const itemList = system.itemList;
-                        return (
-                            <td key={system.key}>
-                                <table className="component-table">
-                                    <tbody>
-                                        {itemList.optional.length > 0 && (
-                                            <>
-                                                <tr>
-                                                    <td colSpan={3}>Recommended</td>
-                                                </tr>
-                                                {itemList.optional.map((item, i) => (
-                                                    <tr key={i}>
-                                                        <td>
-                                                            <a href={item.link.toString()} target="_blank">
-                                                                {item.name}
-                                                            </a>{" "}
-                                                            <span className="comment">{item.comment}</span>
-                                                        </td>
-                                                        <td>{item.count}x</td>
-                                                        <td className="component-price">
-                                                            {toDollars(item.each_price_cents)}
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                                {Array(
-                                                    systems.reduce(
-                                                        (p, v) => Math.max(p, v.itemList.optional.length),
-                                                        0,
-                                                    ) - itemList.optional.length,
-                                                )
-                                                    .fill(null)
-                                                    .map((_, i) => (
-                                                        <tr key={i}>
-                                                            <td colSpan={3}>&nbsp;</td>
-                                                        </tr>
-                                                    ))}
-                                                <tr>
-                                                    <td className="total" colSpan={3}>
-                                                        {toDollars(
-                                                            sum(
-                                                                itemList.required.map(
-                                                                    (i) => i.count * i.each_price_cents,
-                                                                ),
-                                                            ) +
-                                                                sum(
-                                                                    itemList.optional.map(
-                                                                        (i) => i.count * i.each_price_cents,
-                                                                    ),
-                                                                ),
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                            </>
-                                        )}
-                                    </tbody>
-                                </table>
-                            </td>
-                        );
-                    })}
+                    {systems.map((system) => (
+                        <td key={system.key}>
+                            {system.review && (
+                                <>
+                                    <p><ReviewScore score={system.review.tracking.score} /></p>
+                                    {system.review.tracking.content}
+                                </>
+                            )}
+                        </td>
+                    ))}
+                </tr>
+                <tr id="section-review-calibration" className="header">
+                    <td colSpan={systems.length}>Ease of Calibration</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>
+                            {system.review && (
+                                <>
+                                    <p><ReviewScore score={system.review.calibration.score} /></p>
+                                    {system.review.calibration.content}
+                                </>
+                            )}
+                        </td>
+                    ))}
+                </tr>
+                <tr id="section-review-overall" className="header">
+                    <td colSpan={systems.length}>Overall</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>
+                            {system.review && (
+                                <>
+                                    <p><ReviewScore score={system.review.overall.score} /></p>
+                                    {system.review.overall.content}
+                                </>
+                            )}
+                        </td>
+                    ))}
+                </tr>
+                <tr id="section-tracking" className="header">
+                    <td colSpan={systems.length}>Tracking</td>
+                </tr>
+                <tr>
+                    {systems.map((system) => (
+                        <td key={system.key}>{system.tracking}</td>
+                    ))}
                 </tr>
                 <tr id="section-availability" className="header">
                     <td colSpan={systems.length}>Availability</td>
@@ -285,14 +299,14 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     ))}
                 </tr>
                 <tr id="section-examples" className="header">
-                    <td colSpan={systems.length}>Tracking Examples</td>
+                    <td colSpan={systems.length}>Demonstrations</td>
                 </tr>
                 <tr>
                     <td colSpan={systems.length}>
                         <p>
                             These recordings show how accurately and smoothly each system translates my movements
                             into VR. They represent the <strong>typical</strong> tracking I was able to achieve with good
-                            calibration. I tried my best to avoid the limitations of each system (discussed below).
+                            calibration.
                         </p>
                     </td>
                 </tr>
