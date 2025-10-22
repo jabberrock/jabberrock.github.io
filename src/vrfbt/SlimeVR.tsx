@@ -30,8 +30,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             <>
                 <img src="slimevr_trackers/slimevr_skeleton.jpg" />
                 <p>
-                    SlimeVR is an IMU-based (internal measurement unit) system. It uses a gyroscope to measure the
-                    rotation of each bone, and then reconstruct the skeleton.
+                    SlimeVR is an IMU-based (Inertial Measurement Unit) system. It uses a gyroscope to measure the
+                    rotation of each bone, and then reconstruct the skeleton, starting from the headset.
                 </p>
                 <p>
                     The Core Set contains 6 trackers for your chest, hip, thighs and ankles. Feet are estimated based on
