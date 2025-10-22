@@ -136,7 +136,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     {systems.map((system) => (
                         <td key={system.key}>
                             {system.review && (
-                                <table>
+                                <table className="review-table">
                                     <tbody>
                                         <tr>
                                             <td>Cost</td>

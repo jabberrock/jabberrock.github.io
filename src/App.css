@@ -104,6 +104,10 @@ tr {
     font-size: 125%;
 }
 
+.review-table {
+    width: 100%;
+}
+
 .component-table {
     width: 100%;
 }
