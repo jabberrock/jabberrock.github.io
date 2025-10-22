@@ -9,7 +9,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
         return {
             key: HTCViveUltimateSystemKey,
             name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
-            imageURL: "images/htc_vive_ultimate.jpg",
+            imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
             recommendation: <p className="warning">HTC VIVE Ultimate Trackers require a PC</p>,
             howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },
@@ -23,7 +23,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
     return {
         key: `${HTCViveUltimateSystemKey}-${config}`,
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
-        imageURL: "images/htc_vive_ultimate.jpg",
+        imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
         recommendation: (function () {
             if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && config === "3_trackers") {
                 return (
@@ -44,7 +44,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
         })(),
         howItWorks: (
             <>
-                <img src="images/htc_vive_ultimate_cameras.jpg" />
+                <img src="htc_vive_ultimate_trackers/htc_vive_ultimate_cameras.jpg" />
                 <p>
                     HTC VIVE Ultimate Trackers are an inside-out system. Each tracker has 2 cameras which use a SLAM
                     algorithm (Simultaneous Localization and Motion) to keep track where it is in your playspace.

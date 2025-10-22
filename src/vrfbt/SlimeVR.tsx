@@ -12,7 +12,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
     return {
         key: `${SlimeVRSystemKey}-${fbtConfig}`,
         name: fbtSystemsByKey[SlimeVRSystemKey].name,
-        imageURL: "images/slimevr.jpg",
+        imageURL: "slimevr_trackers/slimevr.jpg",
         recommendation: (function () {
             return (
                 <>
@@ -28,7 +28,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
         })(),
         howItWorks: (
             <>
-                <img src="images/slimevr_skeleton.jpg" />
+                <img src="slimevr_trackers/slimevr_skeleton.jpg" />
                 <p>
                     SlimeVR is an IMU-based (internal measurement unit) system. It uses a gyroscope to measure the
                     rotation of each bone, and then reconstruct the skeleton.
@@ -159,7 +159,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 <div>Up to 12 hours</div>
                 <div>12 g / 0.4 oz per tracker</div>
                 <div>14 cm³ (62 x 32 x 7 mm)</div>
-                <img src="images/slimevr_size.jpg" />
+                <img src="slimevr_trackers/slimevr_size.jpg" />
             </>
         ),
         introExample: (function () {
@@ -172,8 +172,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
 
             return (
                 <SideBySideVideoPlayer
-                    video_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-dancing.mp4`}
-                    thumbnail_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-dancing.jpg`}
+                    video_url={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-dancing.mp4`}
+                    thumbnail_url={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-dancing.jpg`}
                     width={480}
                     height={320}
                 />
@@ -193,8 +193,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                     <>
                         <VideoPlayer
                             key={v}
-                            video_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}.mp4`}
-                            thumbnail_url={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-${v}.jpg`}
+                            video_url={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-${v}.mp4`}
+                            thumbnail_url={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-${v}.jpg`}
                             width={480}
                             height={640}
                         />
@@ -249,8 +249,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 return (
                     <>
                         <SimpleVideoPlayer
-                            src={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-vr_session_setup.mp4`}
-                            thumbnail={`examples/${vrHeadset}/${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}-${SlimeVRSystemKey}-${fbtConfig}-vr_session_setup.jpg`}
+                            src={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
+                            thumbnail={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
                             width={480}
                             height={420}
                         />

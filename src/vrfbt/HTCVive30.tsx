@@ -14,7 +14,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
         return {
             key: `${HTCVive30SystemKey}-${fbtConfig}`,
             name: fbtSystemsByKey[HTCVive30SystemKey].name,
-            imageURL: "images/htc_vive_3_0.jpg",
+            imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
             recommendation: <p className="warning">HTC VIVE Trackers 3.0 require a PC</p>,
             howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },
@@ -29,7 +29,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
         return {
             key: `${HTCVive30SystemKey}-${fbtConfig}`,
             name: fbtSystemsByKey[HTCVive30SystemKey].name,
-            imageURL: "images/htc_vive_3_0.jpg",
+            imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
             recommendation: (
                 <p className="warning">Your headset is Lighthouse-based and does not require continuous calibration with HTC VIVE Trackers 3.0.</p>
             ),
@@ -45,7 +45,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
     return {
         key: `${HTCVive30SystemKey}-${fbtConfig}`,
         name: fbtSystemsByKey[HTCVive30SystemKey].name,
-        imageURL: "images/htc_vive_3_0.jpg",
+        imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
         recommendation: (function () {
             if (fbtConfig === "3_trackers") {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
@@ -78,7 +78,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
         })(),
         howItWorks: (
             <>
-                <img src="images/lighthouse_based_systems.jpg" />
+                <img src="htc_vive_trackers_3_0/lighthouse_based_systems.jpg" />
                 <p>
                     HTC VIVE 3.0 is a Lighthouse-based system. The base stations send out pulses of infrared light, which allows a tracker to figure out
                     its position and the rotation.
@@ -184,7 +184,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 <div>Up to 7.5 hours</div>
                 <div>75 g / 2.6 oz per tracker</div>
                 <div>247 cm³ (70.9 × 79.0 × 44.1 mm)</div>
-                <img src="images/htc_vive_3_0_size.jpg" />
+                <img src="htc_vive_trackers_3_0/htc_vive_3_0_size.jpg" />
             </>
         ),
         introExample: (function () {
@@ -197,8 +197,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             
             return (
                 <SideBySideVideoPlayer
-                    video_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-dancing.mp4`}
-                    thumbnail_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-dancing.jpg`}
+                    video_url={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-dancing.mp4`}
+                    thumbnail_url={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-dancing.jpg`}
                     width={480}
                     height={320}
                 />
@@ -218,8 +218,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     <>
                         <VideoPlayer
                             key={v}
-                            video_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}.mp4`}
-                            thumbnail_url={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-${v}.jpg`}
+                            video_url={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-${v}.mp4`}
+                            thumbnail_url={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-${v}.jpg`}
                             width={480}
                             height={640}
                         />
@@ -268,7 +268,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     <Carousel>
                         {Array.from({ length: 5 }, (_, i) => (
                             <Carousel.Item key={i}>
-                                <SimpleImage src={`limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`} width={480} height={320} />
+                                <SimpleImage src={`${HTCVive30SystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`} width={480} height={320} />
                             </Carousel.Item>
                         ))}
                     </Carousel>
@@ -283,14 +283,14 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </p>
                 </div>
                 <div className="drawback">
-                    <SimpleImage src="limitations/htc_vive_trackers_3_0-wifi_interference.jpg" width={480} height={320} />
+                    <SimpleImage src={`${HTCVive30SystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`} width={480} height={320} />
                     <div className="sub-header">Wi-Fi Interference</div>
                     <p>
                         Your 2.4Ghz router can overpower the dongles if it is placed too close. To solve this, move your dongles away from the router.
                     </p>
                 </div>
                 <div className="drawback">
-                    <SimpleImage src="htc_vive_3_0/estimated_legs.webp" width={480} height={640} />
+                    <SimpleImage src={`${HTCVive30SystemKey}/estimated_legs.jpg`} width={480} height={640} />
                     <div className="sub-header">Estimated Leg Position</div>
                     <p>Knees are estimated using inverse kinematics (IK), so the legs may not exactly match.</p>
                     <p>
@@ -331,8 +331,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     return (
                         <>
                             <SimpleVideoPlayer
-                                src={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-vr_session_setup.mp4`}
-                                thumbnail={`examples/${vrHeadset}/${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}-${HTCVive30SystemKey}-${fbtConfig}-vr_session_setup.jpg`}
+                                src={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
+                                thumbnail={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
                                 width={480}
                                 height={420}
                             />
