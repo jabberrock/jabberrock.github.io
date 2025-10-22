@@ -405,10 +405,16 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     return {
                         score: 1,
                         content: (
-                            <p>
-                                VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the
-                                trackers to your body, and Lighthouse base stations.
-                            </p>
+                            <>
+                                <p>
+                                    VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the
+                                    trackers to your body, and Lighthouse base stations.
+                                </p>
+                                <p>
+                                    You'll also need a way to securely mount the continuous calibration tracker to your
+                                    headset, which is commonly done with 3D printed parts.
+                                </p>
+                            </>
                         ),
                     };
                 } else {
