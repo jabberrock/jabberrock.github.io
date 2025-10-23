@@ -128,18 +128,19 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
         <table className="fbt-table">
             <thead>
                 <tr>
-                    {systems.map((system, i) => (
-                        <th key={i}>{system.name}</th>
-                    ))}
-                </tr>
-                <tr>
                     {systems.map((system, i) => {
-                        const priceCents = sum(system.itemList.required.map((i) => i.count * i.each_price_cents));
-                        return (
-                            <td key={i} className="price">
-                                {toDollars(priceCents)}
-                            </td>
-                        );
+                        if (system.name) {
+                            const priceCents = sum(system.itemList.required.map((i) => i.count * i.each_price_cents));
+                            return (
+                                <th key={i}>
+                                    {system.name} ({toDollars(priceCents)})
+                                </th>
+                            );
+                        } else {
+                            return (
+                                <th></th>
+                            )
+                        }
                     })}
                 </tr>
                 <tr>
