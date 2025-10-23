@@ -154,6 +154,11 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
             <tbody>
                 <tr>
                     {systems.map((system) => (
+                        <td key={system.key}>{system.recommendation}</td>
+                    ))}
+                </tr>
+                <tr>
+                    {systems.map((system) => (
                         <td key={system.key}>{system.introExample}</td>
                     ))}
                 </tr>
