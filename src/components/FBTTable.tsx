@@ -139,7 +139,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                                 <table className="review-table">
                                     <tbody>
                                         <tr>
-                                            <td>Cost</td>
+                                            <td>Affordability</td>
                                             <td>
                                                 <ReviewScore score={system.review.cost.score} />
                                             </td>
@@ -177,7 +177,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     ))}
                 </tr>
                 <tr id="section-review-cost" className="header">
-                    <td colSpan={systems.length}>Cost</td>
+                    <td colSpan={systems.length}>Affordability</td>
                 </tr>
                 <tr>
                     {systems.map((system) => (
