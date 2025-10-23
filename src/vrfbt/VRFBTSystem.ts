@@ -7,6 +7,13 @@ type ReviewSection = {
     content: React.ReactNode;
 };
 
+export type VRFBTReview = {
+    cost: ReviewSection;
+    tracking: ReviewSection;
+    calibration: ReviewSection;
+    overall: ReviewSection;
+}
+
 export type VRFBTSystem = {
     key: string;
     name: string;
@@ -24,12 +31,7 @@ export type VRFBTSystem = {
         setup: React.ReactNode;
         play: React.ReactNode;
     };
-    review?: {
-        cost: ReviewSection;
-        tracking: ReviewSection;
-        calibration: ReviewSection;
-        overall: ReviewSection;
-    };
+    review?: VRFBTReview;
 };
 
 export type Item = {

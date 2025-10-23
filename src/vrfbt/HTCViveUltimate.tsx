@@ -29,11 +29,6 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
                 return (
                     <div>
                         <p className="warning">HTC VIVE Ultimate trackers are not recommended for your headset.</p>
-                        <p>
-                            HTC VIVE Ultimate Trackers and your headset have separate playspaces. You will need to
-                            perform space calibration whenever you reset your orientation, or your headset loses
-                            tracking.{" "}
-                        </p>
                     </div>
                 );
             } else {

@@ -7,32 +7,34 @@ export const FBTNav: React.FC = () => {
             <nav>
                 <ul>
                     <li>
-                        <a href="#section-review">Summary</a>
-                    </li>
-                    <li>
                         <a href="#section-how_it_works">How it works</a>
                     </li>
                     <li>
-                        <a href="#section-review-cost">Affordability</a>
-                    </li>
-                    <li>
-                        <a href="#section-review-tracking">Tracking Accuracy</a>
-                    </li>
-                    <li>
-                        <a href="#section-review-calibration">Ease of Calibration</a>
-                    </li>
-                    <li>
-                        <a href="#section-review-overall">Overall</a>
-                    </li>
-                    <li>
-                        <a href="#section-tracking">Tracking</a>
-                    </li>
-                    <li>
-                        <a href="#section-availability">Availability</a>
-                    </li>
-                    <li>
-                        <a href="#section-examples">Demonstrations</a>
+                        <a href="#section-review">Review</a>
                         <ul>
+                            <li>
+                                <a href="#section-review-cost">Affordability</a>
+                            </li>
+                            <li>
+                                <a href="#section-review-tracking">Tracking Accuracy</a>
+                            </li>
+                            <li>
+                                <a href="#section-review-calibration">Ease of Calibration</a>
+                            </li>
+                            <li>
+                                <a href="#section-review-overall">Overall</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#section-examples">Demos</a>
+                        <ul>
+                            <li>
+                                <a href="#section-examples-wearing">Wearing</a>
+                            </li>
+                            <li>
+                                <a href="#section-examples-calibration">Calibration</a>
+                            </li>
                             <li>
                                 <a href="#section-examples-standing">Standing</a>
                             </li>
@@ -57,15 +59,7 @@ export const FBTNav: React.FC = () => {
                         <a href="#section-drawbacks">Limitations</a>
                     </li>
                     <li>
-                        <a href="#section-vrSession">Typical VR Session</a>
-                        <ul>
-                            <li>
-                                <a href="#section-vrSession-setup">Setup</a>
-                            </li>
-                            <li>
-                                <a href="#section-vrSession-play">Play</a>
-                            </li>
-                        </ul>
+                        <a href="#section-availability">Availability</a>
                     </li>
                     <li>
                         <a href="#section-specifications">Specifications</a>

@@ -58,15 +58,6 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                                 HTC VIVE Trackers 3.0 without continuous calibration is not recommended for your
                                 headset.
                             </p>
-                            <p>
-                                HTC VIVE Trackers 3.0 and your headset have separate playspaces. You will need to
-                                perform space calibration whenever you reset your orientation, or your headset loses
-                                tracking.
-                            </p>
-                            <p>
-                                If you choose HTC VIVE Trackers 3.0, we recommend using continuous calibration with an
-                                extra tracker instead.
-                            </p>
                         </div>
                     );
                 } else {
