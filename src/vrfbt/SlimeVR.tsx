@@ -13,6 +13,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
     }
 
     return {
+        key: fbtSystemConfig.key,
         name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
         imageURL: "slimevr_trackers/slimevr.jpg",
         recommendation: (function () {
@@ -212,33 +213,43 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
 
             return nodes;
         })(),
-        drawbacks: (
-            <>
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Drift</div>
-                    <p>
-                        Over time, SlimeVR trackers will drift, because the IMU is not perfect. Your in-game avatar will
-                        gradually get out of sync with your real body.
-                    </p>
-                    <p>
-                        Typical users notice drift after 30-45 minutes. When Stay Aligned is configured, some users who
-                        are just hanging out with friends have reported no drift for up to 5 hours.
-                    </p>
-                    <p>To fix the drift, just face forward, and double tap your chest tracker.</p>
-                </div>
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Calibration</div>
-                    <p>
-                        At the start of each VR session, you will need to calibrate the trackers so that the skeleton
-                        will make your body in the real world. The calibration process can be a little tricky, and
-                        requires some adjustment for each person.
-                    </p>
-                    <p>SlimeVR runs VRChat calibration sessions where you can get help with calibration.</p>
-                </div>
-            </>
-        ),
+        drawbacks: [
+            {
+                key: "drift",
+                title: "Drift",
+                content: (
+                    <>
+                        <img style={{ width: "480px", height: "320px" }} />
+                        <div className="sub-header">Drift</div>
+                        <p>
+                            Over time, SlimeVR trackers will drift, because the IMU is not perfect. Your in-game avatar
+                            will gradually get out of sync with your real body.
+                        </p>
+                        <p>
+                            Typical users notice drift after 30-45 minutes. When Stay Aligned is configured, some users
+                            who are just hanging out with friends have reported no drift for up to 5 hours.
+                        </p>
+                        <p>To fix the drift, just face forward, and double tap your chest tracker.</p>
+                    </>
+                ),
+            },
+            {
+                key: "calibration",
+                title: "Calibration",
+                content: (
+                    <>
+                        <img style={{ width: "480px", height: "320px" }} />
+                        <div className="sub-header">Calibration</div>
+                        <p>
+                            At the start of each VR session, you will need to calibrate the trackers so that the
+                            skeleton will make your body in the real world. The calibration process can be a little
+                            tricky, and requires some adjustment for each person.
+                        </p>
+                        <p>SlimeVR runs VRChat calibration sessions where you can get help with calibration.</p>
+                    </>
+                ),
+            },
+        ],
         vrSession: {
             setup: (function () {
                 let vrHeadset: VRHeadsetKey;

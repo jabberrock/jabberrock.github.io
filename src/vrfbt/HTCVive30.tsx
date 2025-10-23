@@ -5,7 +5,7 @@ import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
-import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
+import { ExampleVideoKeys, type Drawback, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 
 export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -15,6 +15,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
 
     if (!vrSystem.prefersPCVR) {
         return {
+            key: "none",
             name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
             imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
             recommendation: <p className="warning">HTC VIVE Trackers 3.0 require a PC</p>,
@@ -24,6 +25,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             tracking: <p>N/A</p>,
             specs: <p>N/A</p>,
             examples: {},
+            drawbacks: [],
         };
     }
 
@@ -32,6 +34,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous"
     ) {
         return {
+            key: "none",
             name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
             imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
             recommendation: (
@@ -46,10 +49,12 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             tracking: <p>N/A</p>,
             specs: <p>N/A</p>,
             examples: {},
+            drawbacks: [],
         };
     }
 
     return {
+        key: fbtSystemConfig.key,
         name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
         imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
         recommendation: (function () {
@@ -235,11 +240,18 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
 
             return nodes;
         })(),
-        drawbacks: (
-            <>
-                {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" &&
-                    fbtSystemConfig.key !== "htc_vive_trackers_3_0-3_trackers_1_continuous" && (
-                        <div className="drawback">
+        drawbacks: (function () {
+            const drawbacks: Drawback[] = [];
+
+            if (
+                vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" &&
+                fbtSystemConfig.key !== "htc_vive_trackers_3_0-3_trackers_1_continuous"
+            ) {
+                drawbacks.push({
+                    key: "calibration",
+                    title: "Space Calibration",
+                    content: (
+                        <>
                             <img style={{ width: "480px", height: "320px" }} />
                             <div className="sub-header">Space Calibration</div>
                             <p>HTC VIVE Trackers 3.0 and your headset have separate playspaces.</p>
@@ -252,79 +264,62 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                 If you choose HTC VIVE Trackers 3.0, we recommend using continuous calibration with an
                                 extra tracker to avoid manual Space Calibration.
                             </p>
-                        </div>
-                    )}
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Occlusion</div>
-                    <p>
-                        During play, your arms and clothing may hide the tracker from the base stations. This occlusion
-                        causes the tracker to stop moving, or even fly off into the distance.
-                    </p>
-                    <p>
-                        This can be minimized by careful position of the base stations, wearing tight clothing, and
-                        being careful of where you move your arms.
-                    </p>
-                </div>
-                <div className="drawback">
-                    <Carousel>
-                        {Array.from({ length: 5 }, (_, i) => (
-                            <Carousel.Item key={i}>
-                                <SimpleImage
-                                    src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
-                                    width={480}
-                                    height={320}
-                                />
-                            </Carousel.Item>
-                        ))}
-                    </Carousel>
-                    <div className="sub-header">Reflective Surfaces</div>
-                    <p>
-                        The base stations use infrared light, which can bounce off reflective surfaces. This confuses
-                        the tracker and causes it to fly off into the distance.
-                    </p>
-                    <p>
-                        To solve this, close your window blinds, cover your mirrors with a cloth, and cover any other
-                        reflective surfaces.
-                    </p>
-                </div>
-                <div className="drawback">
-                    <SimpleImage
-                        src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
-                        width={480}
-                        height={320}
-                    />
-                    <div className="sub-header">Wi-Fi Interference</div>
-                    <p>
-                        Your 2.4Ghz router can overpower the dongles if it is placed too close. To solve this, move your
-                        dongles away from the router.
-                    </p>
-                </div>
-                <div className="drawback">
-                    <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/estimated_legs.jpg`} width={480} height={640} />
-                    <div className="sub-header">Estimated Leg Position</div>
-                    <p>Knees are estimated using inverse kinematics (IK), so the legs may not exactly match.</p>
-                    <p>
-                        In this example, the knee is much lower than the actual knee. If you move your knees without
-                        moving your feet, your avatar's legs won't move.
-                    </p>
-                </div>
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Jitter</div>
-                    <p>Because IK is not perfect, certain movements can result in a lot of jitter.</p>
-                </div>
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Limited playspace</div>
-                    <p>
-                        The playspace is limited by where the base stations are placed. Base Station 1.0 have a maximum
-                        playspace of 5m x 5m (15ft x 15ft), while Base Station 2.0 ($220 each) have a maximum playspace
-                        of 10m x 10m (30ft x 30ft).
-                    </p>
-                </div>
-            </>
-        ),
+                        </>
+                    ),
+                });
+            }
+
+            drawbacks.push({
+                key: "occlusion",
+                title: "Occlusion",
+                content: (
+                    <>
+                        <img style={{ width: "480px", height: "320px" }} />
+                        <div className="sub-header">Occlusion</div>
+                        <p>
+                            During play, your arms and clothing may hide the tracker from the base stations. This
+                            occlusion causes the tracker to stop moving, or even fly off into the distance.
+                        </p>
+                        <p>
+                            This can be minimized by careful position of the base stations, wearing tight clothing, and
+                            being careful of where you move your arms.
+                        </p>
+                    </>
+                ),
+            });
+
+            drawbacks.push({
+                key: "interference",
+                title: "Interference",
+                content: (
+                    <>
+                        <Carousel>
+                            {Array.from({ length: 5 }, (_, i) => (
+                                <Carousel.Item key={i}>
+                                    <SimpleImage
+                                        src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
+                                        width={480}
+                                        height={320}
+                                    />
+                                </Carousel.Item>
+                            ))}
+                        </Carousel>
+                        <div className="sub-header">Interference</div>
+                        <p>
+                            The base stations use infrared light, which can bounce off reflective surfaces. This
+                            confuses the tracker and causes it to fly off into the distance. To solve this, close your
+                            window blinds, cover your mirrors with a cloth, and cover any other reflective surfaces.
+                        </p>
+                        <p>
+                            Your 2.4Ghz router can overpower the dongles if it is placed too close. To solve this, move
+                            your dongles away from the router.
+                        </p>
+                    </>
+                ),
+            });
+
+            return drawbacks;
+        })(),
         vrSession: {
             setup: (function () {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {

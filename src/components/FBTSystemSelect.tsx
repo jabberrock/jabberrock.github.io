@@ -24,7 +24,7 @@ const groupedOptions: FBTSystemGroup[] = fbtSystems.map((system) => ({
 
 const options: FBTSystemConfigOption[] = groupedOptions.flatMap((system) => system.options);
 
-export function findFBTSystemOption(configKey: FBTSystemConfigKey) {
+function findFBTSystemOption(configKey: FBTSystemConfigKey) {
     const option = options.find((o) => o.value === configKey);
     if (!option) {
         throw "Unknown option";
@@ -34,7 +34,7 @@ export function findFBTSystemOption(configKey: FBTSystemConfigKey) {
 }
 
 type FBTSystemSelectProps = {
-    selected: FBTSystemConfigOption | null;
+    selected: FBTSystemConfigKey | null;
     onChange: (newValue: FBTSystemConfigOption | null) => any;
 };
 
@@ -42,7 +42,7 @@ export const FBTSystemSelect: React.FC<FBTSystemSelectProps> = ({ selected, onCh
     return (
         <Select<FBTSystemConfigOption, false, FBTSystemGroup>
             placeholder="Select a full-body tracking system..."
-            value={selected}
+            value={selected ? findFBTSystemOption(selected) : null}
             options={groupedOptions}
             onChange={(v) => onChange(v)}
         />

@@ -12,6 +12,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
 
     if (!vrSystem.prefersPCVR) {
         return {
+            key: "none",
             name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
             imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
             recommendation: <p className="warning">HTC VIVE Ultimate Trackers require a PC</p>,
@@ -21,10 +22,12 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
             tracking: <p>N/A</p>,
             specs: <p>N/A</p>,
             examples: {},
+            drawbacks: [],
         };
     }
 
     return {
+        key: fbtSystemConfig.key,
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
         imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
         recommendation: (function () {
@@ -118,46 +121,43 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
 
             return nodes;
         })(),
-        drawbacks: (
-            <>
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Occlusion</div>
-                    <p>
-                        During play, your arms and clothing may block the cameras, or you may be oriented such that
-                        there is very little information for the cameras (e.g. a white wall). This causes the tracker to
-                        stop moving, or even fly off into the distance.
-                    </p>
-                    <p>There’s no way to work around this limitation.</p>
-                </div>
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Changes to Playspace</div>
-                    <p>
-                        The tracker needs to scan your playspace and compare the current camera snapshot to figure out
-                        where it is. If you move things around and your playspace changes enough, the tracker will get
-                        lost.
-                    </p>
-                    <p>
-                        This may also happen if your playspace lighting is significantly different in the daytime vs
-                        nighttime.
-                    </p>
-                    <p>To solve this, you have to rescan your playspace.</p>
-                </div>
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Estimated Leg Position</div>
-                    <p>
-                        Knees are estimated using IK (inverse kinematics), so the estimated position can be very
-                        different from the actual position.
-                    </p>
-                </div>
-                <div className="drawback">
-                    <img style={{ width: "480px", height: "320px" }} />
-                    <div className="sub-header">Jitter</div>
-                    <p>Because IK is not perfect, certain movements can result in a lot of jitter.</p>
-                </div>
-            </>
-        ),
+        drawbacks: [
+            {
+                key: "occlusion",
+                title: "Occlusion",
+                content: (
+                    <>
+                        <img style={{ width: "480px", height: "320px" }} />
+                        <div className="sub-header">Occlusion</div>
+                        <p>
+                            During play, your arms and clothing may block the cameras, or you may be oriented such that
+                            there is very little information for the cameras (e.g. a white wall). This causes the
+                            tracker to stop moving, or even fly off into the distance.
+                        </p>
+                        <p>There’s no way to work around this limitation.</p>
+                    </>
+                ),
+            },
+            {
+                key: "playspace",
+                title: "Changes to Playspace",
+                content: (
+                    <>
+                        <img style={{ width: "480px", height: "320px" }} />
+                        <div className="sub-header">Changes to Playspace</div>
+                        <p>
+                            The tracker needs to scan your playspace and compare the current camera snapshot to figure
+                            out where it is. If you move things around and your playspace changes enough, the tracker
+                            will get lost.
+                        </p>
+                        <p>
+                            This may also happen if your playspace lighting is significantly different in the daytime vs
+                            nighttime.
+                        </p>
+                        <p>To solve this, you have to rescan your playspace.</p>
+                    </>
+                ),
+            },
+        ],
     };
 }

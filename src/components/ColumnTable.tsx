@@ -6,10 +6,10 @@ type ColumnTableProps = {
     minColumns: number;
     maxColumns: number;
     columnWidth: number;
-    className?: string;
+    sidebarWidth: number;
 } & PropsWithChildren;
 
-export const ColumnTable: FC<ColumnTableProps> = ({ minColumns, maxColumns, columnWidth, className, children }) => {
+export const ColumnTable: FC<ColumnTableProps> = ({ minColumns, maxColumns, columnWidth, sidebarWidth, children }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [width, setWidth] = useState(0);
 
@@ -26,10 +26,13 @@ export const ColumnTable: FC<ColumnTableProps> = ({ minColumns, maxColumns, colu
     }, []);
 
     return (
-        <div ref={containerRef} className={className}>
+        <div ref={containerRef}>
             <ColumnTableContext
                 value={{
-                    numColumns: Math.min(maxColumns, Math.max(minColumns, Math.floor(width / columnWidth))),
+                    numColumns: Math.min(
+                        maxColumns,
+                        Math.max(minColumns, Math.floor((width - sidebarWidth) / columnWidth)),
+                    ),
                     columnWidth,
                 }}
             >

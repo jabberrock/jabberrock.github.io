@@ -1,18 +1,8 @@
 import React, { useContext } from "react";
 import { FBTSystemSelect } from "./FBTSystemSelect";
-import { makeSlimeVR } from "../vrfbt/SlimeVR";
-import { makeHTCVive30 } from "../vrfbt/HTCVive30";
-import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
-import type { VRSystem } from "../vr/VR";
 import { type VRFBTReview, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
-import { ColumnTableContext } from "./ColumnTable";
 import { ReviewScore } from "./ReviewScore";
-import { fbtSystemConfigsByKey } from "../fbt/FBT";
 import { SelectedFBTsContext } from "./SelectedFBTs";
-
-type FBTTableProps = {
-    vrSystem: VRSystem;
-};
 
 const exampleVideos: Record<string, string> = {
     standing: "Standing",
@@ -37,12 +27,14 @@ function toDollars(priceCents: number) {
 
 function makeEmptyVRFBTSystem(): VRFBTSystem {
     return {
+        key: "none",
         name: "",
         itemList: {
             required: [],
             optional: [],
         },
         examples: {},
+        drawbacks: [],
     };
 }
 
@@ -81,33 +73,9 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
     );
 }
 
-function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
-    const columnTableContext = useContext(ColumnTableContext);
-
-    const { selected: selectedOptions, setSelected: updateSelectedSystem } = useContext(SelectedFBTsContext);
-
-    const systems: VRFBTSystem[] = [];
-    for (let i = 0; i < columnTableContext.numColumns; ++i) {
-        let system = makeEmptyVRFBTSystem();
-        if (i < selectedOptions.length) {
-            const option = selectedOptions[i];
-            if (option) {
-                const configKey = option.value;
-                switch (fbtSystemConfigsByKey[configKey].fbtSystemKey) {
-                    case "slimevr_trackers":
-                        system = makeSlimeVR(vrSystem, configKey);
-                        break;
-                    case "htc_vive_trackers_3_0":
-                        system = makeHTCVive30(vrSystem, configKey);
-                        break;
-                    case "htc_vive_ultimate_trackers":
-                        system = makeHTCViveUltimate(vrSystem, configKey);
-                        break;
-                }
-            }
-        }
-        systems.push(system);
-    }
+function FBTTable(): React.ReactNode {
+    const { selected, setSelected: updateSelectedSystem } = useContext(SelectedFBTsContext);
+    const systems = selected.map((s) => s || makeEmptyVRFBTSystem());
 
     return (
         <table className="fbt-table">
@@ -122,16 +90,16 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                                 </th>
                             );
                         } else {
-                            return <th></th>;
+                            return <th key={i}></th>;
                         }
                     })}
                 </tr>
                 <tr>
-                    {systems.map((_, i) => (
+                    {systems.map((system, i) => (
                         <td key={i}>
                             <FBTSystemSelect
-                                selected={selectedOptions[i]}
-                                onChange={(newValue) => updateSelectedSystem(i, newValue)}
+                                selected={system.key !== "none" ? system.key : null}
+                                onChange={(option) => updateSelectedSystem(i, option?.value)}
                             />
                         </td>
                     ))}
@@ -327,7 +295,13 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.drawbacks}</td>
+                        <td key={i}>
+                            {system.drawbacks.map((d) => (
+                                <div key={d.key} id={`section-drawbacks-${system.key}-${d.key}`} className="drawback">
+                                    {d.content}
+                                </div>
+                            ))}
+                        </td>
                     ))}
                 </tr>
                 <tr id="section-availability" className="header">

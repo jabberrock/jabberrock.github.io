@@ -30,24 +30,26 @@ function App() {
 
     if (vrSystem) {
         return (
-            <SelectedFBTs vrSystem={vrSystem}>
-                <div className="main">
-                    <div className="sidebar">
-                        <VRSystemSummary vrSystem={vrSystem} onReset={() => setVRSystem(null)} />
-                        <FBTNav />
+            <ColumnTable minColumns={1} maxColumns={4} columnWidth={500} sidebarWidth={300}>
+                <SelectedFBTs vrSystem={vrSystem}>
+                    <div className="main">
+                        <div className="sidebar">
+                            <VRSystemSummary vrSystem={vrSystem} onReset={() => setVRSystem(null)} />
+                            <FBTNav />
+                        </div>
+                        <div className="content">
+                            <OpacityContext value={opacityRef}>
+                                <FBTTable />
+                                <Settings
+                                    onOpacityChange={(newOpacity) => {
+                                        opacityRef.current = newOpacity;
+                                    }}
+                                />
+                            </OpacityContext>
+                        </div>
                     </div>
-                    <ColumnTable minColumns={1} maxColumns={4} columnWidth={500} className="content">
-                        <OpacityContext value={opacityRef}>
-                            <FBTTable vrSystem={vrSystem} />
-                            <Settings
-                                onOpacityChange={(newOpacity) => {
-                                    opacityRef.current = newOpacity;
-                                }}
-                            />
-                        </OpacityContext>
-                    </ColumnTable>
-                </div>
-            </SelectedFBTs>
+                </SelectedFBTs>
+            </ColumnTable>
         );
     } else {
         return (

@@ -1,5 +1,5 @@
 import type React from "react";
-import type { FBTSystemConfigKey, FBTSystemKey } from "../fbt/FBT";
+import type { FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetKeys, vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 
 type ReviewSection = {
@@ -14,7 +14,14 @@ export type VRFBTReview = {
     overall: ReviewSection;
 };
 
+export type Drawback = {
+    key: string;
+    title: string;
+    content: React.ReactNode;
+};
+
 export type VRFBTSystem = {
+    key: FBTSystemConfigKey | "none";
     name: string;
     imageURL?: string;
     recommendation?: React.ReactNode;
@@ -25,7 +32,7 @@ export type VRFBTSystem = {
     specs?: React.ReactNode;
     introExample?: React.ReactNode;
     examples: Record<string, React.ReactNode>;
-    drawbacks?: React.ReactNode;
+    drawbacks: Drawback[];
     vrSession?: {
         setup: React.ReactNode;
         play: React.ReactNode;
@@ -55,21 +62,16 @@ export const ExampleVideoKeys = [
     "exercise",
 ] as const;
 
-export type FBTRecommendation = {
-    system: FBTSystemKey;
-    config: FBTSystemConfigKey;
-};
-
-const lighthouseFBTRecommendations: FBTRecommendation[] = [
-    { system: "slimevr_trackers", config: "slimevr_trackers-enhanced_core_set_6_2" },
-    { system: "htc_vive_trackers_3_0", config: "htc_vive_trackers_3_0-3_trackers" },
-    { system: "htc_vive_ultimate_trackers", config: "htc_vive_ultimate-3_trackers" },
+const lighthouseFBTRecommendations: FBTSystemConfigKey[] = [
+    "slimevr_trackers-enhanced_core_set_6_2",
+    "htc_vive_trackers_3_0-3_trackers",
+    "htc_vive_ultimate-3_trackers",
 ];
 
-const nonLighthouseFBTRecommendations: FBTRecommendation[] = [
-    { system: "slimevr_trackers", config: "slimevr_trackers-enhanced_core_set_6_2" },
-    { system: "htc_vive_trackers_3_0", config: "htc_vive_trackers_3_0-3_trackers_1_continuous" },
-    { system: "htc_vive_ultimate_trackers", config: "htc_vive_ultimate-3_trackers" },
+const nonLighthouseFBTRecommendations: FBTSystemConfigKey[] = [
+    "slimevr_trackers-enhanced_core_set_6_2",
+    "htc_vive_trackers_3_0-3_trackers_1_continuous",
+    "htc_vive_ultimate-3_trackers",
 ];
 
 export const vrHeadsetFBTRecommendations = Object.fromEntries(
@@ -77,4 +79,4 @@ export const vrHeadsetFBTRecommendations = Object.fromEntries(
         v,
         vrHeadsetsByKey[v].tracking === "lighthouse" ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations,
     ]),
-) as Record<VRHeadsetKey, FBTRecommendation[]>;
+) as Record<VRHeadsetKey, FBTSystemConfigKey[]>;
