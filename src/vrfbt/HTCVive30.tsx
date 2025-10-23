@@ -3,17 +3,19 @@ import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleImage } from "../components/SimpleImage";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoPlayer } from "../components/VideoPlayer";
-import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
+import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 
-const HTCVive30SystemKey: FBTSystemKey = "htc_vive_trackers_3_0";
+export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
+    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey]
+    if (fbtSystemConfig.fbtSystemKey !== "htc_vive_trackers_3_0") {
+        throw "Invalid FBT system config";
+    }
 
-export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem {
     if (!vrSystem.prefersPCVR) {
         return {
-            key: `${HTCVive30SystemKey}-${fbtConfig}`,
-            name: fbtSystemsByKey[HTCVive30SystemKey].name,
+            name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
             imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
             recommendation: <p className="warning">HTC VIVE Trackers 3.0 require a PC</p>,
             howItWorks: <p>N/A</p>,
@@ -25,10 +27,9 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
         };
     }
 
-    if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" && fbtConfig === "3_trackers_1_continuous") {
+    if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" && fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
         return {
-            key: `${HTCVive30SystemKey}-${fbtConfig}`,
-            name: fbtSystemsByKey[HTCVive30SystemKey].name,
+            name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
             imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
             recommendation: (
                 <p className="warning">
@@ -46,11 +47,10 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
     }
 
     return {
-        key: `${HTCVive30SystemKey}-${fbtConfig}`,
-        name: fbtSystemsByKey[HTCVive30SystemKey].name,
+        name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
         imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
         recommendation: (function () {
-            if (fbtConfig === "3_trackers") {
+            if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers") {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
                     return (
                         <div>
@@ -63,7 +63,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 } else {
                     return <p className="recommended">HTC VIVE Trackers 3.0 are compatible with your headset.</p>;
                 }
-            } else if (fbtConfig === "3_trackers_1_continuous") {
+            } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
                     return (
                         <p className="recommended">
@@ -91,8 +91,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 required: [],
                 optional: [],
             };
-            switch (fbtConfig) {
-                case "3_trackers":
+            switch (fbtSystemConfig.key) {
+                case "htc_vive_trackers_3_0-3_trackers":
                     c.required.push({
                         name: "VIVE 3.0 Tracker",
                         count: 3,
@@ -100,7 +100,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                         link: new URL("https://www.vive.com/us/accessory/tracker3/"),
                     });
                     break;
-                case "3_trackers_1_continuous":
+                case "htc_vive_trackers_3_0-3_trackers_1_continuous":
                     c.required.push({
                         name: "VIVE 3.0 Tracker",
                         comment: "for tracking",
@@ -156,15 +156,15 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             </>
         ),
         tracking: (function () {
-            switch (fbtConfig) {
-                case "3_trackers":
+            switch (fbtSystemConfig.key) {
+                case "htc_vive_trackers_3_0-3_trackers":
                     return (
                         <>
                             <div>3 point tracking (Chest, 2x Feet)</div>
                             <div>Knees and ankles estimated with inverse kinematics (IK).</div>
                         </>
                     );
-                case "3_trackers_1_continuous":
+                case "htc_vive_trackers_3_0-3_trackers_1_continuous":
                     return (
                         <>
                             <div>3 point tracking (Chest, 2x Feet)</div>
@@ -194,8 +194,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
 
             return (
                 <SideBySideVideoPlayer
-                    video_url={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-dancing.mp4`}
-                    thumbnail_url={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-dancing.jpg`}
+                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.mp4`}
+                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.jpg`}
                     width={480}
                     height={320}
                 />
@@ -215,8 +215,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     <>
                         <VideoPlayer
                             key={v}
-                            video_url={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-${v}.mp4`}
-                            thumbnail_url={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-${v}.jpg`}
+                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.mp4`}
+                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.jpg`}
                             width={480}
                             height={640}
                         />
@@ -235,7 +235,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
         drawbacks: (
             <>
                 {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" &&
-                    fbtConfig !== "3_trackers_1_continuous" && (
+                    fbtSystemConfig.key !== "htc_vive_trackers_3_0-3_trackers_1_continuous" && (
                         <div className="drawback">
                             <img style={{ width: "480px", height: "320px" }} />
                             <div className="sub-header">Space Calibration</div>
@@ -268,7 +268,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                         {Array.from({ length: 5 }, (_, i) => (
                             <Carousel.Item key={i}>
                                 <SimpleImage
-                                    src={`${HTCVive30SystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
+                                    src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
                                     width={480}
                                     height={320}
                                 />
@@ -287,7 +287,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                 </div>
                 <div className="drawback">
                     <SimpleImage
-                        src={`${HTCVive30SystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
+                        src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
                         width={480}
                         height={320}
                     />
@@ -298,7 +298,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     </p>
                 </div>
                 <div className="drawback">
-                    <SimpleImage src={`${HTCVive30SystemKey}/estimated_legs.jpg`} width={480} height={640} />
+                    <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/estimated_legs.jpg`} width={480} height={640} />
                     <div className="sub-header">Estimated Leg Position</div>
                     <p>Knees are estimated using inverse kinematics (IK), so the legs may not exactly match.</p>
                     <p>
@@ -337,8 +337,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                     return (
                         <>
                             <SimpleVideoPlayer
-                                src={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
-                                thumbnail={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
+                                src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
+                                thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
                                 width={480}
                                 height={420}
                             />
@@ -360,7 +360,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
             })(),
             play:
                 vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ||
-                fbtConfig === "3_trackers_1_continuous" ? (
+                fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous" ? (
                     <>
                         <p>It just works.</p>
                     </>
@@ -392,7 +392,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                             </p>
                         ),
                     };
-                } else if (fbtConfig === "3_trackers_1_continuous") {
+                } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
                     return {
                         score: 1,
                         content: (
@@ -451,8 +451,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                         content: (
                             <>
                                 <SimpleVideoPlayer
-                                    src={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
-                                    thumbnail={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
+                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
                                     width={480}
                                     height={420}
                                 />
@@ -460,15 +460,15 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                             </>
                         ),
                     };
-                } else if (fbtConfig === "3_trackers_1_continuous") {
+                } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
                     const vrHeadset = "meta_quest_3";
                     return {
                         score: 5,
                         content: (
                             <>
                                 <SimpleVideoPlayer
-                                    src={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
-                                    thumbnail={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
+                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
                                     width={480}
                                     height={420}
                                 />
@@ -491,8 +491,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                         content: (
                             <>
                                 <SimpleVideoPlayer
-                                    src={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
-                                    thumbnail={`${HTCVive30SystemKey}/${fbtConfig}/${vrHeadset}/${HTCVive30SystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
+                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
                                     width={480}
                                     height={420}
                                 />
@@ -529,7 +529,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfig: string): VRFBTSyste
                             </>
                         ),
                     };
-                } else if (fbtConfig === "3_trackers_1_continuous") {
+                } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
                     return {
                         score: 3,
                         content: (

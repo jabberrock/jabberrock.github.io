@@ -1,23 +1,25 @@
 import type React from "react";
 import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
-import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
+import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 
-const SlimeVRSystemKey: FBTSystemKey = "slimevr_trackers";
+export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
+    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey]
+    if (fbtSystemConfig.fbtSystemKey !== "slimevr_trackers") {
+        throw "Invalid FBT system config";
+    }
 
-export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem {
     return {
-        key: `${SlimeVRSystemKey}-${fbtConfig}`,
-        name: fbtSystemsByKey[SlimeVRSystemKey].name,
+        name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
         imageURL: "slimevr_trackers/slimevr.jpg",
         recommendation: (function () {
             return (
                 <>
                     <p className="recommended">SlimeVR Trackers are compatible with your headset.</p>
-                    {fbtConfig === "lower_body_set_5_0" && (
+                    {fbtSystemConfig.key === "slimevr_trackers-lower_body_set_5_0" && (
                         <p>
                             We recommend the Core Set (which has an extra hip tracker) for more expressive upper body
                             tracking.
@@ -44,8 +46,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 required: [],
                 optional: [],
             };
-            switch (fbtConfig) {
-                case "lower_body_set_5_0":
+            switch (fbtSystemConfig.key) {
+                case "slimevr_trackers-lower_body_set_5_0":
                     c.required.push({
                         name: "Lower-Body Set v1.2 (5+0)",
                         count: 1,
@@ -53,7 +55,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                         link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
                     });
                     break;
-                case "core_set_6_0":
+                case "slimevr_trackers-core_set_6_0":
                     c.required.push({
                         name: "Core Set v1.2 (6+0)",
                         count: 1,
@@ -61,7 +63,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                         link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
                     });
                     break;
-                case "enhanced_core_set_6_2":
+                case "slimevr_trackers-enhanced_core_set_6_2":
                     c.required.push({
                         name: "Enhanced Core Set v1.2 (6+2)",
                         count: 1,
@@ -69,7 +71,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                         link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
                     });
                     break;
-                case "full_body_set_8_2":
+                case "slimevr_trackers-full_body_set_8_2":
                     c.required.push({
                         name: "Full Body Set v1.2 (8+2)",
                         count: 1,
@@ -122,15 +124,15 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
             </>
         ),
         tracking: (function () {
-            switch (fbtConfig) {
-                case "lower_body_set_5_0":
+            switch (fbtSystemConfig.key) {
+                case "slimevr_trackers-lower_body_set_5_0":
                     return (
                         <>
                             <div>5 point tracking (Chest, 2x Thigh, 2x Ankle)</div>
                             <div>Feet are estimated based on ankles, and how close they are to the ground.</div>
                         </>
                     );
-                case "core_set_6_0":
+                case "slimevr_trackers-core_set_6_0":
                     return (
                         <>
                             <div>6 point tracking (Chest, Hip, 2x Thigh, 2x Ankle)</div>
@@ -138,14 +140,14 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                             <div>Feet are estimated based on ankles, and how close they are to the ground.</div>
                         </>
                     );
-                case "enhanced_core_set_6_2":
+                case "slimevr_trackers-enhanced_core_set_6_2":
                     return (
                         <>
                             <div>8 point tracking (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet)</div>
                             <div>Two trackers on the upper body provide more expressiveness.</div>
                         </>
                     );
-                case "full_body_set_8_2":
+                case "slimevr_trackers-full_body_set_8_2":
                     return (
                         <>
                             <div>10 point tracking (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet, 2x Elbows)</div>
@@ -172,8 +174,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
 
             return (
                 <SideBySideVideoPlayer
-                    video_url={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-dancing.mp4`}
-                    thumbnail_url={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-dancing.jpg`}
+                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.mp4`}
+                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.jpg`}
                     width={480}
                     height={320}
                 />
@@ -193,8 +195,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                     <>
                         <VideoPlayer
                             key={v}
-                            video_url={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-${v}.mp4`}
-                            thumbnail_url={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-${v}.jpg`}
+                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.mp4`}
+                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.jpg`}
                             width={480}
                             height={640}
                         />
@@ -249,8 +251,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 return (
                     <>
                         <SimpleVideoPlayer
-                            src={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.mp4`}
-                            thumbnail={`${SlimeVRSystemKey}/${fbtConfig}/${vrHeadset}/${SlimeVRSystemKey}-${fbtConfig}-${vrHeadset}-vr_session_setup.jpg`}
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
+                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
                             width={480}
                             height={420}
                         />
@@ -322,8 +324,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfig: string): VRFBTSystem 
                 content: (
                     <>
                         <SimpleVideoPlayer
-                            src={`${SlimeVRSystemKey}/${fbtConfig}/meta_quest_3/${SlimeVRSystemKey}-${fbtConfig}-meta_quest_3-vr_session_setup.mp4`}
-                            thumbnail={`${SlimeVRSystemKey}/${fbtConfig}/meta_quest_3/${SlimeVRSystemKey}-${fbtConfig}-meta_quest_3-vr_session_setup.jpg`}
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.mp4`}
+                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.jpg`}
                             width={480}
                             height={420}
                         />

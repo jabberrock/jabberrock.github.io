@@ -1,11 +1,6 @@
 import type React from "react";
 import Select from "react-select";
-import { fbtSystems, type FBTSystemKey } from "../fbt/FBT";
-
-type FBTSystemConfig = {
-    systemKey: FBTSystemKey;
-    configKey: string;
-};
+import { fbtSystemConfigs, fbtSystems, type FBTSystemConfigKey } from "../fbt/FBT";
 
 type FBTSystemGroup = {
     label: string;
@@ -14,24 +9,21 @@ type FBTSystemGroup = {
 
 export type FBTSystemConfigOption = {
     label: string;
-    value: FBTSystemConfig;
+    value: FBTSystemConfigKey;
 };
 
 const groupedOptions: FBTSystemGroup[] = fbtSystems.map((system) => ({
     label: system.name,
-    options: system.configurations.map((config) => ({
+    options: fbtSystemConfigs.filter(config => config.fbtSystemKey === system.key).map((config) => ({
         label: config.name,
-        value: {
-            systemKey: system.key,
-            configKey: config.key,
-        },
+        value: config.key,
     })),
 }));
 
 const options: FBTSystemConfigOption[] = groupedOptions.flatMap((system) => system.options);
 
-export function findFBTSystemOption(systemKey: FBTSystemKey, configKey: string) {
-    const option = options.find((o) => o.value.systemKey === systemKey && o.value.configKey === configKey);
+export function findFBTSystemOption(configKey: FBTSystemConfigKey) {
+    const option = options.find((o) => o.value === configKey);
     if (!option) {
         throw "Unknown option";
     }

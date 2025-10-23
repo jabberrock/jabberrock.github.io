@@ -1,13 +1,17 @@
-import { fbtSystemsByKey, type FBTSystemKey } from "../fbt/FBT";
+import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
 
-export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSystem {
+export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
+    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey]
+    if (fbtSystemConfig.fbtSystemKey !== "htc_vive_ultimate_trackers") {
+        throw "Invalid FBT system config";
+    }
+
     if (!vrSystem.prefersPCVR) {
         return {
-            key: HTCViveUltimateSystemKey,
             name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
             imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
             recommendation: <p className="warning">HTC VIVE Ultimate Trackers require a PC</p>,
@@ -21,11 +25,10 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
     }
 
     return {
-        key: `${HTCViveUltimateSystemKey}-${config}`,
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
         imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
         recommendation: (function () {
-            if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && config === "3_trackers") {
+            if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && fbtSystemConfig.key === "htc_vive_ultimate-3_trackers") {
                 return (
                     <div>
                         <p className="warning">HTC VIVE Ultimate trackers are not recommended for your headset.</p>
@@ -53,8 +56,8 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
                 required: [],
                 optional: [],
             };
-            switch (config) {
-                case "3_trackers":
+            switch (fbtSystemConfig.key) {
+                case "htc_vive_ultimate-3_trackers":
                     c.required.push({
                         name: "VIVE Ultimate Tracker 3+1 Kit",
                         count: 1,
@@ -87,8 +90,8 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, config: string): VRFBTSy
             </>
         ),
         tracking: (function () {
-            switch (config) {
-                case "3_trackers":
+            switch (fbtSystemConfig.key) {
+                case "htc_vive_ultimate-3_trackers":
                     return (
                         <>
                             <div>3 point tracking (Chest, 2x Ankle)</div>
