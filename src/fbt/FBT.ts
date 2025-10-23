@@ -80,19 +80,19 @@ export const fbtSystemConfigs: FBTSystemConfig[] = [
         key: "htc_vive_trackers_3_0-3_trackers",
         shortKey: "3_trackers",
         fbtSystemKey: "htc_vive_trackers_3_0",
-        name: "VIVE Tracker 3.0 x3",
+        name: "3x VIVE Tracker 3.0",
     },
     {
         key: "htc_vive_trackers_3_0-3_trackers_1_continuous",
         shortKey: "3_trackers_1_continuous",
         fbtSystemKey: "htc_vive_trackers_3_0",
-        name: "VIVE Tracker 3.0 x3 + 1x for continuous calibration",
+        name: "3x VIVE Tracker 3.0 + 1x for continuous calibration",
     },
     {
         key: "htc_vive_ultimate-3_trackers",
         shortKey: "3_trackers",
         fbtSystemKey: "htc_vive_ultimate_trackers",
-        name: "VIVE Ultimate x3",
+        name: "3x VIVE Ultimate",
     },
 ];
 
