@@ -8,6 +8,7 @@ import { VRSystemSummary } from "./vr/VRSystemSummary";
 import { FBTNav } from "./components/FBTNav";
 import type { VRSystem } from "./vr/VR";
 import { ColumnTable } from "./components/ColumnTable";
+import { SelectedFBTs } from "./components/SelectedFBTs";
 
 const opacityRef = { current: 0.9 };
 
@@ -29,22 +30,24 @@ function App() {
 
     if (vrSystem) {
         return (
-            <div className="main">
-                <div className="sidebar">
-                    <VRSystemSummary vrSystem={vrSystem} onReset={() => setVRSystem(null)} />
-                    <FBTNav />
+            <SelectedFBTs vrSystem={vrSystem}>
+                <div className="main">
+                    <div className="sidebar">
+                        <VRSystemSummary vrSystem={vrSystem} onReset={() => setVRSystem(null)} />
+                        <FBTNav />
+                    </div>
+                    <ColumnTable minColumns={1} maxColumns={4} columnWidth={500} className="content">
+                        <OpacityContext value={opacityRef}>
+                            <FBTTable vrSystem={vrSystem} />
+                            <Settings
+                                onOpacityChange={(newOpacity) => {
+                                    opacityRef.current = newOpacity;
+                                }}
+                            />
+                        </OpacityContext>
+                    </ColumnTable>
                 </div>
-                <ColumnTable minColumns={1} maxColumns={4} columnWidth={500} className="content">
-                    <OpacityContext value={opacityRef}>
-                        <FBTTable vrSystem={vrSystem} />
-                        <Settings
-                            onOpacityChange={(newOpacity) => {
-                                opacityRef.current = newOpacity;
-                            }}
-                        />
-                    </OpacityContext>
-                </ColumnTable>
-            </div>
+            </SelectedFBTs>
         );
     } else {
         return (

@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
-import { FBTSystemSelect, findFBTSystemOption, type FBTSystemConfigOption } from "./FBTSystemSelect";
+import React, { useContext } from "react";
+import { FBTSystemSelect } from "./FBTSystemSelect";
 import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
 import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import type { VRSystem } from "../vr/VR";
-import { vrHeadsetFBTRecommendations, type VRFBTReview, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
+import { type VRFBTReview, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
 import { ColumnTableContext } from "./ColumnTable";
 import { ReviewScore } from "./ReviewScore";
 import { fbtSystemConfigsByKey } from "../fbt/FBT";
+import { SelectedFBTsContext } from "./SelectedFBTs";
 
 type FBTTableProps = {
     vrSystem: VRSystem;
@@ -82,9 +83,8 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
 
 function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
     const columnTableContext = useContext(ColumnTableContext);
-    const [selectedOptions, setSelectedOptions] = useState<(FBTSystemConfigOption | null)[]>(
-        vrHeadsetFBTRecommendations[vrSystem.headset].map((f) => findFBTSystemOption(f.config)),
-    );
+
+    const { selected: selectedOptions, setSelected: updateSelectedSystem } = useContext(SelectedFBTsContext);
 
     const systems: VRFBTSystem[] = [];
     for (let i = 0; i < columnTableContext.numColumns; ++i) {
@@ -109,21 +109,6 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
         systems.push(system);
     }
 
-    function updateSelectedSystem(index: number, option: FBTSystemConfigOption | null) {
-        const newOptions = [...selectedOptions];
-        if (option) {
-            for (let i = 0; i < newOptions.length; ++i) {
-                if (newOptions[i] == option) {
-                    newOptions[i] = null;
-                }
-            }
-            newOptions[index] = option;
-        } else {
-            newOptions[index] = null;
-        }
-        setSelectedOptions(newOptions);
-    }
-
     return (
         <table className="fbt-table">
             <thead>
@@ -137,9 +122,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                                 </th>
                             );
                         } else {
-                            return (
-                                <th></th>
-                            )
+                            return <th></th>;
                         }
                     })}
                 </tr>
