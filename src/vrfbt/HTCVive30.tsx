@@ -8,7 +8,7 @@ import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 
 export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
-    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey]
+    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
     if (fbtSystemConfig.fbtSystemKey !== "htc_vive_trackers_3_0") {
         throw "Invalid FBT system config";
     }
@@ -27,7 +27,10 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         };
     }
 
-    if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" && fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
+    if (
+        vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" &&
+        fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous"
+    ) {
         return {
             name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
             imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",

@@ -14,10 +14,12 @@ export type FBTSystemConfigOption = {
 
 const groupedOptions: FBTSystemGroup[] = fbtSystems.map((system) => ({
     label: system.name,
-    options: fbtSystemConfigs.filter(config => config.fbtSystemKey === system.key).map((config) => ({
-        label: config.name,
-        value: config.key,
-    })),
+    options: fbtSystemConfigs
+        .filter((config) => config.fbtSystemKey === system.key)
+        .map((config) => ({
+            label: config.name,
+            value: config.key,
+        })),
 }));
 
 const options: FBTSystemConfigOption[] = groupedOptions.flatMap((system) => system.options);

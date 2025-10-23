@@ -50,7 +50,9 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
         <table className="review-table">
             <tbody>
                 <tr>
-                    <td><strong>Overall</strong></td>
+                    <td>
+                        <strong>Overall</strong>
+                    </td>
                     <td>
                         <ReviewScore score={review.overall.score} />
                     </td>
@@ -126,12 +128,12 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
         <table className="fbt-table">
             <thead>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <th key={i}>{system.name}</th>
                     ))}
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>{
+                    {systems.map((system, i) => {
                         const priceCents = sum(system.itemList.required.map((i) => i.count * i.each_price_cents));
                         return (
                             <td key={i} className="price">
@@ -153,29 +155,25 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
             </thead>
             <tbody>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>{system.recommendation}</td>
                     ))}
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>{system.introExample}</td>
                     ))}
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
-                        <td key={i}>
-                            {system.review && (
-                                <VRFBTReviewChart review={system.review} />
-                            )}
-                        </td>
+                    {systems.map((system, i) => (
+                        <td key={i}>{system.review && <VRFBTReviewChart review={system.review} />}</td>
                     ))}
                 </tr>
                 <tr id="section-how_it_works" className="header">
                     <td colSpan={systems.length}>How it Works</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>{system.howItWorks}</td>
                     ))}
                 </tr>
@@ -183,19 +181,15 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     <td colSpan={systems.length}>Review</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
-                        <td key={i}>
-                            {system.review && (
-                                <VRFBTReviewChart review={system.review} />
-                            )}
-                        </td>
+                    {systems.map((system, i) => (
+                        <td key={i}>{system.review && <VRFBTReviewChart review={system.review} />}</td>
                     ))}
                 </tr>
                 <tr id="section-review-cost" className="sub-header">
                     <td colSpan={systems.length}>Affordability</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>
                             {system.review && (
                                 <>
@@ -207,7 +201,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     ))}
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>{
+                    {systems.map((system, i) => {
                         const itemList = system.itemList;
                         return (
                             <td key={i}>
@@ -267,7 +261,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     <td colSpan={systems.length}>Tracking Accuracy</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>
                             {system.review && (
                                 <>
@@ -282,7 +276,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     <td colSpan={systems.length}>Ease of Calibration</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>
                             {system.review && (
                                 <>
@@ -297,7 +291,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     <td colSpan={systems.length}>Overall</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>
                             {system.review && (
                                 <>
@@ -323,14 +317,12 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                 <tr id="section-examples-wearing" className="sub-header">
                     <td colSpan={systems.length}>Wearing</td>
                 </tr>
-                <tr>
-                    {/* TODO */}
-                </tr>
+                <tr>{/* TODO */}</tr>
                 <tr id="section-examples-calibration" className="sub-header">
                     <td colSpan={systems.length}>Calibration</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>{system.vrSession?.setup}</td>
                     ))}
                 </tr>
@@ -340,7 +332,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                             <td colSpan={systems.length}>{exampleVideos[v]}</td>
                         </tr>
                         <tr>
-                            {systems.map((system, i) =>(
+                            {systems.map((system, i) => (
                                 <td key={i}>{system.examples[v]}</td>
                             ))}
                         </tr>
@@ -350,7 +342,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     <td colSpan={systems.length}>Limitations</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>{system.drawbacks}</td>
                     ))}
                 </tr>
@@ -358,7 +350,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     <td colSpan={systems.length}>Availability</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>{system.availability}</td>
                     ))}
                 </tr>
@@ -366,7 +358,7 @@ function FBTTable({ vrSystem }: FBTTableProps): React.ReactNode {
                     <td colSpan={systems.length}>Specifications</td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) =>(
+                    {systems.map((system, i) => (
                         <td key={i}>{system.specs}</td>
                     ))}
                 </tr>

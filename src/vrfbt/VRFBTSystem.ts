@@ -12,7 +12,7 @@ export type VRFBTReview = {
     tracking: ReviewSection;
     calibration: ReviewSection;
     overall: ReviewSection;
-}
+};
 
 export type VRFBTSystem = {
     name: string;

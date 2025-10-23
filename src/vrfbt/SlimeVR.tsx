@@ -7,7 +7,7 @@ import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 
 export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
-    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey]
+    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
     if (fbtSystemConfig.fbtSystemKey !== "slimevr_trackers") {
         throw "Invalid FBT system config";
     }

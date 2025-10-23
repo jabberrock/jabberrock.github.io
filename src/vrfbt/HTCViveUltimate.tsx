@@ -5,7 +5,7 @@ import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
 
 export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
-    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey]
+    const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
     if (fbtSystemConfig.fbtSystemKey !== "htc_vive_ultimate_trackers") {
         throw "Invalid FBT system config";
     }
@@ -28,7 +28,10 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
         imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
         recommendation: (function () {
-            if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && fbtSystemConfig.key === "htc_vive_ultimate-3_trackers") {
+            if (
+                vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" &&
+                fbtSystemConfig.key === "htc_vive_ultimate-3_trackers"
+            ) {
                 return (
                     <div>
                         <p className="warning">HTC VIVE Ultimate trackers are not recommended for your headset.</p>

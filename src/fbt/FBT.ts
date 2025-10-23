@@ -7,8 +7,8 @@ export const fbtSystemKeys = ["slimevr_trackers", "htc_vive_trackers_3_0", "htc_
 export type FBTSystemKey = (typeof fbtSystemKeys)[number];
 
 type FBTSystem = {
-    key: FBTSystemKey,
-    name: string
+    key: FBTSystemKey;
+    name: string;
 };
 
 export const fbtSystems: FBTSystem[] = [
@@ -26,8 +26,7 @@ export const fbtSystems: FBTSystem[] = [
     },
 ];
 
-export const fbtSystemsByKey = 
-    Object.fromEntries(fbtSystems.map((h) => [h.key, h])) as Record<FBTSystemKey, FBTSystem>;
+export const fbtSystemsByKey = Object.fromEntries(fbtSystems.map((h) => [h.key, h])) as Record<FBTSystemKey, FBTSystem>;
 
 /**
  * FBT System Configurations
@@ -46,18 +45,18 @@ export const fbtSystemConfigKeys = [
 export type FBTSystemConfigKey = (typeof fbtSystemConfigKeys)[number];
 
 type FBTSystemConfig = {
-    key: FBTSystemConfigKey
-    shortKey: string
-    fbtSystemKey: FBTSystemKey
-    name: string
-}
+    key: FBTSystemConfigKey;
+    shortKey: string;
+    fbtSystemKey: FBTSystemKey;
+    name: string;
+};
 
 export const fbtSystemConfigs: FBTSystemConfig[] = [
     {
         key: "slimevr_trackers-lower_body_set_5_0",
         shortKey: "lower_body_set_5_0",
         fbtSystemKey: "slimevr_trackers",
-        name: "SlimeVR Lower-Body Set (5 main trackers)"
+        name: "SlimeVR Lower-Body Set (5 main trackers)",
     },
     {
         key: "slimevr_trackers-core_set_6_0",
@@ -97,5 +96,7 @@ export const fbtSystemConfigs: FBTSystemConfig[] = [
     },
 ];
 
-export const fbtSystemConfigsByKey =
-    Object.fromEntries(fbtSystemConfigs.map((h) => [h.key, h])) as Record<FBTSystemConfigKey, FBTSystemConfig>;
+export const fbtSystemConfigsByKey = Object.fromEntries(fbtSystemConfigs.map((h) => [h.key, h])) as Record<
+    FBTSystemConfigKey,
+    FBTSystemConfig
+>;
