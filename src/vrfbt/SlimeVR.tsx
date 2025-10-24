@@ -6,6 +6,23 @@ import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 
+function matchConfig<T>(key: FBTSystemConfigKey, values: Partial<Record<FBTSystemConfigKey, T>>): T {
+    const v = values[key];
+    if (v == undefined) {
+        throw "Missing value";
+    }
+
+    return v;
+}
+
+function matchConfigOptional<T>(
+    key: FBTSystemConfigKey,
+    values: Partial<Record<FBTSystemConfigKey, T>>,
+    fallback?: T,
+): T | undefined {
+    return values[key] || fallback;
+}
+
 export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
     if (fbtSystemConfig.fbtSystemKey !== "slimevr_trackers") {
@@ -21,10 +38,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 <>
                     <p className="recommended">SlimeVR Trackers are compatible with your headset.</p>
                     {fbtSystemConfig.key === "slimevr_trackers-lower_body_set_5_0" && (
-                        <p>
-                            We recommend the Core Set (which has an extra hip tracker) for more expressive upper body
-                            tracking.
-                        </p>
+                        <p>We recommend the Core Set (6+0) for significantly more accurate tracking.</p>
                     )}
                 </>
             );
@@ -36,10 +50,32 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                     SlimeVR is an IMU-based (Inertial Measurement Unit) system. It uses a gyroscope to measure the
                     rotation of each bone, and then reconstruct the skeleton, starting from the headset.
                 </p>
-                <p>
-                    The Core Set contains 6 trackers for your chest, hip, thighs and ankles. Feet are estimated based on
-                    your ankles and how close they are to the ground.
-                </p>
+                {matchConfig(fbtSystemConfig.key, {
+                    "slimevr_trackers-lower_body_set_5_0": (
+                        <p>
+                            The Lower Body Set (5+0) contains 5 trackers for your chest, 2x thighs and 2x ankles. Feet
+                            are estimated based on your ankles and how close they are to the ground.
+                        </p>
+                    ),
+                    "slimevr_trackers-core_set_6_0": (
+                        <p>
+                            The Core Set (6+0) contains 6 trackers for your chest, hip, 2x thighs and 2x ankles. Feet
+                            are estimated based on your ankles and how close they are to the ground.
+                        </p>
+                    ),
+                    "slimevr_trackers-enhanced_core_set_6_2": (
+                        <p>
+                            The Enhanced Core Set (6+2) contains 6 main trackers for your chest, hip, 2x thighs and 2x
+                            ankles, and 2 extension trackers for your 2x feet.
+                        </p>
+                    ),
+                    "slimevr_trackers-full_body_set_8_2": (
+                        <p>
+                            The Full Body Set (8+2) contains 8 main trackers for your chest, hip, 2x arms, 2x thighs and
+                            2x ankles, and 2 extension trackers for your 2x feet.
+                        </p>
+                    ),
+                })}
             </>
         ),
         itemList: (function () {
@@ -295,29 +331,51 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
         },
         review: {
             cost: {
-                score: 5,
+                score: matchConfig<number>(fbtSystemConfig.key, {
+                    "slimevr_trackers-lower_body_set_5_0": 5,
+                    "slimevr_trackers-core_set_6_0": 5,
+                    "slimevr_trackers-enhanced_core_set_6_2": 4,
+                    "slimevr_trackers-full_body_set_8_2": 3,
+                }),
                 content: (
                     <>
-                        <p>SlimeVR trackers are one of the lowest cost systems today.</p>
+                        <p>SlimeVR trackers are one of the most affordable systems today.</p>
                         <p>
                             However, official SlimeVR trackers are sold through a pre-order system, and shipments are
-                            sent out every 3-4 months. The next major shipment (S15) is estimated to be mid-Nov 2025.
+                            sent out every 3-4 months. The next major shipment (S15) is estimated to be early December
+                            2025.
                         </p>
                     </>
                 ),
             },
             tracking: {
-                score: 4,
+                score: matchConfig<number>(fbtSystemConfig.key, {
+                    "slimevr_trackers-lower_body_set_5_0": 3,
+                    "slimevr_trackers-core_set_6_0": 4,
+                    "slimevr_trackers-enhanced_core_set_6_2": 4,
+                    "slimevr_trackers-full_body_set_8_2": 4,
+                }),
                 content: (
                     <>
                         <p>
                             SlimeVR provides high quality tracking when using modern IMUs (e.g. ICM45686 used in
-                            official SlimeVR trackers).
+                            official SlimeVR trackers). With good calibration, the avatar can almost exactly match your
+                            body.
                         </p>
                         <p>
                             They track you in any position, whether you’re standing around, dancing, doing yoga, or
                             lying under a blanket.
                         </p>
+                        {matchConfigOptional(fbtSystemConfig.key, {
+                            "slimevr_trackers-lower_body_set_5_0": (
+                                <p>
+                                    The Lower Body Set (5+0) only provides a single tracker for your spine. When you
+                                    bend your spine, SlimeVR doesn't really know how much you're bending, so your avatar
+                                    legs can end up in front of behind your real legs. I strongly recommend getting at
+                                    least the Core Set (6+0) which provides a chest and hip tracker.
+                                </p>
+                            ),
+                        })}
                         <p>
                             However, SlimeVR trackers will drift over time. With the latest IMUs, you can easily play
                             for 45 mins without noticing drift. It is very easy to fix drift: just face forward and
@@ -347,6 +405,16 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                             calibration. SlimeVR provides VRChat calibration sessions to help you figure out the
                             calibration method. They’re also continuing to improve the process.
                         </p>
+                        {matchConfigOptional(fbtSystemConfig.key, {
+                            "slimevr_trackers-full_body_set_8_2": (
+                                <p>
+                                    The Full Body Set (8+2) provides 2 trackers for your upper arms for elbow tracking.
+                                    You will need to hold your arms in a specific pose during calibration, and it can
+                                    make the process even more difficult. I don't recommend getting elbow trackers
+                                    unless you really want it for dancing.
+                                </p>
+                            ),
+                        })}
                         <p>
                             I think the calibration process learning curve is the biggest drawback of SlimeVR. However,
                             once you figure out calibration, it works every time.
@@ -355,7 +423,12 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 ),
             },
             overall: {
-                score: 4,
+                score: matchConfig<number>(fbtSystemConfig.key, {
+                    "slimevr_trackers-lower_body_set_5_0": 3,
+                    "slimevr_trackers-core_set_6_0": 4,
+                    "slimevr_trackers-enhanced_core_set_6_2": 4,
+                    "slimevr_trackers-full_body_set_8_2": 4,
+                }),
                 content: (
                     <>
                         <p>
@@ -370,6 +443,14 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                             However, you will need to have patience at the start, as you figure out how calibration
                             works best for your body.
                         </p>
+                        {matchConfigOptional(fbtSystemConfig.key, {
+                            "slimevr_trackers-lower_body_set_5_0": (
+                                <p>
+                                    I strongly recommend getting at least the Core Set (6+0) which provides a chest and
+                                    hip tracker. The positions of your legs will be much better.
+                                </p>
+                            ),
+                        })}
                     </>
                 ),
             },
