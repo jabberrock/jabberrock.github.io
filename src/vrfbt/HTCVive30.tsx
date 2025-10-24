@@ -18,7 +18,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             key: "none",
             name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
             imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
-            recommendation: <p className="warning">HTC VIVE Trackers 3.0 require a PC</p>,
+            recommendation: <p className="warning">VIVE Tracker 3.0 requires a PC.</p>,
             howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },
             availability: <p>N/A</p>,
@@ -38,10 +38,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
             imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
             recommendation: (
-                <p className="warning">
-                    Your headset is Lighthouse-based and does not require continuous calibration with HTC VIVE Trackers
-                    3.0.
-                </p>
+                <p className="warning">Your headset is Lighthouse-based and does not require continuous calibration.</p>
             ),
             howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },

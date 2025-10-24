@@ -1,5 +1,6 @@
+import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
-import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
+import { type VRSystem } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
@@ -15,7 +16,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
             key: "none",
             name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
             imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
-            recommendation: <p className="warning">HTC VIVE Ultimate Trackers require a PC</p>,
+            recommendation: <p className="warning">VIVE Ultimate trackers require a PC.</p>,
             howItWorks: <p>N/A</p>,
             itemList: { required: [], optional: [] },
             availability: <p>N/A</p>,
@@ -30,20 +31,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
         key: fbtSystemConfig.key,
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
         imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
-        recommendation: (function () {
-            if (
-                vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" &&
-                fbtSystemConfig.key === "htc_vive_ultimate-3_trackers"
-            ) {
-                return (
-                    <div>
-                        <p className="warning">HTC VIVE Ultimate trackers are not recommended for your headset.</p>
-                    </div>
-                );
-            } else {
-                return <p className="recommended">HTC VIVE Ultimate Trackers are compatible with your headset.</p>;
-            }
-        })(),
+        recommendation: <p className="recommended">HTC VIVE Ultimate Trackers are compatible with your headset.</p>,
         howItWorks: (
             <>
                 <img src="htc_vive_ultimate_trackers/htc_vive_ultimate_cameras.jpg" />
@@ -159,5 +147,66 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                 ),
             },
         ],
+        review: {
+            cost: {
+                score: 2,
+                content: (
+                    <p>
+                        VIVE Ulimate is expensive, and you will also need to buy straps to mount the trackers to your
+                        body
+                    </p>
+                ),
+            },
+            tracking: {
+                score: 4,
+                content: (
+                    <>
+                        <p>VIVE Ultimate trackers have perfect tracking, as long as they’re not occluded.</p>
+                        <p>
+                            If the tracker cameras lose tracking, parts of your body will freeze in place. This can
+                            happen if you accidentally cover both cameras with your arm, if you turn towards an empty
+                            area of your room, or get too close to a surface (like a wall or couch). It takes a few
+                            seconds for the trackers to recover.
+                        </p>
+                    </>
+                ),
+            },
+            calibration: {
+                score: 4,
+                content: (
+                    <>
+                        <SimpleVideoPlayer
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-vr_session_setup.mp4`}
+                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-vr_session_setup.jpg`}
+                            width={480}
+                            height={420}
+                        />
+                        <p>
+                            You will have to do space-calibration to align your headset’s playspace to the trackers’
+                            playspace.
+                        </p>
+                        <p>
+                            As a one-time setup, you will need to scan your playspace. If you move things around
+                            significantly, you may need to re-scan your playspace.
+                        </p>
+                    </>
+                ),
+            },
+            overall: {
+                score: 4,
+                content: (
+                    <>
+                        <p>
+                            I enjoy using VIVE Ultimate trackers because they are easy to set up and use. They’re great
+                            when you just want to jump into VR for low energy activities like chatting with friends.
+                        </p>
+                        <p>
+                            Although occlusion problems do happen, they happen less often than VIVE 3.0s and don't cause
+                            your body to fly off into the distance. I find this acceptable.
+                        </p>
+                    </>
+                ),
+            },
+        },
     };
 }

@@ -84,11 +84,15 @@ function FBTTable(): React.ReactNode {
                     {systems.map((system, i) => {
                         if (system.name) {
                             const priceCents = sum(system.itemList.required.map((i) => i.count * i.each_price_cents));
-                            return (
-                                <th key={`${i}-${system.key}`}>
-                                    {system.name} ({toDollars(priceCents)})
-                                </th>
-                            );
+                            if (priceCents > 0) {
+                                return (
+                                    <th key={`${i}-${system.key}`}>
+                                        {system.name} ({toDollars(priceCents)})
+                                    </th>
+                                );
+                            } else {
+                                return <th key={`${i}-${system.key}`}>{system.name}</th>;
+                            }
                         } else {
                             return <th key={`${i}-${system.key}`}></th>;
                         }
@@ -118,7 +122,9 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>{system.review && <VRFBTReviewChart review={system.review} />}</td>
+                        <td key={`${i}-${system.key}`}>
+                            {system.review && <VRFBTReviewChart review={system.review} />}
+                        </td>
                     ))}
                 </tr>
                 <tr id="section-how_it_works" className="header">
@@ -134,7 +140,9 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>{system.review && <VRFBTReviewChart review={system.review} />}</td>
+                        <td key={`${i}-${system.key}`}>
+                            {system.review && <VRFBTReviewChart review={system.review} />}
+                        </td>
                     ))}
                 </tr>
                 <tr id="section-review-cost" className="sub-header">
