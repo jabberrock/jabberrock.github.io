@@ -379,7 +379,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             cost: (function () {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
                     return {
-                        score: 4,
+                        score: 3,
                         content: (
                             <p>
                                 VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the
