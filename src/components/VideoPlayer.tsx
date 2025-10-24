@@ -141,6 +141,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video_url, thumbnail_u
     const opacityRef = useContext(OpacityContext);
 
     const [inView, setInView] = useState(false);
+    const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
     // Observe when the player comes into view
     useEffect(() => {
@@ -151,13 +152,34 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video_url, thumbnail_u
         return () => observer.disconnect();
     }, []);
 
+    useEffect(() => {
+        let timer: number | null = null;
+        if (inView) {
+            timer = setTimeout(() => setShouldLoadVideo(true), 500);
+        } else {
+            setShouldLoadVideo(false);
+            if (timer) {
+                clearTimeout(timer);
+            }
+        }
+
+        return () => {
+            if (timer) {
+                clearTimeout(timer);
+            }
+        };
+    }, [inView]);
+
     // Load videos when the player comes into view
     useEffect(() => {
         const video = videoRef.current;
-        if (inView && video && !video.src) {
+        if (shouldLoadVideo && video && !video.src) {
             video.src = video_url;
+            if (video.paused) {
+                video.play();
+            }
         }
-    }, [inView]);
+    }, [shouldLoadVideo]);
 
     // Play videos when both are loaded and the player is in view
     useEffect(() => {
@@ -165,9 +187,13 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video_url, thumbnail_u
         if (video && video.src) {
             if (inView) {
                 video.currentTime = 0.0;
-                video.play();
+                if (video.paused) {
+                    video.play();
+                }
             } else {
-                video.pause();
+                if (!video.paused) {
+                    video.pause();
+                }
             }
         }
     }, [inView]);

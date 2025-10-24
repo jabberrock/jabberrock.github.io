@@ -85,18 +85,18 @@ function FBTTable(): React.ReactNode {
                         if (system.name) {
                             const priceCents = sum(system.itemList.required.map((i) => i.count * i.each_price_cents));
                             return (
-                                <th key={i}>
+                                <th key={`${i}-${system.key}`}>
                                     {system.name} ({toDollars(priceCents)})
                                 </th>
                             );
                         } else {
-                            return <th key={i}></th>;
+                            return <th key={`${i}-${system.key}`}></th>;
                         }
                     })}
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>
+                        <td key={`${i}-${system.key}`}>
                             <FBTSystemSelect
                                 selected={system.key !== "none" ? system.key : null}
                                 onChange={(option) => updateSelectedSystem(i, option?.value)}
@@ -108,17 +108,17 @@ function FBTTable(): React.ReactNode {
             <tbody>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.recommendation}</td>
+                        <td key={`${i}-${system.key}`}>{system.recommendation}</td>
                     ))}
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.introExample}</td>
+                        <td key={`${i}-${system.key}`}>{system.introExample}</td>
                     ))}
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.review && <VRFBTReviewChart review={system.review} />}</td>
+                        <td key={`${i}-${system.key}`}>{system.review && <VRFBTReviewChart review={system.review} />}</td>
                     ))}
                 </tr>
                 <tr id="section-how_it_works" className="header">
@@ -126,7 +126,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.howItWorks}</td>
+                        <td key={`${i}-${system.key}`}>{system.howItWorks}</td>
                     ))}
                 </tr>
                 <tr id="section-review" className="header">
@@ -134,7 +134,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.review && <VRFBTReviewChart review={system.review} />}</td>
+                        <td key={`${i}-${system.key}`}>{system.review && <VRFBTReviewChart review={system.review} />}</td>
                     ))}
                 </tr>
                 <tr id="section-review-cost" className="sub-header">
@@ -142,7 +142,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>
+                        <td key={`${i}-${system.key}`}>
                             {system.review && (
                                 <>
                                     <ReviewScore score={system.review.cost.score} />
@@ -156,7 +156,7 @@ function FBTTable(): React.ReactNode {
                     {systems.map((system, i) => {
                         const itemList = system.itemList;
                         return (
-                            <td key={i}>
+                            <td key={`${i}-${system.key}`}>
                                 <table className="component-table">
                                     <tbody>
                                         {itemList.required.length > 0 && (
@@ -165,7 +165,7 @@ function FBTTable(): React.ReactNode {
                                                     <td>Required</td>
                                                 </tr>
                                                 {itemList.required.map((item, i) => (
-                                                    <tr key={i}>
+                                                    <tr key={`${i}-${system.key}`}>
                                                         <td>
                                                             <a href={item.link.toString()} target="_blank">
                                                                 {item.name}
@@ -186,7 +186,7 @@ function FBTTable(): React.ReactNode {
                                                 )
                                                     .fill(null)
                                                     .map((_, i) => (
-                                                        <tr key={i}>
+                                                        <tr key={`${i}-${system.key}`}>
                                                             <td colSpan={3}>&nbsp;</td>
                                                         </tr>
                                                     ))}
@@ -214,7 +214,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>
+                        <td key={`${i}-${system.key}`}>
                             {system.review && (
                                 <>
                                     <ReviewScore score={system.review.tracking.score} />
@@ -229,7 +229,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>
+                        <td key={`${i}-${system.key}`}>
                             {system.review && (
                                 <>
                                     <ReviewScore score={system.review.calibration.score} />
@@ -244,7 +244,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>
+                        <td key={`${i}-${system.key}`}>
                             {system.review && (
                                 <>
                                     <ReviewScore score={system.review.overall.score} />
@@ -275,7 +275,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.vrSession?.setup}</td>
+                        <td key={`${i}-${system.key}`}>{system.vrSession?.setup}</td>
                     ))}
                 </tr>
                 {Object.keys(exampleVideos).map((v) => (
@@ -285,7 +285,7 @@ function FBTTable(): React.ReactNode {
                         </tr>
                         <tr>
                             {systems.map((system, i) => (
-                                <td key={i}>{system.examples[v]}</td>
+                                <td key={`${i}-${system.key}`}>{system.examples[v]}</td>
                             ))}
                         </tr>
                     </React.Fragment>
@@ -295,7 +295,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>
+                        <td key={`${i}-${system.key}`}>
                             {system.drawbacks.map((d) => (
                                 <div key={d.key} id={`section-drawbacks-${system.key}-${d.key}`} className="drawback">
                                     {d.content}
@@ -309,7 +309,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.availability}</td>
+                        <td key={`${i}-${system.key}`}>{system.availability}</td>
                     ))}
                 </tr>
                 <tr id="section-specifications" className="header">
@@ -317,7 +317,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={i}>{system.specs}</td>
+                        <td key={`${i}-${system.key}`}>{system.specs}</td>
                     ))}
                 </tr>
             </tbody>
