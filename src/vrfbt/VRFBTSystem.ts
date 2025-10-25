@@ -2,9 +2,11 @@ import type React from "react";
 import type { FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetKeys, vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 
-type ReviewSection = {
+export type ReviewSection = {
     score: number;
     content: React.ReactNode;
+    drawbacks?: Drawback[];
+    rating?: React.ReactNode;
 };
 
 export type VRFBTReview = {

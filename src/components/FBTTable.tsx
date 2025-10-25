@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FBTSystemSelect } from "./FBTSystemSelect";
-import { type VRFBTReview, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
+import { type ReviewSection, type VRFBTReview, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
 import { ReviewScore } from "./ReviewScore";
 import { SelectedFBTsContext } from "./SelectedFBTs";
 
@@ -73,6 +73,58 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
     );
 }
 
+const VRFBTReviewSection = ({
+    systems,
+    id,
+    name,
+    section,
+}: {
+    systems: VRFBTSystem[];
+    id: string;
+    name: string;
+    section: (system: VRFBTSystem) => ReviewSection | undefined;
+}) => {
+    return (
+        <>
+            <tr id={id}>
+                <td colSpan={systems.length} className="sub-header">
+                    {name}
+                </td>
+            </tr>
+            <tr>
+                {systems.map((system, i) => (
+                    section(system) ? (
+                        <td key={`${i}-${system.key}`}>
+                            <ReviewScore score={section(system)?.score || 0} />
+                        </td>
+                    ) : (
+                        <td key={`${i}-${system.key}`}>
+                        </td>
+                    )
+                ))}
+            </tr>
+            <tr>
+                {systems.map((system, i) => (
+                    <td key={`${i}-${system.key}`}>{section(system)?.rating}</td>
+                ))}
+            </tr>
+            <tr>
+                {systems.map((system, i) => (
+                    <td key={`${i}-${system.key}`}>
+                        {section(system)?.content}
+                        {section(system)?.drawbacks?.map((drawback) => (
+                            <div key={drawback.key} className="drawback">
+                                <div className="drawback-title">{drawback.title}</div>
+                                {drawback.content}
+                            </div>
+                        ))}
+                    </td>
+                ))}
+            </tr>
+        </>
+    );
+};
+
 function FBTTable(): React.ReactNode {
     const { selected, setSelected: updateSelectedSystem } = useContext(SelectedFBTsContext);
     const systems = selected.map((s) => s || makeEmptyVRFBTSystem());
@@ -127,16 +179,20 @@ function FBTTable(): React.ReactNode {
                         </td>
                     ))}
                 </tr>
-                <tr id="section-how_it_works" className="header">
-                    <td colSpan={systems.length}>How it Works</td>
+                <tr id="section-how_it_works">
+                    <td colSpan={systems.length} className="header">
+                        How it Works
+                    </td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
                         <td key={`${i}-${system.key}`}>{system.howItWorks}</td>
                     ))}
                 </tr>
-                <tr id="section-review" className="header">
-                    <td colSpan={systems.length}>Review</td>
+                <tr id="section-review">
+                    <td colSpan={systems.length} className="header">
+                        Review
+                    </td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
@@ -145,8 +201,10 @@ function FBTTable(): React.ReactNode {
                         </td>
                     ))}
                 </tr>
-                <tr id="section-review-cost" className="sub-header">
-                    <td colSpan={systems.length}>Affordability</td>
+                <tr id="section-review-cost">
+                    <td colSpan={systems.length} className="sub-header">
+                        Affordability
+                    </td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
@@ -217,53 +275,28 @@ function FBTTable(): React.ReactNode {
                         );
                     })}
                 </tr>
-                <tr id="section-review-tracking" className="sub-header">
-                    <td colSpan={systems.length}>Tracking Accuracy</td>
-                </tr>
-                <tr>
-                    {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>
-                            {system.review && (
-                                <>
-                                    <ReviewScore score={system.review.tracking.score} />
-                                    {system.review.tracking.content}
-                                </>
-                            )}
-                        </td>
-                    ))}
-                </tr>
-                <tr id="section-review-calibration" className="sub-header">
-                    <td colSpan={systems.length}>Ease of Calibration</td>
-                </tr>
-                <tr>
-                    {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>
-                            {system.review && (
-                                <>
-                                    <ReviewScore score={system.review.calibration.score} />
-                                    {system.review.calibration.content}
-                                </>
-                            )}
-                        </td>
-                    ))}
-                </tr>
-                <tr id="section-review-overall" className="sub-header">
-                    <td colSpan={systems.length}>Overall</td>
-                </tr>
-                <tr>
-                    {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>
-                            {system.review && (
-                                <>
-                                    <ReviewScore score={system.review.overall.score} />
-                                    {system.review.overall.content}
-                                </>
-                            )}
-                        </td>
-                    ))}
-                </tr>
-                <tr id="section-examples" className="header">
-                    <td colSpan={systems.length}>Demos</td>
+                <VRFBTReviewSection
+                    systems={systems}
+                    id="section-review-tracking"
+                    name="Tracking Accuracy"
+                    section={(system) => system.review?.tracking}
+                />
+                <VRFBTReviewSection
+                    systems={systems}
+                    id="section-review-calibration"
+                    name="Ease of Calibration"
+                    section={(system) => system.review?.calibration}
+                />
+                <VRFBTReviewSection
+                    systems={systems}
+                    id="section-review-overall"
+                    name="Overall"
+                    section={(system) => system.review?.overall}
+                />
+                <tr id="section-examples">
+                    <td colSpan={systems.length} className="header">
+                        Demos
+                    </td>
                 </tr>
                 <tr>
                     <td colSpan={systems.length}>
@@ -298,30 +331,20 @@ function FBTTable(): React.ReactNode {
                         </tr>
                     </React.Fragment>
                 ))}
-                <tr id="section-drawbacks" className="header">
-                    <td colSpan={systems.length}>Limitations</td>
-                </tr>
-                <tr>
-                    {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>
-                            {system.drawbacks.map((d) => (
-                                <div key={d.key} id={`section-drawbacks-${system.key}-${d.key}`} className="drawback">
-                                    {d.content}
-                                </div>
-                            ))}
-                        </td>
-                    ))}
-                </tr>
-                <tr id="section-availability" className="header">
-                    <td colSpan={systems.length}>Availability</td>
+                <tr id="section-availability">
+                    <td colSpan={systems.length} className="header">
+                        Availability
+                    </td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
                         <td key={`${i}-${system.key}`}>{system.availability}</td>
                     ))}
                 </tr>
-                <tr id="section-specifications" className="header">
-                    <td colSpan={systems.length}>Specifications</td>
+                <tr id="section-specifications">
+                    <td colSpan={systems.length} className="header">
+                        Specifications
+                    </td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => (

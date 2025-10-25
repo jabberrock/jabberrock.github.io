@@ -62,7 +62,8 @@ tr {
 
 .fbt-table {
     text-align: left;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 20px 0;
 }
 
 .fbt-table > thead {
@@ -94,17 +95,17 @@ tr {
     vertical-align: top;
 }
 
-.fbt-table > tbody > tr.header td {
+.fbt-table > tbody > tr td.header {
     font-size: 175%;
     border-bottom: 1px solid black;
     padding-top: 40px;
 }
 
-.fbt-table > tbody > tr.sub-header td {
+.fbt-table > tbody > tr td.sub-header {
     padding-bottom: 0;
 }
 
-.fbt-table > tbody > tr.sub-header > td {
+.fbt-table > tbody > tr > td.sub-header {
     font-size: 125%;
     border-bottom: 1px solid black;
     padding-top: 20px;
@@ -174,12 +175,16 @@ tr {
 }
 
 .drawback {
-    margin: 20px 0 40px 0;
+    background-color: #eeedc6;
+    margin-left: -16px;
+    padding: 8px 16px;
+    margin-bottom: 16px;
 }
 
-.drawback .sub-header {
-    margin-top: 10px;
-    font-weight: bold;
+.drawback-title {
+    font-size: 125%;
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
 }
 
 .vr-system-summary-card {

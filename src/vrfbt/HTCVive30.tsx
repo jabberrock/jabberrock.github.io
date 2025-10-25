@@ -419,21 +419,92 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 score: 3,
                 content: (
                     <>
-                        <p>VIVE Tracker 3.0 has perfect tracking, as long as they’re visible to the base stations.</p>
+                        <SideBySideVideoPlayer
+                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-dancing.mp4`}
+                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-dancing.jpg`}
+                            width={480}
+                            height={320}
+                        />
                         <p>
-                            If the trackers lose sight of the base stations, parts of your body will freeze in place, or
-                            even fly off into the distance. This can easily happen if you move your arm in front of your
-                            chest tracker, or if you just bend down a bit. It takes a few seconds for the trackers to
-                            recover.
+                            Tracking is accurate and there is no noticeable lag. Trackers handle fast and extreme
+                            movements with no problems.
                         </p>
+                    </>
+                ),
+                drawbacks: [
+                    {
+                        key: "occlusion",
+                        title: "Occlusion",
+                        content: (
+                            <>
+                                <SideBySideVideoPlayer
+                                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-exercise.mp4`}
+                                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-exercise.jpg`}
+                                    width={480}
+                                    height={320}
+                                />
+                                <p>
+                                    If the trackers lose sight of the base stations, parts of your body will freeze in
+                                    place, or fly off into the distance. This can easily happen if you move your arm in
+                                    front of your chest tracker, or if you just bend down a bit. Simple actions like
+                                    sitting down can cause occlusion.
+                                </p>
+                                <p>It takes a few seconds for the trackers to recover.</p>
+                                <p>
+                                    I notice having to be careful how I move my arms, and to keep myself oriented
+                                    towards a base station. This breaks the immersion because I’m constantly worrying
+                                    whether I’m going to break tracking.
+                                </p>
+                            </>
+                        ),
+                    },
+                    {
+                        key: "interference",
+                        title: "Interference",
+                        content: (
+                            <>
+                                <Carousel>
+                                    {Array.from({ length: 5 }, (_, i) => (
+                                        <Carousel.Item key={i}>
+                                            <SimpleImage
+                                                src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
+                                                width={480}
+                                                height={320}
+                                            />
+                                        </Carousel.Item>
+                                    ))}
+                                </Carousel>
+                                <p>
+                                    Reflective items in your play space can reflect the infrared light from the base
+                                    stations, and confuse your trackers. Randomly, you will fly off into the distance.
+                                </p>
+                                <p>
+                                    You will need to close your curtains and cover any reflective surfaces like mirrors,
+                                    your monitor and PC.
+                                </p>
+                                <SimpleImage
+                                    src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
+                                    width={480}
+                                    height={320}
+                                />
+                                <p>
+                                    The trackers communicate with dongles over Bluetooth, which shares the same band as
+                                    2.4Ghz routers. Interference will also cause you to fly off into the distance.
+                                </p>
+                                <p>
+                                    You will need to move the dongles away from your router, and also space them out
+                                    from each other.
+                                </p>
+                            </>
+                        ),
+                    },
+                ],
+                rating: (
+                    <>
+                        <p>VIVE Tracker 3.0 gets a 3/5 for tracking.</p>
                         <p>
-                            If you have reflective surfaces (e.g. uncovered windows or mirrors), standing lamps, or a
-                            2.4Ghz router that is placed too closed to the tracker dongles, your body will often
-                            randomly fly off into the distance.
-                        </p>
-                        <p>
-                            This annoys me a lot because it completely breaks the immersion for me, and anyone I’m
-                            chatting with.
+                            It loses 2 points because occlusion causes your body to fly off into the distance, which
+                            breaks immersion.
                         </p>
                     </>
                 ),

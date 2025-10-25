@@ -1,10 +1,6 @@
 import React from "react";
-import { useContext } from "react";
-import { SelectedFBTsContext } from "./SelectedFBTs";
 
 export const FBTNav: React.FC = () => {
-    const { selected: selectedFBTs } = useContext(SelectedFBTsContext);
-
     return (
         <nav>
             <ul>
@@ -55,27 +51,6 @@ export const FBTNav: React.FC = () => {
                         <li>
                             <a href="#section-examples-exercise">Exercise</a>
                         </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#section-drawbacks">Limitations</a>
-                    <ul>
-                        {selectedFBTs.map((fbt, i) =>
-                            fbt && fbt.key !== "none" ? (
-                                <li key={i}>
-                                    {fbt.name}
-                                    <ul>
-                                        {fbt.drawbacks.map((d) => (
-                                            <li key={d.key}>
-                                                <a href={`#section-drawbacks-${fbt.key}-${d.key}`}>{d.title}</a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </li>
-                            ) : (
-                                <React.Fragment key={i}></React.Fragment>
-                            ),
-                        )}
                     </ul>
                 </li>
                 <li>

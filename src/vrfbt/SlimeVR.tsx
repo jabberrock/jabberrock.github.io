@@ -23,6 +23,10 @@ function matchConfigOptional<T>(
     return values[key] || fallback;
 }
 
+function nonNullArray<T>(array: (T | undefined)[]): T[] {
+    return array.filter((v) => v != null);
+}
+
 export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
     if (fbtSystemConfig.fbtSystemKey !== "slimevr_trackers") {
@@ -357,36 +361,116 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 }),
                 content: (
                     <>
+                        <SideBySideVideoPlayer
+                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-exercise.mp4`}
+                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-exercise.jpg`}
+                            width={480}
+                            height={320}
+                        />
                         <p>
-                            SlimeVR provides high quality tracking when using modern IMUs (e.g. ICM45686 used in
-                            official SlimeVR trackers). With good calibration, the avatar can almost exactly match your
-                            body.
+                            Tracking is accurate and there is no noticeable lag. Trackers handle fast and extreme
+                            movements with no problems.
                         </p>
+                        <SideBySideVideoPlayer
+                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-lying_down.mp4`}
+                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-lying_down.jpg`}
+                            width={480}
+                            height={320}
+                        />
                         <p>
-                            They track you in any position, whether you’re standing around, dancing, doing yoga, or
-                            lying under a blanket.
-                        </p>
-                        {matchConfigOptional(fbtSystemConfig.key, {
-                            "slimevr_trackers-lower_body_set_5_0": (
-                                <p>
-                                    The Lower Body Set (5+0) only provides a single tracker for your spine. When you
-                                    bend your spine, SlimeVR doesn't really know how much you're bending, so your avatar
-                                    legs can end up in front of behind your real legs. I strongly recommend getting at
-                                    least the Core Set (6+0) which provides a chest and hip tracker.
-                                </p>
-                            ),
-                        })}
-                        <p>
-                            However, SlimeVR trackers will drift over time. With the latest IMUs, you can easily play
-                            for 45 mins without noticing drift. It is very easy to fix drift: just face forward and
-                            double tap your chest tracker.
-                        </p>
-                        <p>
-                            With optional features like Stay Aligned, I can sometimes go 4-5 hours without noticing any
-                            drift.
+                            Trackers work in any position, whether you’re standing around, dancing, doing yoga, or
+                            covered by a blanket.
                         </p>
                     </>
                 ),
+                drawbacks: nonNullArray([
+                    matchConfigOptional(fbtSystemConfig.key, {
+                        "slimevr_trackers-lower_body_set_5_0": {
+                            key: "sitting_bending",
+                            title: "Sitting/Bending",
+                            content: (
+                                <>
+                                    <SideBySideVideoPlayer
+                                        video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-sitting.mp4`}
+                                        thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-sitting.jpg`}
+                                        width={480}
+                                        height={320}
+                                    />
+                                    <p>
+                                        The Lower Body Set (5+0) only provides a single chest tracker for your upper
+                                        body. When you sit down or bend forwards, your legs tend to appear in front of
+                                        where your real legs are.
+                                    </p>
+                                    <p>
+                                        I strongly recommend getting at least the Core Set (6+0) which provides a chest
+                                        and hip tracker. Together, these help SlimeVR tracker your upper body
+                                        accurately.
+                                    </p>
+                                </>
+                            ),
+                        },
+                    }),
+                    {
+                        key: "drift",
+                        title: "Drift",
+                        content: (
+                            <>
+                                <SideBySideVideoPlayer
+                                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-sitting.mp4`}
+                                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-sitting.jpg`}
+                                    width={480}
+                                    height={320}
+                                />
+                                <p>
+                                    SlimeVR trackers will drift over time, because errors accumulate in the IMU. You
+                                    will notice that your avatar is slightly off from your real body.
+                                </p>
+                                <p>
+                                    With modern IMUs, you can easily play for 45 mins without noticing any drift. When
+                                    the optional Stay Aligned feature is enabled, I can go 4-5 hours without noticing
+                                    any drift.
+                                </p>
+                                <p>
+                                    It is very easy to fix drift: just face forward and double tap your chest tracker.
+                                </p>
+                                <p>
+                                    (Official SlimeVR trackers use ICM45686, which is a modern IMU. Some 3rd party Slime
+                                    trackers use low quality IMUs which drift much quicker.)
+                                </p>
+                            </>
+                        ),
+                    },
+                ]),
+                rating: matchConfigOptional(fbtSystemConfig.key, {
+                    "slimevr_trackers-lower_body_set_5_0": (
+                        <>
+                            <p>The SlimeVR Lower Body Set gets a 3/5 for tracking.</p>
+                            <p>
+                                It loses a point because the lack of a hip tracker means that your legs aren’t always in
+                                the right place. It loses another point because you have to deal with drift, even though
+                                it is easy to fix.
+                            </p>
+                        </>
+                    ),
+                    "slimevr_trackers-core_set_6_0": (
+                        <>
+                            <p>The SlimeVR Core Set gets a 4/5 for tracking.</p>
+                            <p>It loses a point because you have to deal with drift, even though it is easy to fix.</p>
+                        </>
+                    ),
+                    "slimevr_trackers-enhanced_core_set_6_2": (
+                        <>
+                            <p>The SlimeVR Enhanced Core Set gets a 4/5 for tracking.</p>
+                            <p>It loses a point because you have to deal with drift, even though it is easy to fix.</p>
+                        </>
+                    ),
+                    "slimevr_trackers-full_body_set_8_2": (
+                        <>
+                            <p>The SlimeVR Full Body Set gets a 4/5 for tracking.</p>
+                            <p>It loses a point because you have to deal with drift, even though it is easy to fix.</p>
+                        </>
+                    ),
+                }),
             },
             calibration: {
                 score: 2,
