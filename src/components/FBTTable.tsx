@@ -307,12 +307,12 @@ function FBTTable(): React.ReactNode {
                         </p>
                     </td>
                 </tr>
-                <tr id="section-examples-wearing" className="sub-header">
-                    <td colSpan={systems.length}>Wearing</td>
+                <tr id="section-examples-wearing">
+                    <td colSpan={systems.length} className="sub-header">Wearing</td>
                 </tr>
                 <tr>{/* TODO */}</tr>
-                <tr id="section-examples-calibration" className="sub-header">
-                    <td colSpan={systems.length}>Calibration</td>
+                <tr id="section-examples-calibration">
+                    <td colSpan={systems.length} className="sub-header">Calibration</td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
@@ -321,8 +321,8 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 {Object.keys(exampleVideos).map((v) => (
                     <React.Fragment key={v}>
-                        <tr id={`section-examples-${v}`} className="sub-header">
-                            <td colSpan={systems.length}>{exampleVideos[v]}</td>
+                        <tr id={`section-examples-${v}`}>
+                            <td colSpan={systems.length} className="sub-header">{exampleVideos[v]}</td>
                         </tr>
                         <tr>
                             {systems.map((system, i) => (
