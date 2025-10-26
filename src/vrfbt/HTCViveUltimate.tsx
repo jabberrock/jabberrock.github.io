@@ -1,6 +1,7 @@
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
+import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
-import { type VRSystem } from "../vr/VR";
+import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
@@ -51,7 +52,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                 optional: [],
             };
             switch (fbtSystemConfig.key) {
-                case "htc_vive_ultimate-3_trackers":
+                case "htc_vive_ultimate_trackers-3_trackers":
                     c.required.push({
                         name: "VIVE Ultimate Tracker 3+1 Kit",
                         count: 1,
@@ -85,7 +86,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
         ),
         tracking: (function () {
             switch (fbtSystemConfig.key) {
-                case "htc_vive_ultimate-3_trackers":
+                case "htc_vive_ultimate_trackers-3_trackers":
                     return (
                         <>
                             <div>3 point tracking (Chest, 2x Ankle)</div>
@@ -102,9 +103,32 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
             </>
         ),
         examples: (function () {
+            let vrHeadset: VRHeadsetKey;
+            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                vrHeadset = "htc_vive";
+            } else {
+                vrHeadset = "meta_quest_3";
+            }
+
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
-                nodes[v] = <></>;
+                nodes[v] = (
+                    <>
+                        <VideoPlayer
+                            key={v}
+                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.mp4`}
+                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.jpg`}
+                            width={480}
+                            height={640}
+                        />
+                        {vrHeadset !== vrSystem.headset && (
+                            <div>
+                                (Captured with {vrHeadsetsByKey[vrHeadset].name} instead of{" "}
+                                {vrHeadsetsByKey[vrSystem.headset].name})
+                            </div>
+                        )}
+                    </>
+                );
             }
 
             return nodes;

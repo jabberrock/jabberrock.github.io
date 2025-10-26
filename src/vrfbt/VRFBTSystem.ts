@@ -67,13 +67,13 @@ export const ExampleVideoKeys = [
 const lighthouseFBTRecommendations: FBTSystemConfigKey[] = [
     "slimevr_trackers-enhanced_core_set_6_2",
     "htc_vive_trackers_3_0-3_trackers",
-    "htc_vive_ultimate-3_trackers",
+    "htc_vive_ultimate_trackers-3_trackers",
 ];
 
 const nonLighthouseFBTRecommendations: FBTSystemConfigKey[] = [
     "slimevr_trackers-enhanced_core_set_6_2",
     "htc_vive_trackers_3_0-3_trackers_1_continuous",
-    "htc_vive_ultimate-3_trackers",
+    "htc_vive_ultimate_trackers-3_trackers",
 ];
 
 export const vrHeadsetFBTRecommendations = Object.fromEntries(

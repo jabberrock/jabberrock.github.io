@@ -39,7 +39,7 @@ export const fbtSystemConfigKeys = [
     "slimevr_trackers-full_body_set_8_2",
     "htc_vive_trackers_3_0-3_trackers",
     "htc_vive_trackers_3_0-3_trackers_1_continuous",
-    "htc_vive_ultimate-3_trackers",
+    "htc_vive_ultimate_trackers-3_trackers",
 ] as const;
 
 export type FBTSystemConfigKey = (typeof fbtSystemConfigKeys)[number];
@@ -89,7 +89,7 @@ export const fbtSystemConfigs: FBTSystemConfig[] = [
         name: "3x VIVE Tracker 3.0 + 1x for continuous calibration",
     },
     {
-        key: "htc_vive_ultimate-3_trackers",
+        key: "htc_vive_ultimate_trackers-3_trackers",
         shortKey: "3_trackers",
         fbtSystemKey: "htc_vive_ultimate_trackers",
         name: "3x VIVE Ultimate",
