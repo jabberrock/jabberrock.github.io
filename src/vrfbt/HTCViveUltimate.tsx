@@ -183,11 +183,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
             },
             setup: {
                 score: 4,
-                content: (
-                    <>
-                        TODO
-                    </>
-                )
+                content: <>TODO</>,
             },
             calibration: {
                 score: 4,
@@ -226,11 +222,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
             },
             comfort: {
                 score: 4,
-                content: (
-                    <>
-                        TODO
-                    </>
-                )
+                content: <>TODO</>,
             },
             overall: {
                 score: 4,

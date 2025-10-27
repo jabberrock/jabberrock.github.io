@@ -104,16 +104,15 @@ const VRFBTReviewSection = ({
                 </td>
             </tr>
             <tr>
-                {systems.map((system, i) => (
+                {systems.map((system, i) =>
                     section(system) ? (
                         <td key={`${i}-${system.key}`}>
                             <ReviewScore score={section(system)?.score || 0} />
                         </td>
                     ) : (
-                        <td key={`${i}-${system.key}`}>
-                        </td>
-                    )
-                ))}
+                        <td key={`${i}-${system.key}`}></td>
+                    ),
+                )}
             </tr>
             <tr>
                 {systems.map((system, i) => (
@@ -332,11 +331,15 @@ function FBTTable(): React.ReactNode {
                     </td>
                 </tr>
                 <tr id="section-examples-wearing">
-                    <td colSpan={systems.length} className="sub-header">Wearing</td>
+                    <td colSpan={systems.length} className="sub-header">
+                        Wearing
+                    </td>
                 </tr>
                 <tr>{/* TODO */}</tr>
                 <tr id="section-examples-calibration">
-                    <td colSpan={systems.length} className="sub-header">Calibration</td>
+                    <td colSpan={systems.length} className="sub-header">
+                        Calibration
+                    </td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
@@ -346,7 +349,9 @@ function FBTTable(): React.ReactNode {
                 {Object.keys(exampleVideos).map((v) => (
                     <React.Fragment key={v}>
                         <tr id={`section-examples-${v}`}>
-                            <td colSpan={systems.length} className="sub-header">{exampleVideos[v]}</td>
+                            <td colSpan={systems.length} className="sub-header">
+                                {exampleVideos[v]}
+                            </td>
                         </tr>
                         <tr>
                             {systems.map((system, i) => (

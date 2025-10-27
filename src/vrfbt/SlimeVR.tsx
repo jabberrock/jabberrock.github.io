@@ -354,11 +354,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
             },
             setup: {
                 score: 4,
-                content: (
-                    <>
-                        TODO
-                    </>
-                )
+                content: <>TODO</>,
             },
             calibration: {
                 score: 2,
@@ -516,11 +512,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
             },
             comfort: {
                 score: 4,
-                content: (
-                    <>
-                        TODO
-                    </>
-                )
+                content: <>TODO</>,
             },
             overall: {
                 score: matchConfig<number>(fbtSystemConfig.key, {

@@ -417,11 +417,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             })(),
             setup: {
                 score: 4,
-                content: (
-                    <>
-                        TODO
-                    </>
-                )
+                content: <>TODO</>,
             },
             calibration: (function () {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
@@ -585,11 +581,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             },
             comfort: {
                 score: 4,
-                content: (
-                    <>
-                        TODO
-                    </>
-                )
+                content: <>TODO</>,
             },
             overall: (function () {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
