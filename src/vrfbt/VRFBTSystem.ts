@@ -11,8 +11,9 @@ export type ReviewSection = {
 
 export type VRFBTReview = {
     cost: ReviewSection;
-    tracking: ReviewSection;
+    setup: ReviewSection;
     calibration: ReviewSection;
+    tracking: ReviewSection;
     overall: ReviewSection;
 };
 

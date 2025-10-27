@@ -14,10 +14,13 @@ export const FBTNav: React.FC = () => {
                             <a href="#section-review-cost">Affordability</a>
                         </li>
                         <li>
-                            <a href="#section-review-tracking">Tracking Accuracy</a>
+                            <a href="#section-review-setup">Setup</a>
                         </li>
                         <li>
-                            <a href="#section-review-calibration">Ease of Calibration</a>
+                            <a href="#section-review-calibration">Calibration</a>
+                        </li>
+                        <li>
+                            <a href="#section-review-gameplay">Gameplay</a>
                         </li>
                         <li>
                             <a href="#section-review-overall">Overall</a>

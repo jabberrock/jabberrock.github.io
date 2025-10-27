@@ -43,29 +43,35 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
         <table className="review-table">
             <tbody>
                 <tr>
-                    <td>
-                        <strong>Overall</strong>
-                    </td>
-                    <td>
-                        <ReviewScore score={review.overall.score} />
-                    </td>
-                </tr>
-                <tr>
                     <td>Affordability</td>
                     <td>
                         <ReviewScore score={review.cost.score} />
                     </td>
                 </tr>
                 <tr>
-                    <td>Tracking Accuracy</td>
+                    <td>Setup</td>
+                    <td>
+                        <ReviewScore score={review.setup.score} />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Calibration</td>
+                    <td>
+                        <ReviewScore score={review.calibration.score} />
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gameplay</td>
                     <td>
                         <ReviewScore score={review.tracking.score} />
                     </td>
                 </tr>
                 <tr>
-                    <td>Ease of Calibration</td>
                     <td>
-                        <ReviewScore score={review.calibration.score} />
+                        <strong>Overall</strong>
+                    </td>
+                    <td>
+                        <ReviewScore score={review.overall.score} />
                     </td>
                 </tr>
             </tbody>
@@ -277,15 +283,21 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <VRFBTReviewSection
                     systems={systems}
-                    id="section-review-tracking"
-                    name="Tracking Accuracy"
-                    section={(system) => system.review?.tracking}
+                    id="section-review-setup"
+                    name="Setup"
+                    section={(system) => system.review?.setup}
                 />
                 <VRFBTReviewSection
                     systems={systems}
                     id="section-review-calibration"
-                    name="Ease of Calibration"
+                    name="Calibration"
                     section={(system) => system.review?.calibration}
+                />
+                <VRFBTReviewSection
+                    systems={systems}
+                    id="section-review-gameplay"
+                    name="Gameplay"
+                    section={(system) => system.review?.tracking}
                 />
                 <VRFBTReviewSection
                     systems={systems}

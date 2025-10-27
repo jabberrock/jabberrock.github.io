@@ -415,6 +415,14 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                     };
                 }
             })(),
+            setup: {
+                score: 4,
+                content: (
+                    <>
+                        TODO
+                    </>
+                )
+            },
             tracking: {
                 score: 3,
                 content: (

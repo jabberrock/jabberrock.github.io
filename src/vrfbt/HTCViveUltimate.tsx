@@ -181,6 +181,14 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                     </p>
                 ),
             },
+            setup: {
+                score: 4,
+                content: (
+                    <>
+                        TODO
+                    </>
+                )
+            },
             tracking: {
                 score: 4,
                 content: (
