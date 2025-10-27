@@ -360,7 +360,41 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                     </>
                 )
             },
-            tracking: {
+            calibration: {
+                score: 2,
+                content: (
+                    <>
+                        <SimpleVideoPlayer
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.mp4`}
+                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.jpg`}
+                            width={480}
+                            height={420}
+                        />
+                        <p>At the start of each VR session, you will need to calibrate your trackers to your body.</p>
+                        <p>
+                            For most people, the calibration process just works. However, for others, it may require
+                            some trial and error. I am bow-legged, so I have to be careful how I orient my knees during
+                            calibration. SlimeVR provides VRChat calibration sessions to help you figure out the
+                            calibration method. They’re also continuing to improve the process.
+                        </p>
+                        {matchConfigOptional(fbtSystemConfig.key, {
+                            "slimevr_trackers-full_body_set_8_2": (
+                                <p>
+                                    The Full Body Set (8+2) provides 2 trackers for your upper arms for elbow tracking.
+                                    You will need to hold your arms in a specific pose during calibration, and it can
+                                    make the process even more difficult. I don't recommend getting elbow trackers
+                                    unless you really want it for dancing.
+                                </p>
+                            ),
+                        })}
+                        <p>
+                            I think the calibration process learning curve is the biggest drawback of SlimeVR. However,
+                            once you figure out calibration, it works every time.
+                        </p>
+                    </>
+                ),
+            },
+            gameplay: {
                 score: matchConfig<number>(fbtSystemConfig.key, {
                     "slimevr_trackers-lower_body_set_5_0": 3,
                     "slimevr_trackers-core_set_6_0": 4,
@@ -479,40 +513,6 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                         </>
                     ),
                 }),
-            },
-            calibration: {
-                score: 2,
-                content: (
-                    <>
-                        <SimpleVideoPlayer
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.mp4`}
-                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.jpg`}
-                            width={480}
-                            height={420}
-                        />
-                        <p>At the start of each VR session, you will need to calibrate your trackers to your body.</p>
-                        <p>
-                            For most people, the calibration process just works. However, for others, it may require
-                            some trial and error. I am bow-legged, so I have to be careful how I orient my knees during
-                            calibration. SlimeVR provides VRChat calibration sessions to help you figure out the
-                            calibration method. They’re also continuing to improve the process.
-                        </p>
-                        {matchConfigOptional(fbtSystemConfig.key, {
-                            "slimevr_trackers-full_body_set_8_2": (
-                                <p>
-                                    The Full Body Set (8+2) provides 2 trackers for your upper arms for elbow tracking.
-                                    You will need to hold your arms in a specific pose during calibration, and it can
-                                    make the process even more difficult. I don't recommend getting elbow trackers
-                                    unless you really want it for dancing.
-                                </p>
-                            ),
-                        })}
-                        <p>
-                            I think the calibration process learning curve is the biggest drawback of SlimeVR. However,
-                            once you figure out calibration, it works every time.
-                        </p>
-                    </>
-                ),
             },
             comfort: {
                 score: 4,

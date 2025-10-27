@@ -423,7 +423,73 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                     </>
                 )
             },
-            tracking: {
+            calibration: (function () {
+                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                    const vrHeadset = "htc_vive";
+                    return {
+                        score: 5,
+                        content: (
+                            <>
+                                <SimpleVideoPlayer
+                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
+                                    width={480}
+                                    height={420}
+                                />
+                                <p>Just put your headset and tracker on, and start playing!</p>
+                            </>
+                        ),
+                    };
+                } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
+                    const vrHeadset = "meta_quest_3";
+                    return {
+                        score: 5,
+                        content: (
+                            <>
+                                <SimpleVideoPlayer
+                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
+                                    width={480}
+                                    height={420}
+                                />
+                                <p>
+                                    Just put your headset and tracker on, enable continuous calibration, and start
+                                    playing!
+                                </p>
+                                <p>
+                                    During play, your headset may randomly reset its playspace. Your avatar will fly off
+                                    to a random position. But continuous calibration will re-align the two spaces after
+                                    a few seconds.
+                                </p>
+                            </>
+                        ),
+                    };
+                } else {
+                    const vrHeadset = "meta_quest_3";
+                    return {
+                        score: 3,
+                        content: (
+                            <>
+                                <SimpleVideoPlayer
+                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
+                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
+                                    width={480}
+                                    height={420}
+                                />
+                                <p>
+                                    Since your headset is not Lighthouse-based, you will have to do space-calibration to
+                                    align your headset’s playspace to the trackers’ playspace.
+                                </p>
+                                <p>
+                                    During play, your headset may randomly reset its playspace. Your avatar will fly off
+                                    to a random position. You will need to re-do space-calibration.
+                                </p>
+                            </>
+                        ),
+                    };
+                }
+            })(),
+            gameplay: {
                 score: 3,
                 content: (
                     <>
@@ -517,72 +583,6 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                     </>
                 ),
             },
-            calibration: (function () {
-                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
-                    const vrHeadset = "htc_vive";
-                    return {
-                        score: 5,
-                        content: (
-                            <>
-                                <SimpleVideoPlayer
-                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
-                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                                    width={480}
-                                    height={420}
-                                />
-                                <p>Just put your headset and tracker on, and start playing!</p>
-                            </>
-                        ),
-                    };
-                } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
-                    const vrHeadset = "meta_quest_3";
-                    return {
-                        score: 5,
-                        content: (
-                            <>
-                                <SimpleVideoPlayer
-                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
-                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                                    width={480}
-                                    height={420}
-                                />
-                                <p>
-                                    Just put your headset and tracker on, enable continuous calibration, and start
-                                    playing!
-                                </p>
-                                <p>
-                                    During play, your headset may randomly reset its playspace. Your avatar will fly off
-                                    to a random position. But continuous calibration will re-align the two spaces after
-                                    a few seconds.
-                                </p>
-                            </>
-                        ),
-                    };
-                } else {
-                    const vrHeadset = "meta_quest_3";
-                    return {
-                        score: 3,
-                        content: (
-                            <>
-                                <SimpleVideoPlayer
-                                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
-                                    thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                                    width={480}
-                                    height={420}
-                                />
-                                <p>
-                                    Since your headset is not Lighthouse-based, you will have to do space-calibration to
-                                    align your headset’s playspace to the trackers’ playspace.
-                                </p>
-                                <p>
-                                    During play, your headset may randomly reset its playspace. Your avatar will fly off
-                                    to a random position. You will need to re-do space-calibration.
-                                </p>
-                            </>
-                        ),
-                    };
-                }
-            })(),
             comfort: {
                 score: 4,
                 content: (

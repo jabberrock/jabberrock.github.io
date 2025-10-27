@@ -13,7 +13,7 @@ export type VRFBTReview = {
     cost: ReviewSection;
     setup: ReviewSection;
     calibration: ReviewSection;
-    tracking: ReviewSection;
+    gameplay: ReviewSection;
     comfort: ReviewSection;
     overall: ReviewSection;
 };

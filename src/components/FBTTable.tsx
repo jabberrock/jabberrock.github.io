@@ -63,7 +63,7 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
                 <tr>
                     <td>Gameplay</td>
                     <td>
-                        <ReviewScore score={review.tracking.score} />
+                        <ReviewScore score={review.gameplay.score} />
                     </td>
                 </tr>
                 <tr>
@@ -303,7 +303,7 @@ function FBTTable(): React.ReactNode {
                     systems={systems}
                     id="section-review-gameplay"
                     name="Gameplay"
-                    section={(system) => system.review?.tracking}
+                    section={(system) => system.review?.gameplay}
                 />
                 <VRFBTReviewSection
                     systems={systems}

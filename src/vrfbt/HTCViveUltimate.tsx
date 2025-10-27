@@ -189,20 +189,6 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                     </>
                 )
             },
-            tracking: {
-                score: 4,
-                content: (
-                    <>
-                        <p>VIVE Ultimate trackers have perfect tracking, as long as they’re not occluded.</p>
-                        <p>
-                            If the tracker cameras lose tracking, parts of your body will freeze in place. This can
-                            happen if you accidentally cover both cameras with your arm, if you turn towards an empty
-                            area of your room, or get too close to a surface (like a wall or couch). It takes a few
-                            seconds for the trackers to recover.
-                        </p>
-                    </>
-                ),
-            },
             calibration: {
                 score: 4,
                 content: (
@@ -220,6 +206,20 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                         <p>
                             As a one-time setup, you will need to scan your playspace. If you move things around
                             significantly, you may need to re-scan your playspace.
+                        </p>
+                    </>
+                ),
+            },
+            gameplay: {
+                score: 4,
+                content: (
+                    <>
+                        <p>VIVE Ultimate trackers have perfect tracking, as long as they’re not occluded.</p>
+                        <p>
+                            If the tracker cameras lose tracking, parts of your body will freeze in place. This can
+                            happen if you accidentally cover both cameras with your arm, if you turn towards an empty
+                            area of your room, or get too close to a surface (like a wall or couch). It takes a few
+                            seconds for the trackers to recover.
                         </p>
                     </>
                 ),
