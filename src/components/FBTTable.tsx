@@ -67,6 +67,12 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
                     </td>
                 </tr>
                 <tr>
+                    <td>Comfort</td>
+                    <td>
+                        <ReviewScore score={review.comfort.score} />
+                    </td>
+                </tr>
+                <tr>
                     <td>
                         <strong>Overall</strong>
                     </td>
@@ -298,6 +304,12 @@ function FBTTable(): React.ReactNode {
                     id="section-review-gameplay"
                     name="Gameplay"
                     section={(system) => system.review?.tracking}
+                />
+                <VRFBTReviewSection
+                    systems={systems}
+                    id="section-review-comfort"
+                    name="Comfort"
+                    section={(system) => system.review?.comfort}
                 />
                 <VRFBTReviewSection
                     systems={systems}

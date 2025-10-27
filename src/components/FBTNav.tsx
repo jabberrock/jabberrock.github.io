@@ -23,6 +23,9 @@ export const FBTNav: React.FC = () => {
                             <a href="#section-review-gameplay">Gameplay</a>
                         </li>
                         <li>
+                            <a href="#section-review-comfort">Comfort</a>
+                        </li>
+                        <li>
                             <a href="#section-review-overall">Overall</a>
                         </li>
                     </ul>

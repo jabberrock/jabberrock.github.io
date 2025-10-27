@@ -514,6 +514,14 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                     </>
                 ),
             },
+            comfort: {
+                score: 4,
+                content: (
+                    <>
+                        TODO
+                    </>
+                )
+            },
             overall: {
                 score: matchConfig<number>(fbtSystemConfig.key, {
                     "slimevr_trackers-lower_body_set_5_0": 3,

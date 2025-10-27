@@ -583,6 +583,14 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                     };
                 }
             })(),
+            comfort: {
+                score: 4,
+                content: (
+                    <>
+                        TODO
+                    </>
+                )
+            },
             overall: (function () {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
                     return {

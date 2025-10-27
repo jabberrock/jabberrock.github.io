@@ -224,6 +224,14 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                     </>
                 ),
             },
+            comfort: {
+                score: 4,
+                content: (
+                    <>
+                        TODO
+                    </>
+                )
+            },
             overall: {
                 score: 4,
                 content: (

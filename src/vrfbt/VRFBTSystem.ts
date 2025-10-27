@@ -14,6 +14,7 @@ export type VRFBTReview = {
     setup: ReviewSection;
     calibration: ReviewSection;
     tracking: ReviewSection;
+    comfort: ReviewSection;
     overall: ReviewSection;
 };
 
