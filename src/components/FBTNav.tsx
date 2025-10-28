@@ -60,7 +60,7 @@ export const FBTNav: React.FC = () => {
                     </ul>
                 </li>
                 <li>
-                    <a href="#section-availability">Availability</a>
+                    <a href="#section-availability">What/Where to Buy</a>
                 </li>
                 <li>
                     <a href="#section-specifications">Specifications</a>

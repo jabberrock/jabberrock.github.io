@@ -196,7 +196,7 @@ function ComponentTable({
                 {showOptional && system.itemList.optional.length > 0 && (
                     <>
                         <tr>
-                            <td>Optional</td>
+                            <td>Recommended</td>
                         </tr>
                         {system.itemList.optional.map((item, i) => (
                             <tr key={`${i}-${system.key}`}>
@@ -408,7 +408,7 @@ function FBTTable(): React.ReactNode {
                 ))}
                 <tr id="section-availability">
                     <td colSpan={systems.length} className="header">
-                        Availability
+                        What/Where to Buy
                     </td>
                 </tr>
                 <tr>
