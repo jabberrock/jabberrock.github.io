@@ -174,7 +174,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
         review: {
             cost: {
                 score: 2,
-                content: <p>You will need to buy the trackers, and straps to mount the trackers to your body.</p>,
+                content: <p>You will need to buy the trackers and straps.</p>,
             },
             setup: {
                 score: 4,
