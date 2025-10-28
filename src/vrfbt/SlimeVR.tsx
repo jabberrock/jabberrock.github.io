@@ -365,6 +365,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                                 </p>
                             </>
                         ),
+                        collapsed: true,
                     },
                 ],
             },
@@ -597,6 +598,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                                 </p>
                             </>
                         ),
+                        collapsed: true,
                     },
                 ],
             },

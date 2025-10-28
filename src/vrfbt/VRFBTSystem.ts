@@ -22,6 +22,7 @@ export type Drawback = {
     key: string;
     title: string;
     content: React.ReactNode;
+    collapsed?: boolean;
 };
 
 export type VRFBTSystem = {

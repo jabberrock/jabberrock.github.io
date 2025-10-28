@@ -418,8 +418,23 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 ),
                 drawbacks: [
                     {
-                        key: "interference",
-                        title: "Dongle and 2.4Ghz Wi-Fi Interference",
+                        key: "dongle_interference",
+                        title: "Dongle Interference",
+                        content: (
+                            <>
+                                <p>TODO</p>
+                                <p>
+                                    The trackers communicate with dongles over Bluetooth. Unfortunately, they can
+                                    interfere with each other. Interference will cause you to fly off into the distance.
+                                </p>
+                                <p>You will need to space the dongles apart using the provided cradles.</p>
+                            </>
+                        ),
+                        collapsed: true,
+                    },
+                    {
+                        key: "wifi_interference",
+                        title: "2.4Ghz Wi-Fi Interference",
                         content: (
                             <>
                                 <SimpleImage
@@ -432,11 +447,11 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                     2.4Ghz Wi-Fi routers. Interference will cause you to fly off into the distance.
                                 </p>
                                 <p>
-                                    You will need to space the dongles apart using the provided cradles, and keep them
-                                    away from your router if your router's 2.4Ghz band is active.
+                                    If you have a 2.4Ghz router, you will need to keep the dongles away from the router.
                                 </p>
                             </>
                         ),
+                        collapsed: true,
                     },
                 ],
             },

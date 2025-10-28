@@ -3,6 +3,7 @@ import { FBTSystemSelect } from "./FBTSystemSelect";
 import { type ReviewSection, type VRFBTReview, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
 import { ReviewScore } from "./ReviewScore";
 import { SelectedFBTsContext } from "./SelectedFBTs";
+import { CollapsibleSection } from "./CollapsibleSection";
 
 const exampleVideos: Record<string, string> = {
     standing: "Standing",
@@ -124,10 +125,14 @@ const VRFBTReviewSection = ({
                     <td key={`${i}-${system.key}`}>
                         {section(system)?.content}
                         {section(system)?.drawbacks?.map((drawback) => (
-                            <div key={drawback.key} className="drawback">
-                                <div className="drawback-title">{drawback.title}</div>
+                            <CollapsibleSection
+                                key={drawback.key}
+                                title={drawback.title}
+                                className="drawback"
+                                initiallyCollapsed={drawback.collapsed}
+                            >
                                 {drawback.content}
-                            </div>
+                            </CollapsibleSection>
                         ))}
                     </td>
                 ))}
