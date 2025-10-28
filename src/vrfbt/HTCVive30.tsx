@@ -564,31 +564,6 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                             </>
                         ),
                     },
-                    vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse"
-                        ? matchConfigOptional(fbtSystemConfig.key, {
-                              "htc_vive_trackers_3_0-3_trackers": {
-                                  key: "playspace_reset",
-                                  title: "Random Playspace Resets",
-                                  content: (
-                                      <p>
-                                          During play, your headset may randomly reset its playspace. Your avatar will
-                                          fly off to a random position. You will need to re-do space-calibration.
-                                      </p>
-                                  ),
-                              },
-                              "htc_vive_trackers_3_0-3_trackers_1_continuous": {
-                                  key: "playspace_reset",
-                                  title: "Random Playspace Resets",
-                                  content: (
-                                      <p>
-                                          During play, your headset may randomly reset its playspace. Your avatar will
-                                          fly off to a random position. But continuous calibration will re-align the two
-                                          spaces after a few seconds.
-                                      </p>
-                                  ),
-                              },
-                          })
-                        : undefined,
                     {
                         key: "reflections",
                         title: "Reflection Interference",
@@ -618,6 +593,22 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                         ),
                         collapsed: true,
                     },
+                    vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse"
+                        ? matchConfigOptional(fbtSystemConfig.key, {
+                              "htc_vive_trackers_3_0-3_trackers": {
+                                  key: "playspace_drift",
+                                  title: "Playspace Drift",
+                                  content: (
+                                      <p>
+                                          After a few hours of play, the headset playspace might have drifted away from
+                                          the tracker playspace. Your avatar may look look like it's leaning towards the
+                                          side. You can re-do Space Calibration to re-align the two playspaces.
+                                      </p>
+                                  ),
+                                  collapsed: true,
+                              },
+                          })
+                        : undefined,
                 ]),
             },
             comfort: {
