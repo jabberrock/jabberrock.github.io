@@ -188,13 +188,6 @@ function FBTTable(): React.ReactNode {
                         <td key={`${i}-${system.key}`}>{system.introExample}</td>
                     ))}
                 </tr>
-                <tr>
-                    {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>
-                            {system.review && <VRFBTReviewChart review={system.review} />}
-                        </td>
-                    ))}
-                </tr>
                 <tr id="section-how_it_works">
                     <td colSpan={systems.length} className="header">
                         How it Works
