@@ -122,8 +122,12 @@ const VRFBTReviewSection = ({
             </tr>
             <tr>
                 {systems.map((system, i) => (
+                    <td key={`${i}-${system.key}`}>{section(system)?.content}</td>
+                ))}
+            </tr>
+            <tr>
+                {systems.map((system, i) => (
                     <td key={`${i}-${system.key}`}>
-                        {section(system)?.content}
                         {section(system)?.drawbacks?.map((drawback) => (
                             <CollapsibleSection
                                 key={drawback.key}
@@ -140,6 +144,98 @@ const VRFBTReviewSection = ({
         </>
     );
 };
+
+function ComponentTable({
+    systems,
+    system,
+    showOptional = false,
+}: {
+    systems: VRFBTSystem[];
+    system: VRFBTSystem;
+    showOptional?: boolean;
+}) {
+    return (
+        <table className="component-table">
+            <tbody>
+                {system.itemList.required.length > 0 && (
+                    <>
+                        <tr>
+                            <td>Required</td>
+                        </tr>
+                        {system.itemList.required.map((item, i) => (
+                            <tr key={`${i}-${system.key}`}>
+                                <td>
+                                    <a href={item.link.toString()} target="_blank">
+                                        {item.name}
+                                    </a>{" "}
+                                    <span className="comment">{item.comment}</span>
+                                </td>
+                                <td>{item.count}x</td>
+                                <td className="component-price">{toDollars(item.each_price_cents)}</td>
+                            </tr>
+                        ))}
+                        {Array(
+                            systems.reduce((p, v) => Math.max(p, v.itemList.required.length), 0) -
+                                system.itemList.required.length,
+                        )
+                            .fill(null)
+                            .map((_, i) => (
+                                <tr key={`${i}-${system.key}`}>
+                                    <td colSpan={3}>&nbsp;</td>
+                                </tr>
+                            ))}
+                        <tr>
+                            <td className="total" colSpan={3}>
+                                <strong>
+                                    {toDollars(sum(system.itemList.required.map((i) => i.count * i.each_price_cents)))}
+                                </strong>
+                            </td>
+                        </tr>
+                    </>
+                )}
+                {showOptional && system.itemList.optional.length > 0 && (
+                    <>
+                        <tr>
+                            <td>Optional</td>
+                        </tr>
+                        {system.itemList.optional.map((item, i) => (
+                            <tr key={`${i}-${system.key}`}>
+                                <td>
+                                    <a href={item.link.toString()} target="_blank">
+                                        {item.name}
+                                    </a>{" "}
+                                    <span className="comment">{item.comment}</span>
+                                </td>
+                                <td>{item.count}x</td>
+                                <td className="component-price">{toDollars(item.each_price_cents)}</td>
+                            </tr>
+                        ))}
+                        {Array(
+                            systems.reduce((p, v) => Math.max(p, v.itemList.optional.length), 0) -
+                                system.itemList.optional.length,
+                        )
+                            .fill(null)
+                            .map((_, i) => (
+                                <tr key={`${i}-${system.key}`}>
+                                    <td colSpan={3}>&nbsp;</td>
+                                </tr>
+                            ))}
+                        <tr>
+                            <td className="total" colSpan={3}>
+                                <strong>
+                                    {toDollars(
+                                        sum(system.itemList.required.map((i) => i.count * i.each_price_cents)) +
+                                            sum(system.itemList.optional.map((i) => i.count * i.each_price_cents)),
+                                    )}
+                                </strong>
+                            </td>
+                        </tr>
+                    </>
+                )}
+            </tbody>
+        </table>
+    );
+}
 
 function FBTTable(): React.ReactNode {
     const { selected, setSelected: updateSelectedSystem } = useContext(SelectedFBTsContext);
@@ -229,57 +325,9 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => {
-                        const itemList = system.itemList;
                         return (
                             <td key={`${i}-${system.key}`}>
-                                <table className="component-table">
-                                    <tbody>
-                                        {itemList.required.length > 0 && (
-                                            <>
-                                                <tr>
-                                                    <td>Required</td>
-                                                </tr>
-                                                {itemList.required.map((item, i) => (
-                                                    <tr key={`${i}-${system.key}`}>
-                                                        <td>
-                                                            <a href={item.link.toString()} target="_blank">
-                                                                {item.name}
-                                                            </a>{" "}
-                                                            <span className="comment">{item.comment}</span>
-                                                        </td>
-                                                        <td>{item.count}x</td>
-                                                        <td className="component-price">
-                                                            {toDollars(item.each_price_cents)}
-                                                        </td>
-                                                    </tr>
-                                                ))}
-                                                {Array(
-                                                    systems.reduce(
-                                                        (p, v) => Math.max(p, v.itemList.required.length),
-                                                        0,
-                                                    ) - itemList.required.length,
-                                                )
-                                                    .fill(null)
-                                                    .map((_, i) => (
-                                                        <tr key={`${i}-${system.key}`}>
-                                                            <td colSpan={3}>&nbsp;</td>
-                                                        </tr>
-                                                    ))}
-                                                <tr>
-                                                    <td className="total" colSpan={3}>
-                                                        {toDollars(
-                                                            sum(
-                                                                itemList.required.map(
-                                                                    (i) => i.count * i.each_price_cents,
-                                                                ),
-                                                            ),
-                                                        )}
-                                                    </td>
-                                                </tr>
-                                            </>
-                                        )}
-                                    </tbody>
-                                </table>
+                                <ComponentTable systems={systems} system={system} />
                             </td>
                         );
                     })}
@@ -367,6 +415,15 @@ function FBTTable(): React.ReactNode {
                     {systems.map((system, i) => (
                         <td key={`${i}-${system.key}`}>{system.availability}</td>
                     ))}
+                </tr>
+                <tr>
+                    {systems.map((system, i) => {
+                        return (
+                            <td key={`${i}-${system.key}`}>
+                                <ComponentTable systems={systems} system={system} showOptional={true} />
+                            </td>
+                        );
+                    })}
                 </tr>
                 <tr id="section-specifications">
                     <td colSpan={systems.length} className="header">

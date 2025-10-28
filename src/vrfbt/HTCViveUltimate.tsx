@@ -178,7 +178,25 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
             },
             setup: {
                 score: 4,
-                content: <>TODO</>,
+                content: (
+                    <p>
+                        Install VIVE hub, and follow the setup process. You'll pair the trackers, and scan the
+                        playspace.
+                    </p>
+                ),
+                drawbacks: [
+                    {
+                        key: "rescan_playspace",
+                        title: "Re-scan Playspace",
+                        content: (
+                            <p>
+                                If your playspace changes significantly, the trackers may be unable to tracker properly.
+                                You will need to re-scan your playspace.
+                            </p>
+                        ),
+                        collapsed: true,
+                    },
+                ],
             },
             calibration: {
                 score: 4,
@@ -194,33 +212,82 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                             You will have to do space-calibration to align your headset’s playspace to the trackers’
                             playspace.
                         </p>
-                        <p>
-                            As a one-time setup, you will need to scan your playspace. If you move things around
-                            significantly, you may need to re-scan your playspace.
-                        </p>
                     </>
                 ),
             },
             gameplay: {
                 score: 4,
                 content: (
+                    <p>
+                        Tracking is accurate and there is no noticeable lag. Trackers handle fast and extreme movements
+                        with no problems.
+                    </p>
+                ),
+                drawbacks: [
+                    {
+                        key: "losing_tracking",
+                        title: "Losing Tracking",
+                        content: (
+                            <>
+                                <p>When the tracker loses tracking, parts of your body will freeze in place.</p>
+                                <p>
+                                    This can happen if:
+                                    <ul>
+                                        <li>
+                                            You cover both cameras by accident, e.g.
+                                            <ul>
+                                                <li>Covering the waist tracker with your arms</li>
+                                                <li>by kneeling on an ankle tracker.</li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            The tracker is pointed towards a part of your playspace that doesn't have
+                                            any features, e.g.
+                                            <ul>
+                                                <li>You lean forward and the trackers point towards your floor.</li>
+                                                <li>
+                                                    You lie on your side, and the trackers point at the back of your
+                                                    couch.
+                                                </li>
+                                                <li>
+                                                    You lie on your back, and the trackers point towards the ceiling.
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>The tracker moves to a part of your playspace that wasn't scanned.</li>
+                                    </ul>
+                                </p>
+                                <p>It usually takes a few seconds for the trackers to recover.</p>
+                                <p>
+                                    However, sometimes the trackers are unable to recover, and you will need to take it
+                                    off and point it towards your computer to restore tracking. This breaks immersion
+                                    pretty badly.
+                                </p>
+                            </>
+                        ),
+                    },
+                ],
+            },
+            comfort: {
+                score: 2,
+                content: (
                     <>
-                        <p>VIVE Ultimate trackers have perfect tracking, as long as they’re not occluded.</p>
+                        <p>The trackers are not comfortable for me.</p>
                         <p>
-                            If the tracker cameras lose tracking, parts of your body will freeze in place. This can
-                            happen if you accidentally cover both cameras with your arm, if you turn towards an empty
-                            area of your room, or get too close to a surface (like a wall or couch). It takes a few
-                            seconds for the trackers to recover.
+                            HTC, the manufacturer, recommends mounting the ankle trackers on the front of your shins.
+                            This is very uncomfortable for me because my shins are thin. I also need to over-tighten the
+                            straps so that the trackers don't shift to the side during gameplay.
+                        </p>
+                        <p>
+                            Instead, I prefer to wear the ankle trackers on my feet, over socks. They are quite
+                            comfortable in this position. However, they lose tracking more often since they're pointing
+                            towards the ceiling.
                         </p>
                     </>
                 ),
             },
-            comfort: {
-                score: 4,
-                content: <>TODO</>,
-            },
             overall: {
-                score: 4,
+                score: 3,
                 content: (
                     <>
                         <p>
@@ -228,8 +295,9 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                             when you just want to jump into VR for low energy activities like chatting with friends.
                         </p>
                         <p>
-                            Although occlusion problems do happen, they happen less often than VIVE 3.0s and don't cause
-                            your body to fly off into the distance. I find this acceptable.
+                            However, I just cannot get used to the loss of tracking. You will randomly lose tracking no
+                            matter how careful you are. It is even more annoying when they don't recover automatically,
+                            and you have to take them off and point them at your computer.
                         </p>
                     </>
                 ),

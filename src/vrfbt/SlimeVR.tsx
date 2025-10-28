@@ -339,13 +339,10 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
             setup: {
                 score: 4,
                 content: (
-                    <>
-                        <p>Setup was easy.</p>
-                        <p>
-                            Download the SlimeVR server and follow the setup flow. It will prompt you to enter your
-                            Wi-Fi details, connect each tracker, and then assign each tracker to a body part.
-                        </p>
-                    </>
+                    <p>
+                        Download the SlimeVR server and follow the setup flow. It will prompt you to enter your Wi-Fi
+                        details, connect each tracker, and then assign each tracker to a body part.
+                    </p>
                 ),
                 drawbacks: [
                     {
@@ -534,36 +531,6 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                         ),
                     },
                 ]),
-                rating: matchConfigOptional(fbtSystemConfig.key, {
-                    "slimevr_trackers-lower_body_set_5_0": (
-                        <>
-                            <p>The SlimeVR Lower Body Set gets a 3/5 for tracking.</p>
-                            <p>
-                                It loses a point because the lack of a hip tracker means that your legs aren’t always in
-                                the right place. It loses another point because you have to deal with drift, even though
-                                it is easy to fix.
-                            </p>
-                        </>
-                    ),
-                    "slimevr_trackers-core_set_6_0": (
-                        <>
-                            <p>The SlimeVR Core Set gets a 4/5 for tracking.</p>
-                            <p>It loses a point because you have to deal with drift, even though it is easy to fix.</p>
-                        </>
-                    ),
-                    "slimevr_trackers-enhanced_core_set_6_2": (
-                        <>
-                            <p>The SlimeVR Enhanced Core Set gets a 4/5 for tracking.</p>
-                            <p>It loses a point because you have to deal with drift, even though it is easy to fix.</p>
-                        </>
-                    ),
-                    "slimevr_trackers-full_body_set_8_2": (
-                        <>
-                            <p>The SlimeVR Full Body Set gets a 4/5 for tracking.</p>
-                            <p>It loses a point because you have to deal with drift, even though it is easy to fix.</p>
-                        </>
-                    ),
-                }),
             },
             comfort: {
                 score: 4,

@@ -7,6 +7,7 @@ import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from 
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import {
     ExampleVideoKeys,
+    matchConfig,
     matchConfigOptional,
     nonNullArray,
     type Drawback,
@@ -405,7 +406,6 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 score: 4,
                 content: (
                     <>
-                        <p>Setup was easy.</p>
                         {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && (
                             <p>
                                 You will need to set up your Lighthouse base-stations. Mount each Lighthouse
@@ -513,7 +513,11 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 }
             })(),
             gameplay: {
-                score: 3,
+                score: matchConfig(fbtSystemConfig.key, {
+                    "htc_vive_trackers_3_0-3_trackers":
+                        vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ? 3 : 2,
+                    "htc_vive_trackers_3_0-3_trackers_1_continuous": 3,
+                }),
                 content: (
                     <>
                         <SideBySideVideoPlayer
@@ -587,7 +591,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                         : undefined,
                     {
                         key: "reflections",
-                        title: "Reflections",
+                        title: "Reflection Interference",
                         content: (
                             <>
                                 <Carousel>
@@ -612,17 +616,9 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                 </p>
                             </>
                         ),
+                        collapsed: true,
                     },
                 ]),
-                rating: (
-                    <>
-                        <p>VIVE Tracker 3.0 gets a 3/5 for tracking.</p>
-                        <p>
-                            It loses 2 points because occlusion causes your body to fly off into the distance, which
-                            breaks immersion.
-                        </p>
-                    </>
-                ),
             },
             comfort: {
                 score: 4,
