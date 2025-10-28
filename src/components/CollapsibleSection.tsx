@@ -19,7 +19,7 @@ export const CollapsibleSection: FC<DrawbackSectionProps> = ({
             <div className={`header ${collapsed ? "collapsed" : "opened"}`}>
                 <div className="title">{title}</div>
                 <div className="opener">
-                    <input type="button" value={collapsed ? "⯅" : "⯆"} onClick={() => setCollapsed(!collapsed)} />
+                    <input type="button" value={collapsed ? "⯆" : "⯅"} onClick={() => setCollapsed(!collapsed)} />
                 </div>
             </div>
             {!collapsed && children}
