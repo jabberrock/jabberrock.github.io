@@ -550,14 +550,11 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 ),
                 drawbacks: [
                     {
-                        key: "touch_sensitivity",
-                        title: "Sensitivity to Touch",
+                        key: "skin_sensitivity",
+                        title: "Skin Sensitivity",
                         content: (
                             <>
-                                <p>
-                                    Some people are very sensitive to touch and dislike putting straps directly on their
-                                    skin.
-                                </p>
+                                <p>Some people dislike putting straps directly on their skin.</p>
                                 <p>
                                     You can wear the leg trackers over clothes, but I recommend tight pants like yoga
                                     pants. If you're wearing something like jeans, you will need to tighten the straps
