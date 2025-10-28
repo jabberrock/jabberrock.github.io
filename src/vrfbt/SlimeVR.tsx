@@ -551,7 +551,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 drawbacks: [
                     {
                         key: "skin_sensitivity",
-                        title: "Skin Sensitivity",
+                        title: "Tactile/Skin Sensitivity",
                         content: (
                             <>
                                 <p>Some people dislike putting straps directly on their skin.</p>
