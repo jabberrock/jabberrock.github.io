@@ -399,8 +399,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 ),
                 drawbacks: [
                     {
-                        key: "custom_calibration",
-                        title: "Custom Calibration",
+                        key: "personalized_calibration",
+                        title: "Personalized Calibration",
                         content: (
                             <>
                                 <p>For most people, the calibration process just works.</p>
