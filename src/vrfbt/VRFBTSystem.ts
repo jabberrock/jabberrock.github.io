@@ -84,3 +84,24 @@ export const vrHeadsetFBTRecommendations = Object.fromEntries(
         vrHeadsetsByKey[v].tracking === "lighthouse" ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations,
     ]),
 ) as Record<VRHeadsetKey, FBTSystemConfigKey[]>;
+
+export function nonNullArray<T>(array: (T | undefined)[]): T[] {
+    return array.filter((v) => v != null);
+}
+
+export function matchConfig<T>(key: FBTSystemConfigKey, values: Partial<Record<FBTSystemConfigKey, T>>): T {
+    const v = values[key];
+    if (v == undefined) {
+        throw "Missing value";
+    }
+
+    return v;
+}
+
+export function matchConfigOptional<T>(
+    key: FBTSystemConfigKey,
+    values: Partial<Record<FBTSystemConfigKey, T>>,
+    fallback?: T,
+): T | undefined {
+    return values[key] || fallback;
+}

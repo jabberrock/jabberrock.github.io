@@ -1,31 +1,17 @@
 import type React from "react";
-import { ExampleVideoKeys, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
+import {
+    ExampleVideoKeys,
+    matchConfig,
+    matchConfigOptional,
+    nonNullArray,
+    type ItemList,
+    type VRFBTSystem,
+} from "./VRFBTSystem";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
-
-function matchConfig<T>(key: FBTSystemConfigKey, values: Partial<Record<FBTSystemConfigKey, T>>): T {
-    const v = values[key];
-    if (v == undefined) {
-        throw "Missing value";
-    }
-
-    return v;
-}
-
-function matchConfigOptional<T>(
-    key: FBTSystemConfigKey,
-    values: Partial<Record<FBTSystemConfigKey, T>>,
-    fallback?: T,
-): T | undefined {
-    return values[key] || fallback;
-}
-
-function nonNullArray<T>(array: (T | undefined)[]): T[] {
-    return array.filter((v) => v != null);
-}
 
 export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -148,7 +134,10 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                         slimevr.dev
                     </a>
                 </p>
-                <p>Pre-order now for the next shipment (estimated shipping to customers in Nov 2025)</p>
+                <p>
+                    Official SlimeVR trackers are sold through a pre-order system, and shipments are sent out every 3-4
+                    months. The next major shipment (S15) is estimated to be early December 2025.
+                </p>
                 <hr />
                 <p>
                     3rd-Party Slime Trackers
@@ -344,17 +333,40 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 content: (
                     <>
                         <p>SlimeVR trackers are one of the most affordable systems today.</p>
-                        <p>
-                            However, official SlimeVR trackers are sold through a pre-order system, and shipments are
-                            sent out every 3-4 months. The next major shipment (S15) is estimated to be early December
-                            2025.
-                        </p>
                     </>
                 ),
             },
             setup: {
                 score: 4,
-                content: <>TODO</>,
+                content: (
+                    <>
+                        <p>Setup was easy.</p>
+                        <p>
+                            Download the SlimeVR server and follow the setup flow. It will prompt you to enter your
+                            Wi-Fi details, connect each tracker, and then assign each tracker to a body part.
+                        </p>
+                    </>
+                ),
+                drawbacks: [
+                    {
+                        key: "wifi",
+                        title: "2.4Ghz Wi-Fi Only",
+                        content: (
+                            <>
+                                <p>
+                                    SlimeVR trackers can only connect to 2.4Ghz Wi-Fi with WPA2. All routers support
+                                    2.4Ghz Wi-Fi, but you may need to enable it. You may also have to change your
+                                    encryption to WPA2.
+                                </p>
+                                <p>
+                                    SlimeVR trackers probably won't work if you're connected to a central system like a
+                                    dorm network. You can use a travel router, or use Windows Mobile Hotspot if your
+                                    computer has a Wi-Fi card.
+                                </p>
+                            </>
+                        ),
+                    },
+                ],
             },
             calibration: {
                 score: 2,
@@ -368,10 +380,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                         />
                         <p>At the start of each VR session, you will need to calibrate your trackers to your body.</p>
                         <p>
-                            For most people, the calibration process just works. However, for others, it may require
-                            some trial and error. I am bow-legged, so I have to be careful how I orient my knees during
-                            calibration. SlimeVR provides VRChat calibration sessions to help you figure out the
-                            calibration method. They’re also continuing to improve the process.
+                            For most people, the calibration process just works. However, you will need some trial and
+                            error to perfect it.
                         </p>
                         {matchConfigOptional(fbtSystemConfig.key, {
                             "slimevr_trackers-full_body_set_8_2": (
@@ -389,6 +399,29 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                         </p>
                     </>
                 ),
+                drawbacks: [
+                    {
+                        key: "custom_calibration",
+                        title: "Custom Calibration",
+                        content: (
+                            <>
+                                <p>For most people, the calibration process just works.</p>
+                                <p>
+                                    However, depending on your body type, you may need to learn some tricks to improve
+                                    your calibration.
+                                </p>
+                                <p>
+                                    I am bow-legged, so I have to be careful how I orient my knees during the "full
+                                    reset" pose. Otherwise, my knees will cross each other if I sit down.
+                                </p>
+                                <p>
+                                    SlimeVR provides VRChat calibration sessions to help you improve your calibration.
+                                    They’re also continuing to improve the process.
+                                </p>
+                            </>
+                        ),
+                    },
+                ],
             },
             gameplay: {
                 score: matchConfig<number>(fbtSystemConfig.key, {
@@ -406,8 +439,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                             height={320}
                         />
                         <p>
-                            Tracking is accurate and there is no noticeable lag. Trackers handle fast and extreme
-                            movements with no problems.
+                            SlimeVR works in any position, whether you're standing, sitting, lying down, dancing or
+                            exercising.
                         </p>
                         <SideBySideVideoPlayer
                             video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-lying_down.mp4`}
@@ -415,9 +448,10 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                             width={480}
                             height={320}
                         />
+                        <p>Trackers even work when you're under a blanket, or if you're wearing a sweater over them.</p>
                         <p>
-                            Trackers work in any position, whether you’re standing around, dancing, doing yoga, or
-                            covered by a blanket.
+                            If you have calibrated well, tracking is accurate. There is no noticeable lag, and trackers
+                            handle fast and extreme movements with no problems.
                         </p>
                     </>
                 ),
@@ -478,6 +512,26 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                             </>
                         ),
                     },
+                    {
+                        key: "bad_calibration",
+                        title: "Bad Calibration",
+                        content: (
+                            <>
+                                <p>
+                                    Accurate SlimeVR tracking depends on having a good calibration. If you don't learn
+                                    how to get a good calibration, your legs will move in strange ways.
+                                </p>
+                                <p>TODO: Video</p>
+                                <p>When you are walking, you may notice your legs move to the side.</p>
+                                <p>TODO: Video</p>
+                                <p>
+                                    When you are sitting, you may notice that your legs are too far apart, or too close
+                                    and cross each other. You may also notice that your knees are too high.
+                                </p>
+                                <p>If you learn how to calibrate well, you will not have these problems.</p>
+                            </>
+                        ),
+                    },
                 ]),
                 rating: matchConfigOptional(fbtSystemConfig.key, {
                     "slimevr_trackers-lower_body_set_5_0": (
@@ -512,7 +566,39 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
             },
             comfort: {
                 score: 4,
-                content: <>TODO</>,
+                content: (
+                    <>
+                        <p>SlimeVR provides elastic straps with silicone lines for grip.</p>
+                        <p>
+                            I typically wear my upper body trackers over my T-shirt, my leg trackers on my skin, and
+                            feet trackers over socks. The trackers are light and comfortable to wear, and I don't notice
+                            them during gameplay.
+                        </p>
+                        <p>
+                            I recommend using a Go-Pro chest harness (purchased separately) for the chest tracker, so
+                            that it doesn't slip downwards during gameplay.
+                        </p>
+                    </>
+                ),
+                drawbacks: [
+                    {
+                        key: "touch_sensitivity",
+                        title: "Sensitivity to Touch",
+                        content: (
+                            <>
+                                <p>
+                                    Some people are very sensitive to touch and dislike putting straps directly on their
+                                    skin.
+                                </p>
+                                <p>
+                                    You can wear the leg trackers over clothes, but I recommend tight pants like yoga
+                                    pants. If you're wearing something like jeans, you will need to tighten the straps
+                                    much more to prevent slipping.
+                                </p>
+                            </>
+                        ),
+                    },
+                ],
             },
             overall: {
                 score: matchConfig<number>(fbtSystemConfig.key, {

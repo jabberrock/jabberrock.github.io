@@ -108,7 +108,7 @@ tr {
 .fbt-table > tbody > tr > td.sub-header {
     font-size: 125%;
     border-bottom: 1px solid black;
-    padding-top: 20px;
+    padding-top: 60px;
 }
 
 .review-table {

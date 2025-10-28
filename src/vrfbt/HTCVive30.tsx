@@ -5,7 +5,14 @@ import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
-import { ExampleVideoKeys, type Drawback, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
+import {
+    ExampleVideoKeys,
+    matchConfigOptional,
+    nonNullArray,
+    type Drawback,
+    type ItemList,
+    type VRFBTSystem,
+} from "./VRFBTSystem";
 
 export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -380,44 +387,58 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
                     return {
                         score: 3,
-                        content: (
-                            <p>
-                                VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the
-                                trackers to your body. Luckily, you don't need to buy extra Lighthouse base stations.
-                            </p>
-                        ),
+                        content: <p>You will need to buy the trackers and straps.</p>,
                     };
                 } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
                     return {
                         score: 1,
-                        content: (
-                            <>
-                                <p>
-                                    VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the
-                                    trackers to your body, and Lighthouse base stations.
-                                </p>
-                                <p>
-                                    You'll also need a way to securely mount the continuous calibration tracker to your
-                                    headset, which is commonly done with 3D printed parts.
-                                </p>
-                            </>
-                        ),
+                        content: <p>You will need to buy the trackers, straps, and Lighthouse base stations.</p>,
                     };
                 } else {
                     return {
                         score: 2,
-                        content: (
-                            <p>
-                                VIVE Tracker 3.0 are expensive, and you will also need to buy straps to mount the
-                                trackers to your body, and Lighthouse base stations.
-                            </p>
-                        ),
+                        content: <p>You will need to buy the trackers, straps, and Lighthouse base stations.</p>,
                     };
                 }
             })(),
             setup: {
                 score: 4,
-                content: <>TODO</>,
+                content: (
+                    <>
+                        <p>Setup was easy.</p>
+                        {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && (
+                            <p>
+                                You will need to set up your Lighthouse base-stations. Mount each Lighthouse
+                                base-stations to the wall or attach it to a tripod. Then complete the Lighthouse setup
+                                flow in SteamVR.
+                            </p>
+                        )}
+                        <p>Connect the tracker dongles to your PC, and pair each tracker in SteamVR.</p>
+                    </>
+                ),
+                drawbacks: [
+                    {
+                        key: "interference",
+                        title: "Dongle and 2.4Ghz Wi-Fi Interference",
+                        content: (
+                            <>
+                                <SimpleImage
+                                    src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
+                                    width={480}
+                                    height={320}
+                                />
+                                <p>
+                                    The trackers communicate with dongles over Bluetooth, which shares the same band as
+                                    2.4Ghz Wi-Fi routers. Interference will cause you to fly off into the distance.
+                                </p>
+                                <p>
+                                    You will need to space the dongles apart using the provided cradles, and keep them
+                                    away from your router if your router's 2.4Ghz band is active.
+                                </p>
+                            </>
+                        ),
+                    },
+                ],
             },
             calibration: (function () {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
@@ -452,18 +473,13 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                     Just put your headset and tracker on, enable continuous calibration, and start
                                     playing!
                                 </p>
-                                <p>
-                                    During play, your headset may randomly reset its playspace. Your avatar will fly off
-                                    to a random position. But continuous calibration will re-align the two spaces after
-                                    a few seconds.
-                                </p>
                             </>
                         ),
                     };
                 } else {
                     const vrHeadset = "meta_quest_3";
                     return {
-                        score: 3,
+                        score: 4,
                         content: (
                             <>
                                 <SimpleVideoPlayer
@@ -475,10 +491,6 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                 <p>
                                     Since your headset is not Lighthouse-based, you will have to do space-calibration to
                                     align your headset’s playspace to the trackers’ playspace.
-                                </p>
-                                <p>
-                                    During play, your headset may randomly reset its playspace. Your avatar will fly off
-                                    to a random position. You will need to re-do space-calibration.
                                 </p>
                             </>
                         ),
@@ -501,7 +513,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                         </p>
                     </>
                 ),
-                drawbacks: [
+                drawbacks: nonNullArray([
                     {
                         key: "occlusion",
                         title: "Occlusion",
@@ -525,12 +537,42 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                     towards a base station. This breaks the immersion because I’m constantly worrying
                                     whether I’m going to break tracking.
                                 </p>
+                                <p>
+                                    (While recording the demo videos, I made 5 attempts before getting a recording
+                                    without occlusion. I had to twist my body slightly in the direction of the base
+                                    stations to record the exercise video.)
+                                </p>
                             </>
                         ),
                     },
+                    vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse"
+                        ? matchConfigOptional(fbtSystemConfig.key, {
+                              "htc_vive_trackers_3_0-3_trackers": {
+                                  key: "playspace_reset",
+                                  title: "Random Playspace Resets",
+                                  content: (
+                                      <p>
+                                          During play, your headset may randomly reset its playspace. Your avatar will
+                                          fly off to a random position. You will need to re-do space-calibration.
+                                      </p>
+                                  ),
+                              },
+                              "htc_vive_trackers_3_0-3_trackers_1_continuous": {
+                                  key: "playspace_reset",
+                                  title: "Random Playspace Resets",
+                                  content: (
+                                      <p>
+                                          During play, your headset may randomly reset its playspace. Your avatar will
+                                          fly off to a random position. But continuous calibration will re-align the two
+                                          spaces after a few seconds.
+                                      </p>
+                                  ),
+                              },
+                          })
+                        : undefined,
                     {
-                        key: "interference",
-                        title: "Interference",
+                        key: "reflections",
+                        title: "Reflections",
                         content: (
                             <>
                                 <Carousel>
@@ -550,25 +592,13 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                 </p>
                                 <p>
                                     You will need to close your curtains and cover any reflective surfaces like mirrors,
-                                    your monitor and PC.
-                                </p>
-                                <SimpleImage
-                                    src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
-                                    width={480}
-                                    height={320}
-                                />
-                                <p>
-                                    The trackers communicate with dongles over Bluetooth, which shares the same band as
-                                    2.4Ghz routers. Interference will also cause you to fly off into the distance.
-                                </p>
-                                <p>
-                                    You will need to move the dongles away from your router, and also space them out
-                                    from each other.
+                                    your monitor and PC. (I have also had to turn off one of my floor lamps, although
+                                    I'm not sure how it causes interference.)
                                 </p>
                             </>
                         ),
                     },
-                ],
+                ]),
                 rating: (
                     <>
                         <p>VIVE Tracker 3.0 gets a 3/5 for tracking.</p>
@@ -581,7 +611,24 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             },
             comfort: {
                 score: 4,
-                content: <>TODO</>,
+                content: (
+                    <>
+                        <p>
+                            I use Trackstraps (purchased separately). I wear my waist tracker over my T-shirt, and feet
+                            trackers over socks.
+                        </p>
+                        <p>The trackers are a little bulky, but I don't notice them during gameplay.</p>
+                        {matchConfigOptional(fbtSystemConfig.key, {
+                            "htc_vive_trackers_3_0-3_trackers_1_continuous": (
+                                <p>
+                                    I mount my continuous calibration tracker to the top-front of my headset, and I
+                                    don't notice it during gameplay. Depending on your headset, you may have to mount it
+                                    on the back, which becomes noticeable in certain positions.
+                                </p>
+                            ),
+                        })}
+                    </>
+                ),
             },
             overall: (function () {
                 if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
