@@ -337,12 +337,19 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 ),
             },
             setup: {
-                score: 4,
+                score: 3,
                 content: (
-                    <p>
-                        Download the SlimeVR server and follow the setup flow. It will prompt you to enter your Wi-Fi
-                        details, connect each tracker, and then assign each tracker to a body part.
-                    </p>
+                    <>
+                        <p>
+                            Download the SlimeVR server and follow the setup flow. It will prompt you to enter your
+                            Wi-Fi details, connect each tracker, and then assign each tracker to a body part.
+                        </p>
+                        <p>
+                            In my opinion, somes parts of the flow are confusing to first-timers. It tries to teach the
+                            calibration process in 2 screens, without telling the player if they did a good job. It also
+                            has a VR-driven body proportions system which people often misconfigure.
+                        </p>
+                    </>
                 ),
                 drawbacks: [
                     {
@@ -448,8 +455,15 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                         />
                         <p>Trackers even work when you're under a blanket, or if you're wearing a sweater over them.</p>
                         <p>
-                            If you have calibrated well, tracking is accurate. There is no noticeable lag, and trackers
-                            handle fast and extreme movements with no problems.
+                            If you have calibrated well, tracking is accurate. However, as mentioned above, it takes
+                            time and practice to learn to calibrate well.
+                        </p>
+                        <p>
+                            There is no noticeable lag, and trackers handle fast and extreme movements with no problems.
+                        </p>
+                        <p>
+                            SlimeVR trackers will experience drift after some time (45 minutes on modern IMUs). It is
+                            easy to re-align your body: just face forward and double tap your chest tracker.
                         </p>
                     </>
                 ),
@@ -496,9 +510,9 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                                     will notice that your avatar is slightly off from your real body.
                                 </p>
                                 <p>
-                                    With modern IMUs, you can easily play for 45 mins without noticing any drift. When
-                                    the optional Stay Aligned feature is enabled, I can go 4-5 hours without noticing
-                                    any drift.
+                                    With modern IMUs, you can easily play for 45 minutes without noticing any drift.
+                                    When the optional Stay Aligned feature is enabled, I can go 4-5 hours without
+                                    noticing any drift.
                                 </p>
                                 <p>
                                     It is very easy to fix drift: just face forward and double tap your chest tracker.

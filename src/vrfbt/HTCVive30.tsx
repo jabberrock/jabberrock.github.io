@@ -527,8 +527,19 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                             height={320}
                         />
                         <p>
-                            Tracking is accurate and there is no noticeable lag. Trackers handle fast and extreme
-                            movements with no problems.
+                            When the trackers can see the Lighthouse base stations, tracking is accurate and there is no
+                            noticeable lag. Trackers handle fast and extreme movements with no problems.
+                        </p>
+                        <p>
+                            However, trackers are easily occluded. They are also susceptible to interference from
+                            reflections or lights in your playspace. When this happens, your body will freeze or fly
+                            away into the distance.
+                        </p>
+                        <p>You can tell who is wearing VIVE tracker 3.0s, because they will occasionally fly away.</p>
+                        <p>
+                            (While recording the demo videos, I made 5 attempts before getting a recording without
+                            occlusion. I had to twist my body slightly in the direction of the base stations to record
+                            the exercise video.)
                         </p>
                     </>
                 ),
@@ -555,11 +566,6 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                     I notice having to be careful how I move my arms, and to keep myself oriented
                                     towards a base station. This breaks the immersion because I’m constantly worrying
                                     whether I’m going to break tracking.
-                                </p>
-                                <p>
-                                    (While recording the demo videos, I made 5 attempts before getting a recording
-                                    without occlusion. I had to twist my body slightly in the direction of the base
-                                    stations to record the exercise video.)
                                 </p>
                             </>
                         ),

@@ -235,8 +235,8 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                             a bad way.
                         </p>
                         <p>
-                            While recording this demo, I had to repeat actions over and over again until I got a
-                            recording without losing tracking.
+                            (While recording this demo, I had to repeat actions over and over again until I got a
+                            recording without losing tracking.)
                         </p>
                     </>
                 ),
@@ -329,7 +329,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                 content: (
                     <>
                         <p>I do not enjoy using VIVE Ultimate trackers.</p>
-                        <p>The trackers constantly lose tracking,. There's no VR immersion with these trackers.</p>
+                        <p>The trackers constantly lose tracking. There's no VR immersion with these trackers.</p>
                     </>
                 ),
             },
