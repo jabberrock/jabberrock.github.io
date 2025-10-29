@@ -44,7 +44,7 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
         <table className="review-table">
             <tbody>
                 <tr>
-                    <td>Affordability</td>
+                    <td>Price</td>
                     <td>
                         <ReviewScore score={review.cost.score} />
                     </td>
@@ -308,7 +308,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr id="section-review-cost">
                     <td colSpan={systems.length} className="sub-header">
-                        Affordability
+                        Price
                     </td>
                 </tr>
                 <tr>

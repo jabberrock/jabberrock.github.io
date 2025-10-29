@@ -11,7 +11,7 @@ export const FBTNav: React.FC = () => {
                     <a href="#section-review">Review</a>
                     <ul>
                         <li>
-                            <a href="#section-review-cost">Affordability</a>
+                            <a href="#section-review-cost">Price</a>
                         </li>
                         <li>
                             <a href="#section-review-setup">Setup</a>
