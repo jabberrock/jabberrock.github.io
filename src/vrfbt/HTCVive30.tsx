@@ -609,6 +609,24 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                               },
                           })
                         : undefined,
+                    {
+                        key: "knee_position",
+                        title: "Knee Accuracy",
+                        content: (
+                            <>
+                                <p>
+                                    The knee position is estimated using inverse kinematics (IK), since there is no
+                                    tracker there. Since it is estimated, it might not match the actual position of your
+                                    knees.
+                                </p>
+                                <p>
+                                    I tend to sit with my feet pointing outwards, so it always looks like I'm
+                                    manspreading. There's no way to work around this behavior.
+                                </p>
+                            </>
+                        ),
+                        collapsed: true,
+                    },
                 ]),
             },
             comfort: {
