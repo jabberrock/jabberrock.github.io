@@ -75,7 +75,7 @@ function VRFBTReviewChart({ review }: { review: VRFBTReview }) {
                 </tr>
                 <tr>
                     <td>
-                        <strong>Overall</strong>
+                        <strong>My Overall Rating</strong>
                     </td>
                     <td>
                         <ReviewScore score={review.overall.score} />
