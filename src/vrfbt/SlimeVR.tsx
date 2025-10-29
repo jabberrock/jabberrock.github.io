@@ -463,7 +463,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                         </p>
                         <p>
                             SlimeVR trackers will experience drift after some time (45 minutes on modern IMUs). It is
-                            easy to re-align your body: just face forward and double tap your chest tracker.
+                            easy to re-align your body: just face forward and double tap your chest tracker. You can
+                            tell who is using SlimeVR, because they will occasionally double tap their chest.
                         </p>
                     </>
                 ),
