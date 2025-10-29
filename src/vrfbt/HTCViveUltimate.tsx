@@ -216,12 +216,29 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                 ),
             },
             gameplay: {
-                score: 4,
+                score: 1,
                 content: (
-                    <p>
-                        Tracking is accurate and there is no noticeable lag. Trackers handle fast and extreme movements
-                        with no problems.
-                    </p>
+                    <>
+                        <p>
+                            When the trackers are tracking, movement is accurate and there is no noticeable lag.
+                            Trackers handle fast and extreme movements with no problems.
+                        </p>
+                        <p>The trackers are mostly fine when you're standing or walking.</p>
+                        <p>
+                            However, when I try to sit down or lie down, the trackers will almost always lose tracking.
+                            Sometimes, the trackers will recover after a few seconds. Often, the trackers won't recover
+                            until I stand up. And rarely, the trackers won't recover even when I stand up! I have to
+                            move to my computer and face the monitor for the trackers to recover.
+                        </p>
+                        <p>
+                            When I'm with a group of friends, it is very noticeable that I'm wearing VIVE Ultimates, in
+                            a bad way.
+                        </p>
+                        <p>
+                            While recording this demo, I had to repeat actions over and over again until I got a
+                            recording without losing tracking.
+                        </p>
+                    </>
                 ),
                 drawbacks: [
                     {
@@ -229,35 +246,38 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                         title: "Losing Tracking",
                         content: (
                             <>
-                                <p>When the tracker loses tracking, parts of your body will freeze in place.</p>
                                 <p>
-                                    This can happen if:
-                                    <ul>
-                                        <li>
-                                            You cover both cameras by accident, e.g.
-                                            <ul>
-                                                <li>Covering the waist tracker with your arms</li>
-                                                <li>by kneeling on an ankle tracker.</li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            The tracker is pointed towards a part of your playspace that doesn't have
-                                            any features, e.g.
-                                            <ul>
-                                                <li>You lean forward and the trackers point towards your floor.</li>
-                                                <li>
-                                                    You lie on your side, and the trackers point at the back of your
-                                                    couch.
-                                                </li>
-                                                <li>
-                                                    You lie on your back, and the trackers point towards the ceiling.
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>The tracker moves to a part of your playspace that wasn't scanned.</li>
-                                    </ul>
+                                    When the tracker loses tracking, parts of your body will freeze in place. This
+                                    happens a lot, and there's nothing you can do to prevent it.
                                 </p>
+                                <video
+                                    src="htc_vive_ultimate_trackers/limitations/fail_getting_up_stuck-sxs.mp4"
+                                    autoPlay
+                                    controls
+                                    loop
+                                />
+                                <p>When I tried to stand up.</p>
+                                <video
+                                    src="htc_vive_ultimate_trackers/limitations/fail_sitting_on_floor-sxs.mp4"
+                                    autoPlay
+                                    controls
+                                    loop
+                                />
+                                <p>When I tried to sit on the floor.</p>
+                                <video
+                                    src="htc_vive_ultimate_trackers/limitations/fail_picking_up_item-sxs.mp4"
+                                    autoPlay
+                                    controls
+                                    loop
+                                />
+                                <p>When I bent over to pick up an item.</p>
                                 <p>It usually takes a few seconds for the trackers to recover.</p>
+                                <video
+                                    src="htc_vive_ultimate_trackers/limitations/fail_recovery_until_point_at_monitor-sxs.mp4"
+                                    autoPlay
+                                    controls
+                                    loop
+                                />
                                 <p>
                                     However, sometimes the trackers are unable to recover, and you will need to take it
                                     off and point it towards your computer to restore tracking. This breaks immersion
@@ -305,18 +325,11 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                 ),
             },
             overall: {
-                score: 3,
+                score: 1,
                 content: (
                     <>
-                        <p>
-                            I enjoy using VIVE Ultimate trackers because they are easy to set up and use. They’re great
-                            when you just want to jump into VR for low energy activities like chatting with friends.
-                        </p>
-                        <p>
-                            However, I just cannot get used to the loss of tracking. You will randomly lose tracking no
-                            matter how careful you are. It is even more annoying when they don't recover automatically,
-                            and you have to take them off and point them at your computer.
-                        </p>
+                        <p>I do not enjoy using VIVE Ultimate trackers.</p>
+                        <p>The trackers constantly lose tracking,. There's no VR immersion with these trackers.</p>
                     </>
                 ),
             },
