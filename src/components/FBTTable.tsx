@@ -406,15 +406,20 @@ function FBTTable(): React.ReactNode {
                         </tr>
                     </React.Fragment>
                 ))}
-                <tr id="section-availability">
+                <tr id="section-buying">
                     <td colSpan={systems.length} className="header">
-                        What/Where to Buy
+                        Buying
                     </td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
                         <td key={`${i}-${system.key}`}>{system.availability}</td>
                     ))}
+                </tr>
+                <tr id="section-what_to_buy">
+                    <td colSpan={systems.length} className="sub-header">
+                        What to Buy
+                    </td>
                 </tr>
                 <tr>
                     {systems.map((system, i) => {
