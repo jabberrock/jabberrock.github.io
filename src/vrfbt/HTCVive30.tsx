@@ -5,7 +5,6 @@ import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from 
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import {
     ExampleVideoKeys,
-    matchConfig,
     matchConfigOptional,
     nonNullArray,
     type Drawback,
@@ -61,30 +60,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         key: fbtSystemConfig.key,
         name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
         imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
-        recommendation: (function () {
-            if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers") {
-                if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
-                    return (
-                        <div>
-                            <p className="warning">
-                                HTC VIVE Trackers 3.0 without continuous calibration is not recommended for your
-                                headset.
-                            </p>
-                        </div>
-                    );
-                } else {
-                    return <p className="recommended">HTC VIVE Trackers 3.0 are compatible with your headset.</p>;
-                }
-            } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
-                if (vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse") {
-                    return (
-                        <p className="recommended">
-                            HTC VIVE Trackers 3.0 with continuous calibration is compatible with your headset.
-                        </p>
-                    );
-                }
-            }
-        })(),
+        recommendation: <p className="recommended">HTC VIVE Tracker 3.0 is compatible with your headset.</p>,
         howItWorks: (
             <>
                 <img src="htc_vive_trackers_3_0/lighthouse_based_systems.jpg" />
