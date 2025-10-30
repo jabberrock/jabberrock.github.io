@@ -210,6 +210,9 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                 score: 1,
                 content: (
                     <>
+                        <VideoInView
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-exercise-sxs.mp4`}
+                        />
                         <p>
                             When the trackers are tracking, movement is accurate and there is no noticeable lag.
                             Trackers handle fast and extreme movements with no problems.
