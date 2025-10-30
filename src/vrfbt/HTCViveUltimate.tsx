@@ -102,6 +102,11 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                 <div>123 cm³ (77 x 58.6 x 27.3 mm)</div>
             </>
         ),
+        introExample: (
+            <VideoInView
+                src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-dancing-sxs.mp4`}
+            />
+        ),
         examples: (function () {
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
