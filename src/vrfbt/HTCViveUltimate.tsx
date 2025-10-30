@@ -1,12 +1,12 @@
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoInView } from "../components/VideoInView";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
-import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
+import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
 
-export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
+export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
     if (fbtSystemConfig.fbtSystemKey !== "htc_vive_ultimate_trackers") {
         throw "Invalid FBT system config";
@@ -17,7 +17,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
         imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
         recommendation: (function () {
-            const vrHeadset = vrHeadsetsByKey[vrSystem.headset];
+            const vrHeadset = vrHeadsetsByKey[vrHeadsetKey];
             if (vrHeadset.tracking === "lighthouse") {
                 return (
                     <p className="warning">
@@ -194,8 +194,8 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                 content: (
                     <>
                         <SimpleVideoPlayer
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-vr_session_setup.mp4`}
-                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-vr_session_setup.jpg`}
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-vr_session_setup.mp4`}
+                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-vr_session_setup.jpg`}
                             width={480}
                             height={420}
                         />

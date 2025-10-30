@@ -2,7 +2,7 @@ import { Carousel } from "react-bootstrap";
 import { SimpleImage } from "../components/SimpleImage";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
-import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
+import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import {
     ExampleVideoKeys,
     matchConfigOptional,
@@ -13,7 +13,7 @@ import {
 } from "./VRFBTSystem";
 import { VideoInView } from "../components/VideoInView";
 
-export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
+export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
     if (fbtSystemConfig.fbtSystemKey !== "htc_vive_trackers_3_0") {
         throw "Invalid FBT system config";
@@ -24,7 +24,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
         imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
         recommendation: (function () {
-            const vrHeadset = vrHeadsetsByKey[vrSystem.headset];
+            const vrHeadset = vrHeadsetsByKey[vrHeadsetKey];
             if (
                 vrHeadset.tracking === "lighthouse" &&
                 fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous"
@@ -103,7 +103,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             c.required.push({
                 name: "HTC VIVE SteamVR Base Station 1.0",
                 count: 2,
-                each_price_cents: vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ? 0 : 13499,
+                each_price_cents: vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse" ? 0 : 13499,
                 link: new URL("https://www.amazon.com/HTC-Vive-Base-Station-pc/dp/B01M01B92P"),
             });
             c.optional.push({
@@ -160,7 +160,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         ),
         introExample: (function () {
             let vrHeadset: VRHeadsetKey;
-            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+            if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                 vrHeadset = "htc_vive";
             } else {
                 vrHeadset = "meta_quest_3";
@@ -174,7 +174,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         })(),
         examples: (function () {
             let vrHeadset: VRHeadsetKey;
-            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+            if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                 vrHeadset = "htc_vive";
             } else {
                 vrHeadset = "meta_quest_3";
@@ -187,10 +187,10 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                         <VideoInView
                             src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-${v}-overlay.mp4`}
                         />
-                        {vrHeadset !== vrSystem.headset && (
+                        {vrHeadset !== vrHeadsetKey && (
                             <div>
                                 (Captured with {vrHeadsetsByKey[vrHeadset].name} instead of{" "}
-                                {vrHeadsetsByKey[vrSystem.headset].name})
+                                {vrHeadsetsByKey[vrHeadsetKey].name})
                             </div>
                         )}
                     </>
@@ -203,7 +203,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             const drawbacks: Drawback[] = [];
 
             if (
-                vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" &&
+                vrHeadsetsByKey[vrHeadsetKey].tracking !== "lighthouse" &&
                 fbtSystemConfig.key !== "htc_vive_trackers_3_0-3_trackers_1_continuous"
             ) {
                 drawbacks.push({
@@ -281,16 +281,10 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         })(),
         vrSession: {
             setup: (function () {
-                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                     return <p>Turn on your trackers and put them on.</p>;
                 } else {
-                    let vrHeadset: VRHeadsetKey;
-                    if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
-                        vrHeadset = "htc_vive";
-                    } else {
-                        vrHeadset = "meta_quest_3";
-                    }
-
+                    let vrHeadset: VRHeadsetKey = "meta_quest_3";
                     return (
                         <>
                             <SimpleVideoPlayer
@@ -316,7 +310,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 }
             })(),
             play:
-                vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ||
+                vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse" ||
                 fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous" ? (
                     <>
                         <p>It just works.</p>
@@ -339,7 +333,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         },
         review: {
             cost: (function () {
-                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                     return {
                         score: 3,
                         content: <p>You will need to buy the trackers and straps.</p>,
@@ -360,7 +354,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 score: 4,
                 content: (
                     <>
-                        {vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse" && (
+                        {vrHeadsetsByKey[vrHeadsetKey].tracking !== "lighthouse" && (
                             <p>
                                 You will need to set up your Lighthouse base-stations. Mount each Lighthouse
                                 base-stations to the wall or attach it to a tripod. Then complete the Lighthouse setup
@@ -410,7 +404,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 ],
             },
             calibration: (function () {
-                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                     const vrHeadset = "htc_vive";
                     return {
                         score: 5,
@@ -541,7 +535,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                         ),
                         collapsed: true,
                     },
-                    vrHeadsetsByKey[vrSystem.headset].tracking !== "lighthouse"
+                    vrHeadsetsByKey[vrHeadsetKey].tracking !== "lighthouse"
                         ? matchConfigOptional(fbtSystemConfig.key, {
                               "htc_vive_trackers_3_0-3_trackers": {
                                   key: "playspace_drift",
@@ -602,7 +596,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 ),
             },
             overall: (function () {
-                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                     return {
                         score: 4,
                         content: (

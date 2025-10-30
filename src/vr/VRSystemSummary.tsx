@@ -1,13 +1,13 @@
 import type React from "react";
-import { vrHeadsetsByKey, type VRSystem } from "./VR";
+import { vrHeadsetsByKey, type VRHeadsetKey } from "./VR";
 
 type VRSystemSummaryProps = {
-    vrSystem: VRSystem;
-    onReset: () => any;
+    vrHeadsetKey: VRHeadsetKey;
+    onClick: () => any;
 };
 
-export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({ vrSystem, onReset }) => {
-    const vrHeadset = vrHeadsetsByKey[vrSystem.headset];
+export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({ vrHeadsetKey, onClick }) => {
+    const vrHeadset = vrHeadsetsByKey[vrHeadsetKey];
     return (
         <div className="vr-system-summary">
             <div className="vr-system-summary-card">
@@ -19,7 +19,7 @@ export const VRSystemSummary: React.FC<VRSystemSummaryProps> = ({ vrSystem, onRe
                         value="Change Headset"
                         onClick={(e) => {
                             e.preventDefault();
-                            onReset();
+                            onClick();
                         }}
                     />
                 </div>

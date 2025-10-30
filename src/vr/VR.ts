@@ -1,11 +1,4 @@
 /**
- * The VR system that the user owns
- */
-export type VRSystem = {
-    headset: VRHeadsetKey;
-};
-
-/**
  * Supported VR headsets
  */
 export const vrHeadsetKeys = [

@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState, type FC } from "react";
 import { vrHeadsetFBTRecommendations, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
-import type { VRSystem } from "../vr/VR";
 import { fbtSystemConfigsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
 import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
 import { ColumnTableContext } from "./ColumnTable";
+import { type VRHeadsetKey } from "../vr/VR";
 
 type SelectedFBTsContextType = {
     selected: (VRFBTSystem | undefined)[];
@@ -18,14 +18,14 @@ export const SelectedFBTsContext = createContext<SelectedFBTsContextType>({
 });
 
 type SelectedFBTsProps = {
-    vrSystem: VRSystem;
+    vrHeadsetKey: VRHeadsetKey;
 } & React.PropsWithChildren;
 
-export const SelectedFBTs: FC<SelectedFBTsProps> = ({ vrSystem, children }) => {
+export const SelectedFBTs: FC<SelectedFBTsProps> = ({ vrHeadsetKey, children }) => {
     const columnTableContext = useContext(ColumnTableContext);
 
     const [selected, setSelected] = useState<(FBTSystemConfigKey | undefined)[]>(
-        vrHeadsetFBTRecommendations[vrSystem.headset],
+        vrHeadsetFBTRecommendations[vrHeadsetKey],
     );
 
     function updateSelectedSystem(i: number, option: FBTSystemConfigKey | undefined) {
@@ -49,13 +49,13 @@ export const SelectedFBTs: FC<SelectedFBTsProps> = ({ vrSystem, children }) => {
         if (key) {
             switch (fbtSystemConfigsByKey[key].fbtSystemKey) {
                 case "slimevr_trackers":
-                    systems.push(makeSlimeVR(vrSystem, key));
+                    systems.push(makeSlimeVR(vrHeadsetKey, key));
                     break;
                 case "htc_vive_trackers_3_0":
-                    systems.push(makeHTCVive30(vrSystem, key));
+                    systems.push(makeHTCVive30(vrHeadsetKey, key));
                     break;
                 case "htc_vive_ultimate_trackers":
-                    systems.push(makeHTCViveUltimate(vrSystem, key));
+                    systems.push(makeHTCViveUltimate(vrHeadsetKey, key));
                     break;
                 default:
                     throw "Invalid FBT system";

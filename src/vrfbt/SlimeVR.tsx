@@ -9,11 +9,11 @@ import {
 } from "./VRFBTSystem";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { VideoPlayer } from "../components/VideoPlayer";
-import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
+import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 
-export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
+export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
     if (fbtSystemConfig.fbtSystemKey !== "slimevr_trackers") {
         throw "Invalid FBT system config";
@@ -26,7 +26,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
         recommendation: (function () {
             return (
                 <>
-                    {vrHeadsetsByKey[vrSystem.headset].requiresPC ? (
+                    {vrHeadsetsByKey[vrHeadsetKey].requiresPC ? (
                         <p className="recommended">SlimeVR Trackers are compatible with your headset.</p>
                     ) : (
                         <p className="recommended">
@@ -202,7 +202,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
         ),
         introExample: (function () {
             let vrHeadset: VRHeadsetKey;
-            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+            if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                 vrHeadset = "htc_vive";
             } else {
                 vrHeadset = "meta_quest_3";
@@ -219,7 +219,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
         })(),
         examples: (function () {
             let vrHeadset: VRHeadsetKey;
-            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+            if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                 vrHeadset = "htc_vive";
             } else {
                 vrHeadset = "meta_quest_3";
@@ -236,10 +236,10 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                             width={480}
                             height={640}
                         />
-                        {vrHeadset !== vrSystem.headset && (
+                        {vrHeadset !== vrHeadsetKey && (
                             <div>
                                 (Captured with {vrHeadsetsByKey[vrHeadset].name} instead of{" "}
-                                {vrHeadsetsByKey[vrSystem.headset].name})
+                                {vrHeadsetsByKey[vrHeadsetKey].name})
                             </div>
                         )}
                     </>
@@ -288,7 +288,7 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
         vrSession: {
             setup: (function () {
                 let vrHeadset: VRHeadsetKey;
-                if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
+                if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                     vrHeadset = "htc_vive";
                 } else {
                     vrHeadset = "meta_quest_3";
@@ -444,8 +444,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                 content: (
                     <>
                         <SideBySideVideoPlayer
-                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-exercise.mp4`}
-                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-exercise.jpg`}
+                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-exercise.mp4`}
+                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-exercise.jpg`}
                             width={480}
                             height={320}
                         />
@@ -454,8 +454,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                             exercising.
                         </p>
                         <SideBySideVideoPlayer
-                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-lying_down.mp4`}
-                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-lying_down.jpg`}
+                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-lying_down.mp4`}
+                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-lying_down.jpg`}
                             width={480}
                             height={320}
                         />
@@ -482,8 +482,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                             content: (
                                 <>
                                     <SideBySideVideoPlayer
-                                        video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-sitting.mp4`}
-                                        thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-sitting.jpg`}
+                                        video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-sitting.mp4`}
+                                        thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-sitting.jpg`}
                                         width={480}
                                         height={320}
                                     />
@@ -507,8 +507,8 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
                         content: (
                             <>
                                 <SideBySideVideoPlayer
-                                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-sitting.mp4`}
-                                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-sitting.jpg`}
+                                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-sitting.mp4`}
+                                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-sitting.jpg`}
                                     width={480}
                                     height={320}
                                 />

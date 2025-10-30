@@ -1,42 +1,21 @@
 import React from "react";
 import { VRHeadsetIcon } from "./VRHeadsetIcon";
-import { vrHeadsetMakerKeys, vrHeadsetMakers, vrHeadsetsByMaker, type VRHeadsetKey, type VRSystem } from "./VR";
+import { vrHeadsetMakerKeys, vrHeadsetMakers, vrHeadsetsByMaker, type VRHeadsetKey } from "./VR";
+import { Button, Modal } from "react-bootstrap";
 
 type VRSystemPickerProps = {
-    onComplete: (results: VRSystem) => any;
+    show: boolean;
+    onComplete: (vrHeadsetKey: VRHeadsetKey | undefined) => any;
 };
 
-type Step = "vr_headset" | "complete";
-
-export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) => {
-    const [step, setStep] = React.useState<Step>("vr_headset");
-    const [results, setResults] = React.useState<Partial<VRSystem>>({});
-
-    function selectVRHeadset(vrHeadsetKey: VRHeadsetKey) {
-        const newVRSystem: Partial<VRSystem> = {
-            ...results,
-            headset: vrHeadsetKey,
-        };
-        nextStep(newVRSystem);
-    }
-
-    function nextStep(newVRSystem: Partial<VRSystem>) {
-        setResults(newVRSystem);
-
-        if (!newVRSystem.headset) {
-            setStep("complete");
-            return;
-        }
-
-        setStep("complete");
-        onComplete(newVRSystem as VRSystem);
-    }
-
-    switch (step) {
-        case "vr_headset":
-            return (
+export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ show, onComplete }) => {
+    return (
+        <Modal show={show}>
+            <Modal.Header closeButton onHide={() => onComplete(undefined)}>
+                <Modal.Title>Which VR headset do you have?</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
                 <div className="vr-system-picker">
-                    <p>Which VR headset do you own?</p>
                     {vrHeadsetMakerKeys.map((makerKey) => (
                         <div className="vr-headset-section" key={makerKey}>
                             <div className="manufacturer">{vrHeadsetMakers[makerKey].name}</div>
@@ -47,7 +26,7 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
                                             href="#"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                selectVRHeadset(vrHeadset);
+                                                onComplete(vrHeadset);
                                             }}
                                         >
                                             <VRHeadsetIcon headsetKey={vrHeadset} />
@@ -58,9 +37,12 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
                         </div>
                     ))}
                 </div>
-            );
-
-        case "complete":
-            return <>Questionnaire complete!</>;
-    }
+            </Modal.Body>
+            <Modal.Footer>
+                <Button variant="secondary" onClick={() => onComplete(undefined)}>
+                    Cancel
+                </Button>
+            </Modal.Footer>
+        </Modal>
+    );
 };
