@@ -1,7 +1,7 @@
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
-import { VideoPlayer } from "../components/VideoPlayer";
+import { VideoInView } from "../components/VideoInView";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
-import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
+import { type VRSystem } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
@@ -103,30 +103,13 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
             </>
         ),
         examples: (function () {
-            let vrHeadset: VRHeadsetKey;
-            if (vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse") {
-                vrHeadset = "htc_vive";
-            } else {
-                vrHeadset = "meta_quest_3";
-            }
-
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
                     <>
-                        <VideoPlayer
-                            key={v}
-                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.mp4`}
-                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.jpg`}
-                            width={480}
-                            height={640}
+                        <VideoInView
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-${v}-overlay.mp4`}
                         />
-                        {vrHeadset !== vrSystem.headset && (
-                            <div>
-                                (Captured with {vrHeadsetsByKey[vrHeadset].name} instead of{" "}
-                                {vrHeadsetsByKey[vrSystem.headset].name})
-                            </div>
-                        )}
                     </>
                 );
             }
@@ -250,34 +233,17 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
                                     When the tracker loses tracking, parts of your body will freeze in place. This
                                     happens a lot, and there's nothing you can do to prevent it.
                                 </p>
-                                <video
-                                    src="htc_vive_ultimate_trackers/limitations/fail_getting_up_stuck-sxs.mp4"
-                                    autoPlay
-                                    controls
-                                    loop
-                                />
-                                <p>When I tried to stand up.</p>
-                                <video
-                                    src="htc_vive_ultimate_trackers/limitations/fail_sitting_on_floor-sxs.mp4"
-                                    autoPlay
-                                    controls
-                                    loop
-                                />
-                                <p>When I tried to sit on the floor.</p>
-                                <video
-                                    src="htc_vive_ultimate_trackers/limitations/fail_picking_up_item-sxs.mp4"
-                                    autoPlay
-                                    controls
-                                    loop
-                                />
-                                <p>When I bent over to pick up an item.</p>
+                                <VideoInView src="htc_vive_ultimate_trackers/3_trackers/fail-sitting_down-4-sxs.mp4" />
+                                <p>When I sit down.</p>
+                                <VideoInView src="htc_vive_ultimate_trackers/3_trackers/fail-sitting_on_floor-1-sxs.mp4" />
+                                <p>When I sit on the floor.</p>
+                                <VideoInView src="htc_vive_ultimate_trackers/3_trackers/fail-bending_over-sxs.mp4" />
+                                <p>When I bend over to pick up an item.</p>
+                                <VideoInView src="htc_vive_ultimate_trackers/3_trackers/fail-rolling_onto_couch-sxs.mp4" />
+                                <p>When I roll onto my couch.</p>
+                                <VideoInView src="htc_vive_ultimate_trackers/3_trackers/fail-foot_stuck-sxs.mp4" />
+                                <p>Sometimes for no reason at all.</p>
                                 <p>It usually takes a few seconds for the trackers to recover.</p>
-                                <video
-                                    src="htc_vive_ultimate_trackers/limitations/fail_recovery_until_point_at_monitor-sxs.mp4"
-                                    autoPlay
-                                    controls
-                                    loop
-                                />
                                 <p>
                                     However, sometimes the trackers are unable to recover, and you will need to take it
                                     off and point it towards your computer to restore tracking. This breaks immersion
