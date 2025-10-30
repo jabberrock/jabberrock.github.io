@@ -26,7 +26,13 @@ export function makeSlimeVR(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey
         recommendation: (function () {
             return (
                 <>
-                    <p className="recommended">SlimeVR Trackers are compatible with your headset.</p>
+                    {vrHeadsetsByKey[vrSystem.headset].requiresPC ? (
+                        <p className="recommended">SlimeVR Trackers are compatible with your headset.</p>
+                    ) : (
+                        <p className="recommended">
+                            SlimeVR Trackers are compatible with your headset in both PCVR and standalone modes.
+                        </p>
+                    )}
                     {fbtSystemConfig.key === "slimevr_trackers-lower_body_set_5_0" && (
                         <p>We recommend the Core Set (6+0) for significantly more accurate tracking.</p>
                     )}
