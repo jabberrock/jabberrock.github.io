@@ -1,8 +1,6 @@
 import { Carousel } from "react-bootstrap";
-import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleImage } from "../components/SimpleImage";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
-import { VideoPlayer } from "../components/VideoPlayer";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey, type VRSystem } from "../vr/VR";
 import {
@@ -14,6 +12,7 @@ import {
     type ItemList,
     type VRFBTSystem,
 } from "./VRFBTSystem";
+import { VideoInView } from "../components/VideoInView";
 
 export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -206,11 +205,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             }
 
             return (
-                <SideBySideVideoPlayer
-                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.mp4`}
-                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.jpg`}
-                    width={480}
-                    height={320}
+                <VideoInView
+                    src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-dancing-sxs.mp4`}
                 />
             );
         })(),
@@ -226,12 +222,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
                     <>
-                        <VideoPlayer
-                            key={v}
-                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.mp4`}
-                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.jpg`}
-                            width={480}
-                            height={640}
+                        <VideoInView
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-${v}-overlay.mp4`}
                         />
                         {vrHeadset !== vrSystem.headset && (
                             <div>
@@ -520,11 +512,8 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 }),
                 content: (
                     <>
-                        <SideBySideVideoPlayer
-                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-dancing.mp4`}
-                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-dancing.jpg`}
-                            width={480}
-                            height={320}
+                        <VideoInView
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-sxs.mp4`}
                         />
                         <p>
                             When the trackers can see the Lighthouse base stations, tracking is accurate and there is no
@@ -549,23 +538,18 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                         title: "Occlusion",
                         content: (
                             <>
-                                <SideBySideVideoPlayer
-                                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-exercise.mp4`}
-                                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrSystem.headset}/${fbtSystemConfig.key}-${vrSystem.headset}-exercise.jpg`}
-                                    width={480}
-                                    height={320}
-                                />
                                 <p>
                                     If the trackers lose sight of the base stations, parts of your body will freeze in
-                                    place, or fly off into the distance. This can easily happen if you move your arm in
-                                    front of your chest tracker, or if you just bend down a bit. Simple actions like
-                                    sitting down can cause occlusion.
+                                    place, or fly off into the distance. This happens when I accidentally move my arm in
+                                    front of my waist tracker.
                                 </p>
+                                <VideoInView
+                                    src={`${fbtSystemConfig.fbtSystemKey}/3_trackers/meta_quest_3/fail-flying_into_distance-sxs.mp4`}
+                                />
                                 <p>It takes a few seconds for the trackers to recover.</p>
                                 <p>
                                     I notice having to be careful how I move my arms, and to keep myself oriented
-                                    towards a base station. This breaks the immersion because I’m constantly worrying
-                                    whether I’m going to break tracking.
+                                    towards a base station.
                                 </p>
                             </>
                         ),
@@ -625,6 +609,9 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                     tracker there. Since it is estimated, it might not match the actual position of your
                                     knees.
                                 </p>
+                                <VideoInView
+                                    src={`${fbtSystemConfig.fbtSystemKey}/3_trackers/meta_quest_3/fail-manspreading-sxs.mp4`}
+                                />
                                 <p>
                                     I tend to sit with my feet pointing outwards, so it always looks like I'm
                                     manspreading. There's no way to work around this behavior.

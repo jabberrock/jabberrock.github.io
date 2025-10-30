@@ -103,9 +103,7 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
             </>
         ),
         introExample: (
-            <VideoInView
-                src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-dancing-sxs.mp4`}
-            />
+            <VideoInView src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-dancing-sxs.mp4`} />
         ),
         examples: (function () {
             const nodes: Record<string, React.ReactNode> = {};
