@@ -17,15 +17,25 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
         imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
         recommendation: (function () {
-            if (vrHeadsetsByKey[vrSystem.headset].requiresPC) {
-                return <p className="recommended">VIVE Ultimate trackers are compatible with your headset.</p>;
-            } else {
+            const vrHeadset = vrHeadsetsByKey[vrSystem.headset];
+            if (vrHeadset.tracking === "lighthouse") {
                 return (
                     <p className="warning">
-                        VIVE Ultimate trackers are compatible with your headset in PCVR mode. It cannot be used in
-                        standalone mode.
+                        VIVE Ultimate trackers are compatible with your headset, but you probably should consider VIVE
+                        Tracker 3.0 instead since your headset is Lighthouse-based.
                     </p>
                 );
+            } else {
+                if (vrHeadset.requiresPC) {
+                    return <p className="recommended">VIVE Ultimate trackers are compatible with your headset.</p>;
+                } else {
+                    return (
+                        <p className="warning">
+                            VIVE Ultimate trackers are compatible with your headset in PCVR mode. It cannot be used in
+                            standalone mode.
+                        </p>
+                    );
+                }
             }
         })(),
         howItWorks: (
