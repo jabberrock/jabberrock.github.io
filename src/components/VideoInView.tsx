@@ -44,7 +44,7 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
             return;
         }
 
-        if (shouldLoad && video.src !== src) {
+        if (shouldLoad && video.src == "") {
             video.src = src;
         }
 
