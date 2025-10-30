@@ -19,9 +19,9 @@ export const VRHeadsetIcon: React.FC<VRHeadsetIconProps> = ({ headsetKey }) => {
     var vrHeadset = vrHeadsetsByKey[headsetKey] || unknownVRHeadset;
 
     return (
-        <div className="vr-headset-icon">
+        <div>
             <div>
-                <img src={vrHeadset.imageURL} />
+                <img src={vrHeadset.imageURL} className="vr-headset-icon" />
             </div>
             <div>{vrHeadset.name}</div>
         </div>

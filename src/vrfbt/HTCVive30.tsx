@@ -159,7 +159,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
             </>
         ),
         introExample: (function () {
-            let vrHeadset: VRHeadsetKey;
+            let vrHeadset: string;
             if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                 vrHeadset = "htc_vive";
             } else {
@@ -173,7 +173,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
             );
         })(),
         examples: (function () {
-            let vrHeadset: VRHeadsetKey;
+            let vrHeadset: string;
             if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                 vrHeadset = "htc_vive";
             } else {
@@ -187,12 +187,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         <VideoInView
                             src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-${v}-overlay.mp4`}
                         />
-                        {vrHeadset !== vrHeadsetKey && (
-                            <div>
-                                (Captured with {vrHeadsetsByKey[vrHeadset].name} instead of{" "}
-                                {vrHeadsetsByKey[vrHeadsetKey].name})
-                            </div>
-                        )}
                     </>
                 );
             }
@@ -284,7 +278,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                     return <p>Turn on your trackers and put them on.</p>;
                 } else {
-                    let vrHeadset: VRHeadsetKey = "meta_quest_3";
+                    let vrHeadset: string = "meta_quest_3";
                     return (
                         <>
                             <SimpleVideoPlayer

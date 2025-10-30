@@ -3,14 +3,8 @@
  */
 export const vrHeadsetKeys = [
     "oculus_rift",
-    "oculus_rift_s",
-    "meta_quest_2",
-    "meta_quest_3",
-    "meta_quest_3s",
-    "meta_quest_pro",
+    "meta_quest",
     "htc_vive",
-    "htc_vive_pro",
-    "htc_vive_pro_2",
     "valve_index",
     "generic_inside_out",
     "generic_lighthouse_based",
@@ -40,71 +34,29 @@ export type VRHeadset = {
 export const vrHeadsets: VRHeadset[] = [
     {
         key: "oculus_rift",
-        name: "Oculus Rift",
-        imageURL: "headsets/unknown.jpg",
+        name: "Oculus Rift/Rift S",
+        imageURL: "headsets/oculus_rift_s.jpg",
         tracking: "constellation",
         requiresPC: true,
     },
     {
-        key: "oculus_rift_s",
-        name: "Oculus Rift S",
-        imageURL: "headsets/unknown.jpg",
-        tracking: "inside_out",
-        requiresPC: true,
-    },
-    {
-        key: "meta_quest_2",
-        name: "Meta Quest 2",
-        imageURL: "headsets/unknown.jpg",
-        tracking: "inside_out",
-        requiresPC: false,
-    },
-    {
-        key: "meta_quest_3",
-        name: "Meta Quest 3",
+        key: "meta_quest",
+        name: "Meta Quest 2/3/3S/Pro",
         imageURL: "headsets/meta_quest_3.jpg",
         tracking: "inside_out",
         requiresPC: false,
     },
     {
-        key: "meta_quest_3s",
-        name: "Meta Quest 3S",
-        imageURL: "headsets/unknown.jpg",
-        tracking: "inside_out",
-        requiresPC: false,
-    },
-    {
-        key: "meta_quest_pro",
-        name: "Meta Quest Pro",
-        imageURL: "headsets/unknown.jpg",
-        tracking: "inside_out",
-        requiresPC: false,
+        key: "valve_index",
+        name: "Valve Index",
+        imageURL: "headsets/valve_index.jpg",
+        tracking: "lighthouse",
+        requiresPC: true,
     },
     {
         key: "htc_vive",
-        name: "HTC VIVE",
-        imageURL: "headsets/unknown.jpg",
-        tracking: "lighthouse",
-        requiresPC: true,
-    },
-    {
-        key: "htc_vive_pro",
-        name: "HTC VIVE Pro",
-        imageURL: "headsets/unknown.jpg",
-        tracking: "lighthouse",
-        requiresPC: true,
-    },
-    {
-        key: "htc_vive_pro_2",
-        name: "HTC VIVE Pro 2",
-        imageURL: "headsets/unknown.jpg",
-        tracking: "lighthouse",
-        requiresPC: true,
-    },
-    {
-        key: "valve_index",
-        name: "Valve Index",
-        imageURL: "headsets/unknown.jpg",
+        name: "HTC VIVE/VIVE Pro/VIVE Pro 2",
+        imageURL: "headsets/htc_vive_pro.jpg",
         tracking: "lighthouse",
         requiresPC: true,
     },
@@ -125,37 +77,3 @@ export const vrHeadsets: VRHeadset[] = [
 ] as const;
 
 export const vrHeadsetsByKey = Object.fromEntries(vrHeadsets.map((h) => [h.key, h])) as Record<VRHeadsetKey, VRHeadset>;
-
-/**
- * VR headset manufacturers
- */
-export const vrHeadsetMakerKeys = ["meta", "htc", "valve", "other"] as const;
-
-export type VRHeadsetMakerKey = (typeof vrHeadsetMakerKeys)[number];
-
-type VRHeadsetMaker = {
-    name: string;
-    imageUrl?: string;
-};
-
-export const vrHeadsetMakers: Record<VRHeadsetMakerKey, VRHeadsetMaker> = {
-    meta: {
-        name: "Meta",
-    },
-    htc: {
-        name: "HTC",
-    },
-    valve: {
-        name: "Valve",
-    },
-    other: {
-        name: "Other",
-    },
-} as const;
-
-export const vrHeadsetsByMaker: Record<VRHeadsetMakerKey, VRHeadsetKey[]> = {
-    meta: ["oculus_rift", "oculus_rift_s", "meta_quest_2", "meta_quest_3", "meta_quest_3s", "meta_quest_pro"],
-    htc: ["htc_vive", "htc_vive_pro", "htc_vive_pro_2"],
-    valve: ["valve_index"],
-    other: ["generic_inside_out", "generic_lighthouse_based"],
-} as const;

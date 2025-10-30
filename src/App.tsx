@@ -13,7 +13,7 @@ import { vrHeadsetKeys, type VRHeadsetKey } from "./vr/VR";
 const opacityRef = { current: 0.9 };
 
 function App() {
-    const [vrHeadsetKey, setVRHeadsetKey] = React.useState<VRHeadsetKey>("meta_quest_3");
+    const [vrHeadsetKey, setVRHeadsetKey] = React.useState<VRHeadsetKey>("meta_quest");
     const [showVRHeadsetPicker, setShowVRHeadsetPicker] = React.useState(false);
 
     React.useEffect(() => {

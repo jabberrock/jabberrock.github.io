@@ -201,7 +201,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
             </>
         ),
         introExample: (function () {
-            let vrHeadset: VRHeadsetKey;
+            let vrHeadset: string;
             if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                 vrHeadset = "htc_vive";
             } else {
@@ -218,7 +218,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
             );
         })(),
         examples: (function () {
-            let vrHeadset: VRHeadsetKey;
+            let vrHeadset: string;
             if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                 vrHeadset = "htc_vive";
             } else {
@@ -236,12 +236,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                             width={480}
                             height={640}
                         />
-                        {vrHeadset !== vrHeadsetKey && (
-                            <div>
-                                (Captured with {vrHeadsetsByKey[vrHeadset].name} instead of{" "}
-                                {vrHeadsetsByKey[vrHeadsetKey].name})
-                            </div>
-                        )}
                     </>
                 );
             }
@@ -287,7 +281,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
         ],
         vrSession: {
             setup: (function () {
-                let vrHeadset: VRHeadsetKey;
+                let vrHeadset: string;
                 if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                     vrHeadset = "htc_vive";
                 } else {

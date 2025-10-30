@@ -1,40 +1,54 @@
 import React from "react";
 import { VRHeadsetIcon } from "./VRHeadsetIcon";
-import { vrHeadsetMakerKeys, vrHeadsetMakers, vrHeadsetsByMaker, type VRHeadsetKey } from "./VR";
+import { type VRHeadsetKey } from "./VR";
 import { Button, Modal } from "react-bootstrap";
+
+const realVRHeadsetKeys: VRHeadsetKey[] = ["oculus_rift", "meta_quest", "valve_index", "htc_vive"];
+
+const genericVRHeadsetKeys: VRHeadsetKey[] = ["generic_inside_out", "generic_lighthouse_based"];
 
 type VRSystemPickerProps = {
     show: boolean;
     onComplete: (vrHeadsetKey: VRHeadsetKey | undefined) => any;
 };
 
+function VRHeadsetButton({
+    vrHeadsetKey,
+    onClick,
+}: {
+    vrHeadsetKey: VRHeadsetKey;
+    onClick: (vrHeadsetKey: VRHeadsetKey) => any;
+}) {
+    return (
+        <a
+            href="#"
+            key={vrHeadsetKey}
+            onClick={(e) => {
+                e.preventDefault();
+                onClick(vrHeadsetKey);
+            }}
+            className="vr-headset text-center p-2 me-2 mb-2 border"
+        >
+            <VRHeadsetIcon headsetKey={vrHeadsetKey} />
+        </a>
+    );
+}
+
 export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ show, onComplete }) => {
     return (
-        <Modal show={show}>
+        <Modal show={show} centered dialogClassName="vr-system-picker">
             <Modal.Header closeButton onHide={() => onComplete(undefined)}>
                 <Modal.Title>Which VR headset do you have?</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="vr-system-picker">
-                    {vrHeadsetMakerKeys.map((makerKey) => (
-                        <div className="vr-headset-section" key={makerKey}>
-                            <div className="manufacturer">{vrHeadsetMakers[makerKey].name}</div>
-                            <div className="vr-headset-list">
-                                {vrHeadsetsByMaker[makerKey].map((vrHeadset) => (
-                                    <div key={vrHeadset}>
-                                        <a
-                                            href="#"
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                onComplete(vrHeadset);
-                                            }}
-                                        >
-                                            <VRHeadsetIcon headsetKey={vrHeadset} />
-                                        </a>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                <div className="d-flex flex-wrap align-items-stretch">
+                    {realVRHeadsetKeys.map((vrHeadsetKey) => (
+                        <VRHeadsetButton vrHeadsetKey={vrHeadsetKey} onClick={onComplete} />
+                    ))}
+                </div>
+                <div className="d-flex align-items-stretch">
+                    {genericVRHeadsetKeys.map((vrHeadsetKey) => (
+                        <VRHeadsetButton vrHeadsetKey={vrHeadsetKey} onClick={onComplete} />
                     ))}
                 </div>
             </Modal.Body>
