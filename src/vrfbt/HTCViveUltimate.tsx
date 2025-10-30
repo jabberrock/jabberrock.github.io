@@ -1,7 +1,7 @@
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoInView } from "../components/VideoInView";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
-import { type VRSystem } from "../vr/VR";
+import { vrHeadsetsByKey, type VRSystem } from "../vr/VR";
 import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
@@ -12,27 +12,22 @@ export function makeHTCViveUltimate(vrSystem: VRSystem, fbtConfigKey: FBTSystemC
         throw "Invalid FBT system config";
     }
 
-    if (!vrSystem.prefersPCVR) {
-        return {
-            key: "none",
-            name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
-            imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
-            recommendation: <p className="warning">VIVE Ultimate trackers require a PC.</p>,
-            howItWorks: <p>N/A</p>,
-            itemList: { required: [], optional: [] },
-            availability: <p>N/A</p>,
-            tracking: <p>N/A</p>,
-            specs: <p>N/A</p>,
-            examples: {},
-            drawbacks: [],
-        };
-    }
-
     return {
         key: fbtSystemConfig.key,
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
         imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
-        recommendation: <p className="recommended">HTC VIVE Ultimate Trackers are compatible with your headset.</p>,
+        recommendation: (function () {
+            if (vrHeadsetsByKey[vrSystem.headset].requiresPC) {
+                return <p className="recommended">VIVE Ultimate trackers are compatible with your headset.</p>;
+            } else {
+                return (
+                    <p className="warning">
+                        VIVE Ultimate trackers are compatible with your headset in PCVR mode. It cannot be used in
+                        standalone mode.
+                    </p>
+                );
+            }
+        })(),
         howItWorks: (
             <>
                 <img src="htc_vive_ultimate_trackers/htc_vive_ultimate_cameras.jpg" />

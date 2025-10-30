@@ -19,48 +19,34 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
         throw "Invalid FBT system config";
     }
 
-    if (!vrSystem.prefersPCVR) {
-        return {
-            key: "none",
-            name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
-            imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
-            recommendation: <p className="warning">VIVE Tracker 3.0 requires a PC.</p>,
-            howItWorks: <p>N/A</p>,
-            itemList: { required: [], optional: [] },
-            availability: <p>N/A</p>,
-            tracking: <p>N/A</p>,
-            specs: <p>N/A</p>,
-            examples: {},
-            drawbacks: [],
-        };
-    }
-
-    if (
-        vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" &&
-        fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous"
-    ) {
-        return {
-            key: "none",
-            name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
-            imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
-            recommendation: (
-                <p className="warning">Your headset is Lighthouse-based and does not require continuous calibration.</p>
-            ),
-            howItWorks: <p>N/A</p>,
-            itemList: { required: [], optional: [] },
-            availability: <p>N/A</p>,
-            tracking: <p>N/A</p>,
-            specs: <p>N/A</p>,
-            examples: {},
-            drawbacks: [],
-        };
-    }
-
     return {
         key: fbtSystemConfig.key,
         name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
         imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
-        recommendation: <p className="recommended">HTC VIVE Tracker 3.0 is compatible with your headset.</p>,
+        recommendation: (function () {
+            const vrHeadset = vrHeadsetsByKey[vrSystem.headset];
+            if (
+                vrHeadset.tracking === "lighthouse" &&
+                fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous"
+            ) {
+                return (
+                    <p className="warning">
+                        Your headset is Lighthouse-based and does not require continuous calibration.
+                    </p>
+                );
+            } else {
+                if (vrHeadset.requiresPC) {
+                    return <p className="recommended">VIVE Tracker 3.0 is compatible with your headset.</p>;
+                } else {
+                    return (
+                        <p className="warning">
+                            VIVE Tracker 3.0 is compatible with your headset in PCVR mode. It cannot be used in
+                            standalone mode.
+                        </p>
+                    );
+                }
+            }
+        })(),
         howItWorks: (
             <>
                 <img src="htc_vive_trackers_3_0/lighthouse_based_systems.jpg" />

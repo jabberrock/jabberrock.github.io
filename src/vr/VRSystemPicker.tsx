@@ -1,19 +1,12 @@
 import React from "react";
 import { VRHeadsetIcon } from "./VRHeadsetIcon";
-import {
-    vrHeadsetMakerKeys,
-    vrHeadsetMakers,
-    vrHeadsetsByKey,
-    vrHeadsetsByMaker,
-    type VRHeadsetKey,
-    type VRSystem,
-} from "./VR";
+import { vrHeadsetMakerKeys, vrHeadsetMakers, vrHeadsetsByMaker, type VRHeadsetKey, type VRSystem } from "./VR";
 
 type VRSystemPickerProps = {
     onComplete: (results: VRSystem) => any;
 };
 
-type Step = "vr_headset" | "standalone" | "complete";
+type Step = "vr_headset" | "complete";
 
 export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) => {
     const [step, setStep] = React.useState<Step>("vr_headset");
@@ -24,10 +17,6 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
             ...results,
             headset: vrHeadsetKey,
         };
-        const vrHeadset = vrHeadsetsByKey[vrHeadsetKey];
-        if (vrHeadset.requiresPC) {
-            newVRSystem.prefersPCVR = true;
-        }
         nextStep(newVRSystem);
     }
 
@@ -35,12 +24,7 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
         setResults(newVRSystem);
 
         if (!newVRSystem.headset) {
-            setStep("vr_headset");
-            return;
-        }
-
-        if (newVRSystem.prefersPCVR === undefined) {
-            setStep("standalone");
+            setStep("complete");
             return;
         }
 
@@ -52,7 +36,7 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
         case "vr_headset":
             return (
                 <div className="vr-system-picker">
-                    <p>Which VR headset do you own? (2 questions remaining)</p>
+                    <p>Which VR headset do you own?</p>
                     {vrHeadsetMakerKeys.map((makerKey) => (
                         <div className="vr-headset-section" key={makerKey}>
                             <div className="manufacturer">{vrHeadsetMakers[makerKey].name}</div>
@@ -73,38 +57,6 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ onComplete }) =>
                             </div>
                         </div>
                     ))}
-                </div>
-            );
-
-        case "standalone":
-            return (
-                <div className="vr-system-picker">
-                    <p>Will you use your VR headset standalone, or with a PC? (1 question remaining)</p>
-                    <div>
-                        <a
-                            href="#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                nextStep({
-                                    ...results,
-                                    prefersPCVR: false,
-                                });
-                            }}
-                        >
-                            Standalone
-                        </a>
-                    </div>
-                    <div>
-                        <a
-                            href="#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                nextStep({ ...results, prefersPCVR: true });
-                            }}
-                        >
-                            PCVR
-                        </a>
-                    </div>
                 </div>
             );
 

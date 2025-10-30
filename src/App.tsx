@@ -23,7 +23,6 @@ function App() {
         } else {
             setVRSystem({
                 headset: "meta_quest_3",
-                prefersPCVR: true,
             });
         }
     }, []);
