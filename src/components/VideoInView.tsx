@@ -6,6 +6,7 @@ type VideoInViewProps = {
 
 export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [shouldLoad, setShouldLoad] = useState(false);
     const [inView, setInView] = useState(false);
 
     useEffect(() => {
@@ -17,18 +18,42 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
     }, []);
 
     useEffect(() => {
-        const video = videoRef.current;
-        if (video) {
-            if (inView) {
-                if (video.src !== src) {
-                    video.src = src;
-                    video.play();
-                }
-            } else {
-                video.pause();
+        let timer: ReturnType<typeof setTimeout> | null = null;
+
+        if (inView) {
+            // only set to load if still in view after 1s
+            timer = setTimeout(() => setShouldLoad(true), 1000);
+        } else {
+            // if it leaves view, cancel loading and pause
+            if (timer) {
+                clearTimeout(timer);
             }
+            setShouldLoad(false);
         }
+
+        return () => {
+            if (timer) {
+                clearTimeout(timer);
+            }
+        };
     }, [inView]);
+
+    useEffect(() => {
+        const video = videoRef.current;
+        if (!video) {
+            return;
+        }
+
+        if (shouldLoad && video.src !== src) {
+            video.src = src;
+        }
+
+        if (inView) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    }, [shouldLoad, inView, src]);
 
     return <video ref={videoRef} poster={src.replace(/\.mp4$/, ".jpg")} autoPlay muted controls loop />;
 };
