@@ -505,11 +505,7 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                 }
             })(),
             gameplay: {
-                score: matchConfig(fbtSystemConfig.key, {
-                    "htc_vive_trackers_3_0-3_trackers":
-                        vrHeadsetsByKey[vrSystem.headset].tracking === "lighthouse" ? 3 : 2,
-                    "htc_vive_trackers_3_0-3_trackers_1_continuous": 3,
-                }),
+                score: 3,
                 content: (
                     <>
                         <VideoInView
@@ -679,16 +675,12 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                     in specific ways to prevent covering the hip tracker, and also try to keep facing at
                                     least one base station. This breaks the immersion for me.
                                 </p>
-                                <p>
-                                    When my headset randomly resets its playspace, my avatar flies off into the
-                                    distance. That’s another huge immersion breaker for me.
-                                </p>
                             </>
                         ),
                     };
                 } else {
                     return {
-                        score: 2,
+                        score: 3,
                         content: (
                             <>
                                 <p>
@@ -701,11 +693,6 @@ export function makeHTCVive30(vrSystem: VRSystem, fbtConfigKey: FBTSystemConfigK
                                     flying off so much that I have to actively prevent it from happening. I move my arms
                                     in specific ways to prevent covering the hip tracker, and also try to keep facing at
                                     least one base station. This breaks the immersion for me.
-                                </p>
-                                <p>
-                                    When my headset randomly resets its playspace, my avatar flies off into the
-                                    distance. I have to pause everything and do space-calibration. That’s another huge
-                                    immersion breaker for me.
                                 </p>
                             </>
                         ),
