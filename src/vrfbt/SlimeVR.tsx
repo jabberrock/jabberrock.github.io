@@ -8,11 +8,9 @@ import {
     type VRFBTSystem,
 } from "./VRFBTSystem";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
-import { VideoPlayer } from "../components/VideoPlayer";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
-import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
-import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { CollapsibleSection } from "../components/CollapsibleSection";
+import { VideoInView } from "../components/VideoInView";
 
 export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -171,41 +169,18 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 <img src="slimevr_trackers/slimevr_size.jpg" />
             </>
         ),
-        introExample: (function () {
-            let vrHeadset: string;
-            if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
-                vrHeadset = "htc_vive";
-            } else {
-                vrHeadset = "meta_quest_3";
-            }
-
-            return (
-                <SideBySideVideoPlayer
-                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.mp4`}
-                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.jpg`}
-                    width={480}
-                    height={420}
-                />
-            );
-        })(),
+        introExample: (
+            <VideoInView
+                src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-sxs.mp4`}
+            />
+        ),
         examples: (function () {
-            let vrHeadset: string;
-            if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
-                vrHeadset = "htc_vive";
-            } else {
-                vrHeadset = "meta_quest_3";
-            }
-
             const nodes: Record<string, React.ReactNode> = {};
             for (const v of ExampleVideoKeys) {
                 nodes[v] = (
                     <>
-                        <VideoPlayer
-                            key={v}
-                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.mp4`}
-                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.jpg`}
-                            width={480}
-                            height={420}
+                        <VideoInView
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-${v}-overlay.mp4`}
                         />
                     </>
                 );
@@ -268,10 +243,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 score: 2,
                 content: (
                     <>
-                        <SimpleVideoPlayer
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.mp4`}
-                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.jpg`}
-                        />
+                        <p>TODO</p>
                         <p>At the start of each VR session, you will need to calibrate your trackers to your body.</p>
                         <p>
                             For most people, the calibration process just works. However, you will need some trial and
@@ -326,21 +298,15 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 }),
                 content: (
                     <>
-                        <SideBySideVideoPlayer
-                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-exercise.mp4`}
-                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-exercise.jpg`}
-                            width={480}
-                            height={320}
+                        <VideoInView
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-overlay.mp4`}
                         />
                         <p>
                             SlimeVR works in any position, whether you're standing, sitting, lying down, dancing or
                             exercising.
                         </p>
-                        <SideBySideVideoPlayer
-                            video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-lying_down.mp4`}
-                            thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-lying_down.jpg`}
-                            width={480}
-                            height={320}
+                        <VideoInView
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-overlay.mp4`}
                         />
                         <p>Trackers even work when you're under a blanket, or if you're wearing a sweater over them.</p>
                         <p>
@@ -364,12 +330,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                             title: "Sitting/Bending",
                             content: (
                                 <>
-                                    <SideBySideVideoPlayer
-                                        video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-sitting.mp4`}
-                                        thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-sitting.jpg`}
-                                        width={480}
-                                        height={320}
-                                    />
+                                    <p>TODO</p>
                                     <p>
                                         The Lower Body Set (5+0) only provides a single chest tracker for your upper
                                         body. When you sit down or bend forwards, your legs tend to appear in front of
@@ -389,12 +350,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         title: "Drift",
                         content: (
                             <>
-                                <SideBySideVideoPlayer
-                                    video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-sitting.mp4`}
-                                    thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-sitting.jpg`}
-                                    width={480}
-                                    height={320}
-                                />
+                                <p>TODO</p>
                                 <p>
                                     SlimeVR trackers will drift over time, because errors accumulate in the IMU. You
                                     will notice that your avatar is slightly off from your real body.
