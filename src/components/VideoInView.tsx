@@ -31,8 +31,8 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
     useEffect(() => {
         const video = videoRef.current;
         if (video) {
-            console.log("Clearing src");
-            video.src = "";
+            video.removeAttribute("src");
+            video.load();
             setNeedsLoading(true);
         }
     }, [src]);
@@ -43,7 +43,6 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
         if (video) {
             if (inView) {
                 if (needsLoading && canLoad) {
-                    console.log("Setting src");
                     video.src = src;
                     setNeedsLoading(false);
                 }

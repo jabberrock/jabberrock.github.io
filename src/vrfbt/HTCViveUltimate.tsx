@@ -1,4 +1,5 @@
 import { CollapsibleSection } from "../components/CollapsibleSection";
+import { SimpleImage } from "../components/SimpleImage";
 import { VideoInView } from "../components/VideoInView";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
@@ -215,6 +216,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 score: 2,
                 content: (
                     <>
+                        <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/wearing.jpg`} />
                         <p>The trackers are not comfortable for me.</p>
                         <p>
                             HTC, the manufacturer, recommends mounting the ankle trackers on the front of your shins.

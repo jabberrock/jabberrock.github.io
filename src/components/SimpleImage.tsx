@@ -7,6 +7,7 @@ type SimpleImageProps = {
 export const SimpleImage: FC<SimpleImageProps> = ({ src }) => {
     const imageRef = useRef<HTMLImageElement>(null);
     const [inView, setInView] = useState(false);
+    const [needsLoading, setNeedsLoading] = useState(true);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => entries.forEach((e) => setInView(e.isIntersecting)));
@@ -16,12 +17,21 @@ export const SimpleImage: FC<SimpleImageProps> = ({ src }) => {
         return () => observer.disconnect();
     }, []);
 
+    // Reset the image if the src has changed
     useEffect(() => {
         const image = imageRef.current;
-        if (inView && image && !image.src) {
+        if (image) {
+            image.removeAttribute("src");
+            setNeedsLoading(true);
+        }
+    }, [src]);
+
+    useEffect(() => {
+        const image = imageRef.current;
+        if (image && inView && needsLoading) {
             image.src = src;
         }
-    }, [inView]);
+    }, [needsLoading, inView]);
 
     return <img ref={imageRef} />;
 };

@@ -425,24 +425,36 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
             },
             comfort: {
                 score: 4,
-                content: (
-                    <>
-                        <p>
-                            I use Trackstraps (purchased separately). I wear my waist tracker over my T-shirt, and feet
-                            trackers over socks.
-                        </p>
-                        <p>The trackers are a little bulky, but I don't notice them during gameplay.</p>
-                        {matchConfigOptional(fbtSystemConfig.key, {
-                            "htc_vive_trackers_3_0-3_trackers_1_continuous": (
-                                <p>
-                                    I mount my continuous calibration tracker to the top-front of my headset, and I
-                                    don't notice it during gameplay. Depending on your headset, you may have to mount it
-                                    on the back, which becomes noticeable in certain positions.
-                                </p>
-                            ),
-                        })}
-                    </>
-                ),
+                content: (function () {
+                    let vrHeadset: string;
+                    if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
+                        vrHeadset = "htc_vive";
+                    } else {
+                        vrHeadset = "meta_quest_3";
+                    }
+
+                    return (
+                        <>
+                            <SimpleImage
+                                src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/wearing.jpg`}
+                            />
+                            <p>
+                                I use Trackstraps (purchased separately). I wear my waist tracker over my T-shirt, and
+                                feet trackers over socks.
+                            </p>
+                            <p>The trackers are a little bulky, but I don't notice them during gameplay.</p>
+                            {matchConfigOptional(fbtSystemConfig.key, {
+                                "htc_vive_trackers_3_0-3_trackers_1_continuous": (
+                                    <p>
+                                        I mount my continuous calibration tracker to the top-front of my headset, and I
+                                        don't notice it during gameplay. Depending on your headset, you may have to
+                                        mount it on the back, which becomes noticeable in certain positions.
+                                    </p>
+                                ),
+                            })}
+                        </>
+                    );
+                })(),
             },
             overall: (function () {
                 if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
