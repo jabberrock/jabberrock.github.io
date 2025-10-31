@@ -46,7 +46,10 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
                     video.src = src;
                     setNeedsLoading(false);
                 }
-                video.play().catch(() => {});
+                video.play().then(() => {
+                    video.pause();
+                    video.play();
+                });
             } else {
                 video.pause();
             }
