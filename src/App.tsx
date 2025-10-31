@@ -31,6 +31,7 @@ function App() {
                             if (vrHeadsetKey) {
                                 localStorage.setItem("vrHeadsetKey", vrHeadsetKey);
                                 setVRHeadsetKey(vrHeadsetKey);
+                                window.scrollTo(0, 0);
                             }
                             setShowVRHeadsetPicker(false);
                         }}
