@@ -152,10 +152,13 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         </a>{" "}
                         on SlimeVR Discord
                     </p>
-                    <p>SlimeVR-managed marketplace for verified sellers. Delivery may be much faster. Prices vary.</p>
+                    <p>
+                        SlimeVR-managed marketplace for sellers. Delivery may be faster. Prices vary. Sellers who
+                        violate the terms are removed.
+                    </p>
                     <p className="warning">
-                        3rd-party Slime Trackers from Amazon, Ebay, Etsy, AliExpress or VRChat ARE NOT RECOMMENDED. You
-                        will likely receive over-priced and low quality trackers, with poor customer support.
+                        DO NOT DIRECTLY BUY trackers advertised on Amazon, Ebay, Etsy, AliExpress or VRChat. Many
+                        trackers are over-priced, and use low quality components. Some sellers do not allow returns.
                     </p>
                 </CollapsibleSection>
             </>
