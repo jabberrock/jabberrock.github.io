@@ -40,6 +40,13 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
 
     useEffect(() => {
         const video = videoRef.current;
+        if (video) {
+            video.src = "";
+        }
+    }, [src]);
+
+    useEffect(() => {
+        const video = videoRef.current;
         if (!video) {
             return;
         }
