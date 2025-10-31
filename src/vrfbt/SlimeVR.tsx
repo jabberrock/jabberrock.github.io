@@ -11,6 +11,7 @@ import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from 
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { CollapsibleSection } from "../components/CollapsibleSection";
 import { VideoInView } from "../components/VideoInView";
+import { SimpleImage } from "../components/SimpleImage";
 
 export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -396,6 +397,9 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 score: 4,
                 content: (
                     <>
+                        <SimpleImage
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
+                        />
                         <p>SlimeVR provides elastic straps with silicone lines for grip.</p>
                         <p>
                             I typically wear my upper body trackers over my T-shirt, my leg trackers on my skin, and
