@@ -213,7 +213,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                     video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.mp4`}
                     thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-dancing.jpg`}
                     width={480}
-                    height={320}
+                    height={420}
                 />
             );
         })(),
@@ -234,7 +234,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                             video_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.mp4`}
                             thumbnail_url={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-${v}.jpg`}
                             width={480}
-                            height={640}
+                            height={420}
                         />
                     </>
                 );
@@ -248,7 +248,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 title: "Drift",
                 content: (
                     <>
-                        <img style={{ width: "480px", height: "320px" }} />
+                        <img />
                         <div className="sub-header">Drift</div>
                         <p>
                             Over time, SlimeVR trackers will drift, because the IMU is not perfect. Your in-game avatar
@@ -267,7 +267,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 title: "Calibration",
                 content: (
                     <>
-                        <img style={{ width: "480px", height: "320px" }} />
+                        <img />
                         <div className="sub-header">Calibration</div>
                         <p>
                             At the start of each VR session, you will need to calibrate the trackers so that the
@@ -293,8 +293,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         <SimpleVideoPlayer
                             src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
                             thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                            width={480}
-                            height={420}
                         />
                         <ol>
                             <li>Turn on your trackers, and leave them on a flat surface for 10 seconds</li>
@@ -380,8 +378,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         <SimpleVideoPlayer
                             src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.mp4`}
                             thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/${fbtSystemConfig.key}-meta_quest_3-vr_session_setup.jpg`}
-                            width={480}
-                            height={420}
                         />
                         <p>At the start of each VR session, you will need to calibrate your trackers to your body.</p>
                         <p>

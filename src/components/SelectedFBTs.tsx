@@ -1,11 +1,12 @@
-import React, { createContext, useContext, useState, type FC } from "react";
+import React, { createContext, useState, type FC } from "react";
 import { vrHeadsetFBTRecommendations, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
 import { fbtSystemConfigsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
 import { makeHTCViveUltimate } from "../vrfbt/HTCViveUltimate";
-import { ColumnTableContext } from "./ColumnTable";
 import { type VRHeadsetKey } from "../vr/VR";
+
+const maxSelected = 4;
 
 type SelectedFBTsContextType = {
     selected: (VRFBTSystem | undefined)[];
@@ -22,8 +23,6 @@ type SelectedFBTsProps = {
 } & React.PropsWithChildren;
 
 export const SelectedFBTs: FC<SelectedFBTsProps> = ({ vrHeadsetKey, children }) => {
-    const columnTableContext = useContext(ColumnTableContext);
-
     const [selected, setSelected] = useState<(FBTSystemConfigKey | undefined)[]>(
         vrHeadsetFBTRecommendations[vrHeadsetKey],
     );
@@ -44,7 +43,7 @@ export const SelectedFBTs: FC<SelectedFBTsProps> = ({ vrHeadsetKey, children }) 
     }
 
     const systems: (VRFBTSystem | undefined)[] = [];
-    for (let i = 0; i < columnTableContext.numColumns; ++i) {
+    for (let i = 0; i < maxSelected; ++i) {
         const key = selected[i];
         if (key) {
             switch (fbtSystemConfigsByKey[key].fbtSystemKey) {

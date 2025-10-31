@@ -130,7 +130,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 title: "Occlusion",
                 content: (
                     <>
-                        <img style={{ width: "480px", height: "320px" }} />
+                        <img />
                         <div className="sub-header">Occlusion</div>
                         <p>
                             During play, your arms and clothing may block the cameras, or you may be oriented such that
@@ -146,7 +146,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 title: "Changes to Playspace",
                 content: (
                     <>
-                        <img style={{ width: "480px", height: "320px" }} />
+                        <img />
                         <div className="sub-header">Changes to Playspace</div>
                         <p>
                             The tracker needs to scan your playspace and compare the current camera snapshot to figure
@@ -196,8 +196,6 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                         <SimpleVideoPlayer
                             src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-vr_session_setup.mp4`}
                             thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-vr_session_setup.jpg`}
-                            width={480}
-                            height={420}
                         />
                         <p>
                             You will have to do space-calibration to align your headset’s playspace to the trackers’

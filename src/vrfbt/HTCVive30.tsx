@@ -205,7 +205,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                     title: "Space Calibration",
                     content: (
                         <>
-                            <img style={{ width: "480px", height: "320px" }} />
+                            <img />
                             <div className="sub-header">Space Calibration</div>
                             <p>HTC VIVE Trackers 3.0 and your headset have separate playspaces.</p>
                             <p>
@@ -227,7 +227,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 title: "Occlusion",
                 content: (
                     <>
-                        <img style={{ width: "480px", height: "320px" }} />
+                        <img />
                         <div className="sub-header">Occlusion</div>
                         <p>
                             During play, your arms and clothing may hide the tracker from the base stations. This
@@ -251,8 +251,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 <Carousel.Item key={i}>
                                     <SimpleImage
                                         src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
-                                        width={480}
-                                        height={320}
                                     />
                                 </Carousel.Item>
                             ))}
@@ -284,8 +282,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                             <SimpleVideoPlayer
                                 src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
                                 thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                                width={480}
-                                height={420}
                             />
                             <ol>
                                 <li>Turn on one tracker</li>
@@ -381,8 +377,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                             <>
                                 <SimpleImage
                                     src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
-                                    width={480}
-                                    height={320}
                                 />
                                 <p>
                                     The trackers communicate with dongles over Bluetooth, which shares the same band as
@@ -407,8 +401,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 <SimpleVideoPlayer
                                     src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
                                     thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                                    width={480}
-                                    height={420}
                                 />
                                 <p>Just put your headset and tracker on, and start playing!</p>
                             </>
@@ -423,8 +415,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 <SimpleVideoPlayer
                                     src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
                                     thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                                    width={480}
-                                    height={420}
                                 />
                                 <p>
                                     Just put your headset and tracker on, enable continuous calibration, and start
@@ -442,8 +432,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 <SimpleVideoPlayer
                                     src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
                                     thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                                    width={480}
-                                    height={420}
                                 />
                                 <p>
                                     Since your headset is not Lighthouse-based, you will have to do space-calibration to
@@ -510,8 +498,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                         <Carousel.Item key={i}>
                                             <SimpleImage
                                                 src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
-                                                width={480}
-                                                height={320}
                                             />
                                         </Carousel.Item>
                                     ))}

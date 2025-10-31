@@ -2,11 +2,9 @@ import { useEffect, useRef, useState, type FC } from "react";
 
 type SimpleImageProps = {
     src: string;
-    width: number;
-    height: number;
 };
 
-export const SimpleImage: FC<SimpleImageProps> = ({ src, width, height }) => {
+export const SimpleImage: FC<SimpleImageProps> = ({ src }) => {
     const imageRef = useRef<HTMLImageElement>(null);
     const [inView, setInView] = useState(false);
 
@@ -25,5 +23,5 @@ export const SimpleImage: FC<SimpleImageProps> = ({ src, width, height }) => {
         }
     }, [inView]);
 
-    return <img ref={imageRef} style={{ width, height }} />;
+    return <img ref={imageRef} />;
 };

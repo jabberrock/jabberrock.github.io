@@ -250,15 +250,15 @@ function FBTTable(): React.ReactNode {
                             const priceCents = sum(system.itemList.required.map((i) => i.count * i.each_price_cents));
                             if (priceCents > 0) {
                                 return (
-                                    <th key={`${i}-${system.key}`}>
+                                    <td key={`${i}-${system.key}`} className="title">
                                         {system.name} ({toDollars(priceCents)})
-                                    </th>
+                                    </td>
                                 );
                             } else {
-                                return <th key={`${i}-${system.key}`}>{system.name}</th>;
+                                return <td key={`${i}-${system.key}`}>{system.name}</td>;
                             }
                         } else {
-                            return <th key={`${i}-${system.key}`}></th>;
+                            return <td key={`${i}-${system.key}`}></td>;
                         }
                     })}
                 </tr>

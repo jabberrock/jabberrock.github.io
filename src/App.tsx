@@ -6,7 +6,6 @@ import { VRSystemPicker } from "./vr/VRSystemPicker";
 import React from "react";
 import { VRSystemSummary } from "./vr/VRSystemSummary";
 import { FBTNav } from "./components/FBTNav";
-import { ColumnTable } from "./components/ColumnTable";
 import { SelectedFBTs } from "./components/SelectedFBTs";
 import { vrHeadsetKeys, type VRHeadsetKey } from "./vr/VR";
 
@@ -26,36 +25,34 @@ function App() {
     }, []);
 
     return (
-        <ColumnTable minColumns={1} maxColumns={4} columnWidth={500} sidebarWidth={300}>
-            <SelectedFBTs vrHeadsetKey={vrHeadsetKey}>
-                <div className="main">
-                    <div className="sidebar">
-                        <VRSystemSummary vrHeadsetKey={vrHeadsetKey} onClick={() => setShowVRHeadsetPicker(true)} />
-                        <VRSystemPicker
-                            show={showVRHeadsetPicker}
-                            onComplete={(vrHeadsetKey) => {
-                                if (vrHeadsetKey) {
-                                    localStorage.setItem("vrHeadsetKey", vrHeadsetKey);
-                                    setVRHeadsetKey(vrHeadsetKey);
-                                }
-                                setShowVRHeadsetPicker(false);
+        <SelectedFBTs vrHeadsetKey={vrHeadsetKey}>
+            <div className="main">
+                <div className="sidebar">
+                    <VRSystemSummary vrHeadsetKey={vrHeadsetKey} onClick={() => setShowVRHeadsetPicker(true)} />
+                    <VRSystemPicker
+                        show={showVRHeadsetPicker}
+                        onComplete={(vrHeadsetKey) => {
+                            if (vrHeadsetKey) {
+                                localStorage.setItem("vrHeadsetKey", vrHeadsetKey);
+                                setVRHeadsetKey(vrHeadsetKey);
+                            }
+                            setShowVRHeadsetPicker(false);
+                        }}
+                    />
+                    <FBTNav />
+                </div>
+                <div className="content">
+                    <OpacityContext value={opacityRef}>
+                        <FBTTable />
+                        <Settings
+                            onOpacityChange={(newOpacity) => {
+                                opacityRef.current = newOpacity;
                             }}
                         />
-                        <FBTNav />
-                    </div>
-                    <div className="content">
-                        <OpacityContext value={opacityRef}>
-                            <FBTTable />
-                            <Settings
-                                onOpacityChange={(newOpacity) => {
-                                    opacityRef.current = newOpacity;
-                                }}
-                            />
-                        </OpacityContext>
-                    </div>
+                    </OpacityContext>
                 </div>
-            </SelectedFBTs>
-        </ColumnTable>
+            </div>
+        </SelectedFBTs>
     );
 }
 
