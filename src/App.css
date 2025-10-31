@@ -192,26 +192,33 @@ tr {
     width: 180px;
 }
 
-.drawback {
-    background-color: #eeedc6;
+.collapsible {
     margin: 0 -10px;
     padding: 10px 10px;
     margin-bottom: 20px;
 }
 
-.drawback .header {
+.collapsible .header {
     display: grid;
     grid-template-columns: 1fr auto;
 }
 
-.drawback .header.opened {
+.collapsible .header.opened {
     padding-bottom: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid black;
 }
 
-.drawback .title {
+.collapsible .title {
     font-size: 125%;
+}
+
+.drawback {
+    background-color: #eeedc6;
+}
+
+.availability {
+    background-color: #dcead0;
 }
 
 .vr-system-summary-card {

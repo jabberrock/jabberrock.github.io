@@ -12,6 +12,7 @@ import { VideoPlayer } from "../components/VideoPlayer";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { SideBySideVideoPlayer } from "../components/SideBySideVideoPlayer";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
+import { CollapsibleSection } from "../components/CollapsibleSection";
 
 export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -133,30 +134,30 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
         })(),
         availability: (
             <>
-                <p>
-                    Official SlimeVR Trackers
-                    <br />
-                    <a href="https://slimevr.dev/" target="_blank">
-                        slimevr.dev
-                    </a>
-                </p>
-                <p>
-                    Official SlimeVR trackers are sold through a pre-order system, and shipments are sent out every 3-4
-                    months. The next major shipment (S15) is estimated to be early December 2025.
-                </p>
-                <hr />
-                <p>
-                    3rd-Party Slime Trackers
-                    <br />
-                    <a href="https://discord.com/channels/817184208525983775/1058335815614341240" target="_blank">
-                        #marketplace-forum
-                    </a>
-                </p>
-                <p>SlimeVR-managed marketplace for verified sellers. Delivery may be much faster. Prices vary.</p>
-                <p className="warning">
-                    3rd-party Slime Trackers from Amazon, Ebay, Etsy, AliExpress or VRChat ARE NOT RECOMMENDED. You will
-                    likely receive over-priced and low quality trackers, with poor customer support.
-                </p>
+                <CollapsibleSection title="Official SlimeVR Trackers" className="availability">
+                    <p>
+                        <a href="https://slimevr.dev/" target="_blank">
+                            slimevr.dev
+                        </a>
+                    </p>
+                    <p>
+                        Official SlimeVR trackers are sold through a pre-order system, and shipments are sent out every
+                        3-4 months. The next major shipment (S15) is estimated to be early December 2025.
+                    </p>
+                </CollapsibleSection>
+                <CollapsibleSection title="3rd Party Slime Trackers" className="availability">
+                    <p>
+                        <a href="https://discord.com/channels/817184208525983775/1058335815614341240" target="_blank">
+                            #marketplace-forum
+                        </a>{" "}
+                        on SlimeVR Discord
+                    </p>
+                    <p>SlimeVR-managed marketplace for verified sellers. Delivery may be much faster. Prices vary.</p>
+                    <p className="warning">
+                        3rd-party Slime Trackers from Amazon, Ebay, Etsy, AliExpress or VRChat ARE NOT RECOMMENDED. You
+                        will likely receive over-priced and low quality trackers, with poor customer support.
+                    </p>
+                </CollapsibleSection>
             </>
         ),
         specs: (

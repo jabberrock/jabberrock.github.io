@@ -5,6 +5,7 @@ import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from 
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { ExampleVideoKeys, matchConfigOptional, nonNullArray, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 import { VideoInView } from "../components/VideoInView";
+import { CollapsibleSection } from "../components/CollapsibleSection";
 
 export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -111,16 +112,14 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
             return c;
         })(),
         availability: (
-            <>
+            <CollapsibleSection title="HTC VIVE" className="availability">
                 <p>
-                    HTC VIVE
-                    <br />
                     <a href="https://vive.com/" target="_blank">
                         vive.com
                     </a>
                 </p>
                 <p>Available immediately</p>
-            </>
+            </CollapsibleSection>
         ),
         specs: (
             <>

@@ -1,3 +1,4 @@
+import { CollapsibleSection } from "../components/CollapsibleSection";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoInView } from "../components/VideoInView";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
@@ -78,16 +79,14 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
             return c;
         })(),
         availability: (
-            <>
+            <CollapsibleSection title="HTC VIVE" className="availability">
                 <p>
-                    HTC VIVE
-                    <br />
                     <a href="https://vive.com/" target="_blank">
                         vive.com
                     </a>
                 </p>
                 <p>Available immediately</p>
-            </>
+            </CollapsibleSection>
         ),
         specs: (
             <>

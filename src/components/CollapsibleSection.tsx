@@ -15,7 +15,7 @@ export const CollapsibleSection: FC<DrawbackSectionProps> = ({
     const [collapsed, setCollapsed] = useState<boolean>(initiallyCollapsed);
 
     return (
-        <div className={className}>
+        <div className={`collapsible ${className}`}>
             <div className={`header ${collapsed ? "collapsed" : "opened"}`}>
                 <div className="title">{title}</div>
                 <div className="opener">
