@@ -40,7 +40,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
         })(),
         howItWorks: (
             <>
-                <img src="slimevr_trackers/slimevr_skeleton.jpg" />
+                <img src="/slimevr_trackers/slimevr_skeleton.jpg" />
                 <p>
                     SlimeVR is an IMU-based (Inertial Measurement Unit) system. It uses a gyroscope to measure the
                     rotation of each bone, and then reconstruct the skeleton, starting from the headset.
@@ -163,7 +163,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
         ),
         introExample: (
             <VideoInView
-                src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-sxs.mp4`}
+                src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-sxs.mp4`}
             />
         ),
         examples: (function () {
@@ -172,7 +172,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 nodes[v] = (
                     <>
                         <VideoInView
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-${v}-overlay.mp4`}
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-${v}-overlay.mp4`}
                         />
                     </>
                 );
@@ -191,7 +191,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 content: (
                     <>
                         <p>
-                            <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/slimevr.jpg`} />
+                            <SimpleImage src={`/${fbtSystemConfig.fbtSystemKey}/slimevr.jpg`} />
                         </p>
                         <p>SlimeVR trackers are one of the most affordable systems today.</p>
                     </>
@@ -292,14 +292,14 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 content: (
                     <>
                         <VideoInView
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-sxs.mp4`}
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-sxs.mp4`}
                         />
                         <p>
                             SlimeVR works in any position, whether you're standing, sitting, lying down, dancing or
                             exercising.
                         </p>
                         <VideoInView
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-sxs.mp4`}
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-sxs.mp4`}
                         />
                         <p>Trackers even work when you're under a blanket, or if you're wearing a sweater over them.</p>
                         <p>
@@ -390,7 +390,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 content: (
                     <>
                         <SimpleImage
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
                         />
                         <p>SlimeVR provides elastic straps with silicone lines for grip.</p>
                         <p>

@@ -8,7 +8,7 @@ type VRHeadset = {
 
 const unknownVRHeadset: VRHeadset = {
     name: "Unknown",
-    imageURL: "vr_headsets/unknown.jpg",
+    imageURL: "/vr_headsets/unknown.jpg",
 };
 
 type VRHeadsetIconProps = {

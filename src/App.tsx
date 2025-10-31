@@ -1,24 +1,20 @@
 import "./App.css";
 import FBTTable from "./components/FBTTable";
 import { VRSystemPicker } from "./vr/VRSystemPicker";
-import React from "react";
 import { VRSystemSummary } from "./vr/VRSystemSummary";
 import { FBTNav } from "./components/FBTNav";
 import { SelectedFBTs } from "./components/SelectedFBTs";
-import { vrHeadsetKeys, type VRHeadsetKey } from "./vr/VR";
+import { type VRHeadsetKey } from "./vr/VR";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-function App() {
-    const [vrHeadsetKey, setVRHeadsetKey] = React.useState<VRHeadsetKey>("meta_quest");
-    const [showVRHeadsetPicker, setShowVRHeadsetPicker] = React.useState(false);
+function Home({ showPicker, vrHeadsetKey }: { showPicker?: boolean; vrHeadsetKey: VRHeadsetKey }) {
+    const navigate = useNavigate();
+    const [showVRHeadsetPicker, setShowVRHeadsetPicker] = useState(false);
 
-    React.useEffect(() => {
-        const savedResult = localStorage.getItem("vrHeadsetKey");
-        if (savedResult && (vrHeadsetKeys as ReadonlyArray<string>).includes(savedResult)) {
-            setVRHeadsetKey(savedResult as VRHeadsetKey);
-        } else {
-            setShowVRHeadsetPicker(true);
-        }
-    }, []);
+    useEffect(() => {
+        setShowVRHeadsetPicker(showPicker || false);
+    }, [showPicker]);
 
     return (
         <SelectedFBTs vrHeadsetKey={vrHeadsetKey}>
@@ -29,9 +25,8 @@ function App() {
                         show={showVRHeadsetPicker}
                         onComplete={(vrHeadsetKey) => {
                             if (vrHeadsetKey) {
-                                localStorage.setItem("vrHeadsetKey", vrHeadsetKey);
-                                setVRHeadsetKey(vrHeadsetKey);
                                 window.scrollTo(0, 0);
+                                navigate(`/${vrHeadsetKey}/`);
                             }
                             setShowVRHeadsetPicker(false);
                         }}
@@ -43,6 +38,19 @@ function App() {
                 </div>
             </div>
         </SelectedFBTs>
+    );
+}
+
+function App() {
+    return (
+        <Routes>
+            <Route path="/" element={<Home showPicker vrHeadsetKey="meta_quest" />} />
+            <Route path="/meta_quest/" element={<Home vrHeadsetKey="meta_quest" />} />
+            <Route path="/valve_index/" element={<Home vrHeadsetKey="valve_index" />} />
+            <Route path="/htc_vive/" element={<Home vrHeadsetKey="htc_vive" />} />
+            <Route path="/oculus_rift/" element={<Home vrHeadsetKey="oculus_rift" />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
     );
 }
 
