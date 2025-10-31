@@ -1,15 +1,11 @@
 import "./App.css";
 import FBTTable from "./components/FBTTable";
-import { Settings } from "./components/Settings";
-import { OpacityContext } from "./components/VideoPlayer";
 import { VRSystemPicker } from "./vr/VRSystemPicker";
 import React from "react";
 import { VRSystemSummary } from "./vr/VRSystemSummary";
 import { FBTNav } from "./components/FBTNav";
 import { SelectedFBTs } from "./components/SelectedFBTs";
 import { vrHeadsetKeys, type VRHeadsetKey } from "./vr/VR";
-
-const opacityRef = { current: 0.9 };
 
 function App() {
     const [vrHeadsetKey, setVRHeadsetKey] = React.useState<VRHeadsetKey>("meta_quest");
@@ -42,14 +38,7 @@ function App() {
                     <FBTNav />
                 </div>
                 <div className="content">
-                    <OpacityContext value={opacityRef}>
-                        <FBTTable />
-                        <Settings
-                            onOpacityChange={(newOpacity) => {
-                                opacityRef.current = newOpacity;
-                            }}
-                        />
-                    </OpacityContext>
+                    <FBTTable />
                 </div>
             </div>
         </SelectedFBTs>

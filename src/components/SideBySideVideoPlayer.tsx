@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { OpacityContext } from "./VideoPlayer";
+import React, { useEffect, useRef, useState } from "react";
 
 type WebGLContext = {
     width: number;
@@ -153,7 +152,6 @@ export const SideBySideVideoPlayer: React.FC<SideBySideVideoPlayerProps> = ({
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const thumbnailRef = useRef<HTMLImageElement>(null);
-    const opacityRef = useContext(OpacityContext);
 
     const [inView, setInView] = useState(false);
 
@@ -241,7 +239,7 @@ export const SideBySideVideoPlayer: React.FC<SideBySideVideoPlayerProps> = ({
                 ready = true;
             }
 
-            gl.uniform1f(gl.getUniformLocation(program, "u_opacity"), opacityRef.current);
+            gl.uniform1f(gl.getUniformLocation(program, "u_opacity"), 1.0);
 
             gl.viewport(0, 0, width, height);
             gl.clear(gl.COLOR_BUFFER_BIT);

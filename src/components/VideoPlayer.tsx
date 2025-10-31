@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-
-export const OpacityContext = React.createContext({ current: 0.0 });
+import React, { useEffect, useRef, useState } from "react";
 
 type WebGLContext = {
     width: number;
@@ -138,7 +136,6 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video_url, thumbnail_u
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null);
     const thumbnailRef = useRef<HTMLImageElement>(null);
-    const opacityRef = useContext(OpacityContext);
 
     const [inView, setInView] = useState(false);
     const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
@@ -248,7 +245,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video_url, thumbnail_u
                 ready = true;
             }
 
-            gl.uniform1f(gl.getUniformLocation(program, "u_opacity"), opacityRef.current);
+            gl.uniform1f(gl.getUniformLocation(program, "u_opacity"), 1.0);
 
             gl.viewport(0, 0, width, height);
             gl.clear(gl.COLOR_BUFFER_BIT);
