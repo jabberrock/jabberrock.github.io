@@ -1,5 +1,4 @@
 import { CollapsibleSection } from "../components/CollapsibleSection";
-import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { VideoInView } from "../components/VideoInView";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
@@ -143,9 +142,8 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 score: 4,
                 content: (
                     <>
-                        <SimpleVideoPlayer
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-vr_session_setup.mp4`}
-                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadsetKey}/${fbtSystemConfig.key}-${vrHeadsetKey}-vr_session_setup.jpg`}
+                        <VideoInView
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/calibration.mp4`}
                         />
                         <p>
                             You will have to do space-calibration to align your headset’s playspace to the trackers’
