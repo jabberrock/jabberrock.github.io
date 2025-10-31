@@ -54,5 +54,5 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
         }
     }, [needsLoading, canLoad, inView]);
 
-    return <video ref={videoRef} poster={src.replace(/\.mp4$/, ".jpg")} autoPlay muted loop playsInline />;
+    return <video ref={videoRef} poster={src.replace(/\.mp4$/, ".jpg")} autoPlay muted controls loop playsInline />;
 };
