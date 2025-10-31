@@ -5,7 +5,7 @@ export const FBTNav: React.FC = () => {
         <nav>
             <ul>
                 <li>
-                    <a href="#section-how_it_works">How it works</a>
+                    <a href="#section-how_it_works">How it Works</a>
                 </li>
                 <li>
                     <a href="#section-review">Review</a>
