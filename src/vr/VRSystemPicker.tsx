@@ -3,7 +3,7 @@ import { VRHeadsetIcon } from "./VRHeadsetIcon";
 import { type VRHeadsetKey } from "./VR";
 import { Button, Modal } from "react-bootstrap";
 
-const realVRHeadsetKeys: VRHeadsetKey[] = ["oculus_rift", "meta_quest", "valve_index", "htc_vive"];
+const realVRHeadsetKeys: VRHeadsetKey[] = ["meta_quest", "valve_index", "htc_vive", "oculus_rift"];
 
 const genericVRHeadsetKeys: VRHeadsetKey[] = ["generic_inside_out", "generic_lighthouse_based"];
 
