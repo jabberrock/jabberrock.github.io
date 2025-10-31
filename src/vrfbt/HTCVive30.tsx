@@ -168,17 +168,38 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
                     return {
                         score: 3,
-                        content: <p>You will need to buy the trackers and straps.</p>,
+                        content: (
+                            <>
+                                <p>
+                                    <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
+                                </p>
+                                <p>You will need to buy the trackers and straps.</p>
+                            </>
+                        ),
                     };
                 } else if (fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous") {
                     return {
                         score: 1,
-                        content: <p>You will need to buy the trackers, straps, and Lighthouse base stations.</p>,
+                        content: (
+                            <>
+                                <p>
+                                    <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
+                                </p>
+                                <p>You will need to buy the trackers, straps, and Lighthouse base stations.</p>
+                            </>
+                        ),
                     };
                 } else {
                     return {
                         score: 2,
-                        content: <p>You will need to buy the trackers, straps, and Lighthouse base stations.</p>,
+                        content: (
+                            <>
+                                <p>
+                                    <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
+                                </p>
+                                <p>You will need to buy the trackers, straps, and Lighthouse base stations.</p>
+                            </>
+                        ),
                     };
                 }
             })(),

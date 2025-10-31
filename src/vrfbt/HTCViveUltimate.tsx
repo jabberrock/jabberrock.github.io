@@ -115,7 +115,14 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
         review: {
             cost: {
                 score: 2,
-                content: <p>You will need to buy the trackers and straps.</p>,
+                content: (
+                    <>
+                        <p>
+                            <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/htc_vive_ultimate.jpg`} />
+                        </p>
+                        <p>You will need to buy the trackers and straps.</p>
+                    </>
+                ),
             },
             setup: {
                 score: 4,

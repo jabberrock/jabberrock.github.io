@@ -199,6 +199,9 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 }),
                 content: (
                     <>
+                        <p>
+                            <SimpleImage src={`${fbtSystemConfig.fbtSystemKey}/slimevr.jpg`} />
+                        </p>
                         <p>SlimeVR trackers are one of the most affordable systems today.</p>
                     </>
                 ),

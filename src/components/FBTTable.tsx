@@ -90,12 +90,13 @@ const VRFBTReviewSection = ({
     id,
     name,
     section,
+    children,
 }: {
     systems: VRFBTSystem[];
     id: string;
     name: string;
     section: (system: VRFBTSystem) => ReviewSection | undefined;
-}) => {
+} & React.PropsWithChildren) => {
     return (
         <>
             <tr id={id}>
@@ -140,6 +141,7 @@ const VRFBTReviewSection = ({
                     </td>
                 ))}
             </tr>
+            {children}
         </>
     );
 };
@@ -305,32 +307,22 @@ function FBTTable(): React.ReactNode {
                         </td>
                     ))}
                 </tr>
-                <tr id="section-review-cost">
-                    <td colSpan={systems.length} className="sub-header">
-                        Price
-                    </td>
-                </tr>
-                <tr>
-                    {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>
-                            {system.review && (
-                                <>
-                                    <ReviewScore score={system.review.cost.score} />
-                                    {system.review.cost.content}
-                                </>
-                            )}
-                        </td>
-                    ))}
-                </tr>
-                <tr>
-                    {systems.map((system, i) => {
-                        return (
-                            <td key={`${i}-${system.key}`}>
-                                <ComponentTable systems={systems} system={system} />
-                            </td>
-                        );
-                    })}
-                </tr>
+                <VRFBTReviewSection
+                    systems={systems}
+                    id="section-review-cost"
+                    name="Price"
+                    section={(system) => system.review?.cost}
+                >
+                    <tr>
+                        {systems.map((system, i) => {
+                            return (
+                                <td key={`${i}-${system.key}`}>
+                                    <ComponentTable systems={systems} system={system} />
+                                </td>
+                            );
+                        })}
+                    </tr>
+                </VRFBTReviewSection>
                 <VRFBTReviewSection
                     systems={systems}
                     id="section-review-setup"
