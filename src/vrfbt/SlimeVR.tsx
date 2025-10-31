@@ -299,14 +299,14 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 content: (
                     <>
                         <VideoInView
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-overlay.mp4`}
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-sxs.mp4`}
                         />
                         <p>
                             SlimeVR works in any position, whether you're standing, sitting, lying down, dancing or
                             exercising.
                         </p>
                         <VideoInView
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-overlay.mp4`}
+                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-sxs.mp4`}
                         />
                         <p>Trackers even work when you're under a blanket, or if you're wearing a sweater over them.</p>
                         <p>
