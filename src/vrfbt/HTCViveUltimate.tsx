@@ -89,17 +89,6 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 <p>Available immediately</p>
             </>
         ),
-        tracking: (function () {
-            switch (fbtSystemConfig.key) {
-                case "htc_vive_ultimate_trackers-3_trackers":
-                    return (
-                        <>
-                            <div>3 point tracking (Chest, 2x Ankle)</div>
-                            <div>Knees and feet are estimated with inverse kinematics (IK).</div>
-                        </>
-                    );
-            }
-        })(),
         specs: (
             <>
                 <div>Up to 7.5 hours</div>
@@ -124,44 +113,6 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
 
             return nodes;
         })(),
-        drawbacks: [
-            {
-                key: "occlusion",
-                title: "Occlusion",
-                content: (
-                    <>
-                        <img />
-                        <div className="sub-header">Occlusion</div>
-                        <p>
-                            During play, your arms and clothing may block the cameras, or you may be oriented such that
-                            there is very little information for the cameras (e.g. a white wall). This causes the
-                            tracker to stop moving, or even fly off into the distance.
-                        </p>
-                        <p>There’s no way to work around this limitation.</p>
-                    </>
-                ),
-            },
-            {
-                key: "playspace",
-                title: "Changes to Playspace",
-                content: (
-                    <>
-                        <img />
-                        <div className="sub-header">Changes to Playspace</div>
-                        <p>
-                            The tracker needs to scan your playspace and compare the current camera snapshot to figure
-                            out where it is. If you move things around and your playspace changes enough, the tracker
-                            will get lost.
-                        </p>
-                        <p>
-                            This may also happen if your playspace lighting is significantly different in the daytime vs
-                            nighttime.
-                        </p>
-                        <p>To solve this, you have to rescan your playspace.</p>
-                    </>
-                ),
-            },
-        ],
         review: {
             cost: {
                 score: 2,

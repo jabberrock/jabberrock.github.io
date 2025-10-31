@@ -33,14 +33,11 @@ export type VRFBTSystem = {
     howItWorks?: React.ReactNode;
     itemList: ItemList;
     availability?: React.ReactNode;
-    tracking?: React.ReactNode;
     specs?: React.ReactNode;
     introExample?: React.ReactNode;
     examples: Record<string, React.ReactNode>;
-    drawbacks: Drawback[];
     vrSession?: {
         setup: React.ReactNode;
-        play: React.ReactNode;
     };
     review?: VRFBTReview;
 };

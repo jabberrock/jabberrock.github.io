@@ -35,7 +35,6 @@ function makeEmptyVRFBTSystem(): VRFBTSystem {
             optional: [],
         },
         examples: {},
-        drawbacks: [],
     };
 }
 

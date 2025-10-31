@@ -3,14 +3,7 @@ import { SimpleImage } from "../components/SimpleImage";
 import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
-import {
-    ExampleVideoKeys,
-    matchConfigOptional,
-    nonNullArray,
-    type Drawback,
-    type ItemList,
-    type VRFBTSystem,
-} from "./VRFBTSystem";
+import { ExampleVideoKeys, matchConfigOptional, nonNullArray, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 import { VideoInView } from "../components/VideoInView";
 
 export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
@@ -129,27 +122,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 <p>Available immediately</p>
             </>
         ),
-        tracking: (function () {
-            switch (fbtSystemConfig.key) {
-                case "htc_vive_trackers_3_0-3_trackers":
-                    return (
-                        <>
-                            <div>3 point tracking (Chest, 2x Feet)</div>
-                            <div>Knees and ankles estimated with inverse kinematics (IK).</div>
-                        </>
-                    );
-                case "htc_vive_trackers_3_0-3_trackers_1_continuous":
-                    return (
-                        <>
-                            <div>3 point tracking (Chest, 2x Feet)</div>
-                            <div>Knees and ankles are estimated with inverse kinematics (IK).</div>
-                            <div>
-                                Extra tracker is used for continuous calibration and does not provide extra tracking.
-                            </div>
-                        </>
-                    );
-            }
-        })(),
         specs: (
             <>
                 <div>Up to 7.5 hours</div>
@@ -193,84 +165,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
 
             return nodes;
         })(),
-        drawbacks: (function () {
-            const drawbacks: Drawback[] = [];
-
-            if (
-                vrHeadsetsByKey[vrHeadsetKey].tracking !== "lighthouse" &&
-                fbtSystemConfig.key !== "htc_vive_trackers_3_0-3_trackers_1_continuous"
-            ) {
-                drawbacks.push({
-                    key: "calibration",
-                    title: "Space Calibration",
-                    content: (
-                        <>
-                            <img />
-                            <div className="sub-header">Space Calibration</div>
-                            <p>HTC VIVE Trackers 3.0 and your headset have separate playspaces.</p>
-                            <p>
-                                You will need to perform Space Calibration to match the two playspaces. This is done at
-                                the start of each VR session and whenever your headset playspace shifts (which happens a
-                                lot).
-                            </p>
-                            <p>
-                                If you choose HTC VIVE Trackers 3.0, we recommend using continuous calibration with an
-                                extra tracker to avoid manual Space Calibration.
-                            </p>
-                        </>
-                    ),
-                });
-            }
-
-            drawbacks.push({
-                key: "occlusion",
-                title: "Occlusion",
-                content: (
-                    <>
-                        <img />
-                        <div className="sub-header">Occlusion</div>
-                        <p>
-                            During play, your arms and clothing may hide the tracker from the base stations. This
-                            occlusion causes the tracker to stop moving, or even fly off into the distance.
-                        </p>
-                        <p>
-                            This can be minimized by careful position of the base stations, wearing tight clothing, and
-                            being careful of where you move your arms.
-                        </p>
-                    </>
-                ),
-            });
-
-            drawbacks.push({
-                key: "interference",
-                title: "Interference",
-                content: (
-                    <>
-                        <Carousel>
-                            {Array.from({ length: 5 }, (_, i) => (
-                                <Carousel.Item key={i}>
-                                    <SimpleImage
-                                        src={`${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
-                                    />
-                                </Carousel.Item>
-                            ))}
-                        </Carousel>
-                        <div className="sub-header">Interference</div>
-                        <p>
-                            The base stations use infrared light, which can bounce off reflective surfaces. This
-                            confuses the tracker and causes it to fly off into the distance. To solve this, close your
-                            window blinds, cover your mirrors with a cloth, and cover any other reflective surfaces.
-                        </p>
-                        <p>
-                            Your 2.4Ghz router can overpower the dongles if it is placed too close. To solve this, move
-                            your dongles away from the router.
-                        </p>
-                    </>
-                ),
-            });
-
-            return drawbacks;
-        })(),
         vrSession: {
             setup: (function () {
                 if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
@@ -299,27 +193,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                     );
                 }
             })(),
-            play:
-                vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse" ||
-                fbtSystemConfig.key === "htc_vive_trackers_3_0-3_trackers_1_continuous" ? (
-                    <>
-                        <p>It just works.</p>
-                    </>
-                ) : (
-                    <>
-                        <p>Play normally.</p>
-                        <p>
-                            Over time, your in-game trackers may drift away from their real positions. This is because
-                            your headset's playspace drifts away from the tracker's playspace.
-                        </p>
-                        <p>
-                            Your headset's playspace might also suddenly change, and cause the trackers to fly away.
-                            This happens if your manually reset your orientation, or if your headset loses tracking
-                            (e.g. when you take the headset off and put it back on).
-                        </p>
-                        <p>You will need to re-do the space calibration process.</p>
-                    </>
-                ),
         },
         review: {
             cost: (function () {

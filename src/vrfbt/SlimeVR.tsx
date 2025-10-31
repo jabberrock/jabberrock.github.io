@@ -159,39 +159,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 </p>
             </>
         ),
-        tracking: (function () {
-            switch (fbtSystemConfig.key) {
-                case "slimevr_trackers-lower_body_set_5_0":
-                    return (
-                        <>
-                            <div>5 point tracking (Chest, 2x Thigh, 2x Ankle)</div>
-                            <div>Feet are estimated based on ankles, and how close they are to the ground.</div>
-                        </>
-                    );
-                case "slimevr_trackers-core_set_6_0":
-                    return (
-                        <>
-                            <div>6 point tracking (Chest, Hip, 2x Thigh, 2x Ankle)</div>
-                            <div>Two trackers on the upper body provide more expressiveness.</div>
-                            <div>Feet are estimated based on ankles, and how close they are to the ground.</div>
-                        </>
-                    );
-                case "slimevr_trackers-enhanced_core_set_6_2":
-                    return (
-                        <>
-                            <div>8 point tracking (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet)</div>
-                            <div>Two trackers on the upper body provide more expressiveness.</div>
-                        </>
-                    );
-                case "slimevr_trackers-full_body_set_8_2":
-                    return (
-                        <>
-                            <div>10 point tracking (Chest, Hip, 2x Thigh, 2x Ankle, 2x Feet, 2x Elbows)</div>
-                            <div>Two trackers on the upper body provide more expressiveness.</div>
-                        </>
-                    );
-            }
-        })(),
         specs: (
             <>
                 <div>Up to 12 hours</div>
@@ -242,43 +209,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
 
             return nodes;
         })(),
-        drawbacks: [
-            {
-                key: "drift",
-                title: "Drift",
-                content: (
-                    <>
-                        <img />
-                        <div className="sub-header">Drift</div>
-                        <p>
-                            Over time, SlimeVR trackers will drift, because the IMU is not perfect. Your in-game avatar
-                            will gradually get out of sync with your real body.
-                        </p>
-                        <p>
-                            Typical users notice drift after 30-45 minutes. When Stay Aligned is configured, some users
-                            who are just hanging out with friends have reported no drift for up to 5 hours.
-                        </p>
-                        <p>To fix the drift, just face forward, and double tap your chest tracker.</p>
-                    </>
-                ),
-            },
-            {
-                key: "calibration",
-                title: "Calibration",
-                content: (
-                    <>
-                        <img />
-                        <div className="sub-header">Calibration</div>
-                        <p>
-                            At the start of each VR session, you will need to calibrate the trackers so that the
-                            skeleton will make your body in the real world. The calibration process can be a little
-                            tricky, and requires some adjustment for each person.
-                        </p>
-                        <p>SlimeVR runs VRChat calibration sessions where you can get help with calibration.</p>
-                    </>
-                ),
-            },
-        ],
         vrSession: {
             setup: (function () {
                 let vrHeadset: string;
@@ -306,19 +236,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                     </>
                 );
             })(),
-            play: (
-                <>
-                    <p>Play normally.</p>
-                    <p>
-                        If you notice that your avatar is off center, face forward, and double tap your Chest tracker.
-                        This will do a "Yaw Reset" and re-align your avatar.
-                    </p>
-                    <p>
-                        If your trackers shift on your body, you will need to adjust them, then re-do "Full Reset" and
-                        "Mounting Reset".
-                    </p>
-                </>
-            ),
         },
         review: {
             cost: {
