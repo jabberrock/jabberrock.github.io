@@ -173,7 +173,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({ video_url, thumbnail_u
         if (shouldLoadVideo && video && !video.src) {
             video.src = video_url;
             if (video.paused) {
-                video.play();
+                video.play().catch(() => {});
             }
         }
     }, [shouldLoadVideo]);

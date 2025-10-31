@@ -179,7 +179,7 @@ export const SideBySideVideoPlayer: React.FC<SideBySideVideoPlayerProps> = ({
             if (inView) {
                 video.currentTime = 0.0;
                 if (video.paused) {
-                    video.play();
+                    video.play().catch(() => {});
                 }
             } else {
                 if (!video.paused) {

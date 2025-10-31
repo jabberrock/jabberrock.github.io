@@ -6,8 +6,9 @@ type VideoInViewProps = {
 
 export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
-    const [shouldLoad, setShouldLoad] = useState(false);
     const [inView, setInView] = useState(false);
+    const [needsLoading, setNeedsLoading] = useState(true);
+    const [canLoad, setCanLoad] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => entries.forEach((e) => setInView(e.isIntersecting)));
@@ -17,50 +18,41 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
         return () => observer.disconnect();
     }, []);
 
+    // Load video after the component enters view, and after a timeout, to
+    // prevent loading everything when the user scrolls quickly
     useEffect(() => {
-        let timer: ReturnType<typeof setTimeout> | null = null;
-
         if (inView) {
-            // only set to load if still in view after 1s
-            timer = setTimeout(() => setShouldLoad(true), 1000);
-        } else {
-            // if it leaves view, cancel loading and pause
-            if (timer) {
-                clearTimeout(timer);
-            }
-            setShouldLoad(false);
+            const timer = setTimeout(() => setCanLoad(true), 1000);
+            return () => clearTimeout(timer);
         }
-
-        return () => {
-            if (timer) {
-                clearTimeout(timer);
-            }
-        };
     }, [inView]);
 
+    // Reset the video if the src has changed
     useEffect(() => {
         const video = videoRef.current;
         if (video) {
+            console.log("Clearing src");
             video.src = "";
+            setNeedsLoading(true);
         }
     }, [src]);
 
+    // Load video and play/pause
     useEffect(() => {
         const video = videoRef.current;
-        if (!video) {
-            return;
+        if (video) {
+            if (inView) {
+                if (needsLoading && canLoad) {
+                    console.log("Setting src");
+                    video.src = src;
+                    setNeedsLoading(false);
+                }
+                video.play().catch(() => {});
+            } else {
+                video.pause();
+            }
         }
-
-        if (shouldLoad && video.src == "") {
-            video.src = src;
-        }
-
-        if (inView) {
-            video.play();
-        } else {
-            video.pause();
-        }
-    }, [shouldLoad, inView, src]);
+    }, [needsLoading, canLoad, inView]);
 
     return <video ref={videoRef} poster={src.replace(/\.mp4$/, ".jpg")} autoPlay muted loop playsInline />;
 };
