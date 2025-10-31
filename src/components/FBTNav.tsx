@@ -34,12 +34,6 @@ export const FBTNav: React.FC = () => {
                     <a href="#section-examples">Demos</a>
                     <ul>
                         <li>
-                            <a href="#section-examples-wearing">Wearing</a>
-                        </li>
-                        <li>
-                            <a href="#section-examples-calibration">Calibration</a>
-                        </li>
-                        <li>
                             <a href="#section-examples-standing">Standing</a>
                         </li>
                         <li>

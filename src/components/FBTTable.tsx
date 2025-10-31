@@ -375,22 +375,6 @@ function FBTTable(): React.ReactNode {
                         </p>
                     </td>
                 </tr>
-                <tr id="section-examples-wearing">
-                    <td colSpan={systems.length} className="sub-header">
-                        Wearing
-                    </td>
-                </tr>
-                <tr>{/* TODO */}</tr>
-                <tr id="section-examples-calibration">
-                    <td colSpan={systems.length} className="sub-header">
-                        Calibration
-                    </td>
-                </tr>
-                <tr>
-                    {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>{system.vrSession?.setup}</td>
-                    ))}
-                </tr>
                 {Object.keys(exampleVideos).map((v) => (
                     <React.Fragment key={v}>
                         <tr id={`section-examples-${v}`}>

@@ -213,34 +213,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
 
             return nodes;
         })(),
-        vrSession: {
-            setup: (function () {
-                let vrHeadset: string;
-                if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
-                    vrHeadset = "htc_vive";
-                } else {
-                    vrHeadset = "meta_quest_3";
-                }
-
-                return (
-                    <>
-                        <SimpleVideoPlayer
-                            src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
-                            thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                        />
-                        <ol>
-                            <li>Turn on your trackers, and leave them on a flat surface for 10 seconds</li>
-                            <li>Put your trackers</li>
-                            <li>Start the SlimeVR software</li>
-                            <li>Face forward, and click the "Full Reset" button</li>
-                            <li>Ski-pose, and click the "Mounting Reset" button</li>
-                            <li>Start VRChat</li>
-                            <li>T-pose, and click the "FBT Calibration" button</li>
-                        </ol>
-                    </>
-                );
-            })(),
-        },
         review: {
             cost: {
                 score: matchConfig<number>(fbtSystemConfig.key, {

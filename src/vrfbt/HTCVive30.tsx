@@ -1,6 +1,5 @@
 import { Carousel } from "react-bootstrap";
 import { SimpleImage } from "../components/SimpleImage";
-import { SimpleVideoPlayer } from "../components/SimpleVideoPlayer";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { ExampleVideoKeys, matchConfigOptional, nonNullArray, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
@@ -164,35 +163,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
 
             return nodes;
         })(),
-        vrSession: {
-            setup: (function () {
-                if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
-                    return <p>Turn on your trackers and put them on.</p>;
-                } else {
-                    let vrHeadset: string = "meta_quest_3";
-                    return (
-                        <>
-                            <SimpleVideoPlayer
-                                src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.mp4`}
-                                thumbnail={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/${fbtSystemConfig.key}-${vrHeadset}-vr_session_setup.jpg`}
-                            />
-                            <ol>
-                                <li>Turn on one tracker</li>
-                                <li>Start OVR Space Calibrator, tightly hold the tracker and your controller</li>
-                                <li>
-                                    Start the space calibration process, and wave your tracker and controller in a
-                                    figure of 8
-                                </li>
-                                <li>Your tracker should show up in the right position</li>
-                                <li>Turn on the rest of your trackers</li>
-                                <li>Start VRChat</li>
-                                <li>T-pose, and click the "FBT Calibration" button</li>
-                            </ol>
-                        </>
-                    );
-                }
-            })(),
-        },
         review: {
             cost: (function () {
                 if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {

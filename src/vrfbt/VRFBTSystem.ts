@@ -36,9 +36,6 @@ export type VRFBTSystem = {
     specs?: React.ReactNode;
     introExample?: React.ReactNode;
     examples: Record<string, React.ReactNode>;
-    vrSession?: {
-        setup: React.ReactNode;
-    };
     review?: VRFBTReview;
 };
 
