@@ -22,7 +22,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
     return {
         key: fbtSystemConfig.key,
         name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
-        imageURL: "slimevr_trackers/slimevr.jpg",
         recommendation: (function () {
             return (
                 <>
@@ -162,14 +161,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 </CollapsibleSection>
             </>
         ),
-        specs: (
-            <>
-                <div>Up to 12 hours</div>
-                <div>12 g / 0.4 oz per tracker</div>
-                <div>14 cm³ (62 x 32 x 7 mm)</div>
-                <img src="slimevr_trackers/slimevr_size.jpg" />
-            </>
-        ),
         introExample: (
             <VideoInView
                 src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-sxs.mp4`}
@@ -223,7 +214,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 ),
                 drawbacks: [
                     {
-                        key: "wifi",
                         title: "2.4Ghz Wi-Fi Only",
                         content: (
                             <>
@@ -271,7 +261,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 ),
                 drawbacks: [
                     {
-                        key: "personalized_calibration",
                         title: "Personalized Calibration",
                         content: (
                             <>
@@ -417,7 +406,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 ),
                 drawbacks: [
                     {
-                        key: "skin_sensitivity",
                         title: "Tactile/Skin Sensitivity",
                         content: (
                             <>

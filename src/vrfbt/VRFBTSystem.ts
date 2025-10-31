@@ -1,12 +1,10 @@
 import type React from "react";
 import type { FBTSystemConfigKey } from "../fbt/FBT";
-import { vrHeadsetKeys, vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 
 export type ReviewSection = {
     score: number;
     content: React.ReactNode;
     drawbacks?: Drawback[];
-    rating?: React.ReactNode;
 };
 
 export type VRFBTReview = {
@@ -19,7 +17,6 @@ export type VRFBTReview = {
 };
 
 export type Drawback = {
-    key: string;
     title: string;
     content: React.ReactNode;
     collapsed?: boolean;
@@ -28,15 +25,13 @@ export type Drawback = {
 export type VRFBTSystem = {
     key: FBTSystemConfigKey | "none";
     name: string;
-    imageURL?: string;
-    recommendation?: React.ReactNode;
-    howItWorks?: React.ReactNode;
-    itemList: ItemList;
-    availability?: React.ReactNode;
-    specs?: React.ReactNode;
-    introExample?: React.ReactNode;
-    examples: Record<string, React.ReactNode>;
+    recommendation: React.ReactNode;
+    introExample: React.ReactNode;
+    howItWorks: React.ReactNode;
     review?: VRFBTReview;
+    itemList: ItemList;
+    availability: React.ReactNode;
+    examples: Record<string, React.ReactNode>;
 };
 
 export type Item = {
@@ -61,24 +56,11 @@ export const ExampleVideoKeys = [
     "exercise",
 ] as const;
 
-const lighthouseFBTRecommendations: FBTSystemConfigKey[] = [
+export const defaultRecommendations: FBTSystemConfigKey[] = [
     "slimevr_trackers-enhanced_core_set_6_2",
     "htc_vive_trackers_3_0-3_trackers",
     "htc_vive_ultimate_trackers-3_trackers",
 ];
-
-const nonLighthouseFBTRecommendations: FBTSystemConfigKey[] = [
-    "slimevr_trackers-enhanced_core_set_6_2",
-    "htc_vive_trackers_3_0-3_trackers",
-    "htc_vive_ultimate_trackers-3_trackers",
-];
-
-export const vrHeadsetFBTRecommendations = Object.fromEntries(
-    vrHeadsetKeys.map((v) => [
-        v,
-        vrHeadsetsByKey[v].tracking === "lighthouse" ? lighthouseFBTRecommendations : nonLighthouseFBTRecommendations,
-    ]),
-) as Record<VRHeadsetKey, FBTSystemConfigKey[]>;
 
 export function nonNullArray<T>(array: (T | undefined)[]): T[] {
     return array.filter((v) => v != null);

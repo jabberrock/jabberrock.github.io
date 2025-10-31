@@ -15,7 +15,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
     return {
         key: fbtSystemConfig.key,
         name: fbtSystemsByKey[fbtSystemConfig.fbtSystemKey].name,
-        imageURL: "htc_vive_trackers_3_0/htc_vive_3_0.jpg",
         recommendation: (function () {
             const vrHeadset = vrHeadsetsByKey[vrHeadsetKey];
             if (
@@ -120,14 +119,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 <p>Available immediately</p>
             </CollapsibleSection>
         ),
-        specs: (
-            <>
-                <div>Up to 7.5 hours</div>
-                <div>75 g / 2.6 oz per tracker</div>
-                <div>247 cm³ (70.9 × 79.0 × 44.1 mm)</div>
-                <img src="htc_vive_trackers_3_0/htc_vive_3_0_size.jpg" />
-            </>
-        ),
         introExample: (function () {
             let vrHeadset: string;
             if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
@@ -219,7 +210,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 ),
                 drawbacks: [
                     {
-                        key: "dongle_interference",
                         title: "Dongle Interference",
                         content: (
                             <>
@@ -234,7 +224,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         collapsed: true,
                     },
                     {
-                        key: "wifi_interference",
                         title: "2.4Ghz Wi-Fi Interference",
                         content: (
                             <>

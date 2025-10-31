@@ -30,10 +30,14 @@ function makeEmptyVRFBTSystem(): VRFBTSystem {
     return {
         key: "none",
         name: "",
+        recommendation: <></>,
+        introExample: <></>,
+        howItWorks: <></>,
         itemList: {
             required: [],
             optional: [],
         },
+        availability: <></>,
         examples: {},
     };
 }
@@ -117,20 +121,15 @@ const VRFBTReviewSection = ({
             </tr>
             <tr>
                 {systems.map((system, i) => (
-                    <td key={`${i}-${system.key}`}>{section(system)?.rating}</td>
-                ))}
-            </tr>
-            <tr>
-                {systems.map((system, i) => (
                     <td key={`${i}-${system.key}`}>{section(system)?.content}</td>
                 ))}
             </tr>
             <tr>
                 {systems.map((system, i) => (
                     <td key={`${i}-${system.key}`}>
-                        {section(system)?.drawbacks?.map((drawback) => (
+                        {section(system)?.drawbacks?.map((drawback, i) => (
                             <CollapsibleSection
-                                key={drawback.key}
+                                key={i}
                                 title={drawback.title}
                                 className="drawback"
                                 initiallyCollapsed={drawback.collapsed}
@@ -404,16 +403,6 @@ function FBTTable(): React.ReactNode {
                             </td>
                         );
                     })}
-                </tr>
-                <tr id="section-specifications">
-                    <td colSpan={systems.length} className="header">
-                        Specifications
-                    </td>
-                </tr>
-                <tr>
-                    {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>{system.specs}</td>
-                    ))}
                 </tr>
             </tbody>
         </table>

@@ -61,9 +61,6 @@ export const FBTNav: React.FC = () => {
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="#section-specifications">Specifications</a>
-                </li>
             </ul>
         </nav>
     );

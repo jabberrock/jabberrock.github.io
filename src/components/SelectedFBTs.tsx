@@ -1,5 +1,5 @@
 import React, { createContext, useState, type FC } from "react";
-import { vrHeadsetFBTRecommendations, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
+import { defaultRecommendations, type VRFBTSystem } from "../vrfbt/VRFBTSystem";
 import { fbtSystemConfigsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { makeSlimeVR } from "../vrfbt/SlimeVR";
 import { makeHTCVive30 } from "../vrfbt/HTCVive30";
@@ -23,9 +23,7 @@ type SelectedFBTsProps = {
 } & React.PropsWithChildren;
 
 export const SelectedFBTs: FC<SelectedFBTsProps> = ({ vrHeadsetKey, children }) => {
-    const [selected, setSelected] = useState<(FBTSystemConfigKey | undefined)[]>(
-        vrHeadsetFBTRecommendations[vrHeadsetKey],
-    );
+    const [selected, setSelected] = useState<(FBTSystemConfigKey | undefined)[]>(defaultRecommendations);
 
     function updateSelectedSystem(i: number, option: FBTSystemConfigKey | undefined) {
         const newOptions = [...selected];

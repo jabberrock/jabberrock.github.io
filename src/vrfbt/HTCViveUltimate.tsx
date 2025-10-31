@@ -16,7 +16,6 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
     return {
         key: fbtSystemConfig.key,
         name: fbtSystemsByKey[HTCViveUltimateSystemKey].name,
-        imageURL: "htc_vive_ultimate_trackers/htc_vive_ultimate.jpg",
         recommendation: (function () {
             const vrHeadset = vrHeadsetsByKey[vrHeadsetKey];
             if (vrHeadset.tracking === "lighthouse") {
@@ -88,13 +87,6 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 <p>Available immediately</p>
             </CollapsibleSection>
         ),
-        specs: (
-            <>
-                <div>Up to 7.5 hours</div>
-                <div>96 g / 3.4 oz per tracker</div>
-                <div>123 cm³ (77 x 58.6 x 27.3 mm)</div>
-            </>
-        ),
         introExample: (
             <VideoInView src={`${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-dancing-sxs.mp4`} />
         ),
@@ -134,7 +126,6 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 ),
                 drawbacks: [
                     {
-                        key: "rescan_playspace",
                         title: "Re-scan Playspace",
                         content: (
                             <p>
@@ -190,7 +181,6 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 ),
                 drawbacks: [
                     {
-                        key: "losing_tracking",
                         title: "Losing Tracking",
                         content: (
                             <>
