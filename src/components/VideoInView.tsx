@@ -2,9 +2,10 @@ import { useEffect, useRef, useState, type FC } from "react";
 
 type VideoInViewProps = {
     src: string;
+    className?: string;
 };
 
-export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
+export const VideoInView: FC<VideoInViewProps> = ({ src, className }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [inView, setInView] = useState(false);
     const [needsLoading, setNeedsLoading] = useState(true);
@@ -56,5 +57,16 @@ export const VideoInView: FC<VideoInViewProps> = ({ src }) => {
         }
     }, [needsLoading, canLoad, inView]);
 
-    return <video ref={videoRef} poster={src.replace(/\.mp4$/, ".jpg")} autoPlay muted controls loop playsInline />;
+    return (
+        <video
+            ref={videoRef}
+            poster={src.replace(/\.mp4$/, ".jpg")}
+            autoPlay
+            muted
+            controls
+            loop
+            playsInline
+            className={className}
+        />
+    );
 };

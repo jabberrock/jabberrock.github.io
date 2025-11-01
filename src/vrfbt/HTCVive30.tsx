@@ -1,5 +1,4 @@
 import { Carousel } from "react-bootstrap";
-import { SimpleImage } from "../components/SimpleImage";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { ExampleVideoKeys, matchConfigOptional, nonNullArray, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
@@ -130,6 +129,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
             return (
                 <VideoInView
                     src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-dancing-sxs.mp4`}
+                    className="sxs"
                 />
             );
         })(),
@@ -147,6 +147,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                     <>
                         <VideoInView
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-${v}-overlay.mp4`}
+                            className="overlay"
                         />
                     </>
                 );
@@ -162,7 +163,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         content: (
                             <>
                                 <p>
-                                    <SimpleImage src={`/${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
+                                    <img src={`/${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
                                 </p>
                                 <p>You will need to buy the trackers and straps.</p>
                             </>
@@ -174,7 +175,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         content: (
                             <>
                                 <p>
-                                    <SimpleImage src={`/${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
+                                    <img src={`/${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
                                 </p>
                                 <p>You will need to buy the trackers, straps, and Lighthouse base stations.</p>
                             </>
@@ -186,7 +187,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         content: (
                             <>
                                 <p>
-                                    <SimpleImage src={`/${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
+                                    <img src={`/${fbtSystemConfig.fbtSystemKey}/htc_vive_3_0.jpg`} />
                                 </p>
                                 <p>You will need to buy the trackers, straps, and Lighthouse base stations.</p>
                             </>
@@ -227,7 +228,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         title: "2.4Ghz Wi-Fi Interference",
                         content: (
                             <>
-                                <SimpleImage
+                                <img
                                     src={`/${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
                                 />
                                 <p>
@@ -252,6 +253,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                             <>
                                 <VideoInView
                                     src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/calibration.mp4`}
+                                    className="sxs"
                                 />
                                 <p>Just put your headset and tracker on, and start playing!</p>
                             </>
@@ -265,6 +267,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                             <>
                                 <VideoInView
                                     src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/calibration.mp4`}
+                                    className="calibration"
                                 />
                                 <p>
                                     Just put your headset and tracker on, enable continuous calibration, and start
@@ -281,6 +284,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                             <>
                                 <VideoInView
                                     src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/calibration.mp4`}
+                                    className="calibration"
                                 />
                                 <p>
                                     Since your headset is not Lighthouse-based, you will have to do space-calibration to
@@ -297,6 +301,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                     <>
                         <VideoInView
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-sxs.mp4`}
+                            className="sxs"
                         />
                         <p>
                             When the trackers can see the Lighthouse base stations, tracking is accurate and there is no
@@ -328,6 +333,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 </p>
                                 <VideoInView
                                     src={`/${fbtSystemConfig.fbtSystemKey}/3_trackers/meta_quest_3/fail-flying_into_distance-sxs.mp4`}
+                                    className="sxs"
                                 />
                                 <p>It takes a few seconds for the trackers to recover.</p>
                                 <p>
@@ -345,7 +351,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 <Carousel>
                                     {Array.from({ length: 5 }, (_, i) => (
                                         <Carousel.Item key={i}>
-                                            <SimpleImage
+                                            <img
                                                 src={`/${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
                                             />
                                         </Carousel.Item>
@@ -392,6 +398,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 </p>
                                 <VideoInView
                                     src={`/${fbtSystemConfig.fbtSystemKey}/3_trackers/meta_quest_3/fail-manspreading-sxs.mp4`}
+                                    className="sxs"
                                 />
                                 <p>
                                     I tend to sit with my feet pointing outwards, so it always looks like I'm
@@ -415,7 +422,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
 
                     return (
                         <>
-                            <SimpleImage
+                            <img
                                 src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/wearing.jpg`}
                             />
                             <p>

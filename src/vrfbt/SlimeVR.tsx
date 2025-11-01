@@ -11,7 +11,6 @@ import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from 
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { CollapsibleSection } from "../components/CollapsibleSection";
 import { VideoInView } from "../components/VideoInView";
-import { SimpleImage } from "../components/SimpleImage";
 
 export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemConfigKey): VRFBTSystem {
     const fbtSystemConfig = fbtSystemConfigsByKey[fbtConfigKey];
@@ -145,10 +144,13 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 </CollapsibleSection>
                 <CollapsibleSection title="3rd Party Slime Trackers" className="availability">
                     <p>
+                        <a href="https://discord.gg/SlimeVR" target="_blank">
+                            SlimeVR Discord
+                        </a>{" "}
+                        channel{" "}
                         <a href="https://discord.com/channels/817184208525983775/1058335815614341240" target="_blank">
                             #marketplace-forum
-                        </a>{" "}
-                        on SlimeVR Discord
+                        </a>
                     </p>
                     <p>
                         SlimeVR-managed marketplace for sellers. Delivery may be faster. Prices vary. Sellers who
@@ -164,6 +166,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
         introExample: (
             <VideoInView
                 src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-sxs.mp4`}
+                className="sxs"
             />
         ),
         examples: (function () {
@@ -173,6 +176,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                     <>
                         <VideoInView
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-${v}-overlay.mp4`}
+                            className="overlay"
                         />
                     </>
                 );
@@ -191,7 +195,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 content: (
                     <>
                         <p>
-                            <SimpleImage src={`/${fbtSystemConfig.fbtSystemKey}/slimevr.jpg`} />
+                            <img src={`/${fbtSystemConfig.fbtSystemKey}/slimevr.jpg`} />
                         </p>
                         <p>SlimeVR trackers are one of the most affordable systems today.</p>
                     </>
@@ -293,6 +297,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                     <>
                         <VideoInView
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-sxs.mp4`}
+                            className="sxs"
                         />
                         <p>
                             SlimeVR works in any position, whether you're standing, sitting, lying down, dancing or
@@ -300,6 +305,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         </p>
                         <VideoInView
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-sxs.mp4`}
+                            className="sxs"
                         />
                         <p>Trackers even work when you're under a blanket, or if you're wearing a sweater over them.</p>
                         <p>
@@ -389,7 +395,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 score: 4,
                 content: (
                     <>
-                        <SimpleImage
+                        <img
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
                         />
                         <p>SlimeVR provides elastic straps with silicone lines for grip.</p>

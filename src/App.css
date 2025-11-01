@@ -58,6 +58,7 @@ tr {
 .fbt-table {
     table-layout: fixed;
     border-collapse: collapse;
+    margin-bottom: 80px;
 }
 
 @media screen and (min-width: 840px) {
@@ -233,4 +234,16 @@ tr {
 .vr-system-summary img {
     width: 80px;
     margin-right: 10px;
+}
+
+video.overlay {
+    aspect-ratio: 720 / 960;
+}
+
+video.sxs {
+    aspect-ratio: 720 / 480;
+}
+
+video.calibration {
+    aspect-ratio: 700 / 1000;
 }

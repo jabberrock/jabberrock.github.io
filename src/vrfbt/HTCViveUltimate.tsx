@@ -1,5 +1,4 @@
 import { CollapsibleSection } from "../components/CollapsibleSection";
-import { SimpleImage } from "../components/SimpleImage";
 import { VideoInView } from "../components/VideoInView";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
@@ -88,7 +87,10 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
             </CollapsibleSection>
         ),
         introExample: (
-            <VideoInView src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-dancing-sxs.mp4`} />
+            <VideoInView
+                src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-dancing-sxs.mp4`}
+                className="sxs"
+            />
         ),
         examples: (function () {
             const nodes: Record<string, React.ReactNode> = {};
@@ -97,6 +99,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                     <>
                         <VideoInView
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-${v}-overlay.mp4`}
+                            className="overlay"
                         />
                     </>
                 );
@@ -110,7 +113,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 content: (
                     <>
                         <p>
-                            <SimpleImage src={`/${fbtSystemConfig.fbtSystemKey}/htc_vive_ultimate.jpg`} />
+                            <img src={`/${fbtSystemConfig.fbtSystemKey}/htc_vive_ultimate.jpg`} />
                         </p>
                         <p>You will need to buy the trackers and straps.</p>
                     </>
@@ -120,7 +123,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 score: 4,
                 content: (
                     <p>
-                        Install VIVE hub, and follow the setup process. You'll pair the trackers, and scan the
+                        Install VIVE Hub, and follow the setup process. You'll pair the trackers, and scan the
                         playspace.
                     </p>
                 ),
@@ -143,6 +146,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                     <>
                         <VideoInView
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/calibration.mp4`}
+                            className="calibration"
                         />
                         <p>
                             You will have to do space-calibration to align your headset’s playspace to the trackers’
@@ -157,6 +161,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                     <>
                         <VideoInView
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-exercise-sxs.mp4`}
+                            className="sxs"
                         />
                         <p>
                             When the trackers are tracking, movement is accurate and there is no noticeable lag.
@@ -188,15 +193,30 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                                     When the tracker loses tracking, parts of your body will freeze in place. This
                                     happens a lot, and there's nothing you can do to prevent it.
                                 </p>
-                                <VideoInView src="/htc_vive_ultimate_trackers/3_trackers/fail-sitting_down-4-sxs.mp4" />
+                                <VideoInView
+                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-sitting_down-4-sxs.mp4"
+                                    className="sxs"
+                                />
                                 <p>When I sit down.</p>
-                                <VideoInView src="/htc_vive_ultimate_trackers/3_trackers/fail-sitting_on_floor-1-sxs.mp4" />
+                                <VideoInView
+                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-sitting_on_floor-1-sxs.mp4"
+                                    className="sxs"
+                                />
                                 <p>When I sit on the floor.</p>
-                                <VideoInView src="/htc_vive_ultimate_trackers/3_trackers/fail-bending_over-sxs.mp4" />
+                                <VideoInView
+                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-bending_over-sxs.mp4"
+                                    className="sxs"
+                                />
                                 <p>When I bend over to pick up an item.</p>
-                                <VideoInView src="/htc_vive_ultimate_trackers/3_trackers/fail-rolling_onto_couch-sxs.mp4" />
+                                <VideoInView
+                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-rolling_onto_couch-sxs.mp4"
+                                    className="sxs"
+                                />
                                 <p>When I roll onto my couch.</p>
-                                <VideoInView src="/htc_vive_ultimate_trackers/3_trackers/fail-foot_stuck-sxs.mp4" />
+                                <VideoInView
+                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-foot_stuck-sxs.mp4"
+                                    className="sxs"
+                                />
                                 <p>Sometimes for no reason at all.</p>
                                 <p>It usually takes a few seconds for the trackers to recover.</p>
                                 <p>
@@ -213,7 +233,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 score: 2,
                 content: (
                     <>
-                        <SimpleImage src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/wearing.jpg`} />
+                        <img src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/wearing.jpg`} />
                         <p>The trackers are not comfortable for me.</p>
                         <p>
                             HTC, the manufacturer, recommends mounting the ankle trackers on the front of your shins.
