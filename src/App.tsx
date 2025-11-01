@@ -52,6 +52,9 @@ function Home({ showPicker, vrHeadsetKey }: { showPicker?: boolean; vrHeadsetKey
                 <div className="content">
                     <FBTTable />
                 </div>
+                <button className="scroll-top" onClick={() => scrollTo(0, 0)}>
+                    &#x25B2;
+                </button>
             </div>
         </SelectedFBTs>
     );
