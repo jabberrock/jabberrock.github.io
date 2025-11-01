@@ -270,7 +270,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         title: "Dongle Interference",
                         content: (
                             <>
-                                <p>TODO</p>
                                 <p>
                                     The trackers communicate with dongles over Bluetooth. Unfortunately, they can
                                     interfere with each other. Interference will cause you to fly off into the distance.
