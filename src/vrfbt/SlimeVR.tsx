@@ -131,7 +131,10 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
             <>
                 <CollapsibleSection title="Official SlimeVR Trackers" className="availability">
                     <p>
-                        <a href="https://slimevr.dev/" target="_blank">
+                        <a
+                            href="https://slimevr.dev/?utm_source=slimevr-or-vive&utm_medium=website&utm_campaign=default"
+                            target="_blank"
+                        >
                             slimevr.dev
                         </a>
                     </p>
