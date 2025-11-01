@@ -76,13 +76,14 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
             const c: ItemList = {
                 required: [],
                 optional: [],
+                updated: new Date("2025-10-01"),
             };
             switch (fbtSystemConfig.key) {
                 case "htc_vive_trackers_3_0-3_trackers":
                     c.required.push({
                         name: "VIVE 3.0 Tracker",
                         count: 3,
-                        each_price_cents: 14900,
+                        each_price_cents: 14299,
                         link: new URL("https://amzn.to/3LEBDs0"),
                     });
                     break;
@@ -91,14 +92,14 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         name: "VIVE 3.0 Tracker",
                         comment: "for tracking",
                         count: 3,
-                        each_price_cents: 14900,
+                        each_price_cents: 14299,
                         link: new URL("https://amzn.to/3LEBDs0"),
                     });
                     c.required.push({
                         name: "VIVE 3.0 Tracker",
                         comment: "for continuous calibration",
                         count: 1,
-                        each_price_cents: 14900,
+                        each_price_cents: 14299,
                         link: new URL("https://amzn.to/3LEBDs0"),
                     });
                     break;

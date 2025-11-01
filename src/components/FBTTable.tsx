@@ -28,6 +28,7 @@ function makeEmptyVRFBTSystem(): VRFBTSystem {
         itemList: {
             required: [],
             optional: [],
+            updated: new Date(),
         },
         availability: <></>,
         examples: {
@@ -315,13 +316,18 @@ function FBTTable(): React.ReactNode {
                     section={(system) => system.review?.cost}
                 >
                     <tr>
-                        {systems.map((system, i) => {
-                            return (
-                                <td key={`${i}-${system.key}`}>
-                                    <ComponentTable systems={systems} system={system} />
-                                </td>
-                            );
-                        })}
+                        {systems.map((system, i) => (
+                            <td key={`${i}-${system.key}`}>
+                                <ComponentTable systems={systems} system={system} />
+                            </td>
+                        ))}
+                    </tr>
+                    <tr>
+                        {systems.map((system, i) => (
+                            <td key={`${i}-${system.key}`}>
+                                Prices retrieved on {system.itemList.updated.toLocaleDateString()}
+                            </td>
+                        ))}
                     </tr>
                 </VRFBTReviewSection>
                 <VRFBTReviewSection
@@ -448,13 +454,18 @@ function FBTTable(): React.ReactNode {
                     </td>
                 </tr>
                 <tr>
-                    {systems.map((system, i) => {
-                        return (
-                            <td key={`${i}-${system.key}`}>
-                                <ComponentTable systems={systems} system={system} showOptional={true} />
-                            </td>
-                        );
-                    })}
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`}>
+                            <ComponentTable systems={systems} system={system} showOptional={true} />
+                        </td>
+                    ))}
+                </tr>
+                <tr>
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`}>
+                            Prices retrieved on {system.itemList.updated.toLocaleDateString()}
+                        </td>
+                    ))}
                 </tr>
             </tbody>
         </table>
