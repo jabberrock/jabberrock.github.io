@@ -19,8 +19,14 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                     {vrHeadsetsByKey[vrHeadsetKey].requiresPC ? (
                         <p className="recommended">SlimeVR Trackers are compatible with your headset.</p>
                     ) : (
-                        <p className="recommended">
-                            SlimeVR Trackers are compatible with your headset in both PCVR and standalone modes.
+                        <p>
+                            <span className="recommended">
+                                SlimeVR Trackers are compatible with your headset in both PCVR and standalone modes.
+                            </span>{" "}
+                            <span className="warning">
+                                Setting up standalone mode requires either a PC, or sideloading on your headset or a
+                                phone.
+                            </span>
                         </p>
                     )}
                     {fbtSystemConfig.key === "slimevr_trackers-lower_body_set_5_0" && (

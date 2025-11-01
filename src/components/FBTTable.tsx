@@ -277,9 +277,7 @@ function FBTTable(): React.ReactNode {
                 </tr>
                 <tr>
                     {systems.map((system, i) => (
-                        <td key={`${i}-${system.key}`}>
-                            {system.videoWarning}
-                        </td>
+                        <td key={`${i}-${system.key}`}>{system.videoWarning}</td>
                     ))}
                 </tr>
                 <tr>

@@ -62,14 +62,14 @@ export const vrHeadsets: VRHeadset[] = [
     },
     {
         key: "generic_inside_out",
-        name: "Generic Inside-Out Headset",
+        name: "Inside-Out Headset",
         imageURL: "/headsets/unknown.jpg",
         tracking: "inside_out",
         requiresPC: false,
     },
     {
         key: "generic_lighthouse_based",
-        name: "Generic Lighthouse-based Headset",
+        name: "Lighthouse-based Headset",
         imageURL: "/headsets/unknown.jpg",
         tracking: "lighthouse",
         requiresPC: false,
