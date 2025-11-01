@@ -1,6 +1,7 @@
 import type React from "react";
 import Select from "react-select";
 import { fbtSystemConfigs, fbtSystems, type FBTSystemConfigKey } from "../fbt/FBT";
+import { ClientOnly } from "vite-react-ssg";
 
 type FBTSystemGroup = {
     label: string;
@@ -40,11 +41,15 @@ type FBTSystemSelectProps = {
 
 export const FBTSystemSelect: React.FC<FBTSystemSelectProps> = ({ selected, onChange }) => {
     return (
-        <Select<FBTSystemConfigOption, false, FBTSystemGroup>
-            placeholder="Select a full-body tracking system..."
-            value={selected ? findFBTSystemOption(selected) : null}
-            options={groupedOptions}
-            onChange={(v) => onChange(v)}
-        />
+        <ClientOnly>
+            {() => (
+                <Select<FBTSystemConfigOption, false, FBTSystemGroup>
+                    placeholder="Select a full-body tracking system..."
+                    value={selected ? findFBTSystemOption(selected) : null}
+                    options={groupedOptions}
+                    onChange={(v) => onChange(v)}
+                />
+            )}
+        </ClientOnly>
     );
 };

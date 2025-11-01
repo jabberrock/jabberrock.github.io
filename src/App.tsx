@@ -4,9 +4,21 @@ import { VRSystemPicker } from "./vr/VRSystemPicker";
 import { VRSystemSummary } from "./vr/VRSystemSummary";
 import { FBTNav } from "./components/FBTNav";
 import { SelectedFBTs } from "./components/SelectedFBTs";
-import { type VRHeadsetKey } from "./vr/VR";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { vrHeadsetKeys, type VRHeadsetKey } from "./vr/VR";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import type { RouteRecord } from "vite-react-ssg";
+
+export const routes: RouteRecord[] = [
+    {
+        path: "/",
+        element: <Home showPicker vrHeadsetKey="meta_quest" />,
+    },
+    ...vrHeadsetKeys.map((vrHeadsetKey) => ({
+        path: `/${vrHeadsetKey}/`,
+        element: <Home vrHeadsetKey={vrHeadsetKey} />,
+    })),
+];
 
 function Home({ showPicker, vrHeadsetKey }: { showPicker?: boolean; vrHeadsetKey: VRHeadsetKey }) {
     const navigate = useNavigate();
@@ -40,18 +52,3 @@ function Home({ showPicker, vrHeadsetKey }: { showPicker?: boolean; vrHeadsetKey
         </SelectedFBTs>
     );
 }
-
-function App() {
-    return (
-        <Routes>
-            <Route path="/" element={<Home showPicker vrHeadsetKey="meta_quest" />} />
-            <Route path="/meta_quest/" element={<Home vrHeadsetKey="meta_quest" />} />
-            <Route path="/valve_index/" element={<Home vrHeadsetKey="valve_index" />} />
-            <Route path="/htc_vive/" element={<Home vrHeadsetKey="htc_vive" />} />
-            <Route path="/oculus_rift/" element={<Home vrHeadsetKey="oculus_rift" />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-    );
-}
-
-export default App;
