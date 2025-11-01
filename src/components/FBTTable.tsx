@@ -28,7 +28,7 @@ function makeEmptyVRFBTSystem(): VRFBTSystem {
         itemList: {
             required: [],
             optional: [],
-            updated: new Date(),
+            updated: undefined,
         },
         availability: <></>,
         examples: {
@@ -323,7 +323,9 @@ function FBTTable(): React.ReactNode {
                     <tr>
                         {systems.map((system, i) => (
                             <td key={`${i}-${system.key}`}>
-                                Prices retrieved on {system.itemList.updated.toLocaleDateString()}
+                                {system.itemList.updated && (
+                                    <>Prices retrieved on {system.itemList.updated.toLocaleDateString()}</>
+                                )}
                             </td>
                         ))}
                     </tr>
@@ -461,7 +463,9 @@ function FBTTable(): React.ReactNode {
                 <tr>
                     {systems.map((system, i) => (
                         <td key={`${i}-${system.key}`}>
-                            Prices retrieved on {system.itemList.updated.toLocaleDateString()}
+                            {system.itemList.updated && (
+                                <>Prices retrieved on {system.itemList.updated.toLocaleDateString()}</>
+                            )}
                         </td>
                     ))}
                 </tr>

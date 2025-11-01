@@ -53,7 +53,7 @@ export type Item = {
 export type ItemList = {
     required: Item[];
     optional: Item[];
-    updated: Date;
+    updated: Date | undefined;
 };
 
 export const ExampleVideoKeys = [
