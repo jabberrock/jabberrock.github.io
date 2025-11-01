@@ -62,6 +62,11 @@ export const FBTNav: React.FC = () => {
                     </ul>
                 </li>
             </ul>
+            <ul>
+                <li>
+                    <a href="/about">About Me</a>
+                </li>
+            </ul>
         </nav>
     );
 };

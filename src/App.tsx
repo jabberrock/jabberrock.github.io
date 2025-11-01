@@ -18,6 +18,10 @@ export const routes: RouteRecord[] = [
         path: `/${vrHeadsetKey}/`,
         element: <Home vrHeadsetKey={vrHeadsetKey} />,
     })),
+    {
+        path: "/about",
+        element: <About />,
+    },
 ];
 
 function Home({ showPicker, vrHeadsetKey }: { showPicker?: boolean; vrHeadsetKey: VRHeadsetKey }) {
@@ -50,5 +54,53 @@ function Home({ showPicker, vrHeadsetKey }: { showPicker?: boolean; vrHeadsetKey
                 </div>
             </div>
         </SelectedFBTs>
+    );
+}
+
+function About() {
+    return (
+        <div className="main">
+            <div className="sidebar">
+                <nav>
+                    <a href="/">&lt; Back to comparison</a>
+                </nav>
+            </div>
+            <div className="content p-4" style={{ maxWidth: "800px" }}>
+                <p>
+                    <img src="/about/jabberrock.jpg" style={{ width: "100%" }} />
+                </p>
+                <h1>Hi!</h1>
+                <p>I'm Jabberrock, and I have been using Full Body Tracking (FBT) for the three years!</p>
+                <h2>SlimeVR</h2>
+                <p>
+                    I started by building my own DIY Slime trackers, and then for friends. I contributed to the SlimeVR
+                    firmware and server, eventually releasing "Stay Aligned", which reduces drift for Slime trackers
+                    using obsolete IMUs. I also helped at the SlimeVR booth at Open Sauce 2025.
+                </p>
+                <p>
+                    During this time, I have heard a lot of comparisons between SlimeVR and VIVE trackers. Some
+                    statments were accurate, but there were also a lot of inaccurate statements.
+                </p>
+                <h2>Comparison</h2>
+                <p>
+                    I built this comparison website for *me* to understand all the systems. I needed to be confident
+                    about my recommendations, when friends asked about FBT. I wanted to have recordings that could
+                    support or reject things that they heard.
+                </p>
+                <p>
+                    I tried my best to be impartial, and to provide the raw recordings to support my opinions.
+                    Hopefully, it will help you decide on which FBT system is right for you!
+                </p>
+                My recommendation is:
+                <ol>
+                    <li>If you have a Quest headset, choose SlimeVR.</li>
+                    <li>If you have a Lighthouse-based VR headset, choose SlimeVR or VIVE Tracker 3.0.</li>
+                    <li>Never choose VIVE Ultimate trackers.</li>
+                </ol>
+                <br />
+                <br />
+                <p>I use Amazon affiliate links to support this site.</p>
+            </div>
+        </div>
     );
 }
