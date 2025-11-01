@@ -26,6 +26,7 @@ export type VRFBTSystem = {
     key: FBTSystemConfigKey | "none";
     name: string;
     recommendation: React.ReactNode;
+    videoWarning: React.ReactNode;
     introExample: React.ReactNode;
     howItWorks: React.ReactNode;
     review?: VRFBTReview;

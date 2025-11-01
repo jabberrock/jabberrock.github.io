@@ -29,6 +29,12 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 </>
             );
         })(),
+        videoWarning: vrHeadsetKey !== "meta_quest" && (
+            <p>
+                Videos were recorded with a Meta Quest 3. There should be no difference using your headset because
+                SlimeVR works the same way with all headsets.
+            </p>
+        ),
         howItWorks: (
             <>
                 <img src="/slimevr_trackers/slimevr_skeleton.jpg" />

@@ -37,6 +37,12 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 }
             }
         })(),
+        videoWarning: vrHeadsetKey !== "meta_quest" && (
+            <p>
+                Videos were recorded with a Meta Quest 3. There should be no difference using your headset because VIVE
+                Ultimate trackers work the same way with all headsets.
+            </p>
+        ),
         howItWorks: (
             <>
                 <img src="/htc_vive_ultimate_trackers/htc_vive_ultimate_cameras.jpg" />

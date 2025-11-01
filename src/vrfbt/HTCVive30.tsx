@@ -38,6 +38,27 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 }
             }
         })(),
+        videoWarning: (function () {
+            if (vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse") {
+                if (vrHeadsetKey !== "htc_vive") {
+                    return (
+                        <p>
+                            Videos were recorded with a HTC VIVE, which is a Lighthouse-based headset. There should be
+                            no difference using your headset.
+                        </p>
+                    );
+                }
+            } else {
+                if (vrHeadsetKey !== "meta_quest") {
+                    return (
+                        <p>
+                            Videos were recorded with a Meta Quest 3, which is not a Lighthouse-based headset. There
+                            should be no difference using your headset.
+                        </p>
+                    );
+                }
+            }
+        })(),
         howItWorks: (
             <>
                 <img src="/htc_vive_trackers_3_0/lighthouse_based_systems.jpg" />

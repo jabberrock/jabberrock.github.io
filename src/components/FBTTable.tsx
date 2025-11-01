@@ -22,6 +22,7 @@ function makeEmptyVRFBTSystem(): VRFBTSystem {
         key: "none",
         name: "",
         recommendation: <></>,
+        videoWarning: <></>,
         introExample: <></>,
         howItWorks: <></>,
         itemList: {
@@ -271,6 +272,13 @@ function FBTTable(): React.ReactNode {
                 <tr>
                     {systems.map((system, i) => (
                         <td key={`${i}-${system.key}`}>{system.recommendation}</td>
+                    ))}
+                </tr>
+                <tr>
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`} className="warning">
+                            {system.videoWarning}
+                        </td>
                     ))}
                 </tr>
                 <tr>
