@@ -173,12 +173,8 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                             move to my computer and face the monitor for the trackers to recover.
                         </p>
                         <p>
-                            When I'm with a group of friends, it is very noticeable that I'm wearing VIVE Ultimates, in
-                            a bad way.
-                        </p>
-                        <p>
-                            (While recording this demo, I had to repeat actions over and over again until I got a
-                            recording without losing tracking.)
+                            When I'm with a group of friends, it is very noticeable that I'm using VIVE Ultimate
+                            trackers, in a bad way.
                         </p>
                     </>
                 ),
@@ -251,7 +247,10 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 content: (
                     <>
                         <p>I do not enjoy using VIVE Ultimate trackers.</p>
-                        <p>The trackers constantly lose tracking. There's no VR immersion with these trackers.</p>
+                        <p>
+                            The trackers constantly lose tracking, even with basic actions like sitting down. I don't
+                            feel like I'm babysitting FBT.
+                        </p>
                     </>
                 ),
             },

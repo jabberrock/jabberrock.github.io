@@ -308,18 +308,21 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                             src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-sxs.mp4`}
                             className="sxs"
                         />
-                        <p>Trackers even work when you're under a blanket, or if you're wearing a sweater over them.</p>
+                        <p>Trackers even work when you're under a blanket.</p>
                         <p>
-                            If you have calibrated well, tracking is accurate. However, as mentioned above, it takes
-                            time and practice to learn to calibrate well.
+                            If you have calibrated well, tracking is pretty accurate. In VR, when I look down or look in
+                            a mirror, my avatar looks exactly how I would expect it to look. Even if it's slightly off,
+                            other people won't be able to tell. (You can see that tracking is not perfect in the
+                            recordings because I've matched everything up as exactly as I could. In VR, it is not as
+                            obvious.)
                         </p>
                         <p>
                             There is no noticeable lag, and trackers handle fast and extreme movements with no problems.
                         </p>
                         <p>
-                            SlimeVR trackers will experience drift after some time (45 minutes on modern IMUs). It is
-                            easy to re-align your body: just face forward and double tap your chest tracker. You can
-                            tell who is using SlimeVR, because they will occasionally double tap their chest.
+                            SlimeVR trackers will experience drift over time. On modern IMUs, it takes more than 45
+                            minutes before it becomes noticeable to you. Just face forward and double tap your chest
+                            tracker to reset the trackers.
                         </p>
                     </>
                 ),
@@ -330,7 +333,6 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                             title: "Sitting/Bending",
                             content: (
                                 <>
-                                    <p>TODO</p>
                                     <p>
                                         The Lower Body Set (5+0) only provides a single chest tracker for your upper
                                         body. When you sit down or bend forwards, your legs tend to appear in front of
@@ -350,7 +352,13 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         title: "Drift",
                         content: (
                             <>
-                                <p>TODO</p>
+                                <iframe
+                                    id="ytplayer"
+                                    type="text/html"
+                                    style={{ width: "100%", aspectRatio: "640/360" }}
+                                    src="https://www.youtube.com/embed/VhAQvW3eGtA"
+                                    frameborder="0"
+                                ></iframe>
                                 <p>
                                     SlimeVR trackers will drift over time, because errors accumulate in the IMU. You
                                     will notice that your avatar is slightly off from your real body.
@@ -439,15 +447,16 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                     <>
                         <p>
                             I really enjoy using SlimeVR trackers because I can freely do anything in VR and be
-                            confident that my avatar matches me.
+                            confident that my avatar matches me. I never have to think about the system itself.
                         </p>
                         <p>
                             Once or twice a play session, I will need to fix drift, but it’s a simple double tap. It is
                             not a difficult or painful process at all.
                         </p>
                         <p>
-                            However, you will need to have patience at the start, as you figure out how calibration
-                            works best for your body.
+                            The biggest drawback of SlimeVR is that you need patience at the start, to figure out how
+                            calibration works best for your body. Once you figure it out, this no longer becomes a
+                            problem.
                         </p>
                         {matchConfigOptional(fbtSystemConfig.key, {
                             "slimevr_trackers-lower_body_set_5_0": (

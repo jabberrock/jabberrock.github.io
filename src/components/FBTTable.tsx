@@ -121,12 +121,8 @@ const VRFBTReviewSection = ({
             </tr>
             <tr>
                 {systems.map((system, i) => (
-                    <td key={`${i}-${system.key}`}>{section(system)?.content}</td>
-                ))}
-            </tr>
-            <tr>
-                {systems.map((system, i) => (
                     <td key={`${i}-${system.key}`}>
+                        {section(system)?.content}
                         {section(system)?.drawbacks?.map((drawback, i) => (
                             <CollapsibleSection
                                 key={i}

@@ -304,15 +304,9 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                             noticeable lag. Trackers handle fast and extreme movements with no problems.
                         </p>
                         <p>
-                            However, trackers are easily occluded. They are also susceptible to interference from
-                            reflections or lights in your playspace. When this happens, your body will freeze or fly
-                            away into the distance.
-                        </p>
-                        <p>You can tell who is wearing VIVE tracker 3.0s, because they will occasionally fly away.</p>
-                        <p>
-                            (While recording the demo videos, I made 5 attempts before getting a recording without
-                            occlusion. I had to twist my body slightly in the direction of the base stations to record
-                            the exercise video.)
+                            However, if you accidentally block the trackers from the base stations, your body will
+                            freeze or fly away into the distance. This is a sure sign that someone is using VIVE Tracker
+                            3.0.
                         </p>
                     </>
                 ),
@@ -324,17 +318,17 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                             <>
                                 <p>
                                     If the trackers lose sight of the base stations, parts of your body will freeze in
-                                    place, or fly off into the distance. This happens when I accidentally move my arm in
-                                    front of my waist tracker.
+                                    place, or fly off into the distance.
                                 </p>
                                 <VideoInView
                                     src={`/${fbtSystemConfig.fbtSystemKey}/3_trackers/meta_quest_3/fail-flying_into_distance-sxs.mp4`}
                                     className="sxs"
                                 />
+                                <p>When I move my arm in front of my waist tracker.</p>
                                 <p>It takes a few seconds for the trackers to recover.</p>
                                 <p>
-                                    I notice having to be careful how I move my arms, and to keep myself oriented
-                                    towards a base station.
+                                    I actively think about where I move my arms and where I'm facing, to minimize this
+                                    problem.
                                 </p>
                             </>
                         ),
@@ -364,7 +358,6 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 </p>
                             </>
                         ),
-                        collapsed: true,
                     },
                     vrHeadsetsByKey[vrHeadsetKey].tracking !== "lighthouse"
                         ? matchConfigOptional(fbtSystemConfig.key, {
@@ -447,14 +440,17 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                             <>
                                 <p>
                                     I enjoy using VIVE Tracker 3.0s because they are so easy to set up and use. They’re
-                                    great when you just want to jump into VR for low energy activities like chatting
-                                    with friends.
+                                    great when I just want to jump into VR for low energy activities like chatting with
+                                    friends.
                                 </p>
                                 <p>
-                                    However, I just cannot get used to the occlusion problems. I hate the freezing and
-                                    flying off so much that I have to actively prevent it from happening. I move my arms
-                                    in specific ways to prevent covering the hip tracker, and also try to keep facing at
-                                    least one base station. This breaks the immersion for me.
+                                    I wish the occlusion problems weren't as bad. I can accept freezing in place. But
+                                    whenever I fly into the distance, the conversation immediately turns to "VIVEs huh?"
+                                    or "There he goes again."
+                                </p>
+                                <p>
+                                    I actively think about where I move my arms and where I'm facing, to minimize this
+                                    problem. And I'm still unable to fully control the problem.
                                 </p>
                             </>
                         ),
