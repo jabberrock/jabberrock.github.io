@@ -48,6 +48,7 @@ export const FBTSystemSelect: React.FC<FBTSystemSelectProps> = ({ selected, onCh
                     value={selected ? findFBTSystemOption(selected) : null}
                     options={groupedOptions}
                     onChange={(v) => onChange(v)}
+                    menuShouldScrollIntoView={false}
                 />
             )}
         </ClientOnly>
