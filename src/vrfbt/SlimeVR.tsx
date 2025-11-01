@@ -122,15 +122,15 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 name: "GoPro Harness",
                 comment: "for more stable chest tracker",
                 count: 1,
-                each_price_cents: 1449,
+                each_price_cents: 1899,
                 link: new URL("https://amzn.to/48XmcoI"),
             });
             c.optional.push({
                 name: "10-Port USB Charger",
                 comment: "for easier charging",
                 count: 1,
-                each_price_cents: 1362,
-                link: new URL("https://amzn.to/4ofFWsj"),
+                each_price_cents: 1869,
+                link: new URL("https://amzn.to/47FKYHF"),
             });
             return c;
         })(),
