@@ -102,7 +102,12 @@ function About() {
                 </ol>
                 <br />
                 <br />
+                <h2>Disclaimers</h2>
                 <p>I use Amazon affiliate links to support this site.</p>
+                <p>
+                    SlimeVR generously provided or funded the trackers (SlimeVR, VIVE Tracker 3.0, VIVE Ultimate) used
+                    in this project. But all opinions here are mine and were not reviewed by SlimeVR.
+                </p>
             </div>
         </div>
     );
