@@ -305,8 +305,8 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                     <>
                         <p>I do not enjoy using VIVE Ultimate trackers.</p>
                         <p>
-                            The trackers constantly lose tracking, even with basic actions like sitting down. I don't
-                            feel like I'm babysitting FBT.
+                            The trackers constantly lose tracking, even with basic actions like sitting down. I feel
+                            like I'm babysitting the system, rather than having fun with it.
                         </p>
                     </>
                 ),
