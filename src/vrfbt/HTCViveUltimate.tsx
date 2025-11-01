@@ -98,16 +98,30 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 />
             ),
             sitting: (
-                <VideoInView
-                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-sitting-overlay.mp4`}
-                    className="overlay"
-                />
+                <>
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-sitting-overlay.mp4`}
+                        className="overlay"
+                    />
+                    <p>
+                        I was unable to record this video facing forward. Whenever I sat down, my waist tracker would
+                        lose tracking and freeze. I captured this only after a few attempts. As I was getting up, you
+                        can see that my waist tracker was frozen.
+                    </p>
+                </>
             ),
             sittingOnFloor: (
-                <VideoInView
-                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-sitting_on_floor-overlay.mp4`}
-                    className="overlay"
-                />
+                <>
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-sitting_on_floor-overlay.mp4`}
+                        className="overlay"
+                    />
+                    <p>
+                        This took many attempts because the waist tracker would keep losing tracking. I was looking down
+                        in SteamVR mode to see if the tracker loses tracking, and then slowly lowering myself into
+                        position.
+                    </p>
+                </>
             ),
             lyingDown: (
                 <VideoInView

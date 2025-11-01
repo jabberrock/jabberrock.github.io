@@ -169,10 +169,16 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                     />
                 ),
                 exercise: (
-                    <VideoInView
-                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-exercise-overlay.mp4`}
-                        className="overlay"
-                    />
+                    <>
+                        <VideoInView
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-exercise-overlay.mp4`}
+                            className="overlay"
+                        />
+                        <p>
+                            This took a few attempts, because the waist tracker would often lose tracking when I did
+                            pushups.
+                        </p>
+                    </>
                 ),
             };
         })(),

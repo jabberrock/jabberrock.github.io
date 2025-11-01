@@ -182,16 +182,22 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 />
             ),
             lyingDown: (
-                <VideoInView
-                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-overlay.mp4`}
-                    className="overlay"
-                />
+                <>
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-overlay.mp4`}
+                        className="overlay"
+                    />
+                    <p>It's so comfy under the blanket.</p>
+                </>
             ),
             dancing: (
-                <VideoInView
-                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-overlay.mp4`}
-                    className="overlay"
-                />
+                <>
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-overlay.mp4`}
+                        className="overlay"
+                    />
+                    <p>Please forgive me, I can't dance for my life. Maybe I should've called this "Wiggling About".</p>
+                </>
             ),
             exercise: (
                 <VideoInView
