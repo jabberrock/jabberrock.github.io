@@ -2,7 +2,7 @@ import { CollapsibleSection } from "../components/CollapsibleSection";
 import { VideoInView } from "../components/VideoInView";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey, type FBTSystemKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
-import { type ItemList, type VRFBTSystem, ExampleVideoKeys } from "./VRFBTSystem";
+import { type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 
 const HTCViveUltimateSystemKey: FBTSystemKey = "htc_vive_ultimate_trackers";
 
@@ -86,25 +86,48 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
         ),
         introExample: (
             <VideoInView
-                src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-dancing-sxs.mp4`}
+                src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-sxs.mp4`}
                 className="sxs"
             />
         ),
-        examples: (function () {
-            const nodes: Record<string, React.ReactNode> = {};
-            for (const v of ExampleVideoKeys) {
-                nodes[v] = (
-                    <>
-                        <VideoInView
-                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-${v}-overlay.mp4`}
-                            className="overlay"
-                        />
-                    </>
-                );
-            }
-
-            return nodes;
-        })(),
+        examples: {
+            standing: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-standing-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            sitting: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-sitting-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            sittingOnFloor: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-sitting_on_floor-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            lyingDown: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            dancing: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            exercise: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+        },
         review: {
             cost: {
                 score: 2,
@@ -146,7 +169,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 content: (
                     <>
                         <VideoInView
-                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/calibration.mp4`}
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/calibration.mp4`}
                             className="calibration"
                         />
                         <p>
@@ -161,7 +184,7 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 content: (
                     <>
                         <VideoInView
-                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/demo-exercise-sxs.mp4`}
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-sxs.mp4`}
                             className="sxs"
                         />
                         <p>
@@ -230,7 +253,9 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 score: 2,
                 content: (
                     <>
-                        <img src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/wearing.jpg`} />
+                        <img
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
+                        />
                         <p>The trackers are not comfortable for me.</p>
                         <p>
                             HTC, the manufacturer, recommends mounting the ankle trackers on the front of your shins.

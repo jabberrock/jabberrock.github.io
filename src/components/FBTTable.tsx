@@ -5,15 +5,6 @@ import { ReviewScore } from "./ReviewScore";
 import { SelectedFBTsContext } from "./SelectedFBTs";
 import { CollapsibleSection } from "./CollapsibleSection";
 
-const exampleVideos: Record<string, string> = {
-    standing: "Standing",
-    sitting: "Sitting",
-    sitting_on_floor: "Sitting on Floor",
-    lying_down: "Lying Down",
-    dancing: "Dancing",
-    exercise: "Exercise",
-};
-
 function sum(prices: number[]) {
     return prices.reduce((a, v) => a + v, 0);
 }
@@ -38,7 +29,14 @@ function makeEmptyVRFBTSystem(): VRFBTSystem {
             optional: [],
         },
         availability: <></>,
-        examples: {},
+        examples: {
+            standing: <></>,
+            sitting: <></>,
+            sittingOnFloor: <></>,
+            lyingDown: <></>,
+            dancing: <></>,
+            exercise: <></>,
+        },
     };
 }
 
@@ -362,20 +360,66 @@ function FBTTable(): React.ReactNode {
                         </p>
                     </td>
                 </tr>
-                {Object.keys(exampleVideos).map((v) => (
-                    <React.Fragment key={v}>
-                        <tr id={`section-examples-${v}`}>
-                            <td colSpan={systems.length} className="sub-header">
-                                {exampleVideos[v]}
-                            </td>
-                        </tr>
-                        <tr>
-                            {systems.map((system, i) => (
-                                <td key={`${i}-${system.key}`}>{system.examples[v]}</td>
-                            ))}
-                        </tr>
-                    </React.Fragment>
-                ))}
+                <tr id={`section-examples-standing`}>
+                    <td colSpan={systems.length} className="sub-header">
+                        Standing
+                    </td>
+                </tr>
+                <tr>
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`}>{system.examples.standing}</td>
+                    ))}
+                </tr>
+                <tr id={`section-examples-sitting`}>
+                    <td colSpan={systems.length} className="sub-header">
+                        Sitting
+                    </td>
+                </tr>
+                <tr>
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`}>{system.examples.sitting}</td>
+                    ))}
+                </tr>
+                <tr id={`section-examples-sitting_on_floor`}>
+                    <td colSpan={systems.length} className="sub-header">
+                        Sitting on Floor
+                    </td>
+                </tr>
+                <tr>
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`}>{system.examples.sittingOnFloor}</td>
+                    ))}
+                </tr>
+                <tr id={`section-examples-lying_down`}>
+                    <td colSpan={systems.length} className="sub-header">
+                        Lying Down
+                    </td>
+                </tr>
+                <tr>
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`}>{system.examples.lyingDown}</td>
+                    ))}
+                </tr>
+                <tr id={`section-examples-dancing`}>
+                    <td colSpan={systems.length} className="sub-header">
+                        Dancing
+                    </td>
+                </tr>
+                <tr>
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`}>{system.examples.dancing}</td>
+                    ))}
+                </tr>
+                <tr id={`section-examples-exercise`}>
+                    <td colSpan={systems.length} className="sub-header">
+                        Excercise
+                    </td>
+                </tr>
+                <tr>
+                    {systems.map((system, i) => (
+                        <td key={`${i}-${system.key}`}>{system.examples.exercise}</td>
+                    ))}
+                </tr>
                 <tr id="section-buying">
                     <td colSpan={systems.length} className="header">
                         Buying

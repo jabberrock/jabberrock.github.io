@@ -1,12 +1,4 @@
-import type React from "react";
-import {
-    ExampleVideoKeys,
-    matchConfig,
-    matchConfigOptional,
-    nonNullArray,
-    type ItemList,
-    type VRFBTSystem,
-} from "./VRFBTSystem";
+import { matchConfig, matchConfigOptional, nonNullArray, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
 import { CollapsibleSection } from "../components/CollapsibleSection";
@@ -170,21 +162,44 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 className="sxs"
             />
         ),
-        examples: (function () {
-            const nodes: Record<string, React.ReactNode> = {};
-            for (const v of ExampleVideoKeys) {
-                nodes[v] = (
-                    <>
-                        <VideoInView
-                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-${v}-overlay.mp4`}
-                            className="overlay"
-                        />
-                    </>
-                );
-            }
-
-            return nodes;
-        })(),
+        examples: {
+            standing: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-standing-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            sitting: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-sitting-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            sittingOnFloor: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-sitting_on_floor-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            lyingDown: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            dancing: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-dancing-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+            exercise: (
+                <VideoInView
+                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-exercise-overlay.mp4`}
+                    className="overlay"
+                />
+            ),
+        },
         review: {
             cost: {
                 score: matchConfig<number>(fbtSystemConfig.key, {

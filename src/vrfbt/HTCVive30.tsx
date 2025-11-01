@@ -1,7 +1,7 @@
 import { Carousel } from "react-bootstrap";
 import { fbtSystemConfigsByKey, fbtSystemsByKey, type FBTSystemConfigKey } from "../fbt/FBT";
 import { vrHeadsetsByKey, type VRHeadsetKey } from "../vr/VR";
-import { ExampleVideoKeys, matchConfigOptional, nonNullArray, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
+import { matchConfigOptional, nonNullArray, type ItemList, type VRFBTSystem } from "./VRFBTSystem";
 import { VideoInView } from "../components/VideoInView";
 import { CollapsibleSection } from "../components/CollapsibleSection";
 
@@ -137,19 +137,44 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 vrHeadset = "meta_quest_3";
             }
 
-            const nodes: Record<string, React.ReactNode> = {};
-            for (const v of ExampleVideoKeys) {
-                nodes[v] = (
-                    <>
-                        <VideoInView
-                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-${v}-overlay.mp4`}
-                            className="overlay"
-                        />
-                    </>
-                );
-            }
-
-            return nodes;
+            return {
+                standing: (
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-standing-overlay.mp4`}
+                        className="overlay"
+                    />
+                ),
+                sitting: (
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-sitting-overlay.mp4`}
+                        className="overlay"
+                    />
+                ),
+                sittingOnFloor: (
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-sitting_on_floor-overlay.mp4`}
+                        className="overlay"
+                    />
+                ),
+                lyingDown: (
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-lying_down-overlay.mp4`}
+                        className="overlay"
+                    />
+                ),
+                dancing: (
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-dancing-overlay.mp4`}
+                        className="overlay"
+                    />
+                ),
+                exercise: (
+                    <VideoInView
+                        src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/demo-exercise-overlay.mp4`}
+                        className="overlay"
+                    />
+                ),
+            };
         })(),
         review: {
             cost: (function () {

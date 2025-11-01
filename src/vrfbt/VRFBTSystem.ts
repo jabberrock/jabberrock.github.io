@@ -31,7 +31,14 @@ export type VRFBTSystem = {
     review?: VRFBTReview;
     itemList: ItemList;
     availability: React.ReactNode;
-    examples: Record<string, React.ReactNode>;
+    examples: {
+        standing: React.ReactNode;
+        sitting: React.ReactNode;
+        sittingOnFloor: React.ReactNode;
+        lyingDown: React.ReactNode;
+        dancing: React.ReactNode;
+        exercise: React.ReactNode;
+    };
 };
 
 export type Item = {
