@@ -16,9 +16,9 @@ export const VideoInView: FC<VideoInViewProps> = ({ src, className }) => {
         const video = videoRef.current;
         if (video) {
             if (navigator.maxTouchPoints > 0) {
-                video.addEventListener("click", () => (video.controls = true));
+                video.addEventListener("click", () => video.controls = true);
             } else {
-                video.controls = true;
+            video.controls = true;
             }
         }
     }, []);
@@ -60,9 +60,11 @@ export const VideoInView: FC<VideoInViewProps> = ({ src, className }) => {
                     setNeedsLoading(false);
                 }
                 video.play().then(() => {
+                    // HACK: On webkit, the video plays without actually
+                    // playing the video. This trick fixes it.
                     video.pause();
-                    video.play();
-                });
+                    return video.play();
+                }).catch(() => {});
             } else {
                 video.pause();
             }
