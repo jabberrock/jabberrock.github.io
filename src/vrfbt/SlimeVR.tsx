@@ -37,7 +37,9 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
         ),
         howItWorks: (
             <>
-                <img src="/slimevr_trackers/slimevr_skeleton.jpg" />
+                <p>
+                    <img src="/slimevr_trackers/slimevr_skeleton.jpg" />
+                </p>
                 <p>
                     SlimeVR is an IMU-based (Inertial Measurement Unit) system. It uses a gyroscope to measure the
                     rotation of each bone, and then reconstruct the skeleton, starting from the headset.
@@ -234,7 +236,9 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 score: 3,
                 content: (
                     <>
-                        <img src="/slimevr_trackers/slimevr_server.png" />
+                        <p>
+                            <img src="/slimevr_trackers/slimevr_server.png" />
+                        </p>
                         <p>
                             Download the SlimeVR server and follow the setup flow. It will prompt you to enter your
                             Wi-Fi details, connect each tracker, and then assign each tracker to a body part.
@@ -430,9 +434,11 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 score: 4,
                 content: (
                     <>
-                        <img
-                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
-                        />
+                        <p>
+                            <img
+                                src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
+                            />
+                        </p>
                         <p>SlimeVR provides elastic straps with silicone lines for grip.</p>
                         <p>
                             I typically wear my upper body trackers over my T-shirt, my leg trackers on my skin, and

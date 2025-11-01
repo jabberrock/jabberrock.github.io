@@ -45,7 +45,9 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
         ),
         howItWorks: (
             <>
-                <img src="/htc_vive_ultimate_trackers/htc_vive_ultimate_cameras.jpg" />
+                <p>
+                    <img src="/htc_vive_ultimate_trackers/htc_vive_ultimate_cameras.jpg" />
+                </p>
                 <p>
                     HTC VIVE Ultimate Trackers are an inside-out system. Each tracker has 2 cameras which use a SLAM
                     algorithm (Simultaneous Localization and Mapping) to keep track where it is in your playspace.
@@ -165,7 +167,9 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 score: 4,
                 content: (
                     <>
-                        <img src="/htc_vive_ultimate_trackers/vive_hub.png" />
+                        <p>
+                            <img src="/htc_vive_ultimate_trackers/vive_hub.png" />
+                        </p>
                         <p>
                             Install VIVE Hub, and follow the setup process. You'll pair the trackers, and scan the
                             playspace.
@@ -274,9 +278,11 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                 score: 2,
                 content: (
                     <>
-                        <img
-                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
-                        />
+                        <p>
+                            <img
+                                src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/wearing.jpg`}
+                            />
+                        </p>
                         <p>The trackers are not comfortable for me.</p>
                         <p>
                             HTC, the manufacturer, recommends mounting the ankle trackers on the front of your shins.

@@ -61,7 +61,9 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
         })(),
         howItWorks: (
             <>
-                <img src="/htc_vive_trackers_3_0/lighthouse_based_systems.jpg" />
+                <p>
+                    <img src="/htc_vive_trackers_3_0/lighthouse_based_systems.jpg" />
+                </p>
                 <p>
                     HTC VIVE 3.0 is a Lighthouse-based system. The base stations send out pulses of infrared light,
                     which allows a tracker to figure out its position and the rotation.
@@ -255,7 +257,9 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 flow in SteamVR.
                             </p>
                         )}
-                        <img src="/htc_vive_trackers_3_0/steamvr_pair_tracker.png" />
+                        <p>
+                            <img src="/htc_vive_trackers_3_0/steamvr_pair_tracker.png" />
+                        </p>
                         <p>Connect the tracker dongles to your PC, and pair each tracker in SteamVR.</p>
                     </>
                 ),
@@ -278,9 +282,11 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         title: "2.4Ghz Wi-Fi Interference",
                         content: (
                             <>
-                                <img
-                                    src={`/${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
-                                />
+                                <p>
+                                    <img
+                                        src={`/${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-wifi_interference.jpg`}
+                                    />
+                                </p>
                                 <p>
                                     The trackers communicate with dongles over Bluetooth, which shares the same band as
                                     2.4Ghz Wi-Fi routers. Interference will cause you to fly off into the distance.
@@ -395,9 +401,11 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 <Carousel>
                                     {Array.from({ length: 5 }, (_, i) => (
                                         <Carousel.Item key={i}>
-                                            <img
-                                                src={`/${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
-                                            />
+                                            <p>
+                                                <img
+                                                    src={`/${fbtSystemConfig.fbtSystemKey}/limitations/htc_vive_trackers_3_0-reflections-${i + 1}.jpg`}
+                                                />
+                                            </p>
                                         </Carousel.Item>
                                     ))}
                                 </Carousel>
@@ -465,9 +473,11 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
 
                     return (
                         <>
-                            <img
-                                src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/wearing.jpg`}
-                            />
+                            <p>
+                                <img
+                                    src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/${vrHeadset}/wearing.jpg`}
+                                />
+                            </p>
                             <p>
                                 I use Trackstraps (purchased separately). I wear my waist tracker over my T-shirt, and
                                 feet trackers over socks.
