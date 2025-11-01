@@ -228,27 +228,27 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                                     happens a lot, and there's nothing you can do to prevent it.
                                 </p>
                                 <VideoInView
-                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-sitting_down-4-sxs.mp4"
+                                    src="/htc_vive_ultimate_trackers/3_trackers/meta_quest_3/fail-sitting_down-4-sxs.mp4"
                                     className="sxs"
                                 />
                                 <p>When I sit down.</p>
                                 <VideoInView
-                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-sitting_on_floor-1-sxs.mp4"
+                                    src="/htc_vive_ultimate_trackers/3_trackers/meta_quest_3/fail-sitting_on_floor-1-sxs.mp4"
                                     className="sxs"
                                 />
                                 <p>When I sit on the floor.</p>
                                 <VideoInView
-                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-bending_over-sxs.mp4"
+                                    src="/htc_vive_ultimate_trackers/3_trackers/meta_quest_3/fail-bending_over-sxs.mp4"
                                     className="sxs"
                                 />
                                 <p>When I bend over to pick up an item.</p>
                                 <VideoInView
-                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-rolling_onto_couch-sxs.mp4"
+                                    src="/htc_vive_ultimate_trackers/3_trackers/meta_quest_3/fail-rolling_onto_couch-sxs.mp4"
                                     className="sxs"
                                 />
                                 <p>When I roll onto my couch.</p>
                                 <VideoInView
-                                    src="/htc_vive_ultimate_trackers/3_trackers/fail-foot_stuck-sxs.mp4"
+                                    src="/htc_vive_ultimate_trackers/3_trackers/meta_quest_3/fail-foot_stuck-sxs.mp4"
                                     className="sxs"
                                 />
                                 <p>Sometimes for no reason at all.</p>
