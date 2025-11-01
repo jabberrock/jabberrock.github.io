@@ -281,12 +281,10 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 score: 2,
                 content: (
                     <>
-                        <p>
-                            <VideoInView
-                                src={`/${fbtSystemConfig.fbtSystemKey}/enhanced_core_set_6_2/meta_quest_3/calibration.mp4`}
-                                className="calibration"
-                            />
-                        </p>
+                        <VideoInView
+                            src={`/${fbtSystemConfig.fbtSystemKey}/enhanced_core_set_6_2/meta_quest_3/calibration.mp4`}
+                            className="calibration"
+                        />
                         <p>At the start of each VR session, you will need to calibrate your trackers to your body.</p>
                         <p>
                             For most people, the calibration process just works. However, you will need some trial and
