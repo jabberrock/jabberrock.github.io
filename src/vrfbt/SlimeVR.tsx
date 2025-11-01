@@ -428,9 +428,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                                     Accurate SlimeVR tracking depends on having a good calibration. If you don't learn
                                     how to get a good calibration, your legs will move in strange ways.
                                 </p>
-                                <p>TODO: Video</p>
                                 <p>When you are walking, you may notice your legs move to the side.</p>
-                                <p>TODO: Video</p>
                                 <p>
                                     When you are sitting, you may notice that your legs are too far apart, or too close
                                     and cross each other. You may also notice that your knees are too high.
