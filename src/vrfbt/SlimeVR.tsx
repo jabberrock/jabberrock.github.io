@@ -353,11 +353,8 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         content: (
                             <>
                                 <iframe
-                                    id="ytplayer"
-                                    type="text/html"
-                                    style={{ width: "100%", aspectRatio: "640/360" }}
                                     src="https://www.youtube.com/embed/VhAQvW3eGtA"
-                                    frameborder="0"
+                                    style={{ width: "100%", aspectRatio: "640/360", border: "none" }}
                                 ></iframe>
                                 <p>
                                     SlimeVR trackers will drift over time, because errors accumulate in the IMU. You

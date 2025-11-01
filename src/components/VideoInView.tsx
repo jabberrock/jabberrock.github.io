@@ -11,6 +11,18 @@ export const VideoInView: FC<VideoInViewProps> = ({ src, className }) => {
     const [needsLoading, setNeedsLoading] = useState(true);
     const [canLoad, setCanLoad] = useState(false);
 
+    // On touch devices, prevent controls from showing up until the user taps on the video
+    useEffect(() => {
+        const video = videoRef.current;
+        if (video) {
+            if (navigator.maxTouchPoints > 0) {
+                video.addEventListener("click", () => (video.controls = true));
+            } else {
+                video.controls = true;
+            }
+        }
+    }, []);
+
     useEffect(() => {
         const observer = new IntersectionObserver((entries) => entries.forEach((e) => setInView(e.isIntersecting)));
         if (videoRef.current) {
@@ -63,7 +75,6 @@ export const VideoInView: FC<VideoInViewProps> = ({ src, className }) => {
             poster={src.replace(/\.mp4$/, ".jpg")}
             autoPlay
             muted
-            controls
             loop
             playsInline
             className={className}
