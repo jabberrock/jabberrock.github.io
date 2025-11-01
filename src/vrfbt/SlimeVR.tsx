@@ -83,7 +83,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         name: "Lower-Body Set v1.2 (5+0)",
                         count: 1,
                         each_price_cents: 21900,
-                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
+                        link: new URL("https://slimevr.dev/buy"),
                     });
                     break;
                 case "slimevr_trackers-core_set_6_0":
@@ -91,7 +91,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         name: "Core Set v1.2 (6+0)",
                         count: 1,
                         each_price_cents: 25900,
-                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
+                        link: new URL("https://slimevr.dev/buy"),
                     });
                     break;
                 case "slimevr_trackers-enhanced_core_set_6_2":
@@ -99,7 +99,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         name: "Enhanced Core Set v1.2 (6+2)",
                         count: 1,
                         each_price_cents: 32500,
-                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
+                        link: new URL("https://slimevr.dev/buy"),
                     });
                     break;
                 case "slimevr_trackers-full_body_set_8_2":
@@ -107,7 +107,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         name: "Full Body Set v1.2 (8+2)",
                         count: 1,
                         each_price_cents: 41500,
-                        link: new URL("https://www.crowdsupply.com/slimevr/slimevr-full-body-tracker"),
+                        link: new URL("https://slimevr.dev/buy"),
                     });
                     break;
             }
