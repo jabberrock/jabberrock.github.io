@@ -344,7 +344,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                             exercising.
                         </p>
                         <VideoInView
-                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-lying_down-sxs.mp4`}
+                            src={`/${fbtSystemConfig.fbtSystemKey}/${fbtSystemConfig.shortKey}/meta_quest_3/demo-blanket-sxs.mp4`}
                             className="sxs"
                         />
                         <p>Trackers even work when you're under a blanket.</p>
