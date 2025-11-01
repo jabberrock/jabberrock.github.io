@@ -395,7 +395,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                         content: (
                             <>
                                 <iframe
-                                    src="https://www.youtube.com/embed/VhAQvW3eGtA"
+                                    src="https://www.youtube.com/embed/Y3ZthxIRY2g"
                                     style={{ width: "100%", aspectRatio: "640/360", border: "none" }}
                                 ></iframe>
                                 <p>
