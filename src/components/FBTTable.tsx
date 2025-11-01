@@ -4,6 +4,7 @@ import { type ReviewSection, type VRFBTReview, type VRFBTSystem } from "../vrfbt
 import { ReviewScore } from "./ReviewScore";
 import { SelectedFBTsContext } from "./SelectedFBTs";
 import { CollapsibleSection } from "./CollapsibleSection";
+import { ClientOnly } from "vite-react-ssg";
 
 function sum(prices: number[]) {
     return prices.reduce((a, v) => a + v, 0);
@@ -323,9 +324,13 @@ function FBTTable(): React.ReactNode {
                     <tr>
                         {systems.map((system, i) => (
                             <td key={`${i}-${system.key}`}>
-                                {system.itemList.updated && (
-                                    <>Prices retrieved on {system.itemList.updated.toLocaleDateString()}</>
-                                )}
+                                <ClientOnly>
+                                    {() =>
+                                        system.itemList.updated && (
+                                            <>Prices retrieved on {system.itemList.updated.toLocaleDateString()}</>
+                                        )
+                                    }
+                                </ClientOnly>
                             </td>
                         ))}
                     </tr>
@@ -463,9 +468,13 @@ function FBTTable(): React.ReactNode {
                 <tr>
                     {systems.map((system, i) => (
                         <td key={`${i}-${system.key}`}>
-                            {system.itemList.updated && (
-                                <>Prices retrieved on {system.itemList.updated.toLocaleDateString()}</>
-                            )}
+                            <ClientOnly>
+                                {() =>
+                                    system.itemList.updated && (
+                                        <>Prices retrieved on {system.itemList.updated.toLocaleDateString()}</>
+                                    )
+                                }
+                            </ClientOnly>
                         </td>
                     ))}
                 </tr>
