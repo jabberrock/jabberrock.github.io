@@ -366,6 +366,10 @@ function FBTTable(): React.ReactNode {
                             VR. They represent the <strong>typical</strong> tracking I was able to achieve with good
                             calibration.
                         </p>
+                        <p>
+                            I recorded each system in one take. I had calibrate a few times to match my avatar and IRL
+                            body precisely. I also had to repeat certain actions until it wasn't affected by occlusion.
+                        </p>
                     </td>
                 </tr>
                 <tr id={`section-examples-standing`}>
