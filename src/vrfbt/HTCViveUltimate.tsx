@@ -120,10 +120,13 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
             setup: {
                 score: 4,
                 content: (
-                    <p>
-                        Install VIVE Hub, and follow the setup process. You'll pair the trackers, and scan the
-                        playspace.
-                    </p>
+                    <>
+                        <img src="/htc_vive_ultimate_trackers/vive_hub.png" />
+                        <p>
+                            Install VIVE Hub, and follow the setup process. You'll pair the trackers, and scan the
+                            playspace.
+                        </p>
+                    </>
                 ),
                 drawbacks: [
                     {

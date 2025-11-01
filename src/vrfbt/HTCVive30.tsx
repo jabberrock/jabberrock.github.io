@@ -202,6 +202,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                                 flow in SteamVR.
                             </p>
                         )}
+                        <img src="/htc_vive_trackers_3_0/steamvr_pair_tracker.png" />
                         <p>Connect the tracker dongles to your PC, and pair each tracker in SteamVR.</p>
                     </>
                 ),

@@ -206,6 +206,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
                 score: 3,
                 content: (
                     <>
+                        <img src="/slimevr_trackers/slimevr_server.png" />
                         <p>
                             Download the SlimeVR server and follow the setup flow. It will prompt you to enter your
                             Wi-Fi details, connect each tracker, and then assign each tracker to a body part.
