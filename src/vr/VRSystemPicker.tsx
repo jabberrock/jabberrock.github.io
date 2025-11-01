@@ -46,7 +46,7 @@ export const VRSystemPicker: React.FC<VRSystemPickerProps> = ({ show, onComplete
                         <VRHeadsetButton key={vrHeadsetKey} vrHeadsetKey={vrHeadsetKey} onClick={onComplete} />
                     ))}
                 </div>
-                <div className="d-flex align-items-stretch">
+                <div className="d-flex flex-wrap align-items-stretch">
                     {genericVRHeadsetKeys.map((vrHeadsetKey) => (
                         <VRHeadsetButton key={vrHeadsetKey} vrHeadsetKey={vrHeadsetKey} onClick={onComplete} />
                     ))}

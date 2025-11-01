@@ -181,8 +181,8 @@ tr {
 }
 
 .vr-headset-icon {
-    width: 160px;
-    height: 160px;
+    width: 120px;
+    height: 120px;
 }
 
 .vr-system-picker {
@@ -190,7 +190,7 @@ tr {
 }
 
 .vr-system-picker .vr-headset {
-    width: 180px;
+    width: 140px;
 }
 
 .collapsible {
