@@ -62,7 +62,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         name: "VIVE 3.0 Tracker",
                         count: 3,
                         each_price_cents: 14900,
-                        link: new URL("https://www.vive.com/us/accessory/tracker3/"),
+                        link: new URL("https://amzn.to/3LEBDs0"),
                     });
                     break;
                 case "htc_vive_trackers_3_0-3_trackers_1_continuous":
@@ -71,14 +71,14 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                         comment: "for tracking",
                         count: 3,
                         each_price_cents: 14900,
-                        link: new URL("https://www.vive.com/us/accessory/tracker3/"),
+                        link: new URL("https://amzn.to/3LEBDs0"),
                     });
                     c.required.push({
                         name: "VIVE 3.0 Tracker",
                         comment: "for continuous calibration",
                         count: 1,
                         each_price_cents: 14900,
-                        link: new URL("https://www.vive.com/us/accessory/tracker3/"),
+                        link: new URL("https://amzn.to/3LEBDs0"),
                     });
                     break;
             }
@@ -87,24 +87,20 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
                 comment: "to attach trackers to body",
                 count: 1,
                 each_price_cents: 4999,
-                link: new URL(
-                    "https://www.vive.com/us/accessory/trackstraps-for-vive-ultimate-tracker-plus-dance-dash/",
-                ),
+                link: new URL("https://amzn.to/4qCUOTh"),
             });
             c.required.push({
                 name: "HTC VIVE SteamVR Base Station 1.0",
                 count: 2,
                 each_price_cents: vrHeadsetsByKey[vrHeadsetKey].tracking === "lighthouse" ? 0 : 13499,
-                link: new URL("https://www.amazon.com/HTC-Vive-Base-Station-pc/dp/B01M01B92P"),
+                link: new URL("https://amzn.to/48Y3v4m"),
             });
             c.optional.push({
                 name: "Skywin VR Tripod Stand",
                 comment: "to position base stations",
                 count: 1,
                 each_price_cents: 4699,
-                link: new URL(
-                    "https://www.amazon.com/Skywin-Compatible-Station-Sensors-Constellation-PC/dp/B07B6FDKZ8",
-                ),
+                link: new URL("https://amzn.to/4ojpbN7"),
             });
             return c;
         })(),
