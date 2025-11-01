@@ -29,9 +29,11 @@ export function makeHTCViveUltimate(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FB
                     return <p className="recommended">VIVE Ultimate trackers are compatible with your headset.</p>;
                 } else {
                     return (
-                        <p className="warning">
-                            VIVE Ultimate trackers are compatible with your headset in PCVR mode. It cannot be used in
-                            standalone mode.
+                        <p>
+                            <span className="recommended">
+                                VIVE Ultimate trackers are compatible with your headset in PCVR mode.
+                            </span>{" "}
+                            <span className="warning">It cannot be used in standalone mode.</span>
                         </p>
                     );
                 }
