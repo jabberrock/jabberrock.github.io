@@ -74,7 +74,7 @@ export function makeSlimeVR(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSystemC
             const c: ItemList = {
                 required: [],
                 optional: [],
-                updated: new Date("2025-10-01"),
+                updated: new Date("2025-11-01"),
             };
             switch (fbtSystemConfig.key) {
                 case "slimevr_trackers-lower_body_set_5_0":

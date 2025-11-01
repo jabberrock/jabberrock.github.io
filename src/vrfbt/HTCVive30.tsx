@@ -76,7 +76,7 @@ export function makeHTCVive30(vrHeadsetKey: VRHeadsetKey, fbtConfigKey: FBTSyste
             const c: ItemList = {
                 required: [],
                 optional: [],
-                updated: new Date("2025-10-01"),
+                updated: new Date("2025-11-01"),
             };
             switch (fbtSystemConfig.key) {
                 case "htc_vive_trackers_3_0-3_trackers":
