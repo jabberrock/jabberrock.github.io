@@ -70,7 +70,7 @@ function About() {
                     <img src="/about/jabberrock.jpg" style={{ width: "100%" }} />
                 </p>
                 <h1>Hi!</h1>
-                <p>I'm Jabberrock, and I have been using Full Body Tracking (FBT) for the three years!</p>
+                <p>I'm Jabberrock, and I have been using Full Body Tracking (FBT) for the last three years!</p>
                 <h2>SlimeVR</h2>
                 <p>
                     I started by building my own DIY Slime trackers, and then for friends. I contributed to the SlimeVR
