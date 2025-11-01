@@ -81,8 +81,8 @@ function About() {
                     using obsolete IMUs. I also helped at the SlimeVR booth at Open Sauce 2025.
                 </p>
                 <p>
-                    During this time, I have heard a lot of comparisons between SlimeVR and VIVE trackers. Some
-                    statments were accurate, but there were also a lot of inaccurate statements.
+                    During this time, I have heard a lot of comparisons between SlimeVR and VIVE trackers. There is a
+                    lot of misinformation and out-of-date "facts" floating around.
                 </p>
                 <h2>Comparison</h2>
                 <p>
